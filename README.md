@@ -1,2 +1,2 @@
-# Projet Génie Logiciel (M1 ENS Cachan)
+# Projet Génie Logiciel (M1 ENS Cachan) - CANABAELDE
 - Canabalt like
