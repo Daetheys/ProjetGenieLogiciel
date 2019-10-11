@@ -2,29 +2,49 @@
 
 import numpy as np
 import numpy.linalg as linalg
+import os
+import sys
+path = os.getcwd()
+path = path[:-7]
+sys.path.append("error")
+sys.path.append(path)
+from exception import WrongSizeMatrix
+
+debug = True
 
 class Transform:
+    
     def __init__(self, matrix = None):
         if matrix is None:
             self.matrix = np.identity(3)
-        else:
+        elif matrix.shape == (3,3):
             self.matrix = matrix
+        #else:
+           #raise WrongSizeMatrix(matrix)
+       
     def get_matrix(self):
         return self.matrix
+    
     def get_inverse(self):
         try:
             return Transform(linalg.inv(self.matrix))
         except linalg.LinAlgError:
+            if debug:
+                print("Carefull : Linalg Error, a transform got identity instead of inverse\n")
             return Transform()
+        
     def transformPoint(self,x,y):
         corrected_vector = np.array([[x],[y],[1.]])
         reducted_matrix = self.matrix[:2,:]
         return np.dot(self.matrix[:2,:],np.array(corrected_vector))
+    
     def transformVect(self,v):
         return self.transformPoint(v[0],v[1])
+    
     def combine(self,t1):
         self.matrix = np.dot(self.matrix,t1.get_matrix())
         return self
+    
     def translate(self,v):
         x,y = v[0],v[1]
         translation_matrix = np.array([\

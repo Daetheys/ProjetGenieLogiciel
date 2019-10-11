@@ -29,7 +29,7 @@ def test_set_get(px,py,r,sx,sy,ox,oy):
     assert T.get_rotation() == r%np.pi
     assert T.get_scale() == (sx,sy)
     assert T.get_origin() == (ox,oy)
-
+    
 @given(integers(),integers(),integers(),integers(),integers())
 def test_move_rot_scal(mvx,mvy,rot,scalx,scaly):
     T = Transformable()
