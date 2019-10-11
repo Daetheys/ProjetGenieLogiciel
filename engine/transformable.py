@@ -1,18 +1,18 @@
 import numpy as np
-from Transform import *
+from transform import *
 
 #travis github CI
 
 class Transformable:
     def __init__(self):
         self.__origin = (0,0) #Origine du Transformable
-        self.__position = (0,0) #Coordonnées du Transformable dans l'environnement
+        self.__position = (0,0) #Coordonnees du Transformable dans l'environnement
         self.__rotation = 0 #Rotation actuelle du Transformable
         self.__scale = (1,1) #Ecard du transformable
         self.__transform = None #Transformation
         self.__tr_need_up = True #Update Boolean (Transformation need update)
         self.__inverse_transform = None #Transformation inverse
-        self.__inv_tr_need_up = True #Update Transformation inverse (Inverse Transformation need update
+        self.__inv_tr_need_up = True #Update Transformation inverse (Inverse Transformation need update)
 
     def reset_update(self):
         self.__tr_need_up = True
@@ -52,9 +52,9 @@ class Transformable:
     def rotate(self,angle):
         self.set_rotation(self.__rotation+angle)
 
-    def scale(self,add_scale):
+    def scale(self,scalex,scaley):
         (x,y) = self.__scale
-        (x2,y2) = add_scale
+        (x2,y2) = (scalex,scaley)
         self.set_scale(x+x2,y+y2)
 
     def get_transform():
