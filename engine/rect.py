@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from vector import Vector
+
 class Rect:
     def __init__(self):
         self.__left = 0.
