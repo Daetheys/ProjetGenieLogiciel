@@ -46,10 +46,9 @@ class Transform:
         return self
 
     def translate(self,v):
-        x,y = v[0],v[1]
         translation_matrix = np.array([\
-                [1,0,x], \
-                [0,1,y], \
+                [1,0,v.x], \
+                [0,1,v.y], \
                 [0,0,1]])
         return self.combine(Transform(translation_matrix))
     def rotate(self,angle):
@@ -59,10 +58,9 @@ class Transform:
                 [cos,-sin,0], \
                 [sin, cos,0], \
                 [0,0,1]])
-        print('rotation matrix :\n', rotation_matrix)
         return self.combine(Transform(rotation_matrix))
     def rotate_around(self,angle,center):
-        x,y = center[0],center[1]
+        x,y = center.x,center.y
         cos = np.cos(angle)
         sin = np.sin(angle)
         rotation_matrix = np.array([\
@@ -71,12 +69,15 @@ class Transform:
                 [0,0,1]])
         return self.combine(Transform(rotation_matrix))
     def scale(self,v):
-        sX,sY = (v,v) if isinstance(v, float) else (v[0],v[1])
-        scale_matrix = np.array([[sX,0,0],[0,sY,0],[0,0,1]])
+        sX,sY = (v,v) if isinstance(v,float) else (v.x,v.y)
+        scale_matrix = np.array([\
+                [sX,0,0],\
+                [0,sY,0],\
+                [0,0,1]])
         return self.combine(Transform(scale_matrix))
     def scale_around(self,v,center):
-        sX,sY = (v,v) if type(v) == 'float' else (v[0],v[1])
-        x,y = center[0],center[1]
+        sX,sY = (v,v) if isinstance(v,float) else (v.x,v.y)
+        x,y = center.x,center.y
         scale_matrix = np.array([ \
                 [sX,0,x*(1-sX)], \
                 [0,sY,y*(1-sY)],
