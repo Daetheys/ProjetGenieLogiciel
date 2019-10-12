@@ -240,10 +240,10 @@ def reaction_b32():
 
     b321 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b321",dict_img["img_buttonH"],text="English",react=reaction_b321)
     b322 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b322",dict_img["img_buttonH"],text="Français",react=reaction_b322)
-    b323 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b323",dict_img["img_buttonH"],text="Español")
-    b324 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b324",dict_img["img_buttonH"],text="Esperanto")
-    b325 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b325",dict_img["img_buttonH"],text="Русский язык")
-    b326 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b326",dict_img["img_buttonH"],text="日本語")
+    b323 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b323",dict_img["img_buttonH"],text="Español").activation(False)
+    b324 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b324",dict_img["img_buttonH"],text="Esperanto").activation(False)
+    b325 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b325",dict_img["img_buttonH"],text="Русский язык").activation(False)
+    b326 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b326",dict_img["img_buttonH"],text="日本語").activation(False)
     
 
     while cnt:
