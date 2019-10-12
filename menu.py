@@ -13,8 +13,8 @@ from tools import *
 #Display
 FRAMEPERSECONDLIMIT = 30
 modeECRAN = FULLSCREEN  #modeECRAN = 0 ou FULLSCREEN
-DISPLAYSIZE_X = 1600
-DISPLAYSIZE_Y = 900
+DISPLAYSIZE_X = 1366
+DISPLAYSIZE_Y = 768
 fenetre = pygame.display.set_mode((DISPLAYSIZE_X, DISPLAYSIZE_Y),modeECRAN)#1920*1080
 pygame.display.set_icon(pygame.image.load("_/img/icon.ico"))
 
@@ -238,8 +238,8 @@ def reaction_b32():
     quit_all = False
     suppress_buttons(2)
 
-    b321 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b321",dict_img["img_buttonH"],text="English")
-    b322 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b322",dict_img["img_buttonH"],text="Français")
+    b321 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b321",dict_img["img_buttonH"],text="English",react=reaction_b321)
+    b322 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b322",dict_img["img_buttonH"],text="Français",react=reaction_b322)
     b323 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b323",dict_img["img_buttonH"],text="Español")
     b324 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b324",dict_img["img_buttonH"],text="Esperanto")
     b325 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b325",dict_img["img_buttonH"],text="Русский язык")
@@ -261,6 +261,20 @@ def reaction_b32():
     b36 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
     
     return cnt_underlying,quit_all
+    
+def reaction_b321():
+    global dict_str
+    LANGUAGE="English"
+    with open("_/json/eng.json", "r") as read_file:
+        dict_str=json.load(read_file)
+    return True,False
+        
+def reaction_b322():
+    global dict_str
+    LANGUAGE="French"
+    with open("_/json/fr.json", "r") as read_file:
+        dict_str=json.load(read_file)
+    return True,False
     
 def menu_loop(cnt = True,quit_all=False,background = None):
     """
