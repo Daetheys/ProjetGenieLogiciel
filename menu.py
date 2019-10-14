@@ -1,5 +1,9 @@
 """
-Menu v8
+Menu v8.1
+-adding the add_to_list option to Button class.
+-the return button now changes dynamically with the language
+-new option to menu_loop : scrolling menu
+-scrolling added to the language menu
 """
 
 import sys
@@ -12,9 +16,9 @@ from tools import *
 
 #Display
 FRAMEPERSECONDLIMIT = 30
-modeECRAN = FULLSCREEN  #modeECRAN = 0 ou FULLSCREEN
-DISPLAYSIZE_X = 1366
-DISPLAYSIZE_Y = 768
+modeECRAN = 0  #modeECRAN = 0 ou FULLSCREEN
+DISPLAYSIZE_X = 1600
+DISPLAYSIZE_Y = 900
 fenetre = pygame.display.set_mode((DISPLAYSIZE_X, DISPLAYSIZE_Y),modeECRAN)#1920*1080
 pygame.display.set_icon(pygame.image.load("_/img/icon.ico"))
 
@@ -46,7 +50,7 @@ pygame.display.flip()
 #pygame.mixer.music.play(-1)
 
 #Other constants
-LANGUAGE = "French"
+LANGUAGE = "English"
 BUTTON_LIST = []#to keep an eye on all buttons currently displayed
 
 
@@ -59,7 +63,7 @@ elif LANGUAGE == "French":
     
 class buttonMenu:
 
-    def __init__(self,xm,xM,ym,yM,img=dict_img["img_default"],name="Unnamed",picH=None,picD=None,text=None,react=no_reaction):
+    def __init__(self,xm,xM,ym,yM,img=dict_img["img_default"],name="Unnamed",picH=None,picD=None,text=None,react=no_reaction,add_to_list=True):
         self.xmin = xm
         self.xmax = xM
         self.ymin = ym
@@ -74,11 +78,14 @@ class buttonMenu:
         else: self.text = text#displayed text
         self.t = 0
         self.up = True
-        BUTTON_LIST.append(self)#to keep an eye on all buttons
+        if add_to_list:
+            BUTTON_LIST.append(self)#to keep an eye on all buttons
         self.name = name
         self.speed = 1
         self.period = 1
         self.react = react
+        self.visible = True
+        self.was_active = True#manages activation ~ disappearance relations
     def __repr__(self):
         return self.name + '= Button(%s<x<%s, %s<y<%s)\n' % (self.xmin, self.xmax, self.ymin, self.ymax)
     
@@ -89,37 +96,48 @@ class buttonMenu:
         """ returns the visible boundaries of self"""
         return self.xmin,self.xmax,self.__displayedY(self.ymin),self.__displayedY(self.ymax)
     
-    def activation(self,flag):self.activated=flag
-    
+    def activation(self,flag):
+        self.activated = flag
+        self.was_active = flag
+    def appear(self):
+        """ an invisible button appears"""
+        self.visible = True
+        self.activated = self.was_active
+    def disappear(self):
+        """ a button disappears """
+        self.visible = False
+        self.was_active = self.activated
+        self.activated = False
     def display(self,period=None,speed=None,refresh=False):
         """allow for the display of buttons"""
-        mx,my = pygame.mouse.get_pos()
-        if self.activated:
-            if xyinbounds(mx,my,self):
-                picture = self.picH
+        if self.visible:
+            mx,my = pygame.mouse.get_pos()
+            if self.activated:
+                if xyinbounds(mx,my,self):
+                    picture = self.picH
+                else:
+                    picture = self.pic
             else:
-                picture = self.pic
-        else:
-            picture = self.picD
-        if speed is None: speed = self.speed
-        else: self.speed = speed
-        if period is None: period = self.period
-        else: self.period = period
-        if period <= 1: fenetre.blit(picture,(self.xmin,self.ymin))
-        else:
-            if self.up:self.t += 1
-            else: self.t -= 1
-            if self.t >= period - 1:
-                self.up = False
-            elif self.t <= 0:
-                self.up = True
-            fenetre.blit(picture,(self.xmin,self.__displayedY(self.ymin)))
-        if self.activated:
-            T(self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,size=50)
-        else:
-            T(self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
-            fenetre.blit(dict_img["img_layer_lock"],(self.xmin,self.__displayedY(self.ymin)))
-        if refresh: pygame.display.flip()
+                picture = self.picD
+            if speed is None: speed = self.speed
+            else: self.speed = speed
+            if period is None: period = self.period
+            else: self.period = period
+            if period <= 1: fenetre.blit(picture,(self.xmin,self.ymin))
+            else:
+                if self.up:self.t += 1
+                else: self.t -= 1
+                if self.t >= period - 1:
+                    self.up = False
+                elif self.t <= 0:
+                    self.up = True
+                fenetre.blit(picture,(self.xmin,self.__displayedY(self.ymin)))
+            if self.activated:
+                T(self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,size=50)
+            else:
+                T(self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
+                fenetre.blit(dict_img["img_layer_lock"],(self.xmin,self.__displayedY(self.ymin)))
+            if refresh: pygame.display.flip()
     
 #Reaction functions of the buttons
 def suppress_buttons(n):
@@ -231,23 +249,27 @@ def reaction_b11():
     return cnt_underlying,quit_all
     
 def reaction_b32():
-    """language"""
+    """language choice menu reaction button"""
     global BUTTON_LIST
     cnt = True
     cnt_underlying = True
     quit_all = False
     suppress_buttons(2)
 
-    b321 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b321",dict_img["img_buttonH"],text="English",react=reaction_b321)
-    b322 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b322",dict_img["img_buttonH"],text="Français",react=reaction_b322)
-    b323 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b323",dict_img["img_buttonH"],text="Español").activation(False)
-    b324 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b324",dict_img["img_buttonH"],text="Esperanto").activation(False)
-    b325 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b325",dict_img["img_buttonH"],text="Русский язык").activation(False)
-    b326 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b326",dict_img["img_buttonH"],text="日本語").activation(False)
     
+    b321 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b321",dict_img["img_buttonH"],text="English",react=reaction_b321)
+    b322 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b322",dict_img["img_buttonH"],text="Français",react=reaction_b322)
+    b323 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b323",dict_img["img_buttonH"],text="Español")
+    b324 = buttonMenu(b1xmin,b1xmax,b1ymin+600,b1ymax+600,dict_img["img_button"],"b324",dict_img["img_buttonH"],text="Esperanto")
+    b325 = buttonMenu(b1xmin,b1xmax,b1ymin+800,b1ymax+800,dict_img["img_button"],"b325",dict_img["img_buttonH"],text="Русский язык")
+    b326 = buttonMenu(b1xmin,b1xmax,b1ymin+1000,b1ymax+1000,dict_img["img_button"],"b326",dict_img["img_buttonH"],text="日本語")
+    b323.activation(False)
+    b324.activation(False)
+    b325.activation(False)
+    b326.activation(False)
 
     while cnt:
-        cnt,quit_all = menu_loop()
+        cnt,quit_all = menu_loop(scrolling=True,scrollist=[b321,b322,b323,b324,b325,b326])
         if quit_all:
             cnt = False
             cnt_underlying = False
@@ -264,19 +286,27 @@ def reaction_b32():
     
 def reaction_b321():
     global dict_str
-    LANGUAGE="English"
+    LANGUAGE = "English"
     with open("_/json/eng.json", "r") as read_file:
-        dict_str=json.load(read_file)
-    return True,False
+        dict_str = json.load(read_file)
+    for b in BUTTON_LIST:
+        if b.name == "exit":
+            b.text = dict_str["return"]
+            b.xmax = 5 + 25*len(dict_str["return"])
+    return True, False
         
 def reaction_b322():
     global dict_str
-    LANGUAGE="French"
+    LANGUAGE = "French"
     with open("_/json/fr.json", "r") as read_file:
-        dict_str=json.load(read_file)
-    return True,False
+        dict_str = json.load(read_file)
+    for b in BUTTON_LIST:
+        if b.name == "exit":
+            b.text = dict_str["return"]
+            b.xmax = 5 + 25*len(dict_str["return"])
+    return True, False
     
-def menu_loop(cnt = True,quit_all=False,background = None):
+def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scrollist=[]):
     """
     function used for various loops. returns:
       continue (whether the loop nesting it stops)
@@ -312,18 +342,44 @@ def menu_loop(cnt = True,quit_all=False,background = None):
         #MOUSE EVENTS HANDLER
         if event.type == MOUSEBUTTONDOWN:
             mx,my = pygame.mouse.get_pos() 
-            for b in BUTTON_LIST:
-                if xyinbounds(mx,my,b):
-                    print(b.name)
-                    cntb,quit_allb = b.react()
-                    cnt  = cnt and cntb
-                    quit_all = quit_all or quit_allb
-    
+            if event.button == 1:
+                for b in BUTTON_LIST:
+                    if xyinbounds(mx,my,b):
+                        print(b.name)
+                        cntb,quit_allb = b.react()
+                        cnt  = cnt and cntb
+                        quit_all = quit_all or quit_allb
+
+            if scrolling and len(scrollist):
+                if event.button == 5:
+                    if scrollist[-1].ymax > b1ymax+400:
+                        #empeche d'aller trop loin en bas
+                        print("scroll up")
+                        for b in scrollist:
+                            b.ymin -= 200
+                            b.ymax -= 200
+                            if b.ymin < b1ymin:
+                                if b.visible:
+                                    b.disappear()
+                            elif b.ymax <= b1ymax+400:
+                                b.appear()
+                elif event.button == 4:
+                    if scrollist[0].ymin < b1ymin:
+                        #empeche d'aller trop loin en haut
+                        print("scroll down")
+                        for b in scrollist:
+                            b.ymin += 200
+                            b.ymax += 200
+                            if b.ymax > b1ymax+400:
+                                if b.visible:
+                                    b.disappear()
+                            elif b.ymin >= b1ymin:
+                                b.appear()
     return cnt,quit_all
 
 #Basic buttons
 titlebanner = buttonMenu(105,1456,25,173,dict_img["img_titlebanner"],"banner")
-exit = buttonMenu(10,5+20*len(dict_str["exit"]),DISPLAYSIZE_Y-50,DISPLAYSIZE_Y,dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
+exit = buttonMenu(10,5+25*len(dict_str["exit"]),DISPLAYSIZE_Y-50,DISPLAYSIZE_Y,dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
 
 quitter_jeu = False
 continuer_menu =  True
