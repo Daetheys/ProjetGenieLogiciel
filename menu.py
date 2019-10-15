@@ -1,9 +1,9 @@
 """
-Menu v8.1
--adding the add_to_list option to Button class.
--the return button now changes dynamically with the language
--new option to menu_loop : scrolling menu
--scrolling added to the language menu
+Menu v0.8.2
+-added the options.json file
+-changes to language can be saved in it
+-corrected minor bugs about button activation
+-corrected minor bugs about language change
 """
 
 import sys
@@ -15,13 +15,16 @@ pygame.mixer.init()
 from tools import *
 
 #Display
-FRAMEPERSECONDLIMIT = 30
-modeECRAN = 0  #modeECRAN = 0 ou FULLSCREEN
-DISPLAYSIZE_X = 1600
-DISPLAYSIZE_Y = 900
+with open("_/json/options.json","r") as f:
+    OPTIONS = json.load(f)
+LANGUAGE = OPTIONS["LANGUAGE"]
+DISPLAYSIZE_X = OPTIONS["DISPLAYSIZE_X"]
+DISPLAYSIZE_Y = OPTIONS["DISPLAYSIZE_Y"]
+modeECRAN = OPTIONS["modeECRAN"]  #modeECRAN = 0 ou FULLSCREEN
+FRAMEPERSECONDLIMIT = OPTIONS["FPS"]
+
 fenetre = pygame.display.set_mode((DISPLAYSIZE_X, DISPLAYSIZE_Y),modeECRAN)#1920*1080
 pygame.display.set_icon(pygame.image.load("_/img/icon.ico"))
-
 
 def T(txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
     """allows the display of text on screen with or without centering"""
@@ -50,8 +53,9 @@ pygame.display.flip()
 #pygame.mixer.music.play(-1)
 
 #Other constants
-LANGUAGE = "English"
+#LANGUAGE = "English"
 BUTTON_LIST = []#to keep an eye on all buttons currently displayed
+
 
 
 if LANGUAGE == "English":
@@ -162,8 +166,10 @@ def reaction_b1():
     BUTTON_LIST[1].react = reaction_return
 
     b11 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b11",dict_img["img_buttonH"],text=dict_str["campaign_kshan"],react=reaction_b11)
-    b12 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b12",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_fantasy"]).activation(False)#désactivé par défaut
-    b13 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b13",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_future"]).activation(False)#désactivé par défaut
+    b12 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b12",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_fantasy"])
+    b13 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b13",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_future"])
+    b12.activation(False)#désactivé par défaut
+    b13.activation(False)#désactivé par défaut
 
     while cnt:
         cnt,quit_all = menu_loop()
@@ -206,7 +212,15 @@ def reaction_b3():
         if quit_all:
             cnt = False
             cnt_underlying = False
-            
+
+    OPTIONS["LANGUAGE"] = LANGUAGE
+    OPTIONS["DISPLAYSIZE_X"] = DISPLAYSIZE_X
+    OPTIONS["DISPLAYSIZE_Y"] = DISPLAYSIZE_Y
+    OPTIONS["modeECRAN"] = modeECRAN
+    OPTIONS["FPS"] = FRAMEPERSECONDLIMIT
+    with open("_/json/options.json","w") as f:
+        f.write(json.dumps(OPTIONS))
+
     BUTTON_LIST[1].text = dict_str["exit"]
     BUTTON_LIST[1].xmax = 10+25*len(dict_str["exit"])
     BUTTON_LIST[1].react = reaction_exit
@@ -239,15 +253,18 @@ def reaction_b11():
         if quit_all:
             cnt = False
             cnt_underlying = False
-    
+
     #suppress_buttons(2)#titlebanner,exit
 
     b11 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b11",dict_img["img_buttonH"],text=dict_str["campaign_kshan"],react=reaction_b11)
-    b12 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b12",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_fantasy"]).activation(False)#désactivé par défaut
-    b13 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b13",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_future"]).activation(False)#désactivé par défaut
+    b12 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b12",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_fantasy"])
+    b13 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b13",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_future"])
+    b12.activation(False)#désactivé par défaut
+    b13.activation(False)#désactivé par défaut
 
     return cnt_underlying,quit_all
-    
+
+
 def reaction_b32():
     """language choice menu reaction button"""
     global BUTTON_LIST
@@ -285,7 +302,7 @@ def reaction_b32():
     return cnt_underlying,quit_all
     
 def reaction_b321():
-    global dict_str
+    global dict_str,LANGUAGE
     LANGUAGE = "English"
     with open("_/json/eng.json", "r") as read_file:
         dict_str = json.load(read_file)
@@ -296,7 +313,7 @@ def reaction_b321():
     return True, False
         
 def reaction_b322():
-    global dict_str
+    global dict_str,LANGUAGE
     LANGUAGE = "French"
     with open("_/json/fr.json", "r") as read_file:
         dict_str = json.load(read_file)
@@ -403,6 +420,8 @@ while not quitter_jeu:
         if quitter_jeu:
             continuer_menu = False
     continuer_menu = True
+
+
 pygame.display.quit()
 pygame.quit()
 #sys.exit(0)
