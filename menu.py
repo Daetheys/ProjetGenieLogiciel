@@ -1,9 +1,8 @@
 """
-Menu v0.8.2
--added the options.json file
--changes to language can be saved in it
--corrected minor bugs about button activation
--corrected minor bugs about language change
+Menu v0.8.3
+-changes to options: graphism modification now allowed
+-screen resolution can be set to various resolutions
+-fullscreen can be toggled on and off
 """
 
 import sys
@@ -203,7 +202,7 @@ def reaction_b3():
     b31 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b31",dict_img["img_buttonH"],text=dict_str["volume"])
     b32 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
     b33 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
-    b34 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b34",dict_img["img_buttonH"],text=dict_str["graphics"])
+    b34 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b34",dict_img["img_buttonH"],text=dict_str["graphics"],react=reaction_b34)
     b35 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
     b36 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
 
@@ -295,12 +294,76 @@ def reaction_b32():
     b31 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b31",dict_img["img_buttonH"],text=dict_str["volume"])
     b32 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
     b33 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
-    b34 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b34",dict_img["img_buttonH"],text=dict_str["graphics"])
+    b34 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b34",dict_img["img_buttonH"],text=dict_str["graphics"],react=reaction_b34)
     b35 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
     b36 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
     
     return cnt_underlying,quit_all
+
+
+
+def reaction_b34():
+    """graphics choice menu reaction button"""
+    global BUTTON_LIST
+    cnt = True
+    cnt_underlying = True
+    quit_all = False
+    suppress_buttons(2)
+
     
+    b341 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b341",dict_img["img_buttonH"],text=dict_str["Activate Fullscreen"],react=reaction_b341)
+    b342 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b342",dict_img["img_buttonH"],text="1600x900",react=reaction_changeScreen(resx=1600,resy=900))
+    b343 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b343",dict_img["img_buttonH"],text="1280x720",react=reaction_changeScreen(resx=1280,resy=720))
+    b344 = buttonMenu(b1xmin,b1xmax,b1ymin+600,b1ymax+600,dict_img["img_button"],"b344",dict_img["img_buttonH"],text="1366x768",react=reaction_changeScreen(resx=1366,resy=768))
+    b345 = buttonMenu(b1xmin,b1xmax,b1ymin+800,b1ymax+800,dict_img["img_button"],"b345",dict_img["img_buttonH"],text="1920x1080",react=reaction_changeScreen(resx=1920,resy=1080))
+    b346 = buttonMenu(b1xmin,b1xmax,b1ymin+1000,b1ymax+1000,dict_img["img_button"],"b346",dict_img["img_buttonH"],text="2560x1440",react=reaction_changeScreen(resx=2560,resy=1440))
+    #b344.activation(False)
+    #b343.activation(False)
+    #b345.activation(False)
+    #b346.activation(False)
+    if modeECRAN:#if is in FULLSCREEN
+        b341.text = dict_str["Disable Fullscreen"]
+    else:
+        b341.text = dict_str["Activate Fullscreen"]
+    while cnt:
+        cnt,quit_all = menu_loop(scrolling=True,scrollist=[b341,b342,b343,b344,b345,b346])
+        if modeECRAN:#if is in FULLSCREEN
+            b341.text = dict_str["Disable Fullscreen"]
+        else:
+            b341.text = dict_str["Activate Fullscreen"]
+        if quit_all:
+            cnt = False
+            cnt_underlying = False
+
+    suppress_buttons(2)
+    b31 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b31",dict_img["img_buttonH"],text=dict_str["volume"])
+    b32 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
+    b33 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
+    b34 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b34",dict_img["img_buttonH"],text=dict_str["graphics"],react=reaction_b34)
+    b35 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
+    b36 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
+
+    return cnt_underlying,quit_all
+
+def reaction_b341():
+    """ Toggle Fullscreen"""
+    global OPTIONS,modeECRAN
+    modeECRAN = FULLSCREEN - modeECRAN
+    OPTIONS["modeECRAN"] = modeECRAN
+    return True,False
+
+def reaction_changeScreen(resx=1600,resy=900):
+    """
+    returns a functions that changes the resolution into resx,resy """
+    def f():
+        global OPTIONS,DISPLAYSIZE_X,DISPLAYSIZE_Y
+        DISPLAYSIZE_X = resx
+        DISPLAYSIZE_Y = resy
+        OPTIONS["DISPLAYSIZE_X"] = DISPLAYSIZE_X
+        OPTIONS["DISPLAYSIZE_Y"] = DISPLAYSIZE_Y
+        return True,False
+    return f
+
 def reaction_b321():
     global dict_str,LANGUAGE
     LANGUAGE = "English"
@@ -322,7 +385,7 @@ def reaction_b322():
             b.text = dict_str["return"]
             b.xmax = 5 + 25*len(dict_str["return"])
     return True, False
-    
+
 def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scrollist=[]):
     """
     function used for various loops. returns:
