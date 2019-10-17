@@ -1,8 +1,7 @@
 """
-Menu v0.8.3
--changes to options: graphism modification now allowed
--screen resolution can be set to various resolutions
--fullscreen can be toggled on and off
+Menu v0.8.4
+-only necessary imports are made in tools.py
+-arrows are shown when scrolling is active
 """
 
 import sys
@@ -39,6 +38,7 @@ def T(txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
 #Images
 with open("_/json/img.json", "r") as read_file:
     dict_img=json.load(read_file,object_hook=create_img)
+nice_arrow  = pygame.transform.smoothscale(dict_img["img_arrow"],(40,40))
 
 #Title
 pygame.display.set_caption("CAN·A·BAELDE")
@@ -52,7 +52,6 @@ pygame.display.flip()
 #pygame.mixer.music.play(-1)
 
 #Other constants
-#LANGUAGE = "English"
 BUTTON_LIST = []#to keep an eye on all buttons currently displayed
 
 
@@ -408,6 +407,11 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
             b.display(1,1)
         else:
             b.display(20)
+    if scrolling and len(scrollist):
+        if scrollist[-1].ymax > b1ymax+400:
+            fenetre.blit(nice_arrow,(DISPLAYSIZE_X//2+250,300))
+        if scrollist[0].ymin < b1ymin:
+            fenetre.blit(pygame.transform.flip(nice_arrow,False,True),(DISPLAYSIZE_X//2+250,250))
     pygame.display.flip()
     
     #KEYBOARD HANDLER
