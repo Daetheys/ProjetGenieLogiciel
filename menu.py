@@ -1,26 +1,24 @@
 """
-Menu v0.8.4.1
--grey arrow added
+Menu v0.8.4.2
+-global variables suppressed
+-yoffset variable added
+-yoffset is the vertical offset between buttons
 """
 
 import sys
 import pygame
 import json
-pygame.init()
 from pygame.locals import *
-pygame.mixer.init()
 from tools import *
 
 #Display
-with open("_/json/options.json","r") as f:
-    OPTIONS = json.load(f)
-LANGUAGE = OPTIONS["LANGUAGE"]
-DISPLAYSIZE_X = OPTIONS["DISPLAYSIZE_X"]
-DISPLAYSIZE_Y = OPTIONS["DISPLAYSIZE_Y"]
-modeECRAN = OPTIONS["modeECRAN"]  #modeECRAN = 0 ou FULLSCREEN
-FRAMEPERSECONDLIMIT = OPTIONS["FPS"]
+with open("_/json/options.json","r") as file:
+    OPTIONS = json.load(file)
+	#OPTIONS["modeECRAN"]  = 0 ou FULLSCREEN
 
-fenetre = pygame.display.set_mode((DISPLAYSIZE_X, DISPLAYSIZE_Y),modeECRAN)#1920*1080
+pygame.init()
+pygame.mixer.init()
+fenetre = pygame.display.set_mode((OPTIONS["DISPLAYSIZE_X"], OPTIONS["DISPLAYSIZE_Y"]),OPTIONS["modeECRAN"])#1920*1080
 pygame.display.set_icon(pygame.image.load("_/img/icon.ico"))
 
 def T(txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
@@ -37,8 +35,8 @@ def T(txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
 #Images
 with open("_/json/img.json", "r") as read_file:
     dict_img=json.load(read_file,object_hook=create_img)
-nice_arrow  = pygame.transform.smoothscale(dict_img["img_arrow"],(40,40))
-grey_arrow  = pygame.transform.smoothscale(dict_img["img_garrow"],(40,40))
+dict_img["img_arrow"]  = pygame.transform.smoothscale(dict_img["img_arrow"],(40,40))
+dict_img["img_garrow"]  = pygame.transform.smoothscale(dict_img["img_garrow"],(40,40))
 
 #Title
 pygame.display.set_caption("CAN·A·BAELDE")
@@ -56,10 +54,10 @@ BUTTON_LIST = []#to keep an eye on all buttons currently displayed
 
 
 
-if LANGUAGE == "English":
+if OPTIONS["LANGUAGE"] == "English":
     with open("_/json/eng.json", "r") as read_file:
         dict_str=json.load(read_file)
-elif LANGUAGE == "French":
+elif OPTIONS["LANGUAGE"] == "French":
     with open("_/json/fr.json", "r") as read_file:
         dict_str=json.load(read_file)
     
@@ -164,8 +162,8 @@ def reaction_b1():
     BUTTON_LIST[1].react = reaction_return
 
     b11 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b11",dict_img["img_buttonH"],text=dict_str["campaign_kshan"],react=reaction_b11)
-    b12 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b12",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_fantasy"])
-    b13 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b13",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_future"])
+    b12 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b12",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_fantasy"])
+    b13 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b13",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_future"])
     b12.activation(False)#désactivé par défaut
     b13.activation(False)#désactivé par défaut
 
@@ -188,8 +186,7 @@ def reaction_b3():
     effect of the lower button of the first menu
     triggers the option menu
     """
-    
-    global BUTTON_LIST
+    global BUTTON_LIST,OPTIONS
     cnt = True
     cnt_underlying = False
     quit_all = False
@@ -199,11 +196,11 @@ def reaction_b3():
     BUTTON_LIST[1].react = reaction_return
 
     b31 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b31",dict_img["img_buttonH"],text=dict_str["volume"])
-    b32 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
-    b33 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
+    b32 = buttonMenu(b31xmin,b31xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
+    b33 = buttonMenu(b31xmin,b31xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
     b34 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b34",dict_img["img_buttonH"],text=dict_str["graphics"],react=reaction_b34)
-    b35 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
-    b36 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
+    b35 = buttonMenu(b32xmin,b32xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
+    b36 = buttonMenu(b32xmin,b32xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
 
     while cnt:
         cnt,quit_all = menu_loop()
@@ -211,11 +208,6 @@ def reaction_b3():
             cnt = False
             cnt_underlying = False
 
-    OPTIONS["LANGUAGE"] = LANGUAGE
-    OPTIONS["DISPLAYSIZE_X"] = DISPLAYSIZE_X
-    OPTIONS["DISPLAYSIZE_Y"] = DISPLAYSIZE_Y
-    OPTIONS["modeECRAN"] = modeECRAN
-    OPTIONS["FPS"] = FRAMEPERSECONDLIMIT
     with open("_/json/options.json","w") as f:
         f.write(json.dumps(OPTIONS))
 
@@ -255,8 +247,8 @@ def reaction_b11():
     #suppress_buttons(2)#titlebanner,exit
 
     b11 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b11",dict_img["img_buttonH"],text=dict_str["campaign_kshan"],react=reaction_b11)
-    b12 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b12",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_fantasy"])
-    b13 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b13",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_future"])
+    b12 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b12",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_fantasy"])
+    b13 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b13",dict_img["img_buttonH"],dict_img["img_buttonD"],text=dict_str["campaign_future"])
     b12.activation(False)#désactivé par défaut
     b13.activation(False)#désactivé par défaut
 
@@ -273,11 +265,11 @@ def reaction_b32():
 
     
     b321 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b321",dict_img["img_buttonH"],text="English",react=reaction_b321)
-    b322 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b322",dict_img["img_buttonH"],text="Français",react=reaction_b322)
-    b323 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b323",dict_img["img_buttonH"],text="Español")
-    b324 = buttonMenu(b1xmin,b1xmax,b1ymin+600,b1ymax+600,dict_img["img_button"],"b324",dict_img["img_buttonH"],text="Esperanto")
-    b325 = buttonMenu(b1xmin,b1xmax,b1ymin+800,b1ymax+800,dict_img["img_button"],"b325",dict_img["img_buttonH"],text="Русский язык")
-    b326 = buttonMenu(b1xmin,b1xmax,b1ymin+1000,b1ymax+1000,dict_img["img_button"],"b326",dict_img["img_buttonH"],text="日本語")
+    b322 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b322",dict_img["img_buttonH"],text="Français",react=reaction_b322)
+    b323 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b323",dict_img["img_buttonH"],text="Español")
+    b324 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*3,b1ymax+yoffset*3,dict_img["img_button"],"b324",dict_img["img_buttonH"],text="Esperanto")
+    b325 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*4,b1ymax+yoffset*4,dict_img["img_button"],"b325",dict_img["img_buttonH"],text="Русский язык")
+    b326 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*5,b1ymax+yoffset*5,dict_img["img_button"],"b326",dict_img["img_buttonH"],text="日本語")
     b323.activation(False)
     b324.activation(False)
     b325.activation(False)
@@ -291,11 +283,11 @@ def reaction_b32():
 
     suppress_buttons(2)
     b31 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b31",dict_img["img_buttonH"],text=dict_str["volume"])
-    b32 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
-    b33 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
+    b32 = buttonMenu(b31xmin,b31xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
+    b33 = buttonMenu(b31xmin,b31xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
     b34 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b34",dict_img["img_buttonH"],text=dict_str["graphics"],react=reaction_b34)
-    b35 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
-    b36 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
+    b35 = buttonMenu(b32xmin,b32xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
+    b36 = buttonMenu(b32xmin,b32xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
     
     return cnt_underlying,quit_all
 
@@ -311,22 +303,22 @@ def reaction_b34():
 
     
     b341 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b341",dict_img["img_buttonH"],text=dict_str["Activate Fullscreen"],react=reaction_b341)
-    b342 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b342",dict_img["img_buttonH"],text="1600x900",react=reaction_changeScreen(resx=1600,resy=900))
-    b343 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b343",dict_img["img_buttonH"],text="1280x720",react=reaction_changeScreen(resx=1280,resy=720))
-    b344 = buttonMenu(b1xmin,b1xmax,b1ymin+600,b1ymax+600,dict_img["img_button"],"b344",dict_img["img_buttonH"],text="1366x768",react=reaction_changeScreen(resx=1366,resy=768))
-    b345 = buttonMenu(b1xmin,b1xmax,b1ymin+800,b1ymax+800,dict_img["img_button"],"b345",dict_img["img_buttonH"],text="1920x1080",react=reaction_changeScreen(resx=1920,resy=1080))
-    b346 = buttonMenu(b1xmin,b1xmax,b1ymin+1000,b1ymax+1000,dict_img["img_button"],"b346",dict_img["img_buttonH"],text="2560x1440",react=reaction_changeScreen(resx=2560,resy=1440))
+    b342 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b342",dict_img["img_buttonH"],text="1600x900",react=reaction_changeScreen(resx=1600,resy=900))
+    b343 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b343",dict_img["img_buttonH"],text="1280x720",react=reaction_changeScreen(resx=1280,resy=720))
+    b344 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*3,b1ymax+yoffset*3,dict_img["img_button"],"b344",dict_img["img_buttonH"],text="1366x768",react=reaction_changeScreen(resx=1366,resy=768))
+    b345 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*4,b1ymax+yoffset*4,dict_img["img_button"],"b345",dict_img["img_buttonH"],text="1920x1080",react=reaction_changeScreen(resx=1920,resy=1080))
+    b346 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*5,b1ymax+yoffset*5,dict_img["img_button"],"b346",dict_img["img_buttonH"],text="2560x1440",react=reaction_changeScreen(resx=2560,resy=1440))
     #b344.activation(False)
     #b343.activation(False)
     #b345.activation(False)
     #b346.activation(False)
-    if modeECRAN:#if is in FULLSCREEN
+    if OPTIONS["modeECRAN"]:#if is in FULLSCREEN
         b341.text = dict_str["Disable Fullscreen"]
     else:
         b341.text = dict_str["Activate Fullscreen"]
     while cnt:
         cnt,quit_all = menu_loop(scrolling=True,scrollist=[b341,b342,b343,b344,b345,b346])
-        if modeECRAN:#if is in FULLSCREEN
+        if OPTIONS["modeECRAN"]:#if is in FULLSCREEN
             b341.text = dict_str["Disable Fullscreen"]
         else:
             b341.text = dict_str["Activate Fullscreen"]
@@ -336,36 +328,33 @@ def reaction_b34():
 
     suppress_buttons(2)
     b31 = buttonMenu(b31xmin,b31xmax,b1ymin,b1ymax,dict_img["img_button"],"b31",dict_img["img_buttonH"],text=dict_str["volume"])
-    b32 = buttonMenu(b31xmin,b31xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
-    b33 = buttonMenu(b31xmin,b31xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
+    b32 = buttonMenu(b31xmin,b31xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b32",dict_img["img_buttonH"],text=dict_str["choose_language"],react=reaction_b32)
+    b33 = buttonMenu(b31xmin,b31xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b33",dict_img["img_buttonH"],text=dict_str["reset_save"])
     b34 = buttonMenu(b32xmin,b32xmax,b1ymin,b1ymax,dict_img["img_button"],"b34",dict_img["img_buttonH"],text=dict_str["graphics"],react=reaction_b34)
-    b35 = buttonMenu(b32xmin,b32xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
-    b36 = buttonMenu(b32xmin,b32xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
+    b35 = buttonMenu(b32xmin,b32xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b35",dict_img["img_buttonH"],text=dict_str["credits"])
+    b36 = buttonMenu(b32xmin,b32xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b36",dict_img["img_buttonH"],text=dict_str["achievements"])
 
     return cnt_underlying,quit_all
 
 def reaction_b341():
     """ Toggle Fullscreen"""
-    global OPTIONS,modeECRAN
-    modeECRAN = FULLSCREEN - modeECRAN
-    OPTIONS["modeECRAN"] = modeECRAN
+    global OPTIONS
+    OPTIONS["modeECRAN"] = FULLSCREEN - OPTIONS["modeECRAN"]
     return True,False
 
 def reaction_changeScreen(resx=1600,resy=900):
     """
     returns a functions that changes the resolution into resx,resy """
     def f():
-        global OPTIONS,DISPLAYSIZE_X,DISPLAYSIZE_Y
-        DISPLAYSIZE_X = resx
-        DISPLAYSIZE_Y = resy
-        OPTIONS["DISPLAYSIZE_X"] = DISPLAYSIZE_X
-        OPTIONS["DISPLAYSIZE_Y"] = DISPLAYSIZE_Y
+        global OPTIONS,OPTIONS
+        OPTIONS["DISPLAYSIZE_X"] = resx
+        OPTIONS["DISPLAYSIZE_Y"] = resy
         return True,False
     return f
 
 def reaction_b321():
-    global dict_str,LANGUAGE
-    LANGUAGE = "English"
+    global dict_str,OPTIONS
+    OPTIONS["LANGUAGE"] = "English"
     with open("_/json/eng.json", "r") as read_file:
         dict_str = json.load(read_file)
     for b in BUTTON_LIST:
@@ -375,8 +364,8 @@ def reaction_b321():
     return True, False
         
 def reaction_b322():
-    global dict_str,LANGUAGE
-    LANGUAGE = "French"
+    global dict_str,OPTIONS
+    OPTIONS["LANGUAGE"] = "French"
     with open("_/json/fr.json", "r") as read_file:
         dict_str = json.load(read_file)
     for b in BUTTON_LIST:
@@ -394,7 +383,7 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
     if background == None:
         background = dict_img["img_background"]
     global BUTTON_LIST
-    pygame.time.Clock().tick(FRAMEPERSECONDLIMIT)
+    pygame.time.Clock().tick(OPTIONS["FPS"])
     
     #BACKGROUND DISPLAY
     fenetre.blit(background,(0,0))
@@ -409,13 +398,13 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
             b.display(20)
     if scrolling and len(scrollist):
         if scrollist[-1].ymax > b1ymax+400:
-            fenetre.blit(nice_arrow,(DISPLAYSIZE_X//2+250,300))
+            fenetre.blit(dict_img["img_arrow"],(OPTIONS["DISPLAYSIZE_X"]//2+250,300))
         else:
-            fenetre.blit(grey_arrow,(DISPLAYSIZE_X//2+250,300))
+            fenetre.blit(dict_img["img_garrow"],(OPTIONS["DISPLAYSIZE_X"]//2+250,300))
         if scrollist[0].ymin < b1ymin:
-            fenetre.blit(pygame.transform.flip(nice_arrow,False,True),(DISPLAYSIZE_X//2+250,250))
+            fenetre.blit(pygame.transform.flip(dict_img["img_arrow"],False,True),(OPTIONS["DISPLAYSIZE_X"]//2+250,250))
         else:
-            fenetre.blit(pygame.transform.flip(grey_arrow,False,True),(DISPLAYSIZE_X//2+250,250))
+            fenetre.blit(pygame.transform.flip(dict_img["img_garrow"],False,True),(OPTIONS["DISPLAYSIZE_X"]//2+250,250))
     pygame.display.flip()
     
     #KEYBOARD HANDLER
@@ -442,10 +431,10 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
                 if event.button == 5:
                     if scrollist[-1].ymax > b1ymax+400:
                         #empeche d'aller trop loin en bas
-                        print("scroll up")
+                        #print("scroll up")
                         for b in scrollist:
-                            b.ymin -= 200
-                            b.ymax -= 200
+                            b.ymin -= yoffset
+                            b.ymax -= yoffset
                             if b.ymin < b1ymin:
                                 if b.visible:
                                     b.disappear()
@@ -454,10 +443,10 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
                 elif event.button == 4:
                     if scrollist[0].ymin < b1ymin:
                         #empeche d'aller trop loin en haut
-                        print("scroll down")
+                        #print("scroll down")
                         for b in scrollist:
-                            b.ymin += 200
-                            b.ymax += 200
+                            b.ymin += yoffset
+                            b.ymax += yoffset
                             if b.ymax > b1ymax+400:
                                 if b.visible:
                                     b.disappear()
@@ -467,24 +456,23 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
 
 #Basic buttons
 titlebanner = buttonMenu(105,1456,25,173,dict_img["img_titlebanner"],"banner")
-exit = buttonMenu(10,5+25*len(dict_str["exit"]),DISPLAYSIZE_Y-50,DISPLAYSIZE_Y,dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
+exit = buttonMenu(10,5+25*len(dict_str["exit"]),OPTIONS["DISPLAYSIZE_Y"]-50,OPTIONS["DISPLAYSIZE_Y"],dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
 
 quitter_jeu = False
 continuer_menu =  True
-continuer_menu_campagne = False
-continuer_map  =  False
+b1xmin = 550
+b1xmax = 1050
+b1ymin = 230
+b1ymax = 400
+b31xmin = OPTIONS["DISPLAYSIZE_X"]/3-250
+b31xmax = OPTIONS["DISPLAYSIZE_X"]/3+250
+b32xmin = 2*OPTIONS["DISPLAYSIZE_X"]/3-250
+b32xmax = 2*OPTIONS["DISPLAYSIZE_X"]/3+250
+yoffset = int(OPTIONS["DISPLAYSIZE_Y"] /4.5)
 while not quitter_jeu:
-    b1xmin = 550
-    b1xmax = 1050
-    b1ymin = 230
-    b1ymax = 400
-    b31xmin = DISPLAYSIZE_X/3-250
-    b31xmax = DISPLAYSIZE_X/3+250
-    b32xmin = 2*DISPLAYSIZE_X/3-250
-    b32xmax = 2*DISPLAYSIZE_X/3+250
     b1 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b1",dict_img["img_buttonH"],text=dict_str["campaign_mode"],react=reaction_b1)
-    b2 = buttonMenu(b1xmin,b1xmax,b1ymin+200,b1ymax+200,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"]).activation(False)#désactivé par défaut
-    b3 = buttonMenu(b1xmin,b1xmax,b1ymin+400,b1ymax+400,dict_img["img_button"],"b3",dict_img["img_buttonH"],text=dict_str["options"],react=reaction_b3)
+    b2 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"]).activation(False)#désactivé par défaut
+    b3 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b3",dict_img["img_buttonH"],text=dict_str["options"],react=reaction_b3)
 
     while continuer_menu:
         continuer_menu,quitter_jeu = menu_loop()
