@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-from transformable import transformable
+from transformable import Transformable
+from vector import Vector
 
 class Node(transformable):
     def __init__(self):
@@ -63,11 +64,4 @@ class Node(transformable):
         return transform
 
     def get_absolute_position(self):
-        return self.get_absolute_transform().transform_point((0,0))
-
-
-
-
-
-
-
+        return self.get_absolute_transform().transform_vector(Vector())
