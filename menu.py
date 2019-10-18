@@ -1,8 +1,6 @@
 """
-Menu v0.8.4.2
--global variables suppressed
--yoffset variable added
--yoffset is the vertical offset between buttons
+Menu v0.8.4.3
+-data folder name changes
 """
 
 import sys
@@ -12,14 +10,14 @@ from pygame.locals import *
 from tools import *
 
 #Display
-with open("_/json/options.json","r") as file:
+with open("data/json/options.json","r") as file:
     OPTIONS = json.load(file)
 	#OPTIONS["modeECRAN"]  = 0 ou FULLSCREEN
 
 pygame.init()
 pygame.mixer.init()
 fenetre = pygame.display.set_mode((OPTIONS["DISPLAYSIZE_X"], OPTIONS["DISPLAYSIZE_Y"]),OPTIONS["modeECRAN"])#1920*1080
-pygame.display.set_icon(pygame.image.load("_/img/icon.ico"))
+pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
 
 def T(txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
     """allows the display of text on screen with or without centering"""
@@ -33,7 +31,7 @@ def T(txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
 
 
 #Images
-with open("_/json/img.json", "r") as read_file:
+with open("data/json/img.json", "r") as read_file:
     dict_img=json.load(read_file,object_hook=create_img)
 dict_img["img_arrow"]  = pygame.transform.smoothscale(dict_img["img_arrow"],(40,40))
 dict_img["img_garrow"]  = pygame.transform.smoothscale(dict_img["img_garrow"],(40,40))
@@ -55,10 +53,10 @@ BUTTON_LIST = []#to keep an eye on all buttons currently displayed
 
 
 if OPTIONS["LANGUAGE"] == "English":
-    with open("_/json/eng.json", "r") as read_file:
+    with open("data/json/eng.json", "r") as read_file:
         dict_str=json.load(read_file)
 elif OPTIONS["LANGUAGE"] == "French":
-    with open("_/json/fr.json", "r") as read_file:
+    with open("data/json/fr.json", "r") as read_file:
         dict_str=json.load(read_file)
     
 class buttonMenu:
@@ -208,7 +206,7 @@ def reaction_b3():
             cnt = False
             cnt_underlying = False
 
-    with open("_/json/options.json","w") as f:
+    with open("data/json/options.json","w") as f:
         f.write(json.dumps(OPTIONS))
 
     BUTTON_LIST[1].text = dict_str["exit"]
@@ -355,7 +353,7 @@ def reaction_changeScreen(resx=1600,resy=900):
 def reaction_b321():
     global dict_str,OPTIONS
     OPTIONS["LANGUAGE"] = "English"
-    with open("_/json/eng.json", "r") as read_file:
+    with open("data/json/eng.json", "r") as read_file:
         dict_str = json.load(read_file)
     for b in BUTTON_LIST:
         if b.name == "exit":
@@ -366,7 +364,7 @@ def reaction_b321():
 def reaction_b322():
     global dict_str,OPTIONS
     OPTIONS["LANGUAGE"] = "French"
-    with open("_/json/fr.json", "r") as read_file:
+    with open("data/json/fr.json", "r") as read_file:
         dict_str = json.load(read_file)
     for b in BUTTON_LIST:
         if b.name == "exit":
