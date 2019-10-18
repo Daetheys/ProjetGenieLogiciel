@@ -1,6 +1,7 @@
 """
-Menu v0.8.4.3
--data folder name changes
+Menu v0.8.5
+-data folder name changes in json
+-code reorganisation
 """
 
 import sys
@@ -9,56 +10,71 @@ import json
 from pygame.locals import *
 from tools import *
 
-#Display
-with open("data/json/options.json","r") as file:
-    OPTIONS = json.load(file)
-	#OPTIONS["modeECRAN"]  = 0 ou FULLSCREEN
 
-pygame.init()
-pygame.mixer.init()
-fenetre = pygame.display.set_mode((OPTIONS["DISPLAYSIZE_X"], OPTIONS["DISPLAYSIZE_Y"]),OPTIONS["modeECRAN"])#1920*1080
-pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
+if __name__ == '__main__':
+    #Display
+    with open("data/json/options.json","r") as file:
+        OPTIONS = json.load(file)
+        #OPTIONS["modeECRAN"]  = 0 ou FULLSCREEN
+    pygame.init()
+    pygame.mixer.init()
+    pygame.display.set_caption("CAN·A·BAELDE")
+    pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
+    fenetre = pygame.display.set_mode((OPTIONS["DISPLAYSIZE_X"], OPTIONS["DISPLAYSIZE_Y"]),OPTIONS["modeECRAN"])#1920*1080
 
-def T(txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
-    """allows the display of text on screen with or without centering"""
-    font = pygame.font.Font(None, size)
-    text = font.render(txt, aliasing, (r, g, b))
-    if center:
-        textpos = text.get_rect(centery=y,centerx=x)
-    else:
-        textpos = (x,y)
-    fenetre.blit(text, textpos)
+    fenetre.blit(pygame.image.load("data/img/blvr.png"),(0,0))
+    pygame.display.flip()
 
+    #Images
+    with open("data/json/img.json", "r") as read_file:
+        dict_img=json.load(read_file,object_hook=create_img)
+    dict_img["img_arrow"]  = pygame.transform.smoothscale(dict_img["img_arrow"],(40,40))
+    dict_img["img_garrow"]  = pygame.transform.smoothscale(dict_img["img_garrow"],(40,40))
 
-#Images
-with open("data/json/img.json", "r") as read_file:
-    dict_img=json.load(read_file,object_hook=create_img)
-dict_img["img_arrow"]  = pygame.transform.smoothscale(dict_img["img_arrow"],(40,40))
-dict_img["img_garrow"]  = pygame.transform.smoothscale(dict_img["img_garrow"],(40,40))
+    #Other constants
+    BUTTON_LIST = []#to keep an eye on all buttons currently displayed
 
-#Title
-pygame.display.set_caption("CAN·A·BAELDE")
-fenetre.blit(dict_img["img_background"],(0,0))
-pygame.display.flip()
+    quitter_jeu = False
+    continuer_menu =  True
+    b1xmin = 550
+    b1xmax = 1050
+    b1ymin = 230
+    b1ymax = 400
+    b31xmin = OPTIONS["DISPLAYSIZE_X"]/3-250
+    b31xmax = OPTIONS["DISPLAYSIZE_X"]/3+250
+    b32xmin = 2*OPTIONS["DISPLAYSIZE_X"]/3-250
+    b32xmax = 2*OPTIONS["DISPLAYSIZE_X"]/3+250
+    yoffset = int(OPTIONS["DISPLAYSIZE_Y"] /4.5)
 
-#Music
-""" menu music is  disabled """
-#pygame.mixer.music.load(music_menu)
-#pygame.mixer.music.fadeout(500)
-#pygame.mixer.music.play(-1)
+    if OPTIONS["LANGUAGE"] == "English":
+        with open("data/json/eng.json", "r") as read_file:
+            dict_str=json.load(read_file)
+    elif OPTIONS["LANGUAGE"] == "French":
+        with open("data/json/fr.json", "r") as read_file:
+            dict_str=json.load(read_file)
 
-#Other constants
-BUTTON_LIST = []#to keep an eye on all buttons currently displayed
+    #Utilitary functions using global variables
+    def suppress_buttons(n):
+        """ suppresses all buttons, except the n first ones """
+        global BUTTON_LIST
+        for i in range(n,len(BUTTON_LIST)):
+            del BUTTON_LIST[n]#si n=2 : titlebanner,exit
 
+    def T(txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
+        """allows the display of text on screen with or without centering"""
+        font = pygame.font.Font(None, size)
+        text = font.render(txt, aliasing, (r, g, b))
+        if center:
+            textpos = text.get_rect(centery=y,centerx=x)
+        else:
+            textpos = (x,y)
+        fenetre.blit(text, textpos)
+    #Music
+    """ menu music is  disabled """
+    #pygame.mixer.music.load(music_menu)
+    #pygame.mixer.music.fadeout(500)
+    #pygame.mixer.music.play(-1)
 
-
-if OPTIONS["LANGUAGE"] == "English":
-    with open("data/json/eng.json", "r") as read_file:
-        dict_str=json.load(read_file)
-elif OPTIONS["LANGUAGE"] == "French":
-    with open("data/json/fr.json", "r") as read_file:
-        dict_str=json.load(read_file)
-    
 class buttonMenu:
 
     def __init__(self,xm,xM,ym,yM,img=dict_img["img_default"],name="Unnamed",picH=None,picD=None,text=None,react=no_reaction,add_to_list=True):
@@ -138,11 +154,22 @@ class buttonMenu:
             if refresh: pygame.display.flip()
     
 #Reaction functions of the buttons
-def suppress_buttons(n):
-    """ suppresses all buttons, except the n first ones """
-    global BUTTON_LIST
-    for i in range(n,len(BUTTON_LIST)):
-        del BUTTON_LIST[n]#si n=2 : titlebanner,exit
+
+def reaction_exit():#quitte le jeu
+    return False,True
+
+def reaction_return():#recule d'un rang
+    return False,False
+
+def reaction_changeScreen(resx=1600,resy=900):
+    """
+    returns a functions that changes the resolution into resx,resy """
+    def f():
+        global OPTIONS,OPTIONS
+        OPTIONS["DISPLAYSIZE_X"] = resx
+        OPTIONS["DISPLAYSIZE_Y"] = resy
+        return True,False
+    return f
 
 def reaction_b1():
     """ 
@@ -216,12 +243,6 @@ def reaction_b3():
     suppress_buttons(2)
     
     return cnt_underlying,quit_all
-
-def reaction_exit():#quitte le jeu
-    return False,True  
-        
-def reaction_return():#recule d'un rang
-    return False,False
 
 def reaction_b11():
     """
@@ -340,16 +361,6 @@ def reaction_b341():
     OPTIONS["modeECRAN"] = FULLSCREEN - OPTIONS["modeECRAN"]
     return True,False
 
-def reaction_changeScreen(resx=1600,resy=900):
-    """
-    returns a functions that changes the resolution into resx,resy """
-    def f():
-        global OPTIONS,OPTIONS
-        OPTIONS["DISPLAYSIZE_X"] = resx
-        OPTIONS["DISPLAYSIZE_Y"] = resy
-        return True,False
-    return f
-
 def reaction_b321():
     global dict_str,OPTIONS
     OPTIONS["LANGUAGE"] = "English"
@@ -452,33 +463,22 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
                                 b.appear()
     return cnt,quit_all
 
-#Basic buttons
-titlebanner = buttonMenu(105,1456,25,173,dict_img["img_titlebanner"],"banner")
-exit = buttonMenu(10,5+25*len(dict_str["exit"]),OPTIONS["DISPLAYSIZE_Y"]-50,OPTIONS["DISPLAYSIZE_Y"],dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
-
-quitter_jeu = False
-continuer_menu =  True
-b1xmin = 550
-b1xmax = 1050
-b1ymin = 230
-b1ymax = 400
-b31xmin = OPTIONS["DISPLAYSIZE_X"]/3-250
-b31xmax = OPTIONS["DISPLAYSIZE_X"]/3+250
-b32xmin = 2*OPTIONS["DISPLAYSIZE_X"]/3-250
-b32xmax = 2*OPTIONS["DISPLAYSIZE_X"]/3+250
-yoffset = int(OPTIONS["DISPLAYSIZE_Y"] /4.5)
-while not quitter_jeu:
-    b1 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b1",dict_img["img_buttonH"],text=dict_str["campaign_mode"],react=reaction_b1)
-    b2 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"]).activation(False)#désactivé par défaut
-    b3 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b3",dict_img["img_buttonH"],text=dict_str["options"],react=reaction_b3)
-
-    while continuer_menu:
-        continuer_menu,quitter_jeu = menu_loop()
-        if quitter_jeu:
-            continuer_menu = False
-    continuer_menu = True
-
-
-pygame.display.quit()
-pygame.quit()
-#sys.exit(0)
+if __name__ == '__main__':
+    #Basic buttons
+    titlebanner = buttonMenu(105,1456,25,173,dict_img["img_titlebanner"],"banner")
+    exit = buttonMenu(10,5+25*len(dict_str["exit"]),OPTIONS["DISPLAYSIZE_Y"]-50,OPTIONS["DISPLAYSIZE_Y"],dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
+    
+    #Main loop
+    while not quitter_jeu:
+        b1 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b1",dict_img["img_buttonH"],text=dict_str["campaign_mode"],react=reaction_b1)
+        b2 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"]).activation(False)#désactivé par défaut
+        b3 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b3",dict_img["img_buttonH"],text=dict_str["options"],react=reaction_b3)
+    
+        while continuer_menu:
+            continuer_menu,quitter_jeu = menu_loop()
+            if quitter_jeu:
+                continuer_menu = False
+        continuer_menu = True
+    pygame.display.quit()
+    pygame.quit()
+    #sys.exit(0)
