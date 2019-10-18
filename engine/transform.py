@@ -51,6 +51,7 @@ class Transform:
                 [0,1,v.y], \
                 [0,0,1]])
         return self.combine(Transform(translation_matrix))
+    
     def rotate(self,angle):
         cos = np.cos(angle)
         sin = np.sin(angle)
@@ -59,6 +60,7 @@ class Transform:
                 [sin, cos,0], \
                 [0,0,1]])
         return self.combine(Transform(rotation_matrix))
+    
     def rotate_around(self,angle,center):
         x,y = center.x,center.y
         cos = np.cos(angle)
