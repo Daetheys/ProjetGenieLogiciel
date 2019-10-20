@@ -3,20 +3,22 @@
 import numpy as np
 
 class Vector:
-    def __init__(self):
-        self.matrix = np.array([[0],[0]])
-
-    def __init__(self,x,y):
-        self.matrix = np.array([[x],[y]])
+    
+    def __init__(self,x=0,y=0):
+        self.x = x
+        self.y = y
 
     def homogeneous(self):
-        return np.append(self.matrix,[1])
-
-    def x(self):
-        return self.matrix[0][0]
-
-    def y(self):
-        return self.matrix[0][1]
+        return np.array([[self.x],[self.y],[1]])
 
     def apply_transform(self,transform):
         return transform.transform_vect(self)
+
+    def to_list(self):
+        return [self.x,self.y]
+
+    def to_array(self):
+        return np.array(self.to_list())
+
+    def to_tuple(self):
+        return (self.x,self.y)

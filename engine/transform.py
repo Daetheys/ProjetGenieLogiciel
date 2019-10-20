@@ -5,8 +5,7 @@ import numpy.linalg as linalg
 import os
 import sys
 path = os.getcwd()
-path = path[:-7]
-sys.path.append("error")
+path += "/error"
 sys.path.append(path)
 from exception import WrongSizeMatrix
 
@@ -53,6 +52,7 @@ class Transform:
         return self.combine(Transform(translation_matrix))
     
     def rotate(self,angle):
+        angle *= -1
         cos = np.cos(angle)
         sin = np.sin(angle)
         rotation_matrix = np.array([ \
@@ -62,6 +62,7 @@ class Transform:
         return self.combine(Transform(rotation_matrix))
     
     def rotate_around(self,angle,center):
+        angle *= -1
         x,y = center.x,center.y
         cos = np.cos(angle)
         sin = np.sin(angle)
