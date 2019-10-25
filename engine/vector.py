@@ -8,6 +8,9 @@ class Vector:
         self.x = x
         self.y = y
 
+    def __eq__(self,vect):
+        return self.x == vect.x and self.y == vect.y
+
     def homogeneous(self):
         return np.array([[self.x],[self.y],[1]])
 
