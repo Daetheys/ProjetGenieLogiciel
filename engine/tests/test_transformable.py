@@ -10,9 +10,12 @@ from hypothesis import given
 from hypothesis.strategies import integers, lists
 
 def test_rotten_green():
+    """ this test should always pass """
     pass
 
 def test_init():
+    """ tests the initialization of Transformable:
+    position, rotation, scale and origin"""
     T = Transformable()
     assert T.get_position().to_tuple() == (0,0)
     assert T.get_rotation() == 0
@@ -21,6 +24,7 @@ def test_init():
 
 @given(integers(),integers(),integers(),integers(),integers(),integers(),integers())
 def test_set_get(px,py,r,sx,sy,ox,oy):
+    """ tests that we can get exactly the set values"""
     T = Transformable()
     T.set_position(px,py)
     T.set_rotation(r)
@@ -33,6 +37,7 @@ def test_set_get(px,py,r,sx,sy,ox,oy):
     
 @given(integers(),integers(),integers(),integers(),integers())
 def test_move_rot_scal(mvx,mvy,rot,scalx,scaly):
+    """ tests a serie of one move, one rotation, then one scaling """
     T = Transformable()
     T.move(mvx,mvy)
     T.rotate(rot)
