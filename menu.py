@@ -156,9 +156,11 @@ class buttonMenu:
 #Reaction functions of the buttons
 
 def reaction_exit():#quitte le jeu
+    """ exits the game """
     return False,True
 
 def reaction_return():#recule d'un rang
+    """ the current menu is exited"""
     return False,False
 
 def reaction_changeScreen(resx=1600,resy=900):
