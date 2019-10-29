@@ -2,7 +2,6 @@ import sys
 import os
 import numpy as np
 
-assert False
 path = os.getcwd()
 path += "/engine"
 sys.path.append(path)
