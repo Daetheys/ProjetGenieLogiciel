@@ -1,7 +1,7 @@
 """
-Menu v0.8.5
--data folder name changes in json
--code reorganisation
+Menu v0.8.6
+-banner is centered
+-buttons are in the middle of the screen for all screen sizes
 """
 
 import sys
@@ -36,15 +36,15 @@ if __name__ == '__main__':
 
     quitter_jeu = False
     continuer_menu =  True
-    b1xmin = 550
-    b1xmax = 1050
+    b1xmin = OPTIONS["DISPLAYSIZE_X"]//2 - 250
+    b1xmax = OPTIONS["DISPLAYSIZE_X"]//2 + 250
     b1ymin = 230
     b1ymax = 400
-    b31xmin = OPTIONS["DISPLAYSIZE_X"]/3-250
-    b31xmax = OPTIONS["DISPLAYSIZE_X"]/3+250
-    b32xmin = 2*OPTIONS["DISPLAYSIZE_X"]/3-250
-    b32xmax = 2*OPTIONS["DISPLAYSIZE_X"]/3+250
-    yoffset = int(OPTIONS["DISPLAYSIZE_Y"] /4.5)
+    b31xmin = OPTIONS["DISPLAYSIZE_X"]//3-250
+    b31xmax = OPTIONS["DISPLAYSIZE_X"]//3+250
+    b32xmin = 2*OPTIONS["DISPLAYSIZE_X"]//3-250
+    b32xmax = 2*OPTIONS["DISPLAYSIZE_X"]//3+250
+    yoffset = int(OPTIONS["DISPLAYSIZE_Y"]/4.5)
 
     if OPTIONS["LANGUAGE"] == "English":
         with open("data/json/eng.json", "r") as read_file:
@@ -465,7 +465,7 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
 
 if __name__ == '__main__':
     #Basic buttons
-    titlebanner = buttonMenu(105,1456,25,173,dict_img["img_titlebanner"],"banner")
+    titlebanner = buttonMenu(OPTIONS["DISPLAYSIZE_X"]//2-695,OPTIONS["DISPLAYSIZE_X"]//2+656,25,173,dict_img["img_titlebanner"],"banner")
     exit = buttonMenu(10,5+25*len(dict_str["exit"]),OPTIONS["DISPLAYSIZE_Y"]-50,OPTIONS["DISPLAYSIZE_Y"],dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
     
     #Main loop
