@@ -7,6 +7,7 @@ path0 += "/error"#works with "/Desktop/ProjetGenieLogiciel/error" for me
 path.append(path0)
 from exception import TransitionUndefined
 from collections import defaultdict
+from json import load as jsload
 
 class Automata:
 	def __init__(self,name,states,tt,cs):
@@ -52,15 +53,17 @@ def create_automaton(data,name=None,states=None,tt=None,cs=None,jsonparse=True,n
 		while i < len(data) and data[i] != '|':#reading the name
 			name += data[i]
 			i += 1
+		#print(name)
 		assert data[i] == "|"
 		i += 1
 		nstate,i = parseint(data,i)#number of states
+		#print(nstate)
 		assert data[i] == "|"
 		states = list(range(nstate))
 		tt = defaultdict(throwTU)
 		i += 1
 		while i < len(data) and data[i] != '|':#adding the transitions
-			i += 1
+
 			s,i = parseint(data,i,',')
 			assert data[i] == ','
 			c = data[i+1]
@@ -68,8 +71,26 @@ def create_automaton(data,name=None,states=None,tt=None,cs=None,jsonparse=True,n
 			i += 3
 			s2,i = parseint(data,i,';')
 			tt[s,c] = s2
+			i += 1
 		if nocomment: assert i == len(data)
 		return Automata(name,states,tt,0)
 
 	else:
 		return Automata(name,states,tt,cs)
+
+def create_automaton_hook(dic):
+	""" hook for reading automata.json
+	creates a full automaton for each automata-like data
+	uses heavily the function: create_automaton."""
+	for data in dic:
+		dic[data] = create_automaton(dic[data])
+	return dic
+
+def load_automata():
+	"""loads all automata"""
+	with open("/home/urem/project/ProjetGenieLogiciel/data/json/automata.json", "r") as read_file:
+		dict_ata = jsload(read_file,object_hook=create_automaton_hook)
+	return dict_ata
+
+if __name__ != '__main__':
+	dict_ata = load_automata()
