@@ -3,7 +3,7 @@
 from transformable import Transformable
 from vector import Vector
 
-class Node(transformable):
+class Node(Transformable):
     def __init__(self):
         self.__children = []
         self.__parent = None

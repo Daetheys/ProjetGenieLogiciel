@@ -25,7 +25,7 @@ class Transformable:
         self.reset_update()
 
     def set_rotation(self,ang):
-        self.__rotation = ang%np.pi #Il faut que ce soit positif !!
+        self.__rotation = ang%(2*np.pi) #Il faut que ce soit positif !!
 
     def set_scale(self,scale_x,scale_y):
         self.__scale = Vector(scale_x,scale_y)
