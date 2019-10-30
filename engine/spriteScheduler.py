@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+Automata & Sprite Scheduler v2
+-test_spritescheduler added
+-various spriteScheduler import bugs fixed
+-json automata import fully functional
+"""
 import sys
 import os
 import json
