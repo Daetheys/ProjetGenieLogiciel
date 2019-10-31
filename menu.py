@@ -17,7 +17,7 @@ if LAUNCH:
         OPTIONS = json.load(file)
         #OPTIONS["modeECRAN"]  = 0 ou FULLSCREEN
     pygame.init()
-    pygame.mixer.init()
+    #pygame.mixer.init() music is disabled
     pygame.display.set_caption("CAN·A·BAELDE")
     pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
     fenetre = pygame.display.set_mode((OPTIONS["DISPLAYSIZE_X"], OPTIONS["DISPLAYSIZE_Y"]),OPTIONS["modeECRAN"])#1920*1080
@@ -426,7 +426,8 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
                 quit_all = True
                 cnt = False
             if event.key == K_p:
-                pygame.mixer.music.pause()
+                #pygame.mixer.music.pause() music disabled
+                pass
         #MOUSE EVENTS HANDLER
         if event.type == MOUSEBUTTONDOWN:
             mx,my = pygame.mouse.get_pos() 
@@ -484,3 +485,4 @@ if LAUNCH:
     pygame.display.quit()
     pygame.quit()
     #sys.exit(0)
+
