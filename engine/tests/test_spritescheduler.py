@@ -14,6 +14,7 @@ from automata import *
 from spriteScheduler import *
 from hypothesis import *
 from hypothesis.strategies import *
+from random import randint as rrandint
 
 def assert_well_init(sps,txt):
     assert sps.name == txt
@@ -71,16 +72,26 @@ def test_sps(txt,n,chrs):
     if n <= 0:
         n = len(chrs) + 1
     data = txt+'|'+str(n)+'|'
-    seen = []
-    for k in range(len(chrs)):
-        if chrs[k] not in seen:#to ensure there is no non-determinism
-            seen.append(chrs[k])
-            for i in range(n):
-                for j in range(n):
-                    data += str(i) + ',' + chrs[k] + '→' + str(j) + ';'
+    for i in range(n):
+        seen = []
+        for k in range(len(chrs)):
+            if chrs[k] not in seen:#to ensure there is no non-determinism
+                seen.append(chrs[k])
+                j = rrandint(0,n - 1)
+                data += str(i) + ',' + chrs[k] + '→' + str(j) + ';'
     sps = SpriteScheduler(txt)
     sps.ata = create_automaton(data)
+    #print(data,seen)
     assert sps.ata.cs == 0
     assert sps.ata.name == txt
     assert sps.ata.states == list(range(n))
-    #assert len(sps.ata.tt) == len(seen)*n*n will soon be fixed
+    assert len(sps.ata.tt) == len(seen)*n #testing the length of the transition table
+    sps.step(chrs[0])
+    assert sps.ata.cs == sps.ata.tt[0,chrs[0]]#testing a transition
+    try:#testing transitionUndefined
+        sps.step(',')
+        assert False
+    except TransitionUndefined:
+        pass
+    for k in range(n*len(chrs)):
+        sps.step(chrs[k%len(chrs)])
