@@ -30,7 +30,7 @@ def test_exit_button():
         sleep(1)
         pyautogui.moveTo(500, 500, duration=0.2, tween=pyautogui.easeInOutQuad)
         pyautogui.doubleClick()
-        pyautogui.moveTo(10, 795, duration=0.3, tween=pyautogui.easeInOutQuad)
+        pyautogui.moveTo(10, 765, duration=0.3, tween=pyautogui.easeInOutQuad)
         pyautogui.doubleClick()
 
 @given(text(min_size=40,max_size=200,alphabet=characters(blacklist_categories=('Cs',),blacklist_characters=("|,;"))))
