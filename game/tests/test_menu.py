@@ -1,7 +1,7 @@
 import pyautogui
 from os import fork,_exit
-from hypothesis import *
-from hypothesis.strategies import *
+#from hypothesis import *
+#from hypothesis.strategies import *
 from time import sleep
 
 def test_escape():
@@ -19,8 +19,9 @@ def test_escape():
         sleep(1)#wait for the menu to initialize
         pyautogui.press('escape')
 
+"""
 def test_exit_button():
-    """test if the game quits when exit button is touched"""
+    #test if the game quits when exit button is touched
 
     newpid = fork()
     if newpid:
@@ -32,11 +33,13 @@ def test_exit_button():
         pyautogui.doubleClick()
         pyautogui.moveTo(10, 765, duration=0.3, tween=pyautogui.easeInOutQuad)
         pyautogui.doubleClick()
+"""
 
+"""
 @given(text(min_size=40,max_size=200,alphabet=characters(blacklist_categories=('Cs',),blacklist_characters=("|,;"))))
 @settings(max_examples=5,deadline=None)
 def test_inputs(txt):
-    """test if whether game does crash with randomized inputs"""
+    #test if whether game does crash with randomized inputs
     newpid = fork()
     if newpid:#This first fork is for launching the menu and the typer in parallel
         import menu
@@ -44,4 +47,5 @@ def test_inputs(txt):
     else:
         sleep(1)
         pyautogui.typewrite(txt)
-        pyautogui.press('escape')
+        pyautogui.press('escape')"""
+
