@@ -10,8 +10,8 @@ import json
 from pygame.locals import *
 from tools import *
 
-
-if __name__ == '__main__':
+LAUNCH = True
+if LAUNCH:
     #Display
     with open("data/json/options.json","r") as file:
         OPTIONS = json.load(file)
@@ -465,7 +465,7 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
                                 b.appear()
     return cnt,quit_all
 
-if __name__ == '__main__':
+if LAUNCH:
     #Basic buttons
     titlebanner = buttonMenu(OPTIONS["DISPLAYSIZE_X"]//2-695,OPTIONS["DISPLAYSIZE_X"]//2+656,25,173,dict_img["img_titlebanner"],"banner")
     exit = buttonMenu(10,5+25*len(dict_str["exit"]),OPTIONS["DISPLAYSIZE_Y"]-50,OPTIONS["DISPLAYSIZE_Y"],dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
