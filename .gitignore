@@ -2,5 +2,5 @@
 txt
 
 .hypothesis
+*.pyc
 
-__pycache__
