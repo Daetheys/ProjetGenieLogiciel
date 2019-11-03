@@ -9,5 +9,6 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
+  - for file_py in */*.py; do pylint -E  --disable=E0401,E0602 $file_py; done
   - xvfb-run -a --server-args="-screen 0 1366x768x24" pytest
 

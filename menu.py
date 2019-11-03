@@ -474,7 +474,8 @@ if LAUNCH:
     #Main loop
     while not quitter_jeu:
         b1 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b1",dict_img["img_buttonH"],text=dict_str["campaign_mode"],react=reaction_b1)
-        b2 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"]).activation(False)#désactivé par défaut
+        b2 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"])
+        b2.activation(False)#désactivé par défaut
         b3 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b3",dict_img["img_buttonH"],text=dict_str["options"],react=reaction_b3)
     
         while continuer_menu:
