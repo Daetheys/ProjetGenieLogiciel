@@ -62,6 +62,7 @@ class Transform:
         return self.combine(Transform(rotation_matrix))
     
     def rotate_around(self,angle,center):
+        #I don't know what this does -> not tested
         angle *= -1
         x,y = center.x,center.y
         cos = np.cos(angle)
@@ -71,6 +72,7 @@ class Transform:
                 [sin, cos,y*(1-cos) - x*sin], \
                 [0,0,1]])
         return self.combine(Transform(rotation_matrix))
+    
     def scale(self,v):
         sX,sY = (v,v) if isinstance(v,float) else (v.x,v.y)
         scale_matrix = np.array([\
@@ -78,7 +80,9 @@ class Transform:
                 [0,sY,0],\
                 [0,0,1]])
         return self.combine(Transform(scale_matrix))
+    
     def scale_around(self,v,center):
+        #I don't know what that does -> not tested
         sX,sY = (v,v) if isinstance(v,float) else (v.x,v.y)
         x,y = center.x,center.y
         scale_matrix = np.array([ \
