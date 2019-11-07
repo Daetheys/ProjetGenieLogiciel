@@ -2,8 +2,13 @@ language: python
 python:
   - "3.7.3"
 cache: pip
+dist: xenial
+services:
+  - xvfb
 install:
   - pip install -r requirements.txt
 # command to run tests
 script:
-  - pytest ./engine/tests/test_transformable.py
+  - for file_py in */*.py; do pylint -E  --disable=E0401,E0602 $file_py; done
+  - xvfb-run -a --server-args="-screen 0 1366x768x24" pytest
+

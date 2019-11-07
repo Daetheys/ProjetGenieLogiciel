@@ -88,7 +88,7 @@ def create_automaton_hook(dic):
 
 def load_automata():
 	"""loads all automata"""
-	with open("/home/urem/project/ProjetGenieLogiciel/data/json/automata.json", "r") as read_file:
+	with open("data/json/automata.json", "r") as read_file:
 		dict_ata = jsload(read_file,object_hook=create_automaton_hook)
 	return dict_ata
 

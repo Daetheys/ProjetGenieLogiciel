@@ -10,14 +10,14 @@ import json
 from pygame.locals import *
 from tools import *
 
-
-if __name__ == '__main__':
+LAUNCH = True
+if LAUNCH:
     #Display
     with open("data/json/options.json","r") as file:
         OPTIONS = json.load(file)
         #OPTIONS["modeECRAN"]  = 0 ou FULLSCREEN
     pygame.init()
-    pygame.mixer.init()
+    #pygame.mixer.init() music is disabled
     pygame.display.set_caption("CAN·A·BAELDE")
     pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
     fenetre = pygame.display.set_mode((OPTIONS["DISPLAYSIZE_X"], OPTIONS["DISPLAYSIZE_Y"]),OPTIONS["modeECRAN"])#1920*1080
@@ -426,7 +426,8 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
                 quit_all = True
                 cnt = False
             if event.key == K_p:
-                pygame.mixer.music.pause()
+                #pygame.mixer.music.pause() music disabled
+                pass
         #MOUSE EVENTS HANDLER
         if event.type == MOUSEBUTTONDOWN:
             mx,my = pygame.mouse.get_pos() 
@@ -465,7 +466,7 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
                                 b.appear()
     return cnt,quit_all
 
-if __name__ == '__main__':
+if LAUNCH:
     #Basic buttons
     titlebanner = buttonMenu(OPTIONS["DISPLAYSIZE_X"]//2-695,OPTIONS["DISPLAYSIZE_X"]//2+656,25,173,dict_img["img_titlebanner"],"banner")
     exit = buttonMenu(10,5+25*len(dict_str["exit"]),OPTIONS["DISPLAYSIZE_Y"]-50,OPTIONS["DISPLAYSIZE_Y"],dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
@@ -473,7 +474,8 @@ if __name__ == '__main__':
     #Main loop
     while not quitter_jeu:
         b1 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b1",dict_img["img_buttonH"],text=dict_str["campaign_mode"],react=reaction_b1)
-        b2 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"]).activation(False)#désactivé par défaut
+        b2 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"])
+        b2.activation(False)#désactivé par défaut
         b3 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b3",dict_img["img_buttonH"],text=dict_str["options"],react=reaction_b3)
     
         while continuer_menu:
@@ -484,3 +486,4 @@ if __name__ == '__main__':
     pygame.display.quit()
     pygame.quit()
     #sys.exit(0)
+
