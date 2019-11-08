@@ -11,7 +11,6 @@ class Character():
 		self.pic = pic#pygame.Surface, picture
 		self.ctalk = ctalk#int x int x int, color of talk
 		self.inv = inv#Inventory, inventory of the character (usually is None)
-		self.npc = npc#Npc, link to the corresponding npc (that can talk, sell items, etc..)
 
 	def __repr__(self):
 		return "Character :" + self.name

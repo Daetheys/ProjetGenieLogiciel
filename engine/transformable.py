@@ -59,7 +59,7 @@ class Transformable:
         (x2,y2) = (scalex,scaley)
         self.set_scale(x+x2,y+y2)
 
-    def get_transform():
+    def get_transform(self):
         (x,y) = self.__position.x,self.__position.y
         (sx,sy) = self.__scale.x,self.__scale.y
         (mx,my) = self.__origin.x,self.__origin.y
@@ -80,7 +80,7 @@ class Transformable:
         assert self.__transform != None
         return self.__transform
 
-    def get_inverse_transform():
+    def get_inverse_transform(self):
         if self.inv_tr_need_up:
             self.__inverse_transform = self.get_transform.get_inverse()
             self.__inv_tr_need_up = False
