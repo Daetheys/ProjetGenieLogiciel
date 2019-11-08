@@ -483,11 +483,13 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
 
 def map_loop(cnt = True,quit_all=False,bg = None,map=None):
     """loop of a map"""
+    pygame.time.Clock().tick(OPTIONS["FPS"])
     if bg is None: bg = dict_img["img_background"]
     if map is None: return cnt,quit_all 
     fenetre.blit(bg, (0,0))
     for mp in map.get_map_points():
         fenetre.blit(mp.get_image(), (mp.x,mp.y))
+    
     pygame.display.flip()
 
     for event in pygame.event.get():
@@ -495,18 +497,19 @@ def map_loop(cnt = True,quit_all=False,bg = None,map=None):
             if event.key == K_ESCAPE:
                 cnt = False
     return cnt,quit_all
+
 if LAUNCH:
     #Basic buttons
     titlebanner = buttonMenu(OPTIONS["DISPLAYSIZE_X"]//2-695,OPTIONS["DISPLAYSIZE_X"]//2+656,25,173,dict_img["img_titlebanner"],"banner")
     exit = buttonMenu(10,5+25*len(dict_str["exit"]),OPTIONS["DISPLAYSIZE_Y"]-50,OPTIONS["DISPLAYSIZE_Y"],dict_img["img_void"],"exit",text=dict_str["exit"],react=reaction_exit)
-    
+
     #Main loop
     while not quitter_jeu:
         b1 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b1",dict_img["img_buttonH"],text=dict_str["campaign_mode"],react=reaction_b1)
         b2 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset,b1ymax+yoffset,dict_img["img_button"],"b2",dict_img["img_button"],dict_img["img_buttonD"],text=dict_str["free_play"])
         b2.activation(False)#désactivé par défaut
         b3 = buttonMenu(b1xmin,b1xmax,b1ymin+yoffset*2,b1ymax+yoffset*2,dict_img["img_button"],"b3",dict_img["img_buttonH"],text=dict_str["options"],react=reaction_b3)
-    
+
         while continuer_menu:
             continuer_menu,quitter_jeu = menu_loop()
             if quitter_jeu:
