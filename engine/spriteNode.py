@@ -13,3 +13,6 @@ class SpriteNode(Node):
 
         def get_state(self):
                 return self.__state
+
+        def get_sprite(self):
+                return self.__giver.
