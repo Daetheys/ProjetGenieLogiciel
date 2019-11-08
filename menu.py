@@ -3,9 +3,18 @@ Menu v0.8.6
 -banner is centered
 -buttons are in the middle of the screen for all screen sizes
 """
-
 import sys
+from os import getcwd
+path = getcwd()
+path += "/game"#pour import mapDisplayer
+sys.path.append(path)
+path += "/campaign"#pour import map,etc..
+sys.path.append(path)
+print(path)
 import pygame
+from map_point import *
+from mapDisplayer import *
+from map import *
 import json
 from pygame.locals import *
 from tools import *
@@ -259,11 +268,17 @@ def reaction_b11():
     #TODO buttons on the map
     
     #b111 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b111",dict_img["img_buttonH"],text="")
+    #dict_img["map_kshan"]
+    mapkshan = Map(dict_img["map_kshan"])
+    mp = Map_Point(200,200,"data/img/red_point.png","data/img/gray_point.png")
+    mapkshan.set_map_points([mp])
+    bg =  pygame.transform.smoothscale(dict_img["map_kshan"], (OPTIONS["DISPLAYSIZE_X"],OPTIONS["DISPLAYSIZE_Y"]))
     while cnt:
-        cnt,quit_all = menu_loop(background = dict_img["map_kshan"])
+        cnt,quit_all = map_loop(bg=bg,map=mapkshan)
         if quit_all:
             cnt = False
             cnt_underlying = False
+                    #pygame.display.quit()
 
     #suppress_buttons(2)#titlebanner,exit
 
@@ -419,7 +434,7 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
     pygame.display.flip()
     
     #KEYBOARD HANDLER
-    keys = pygame.key.get_pressed()
+    #keys = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
@@ -466,6 +481,20 @@ def menu_loop(cnt = True,quit_all=False,background = None,scrolling=False,scroll
                                 b.appear()
     return cnt,quit_all
 
+def map_loop(cnt = True,quit_all=False,bg = None,map=None):
+    """loop of a map"""
+    if bg is None: bg = dict_img["img_background"]
+    if map is None: return cnt,quit_all 
+    fenetre.blit(bg, (0,0))
+    for mp in map.get_map_points():
+        fenetre.blit(mp.get_image(), (mp.x,mp.y))
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == K_ESCAPE:
+                cnt = False
+    return cnt,quit_all
 if LAUNCH:
     #Basic buttons
     titlebanner = buttonMenu(OPTIONS["DISPLAYSIZE_X"]//2-695,OPTIONS["DISPLAYSIZE_X"]//2+656,25,173,dict_img["img_titlebanner"],"banner")

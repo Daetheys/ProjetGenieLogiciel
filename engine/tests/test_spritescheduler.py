@@ -85,7 +85,7 @@ def test_sps(txt,n,chrs):
     assert sps.ata.cs == 0
     assert sps.ata.name == txt
     assert sps.ata.states == list(range(n))
-    assert len(sps.ata.tt) == len(seen)*n #testing the length of the transition table
+    assert len(sps.ata.tt) == len(seen) * n #testing the length of the transition table
     sps.step(chrs[0])
     assert sps.ata.cs == sps.ata.tt[0,chrs[0]]#testing a transition
     try:#testing transitionUndefined
