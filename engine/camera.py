@@ -4,4 +4,5 @@ class Camera:
     def __init__(self):
         self.rect = Rect()
 
-    def 
+    def is_in_camera(self,polygon):
+        
