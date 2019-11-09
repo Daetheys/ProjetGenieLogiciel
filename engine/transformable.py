@@ -38,7 +38,7 @@ class Transformable:
         return self.__collide
 
     def set_hit_box(self,val):
-        return self.__hit_box = val
+        self.__hit_box = val
 
     def get_hit_box(self):
         """ Compute the hit box according to the position / rotation / scale """
