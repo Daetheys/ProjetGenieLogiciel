@@ -11,6 +11,9 @@ class Vector:
     def __eq__(self,vect):
         return self.x == vect.x and self.y == vect.y
 
+    def __repr__(self):
+        return "Vector("+str(self.x)+","+str(self.y)+")"
+
     def homogeneous(self):
         return np.array([[self.x],[self.y],[1]])
 

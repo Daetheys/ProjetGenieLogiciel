@@ -16,6 +16,35 @@ class Transformable:
         self.__inverse_transform = None # Transformation inverse
         self.__inv_tr_need_up = True # Inverse Transformation need update
 
+        #-----------------------------
+        #         Collisions
+        #-----------------------------
+        self.__rigid_body = False
+        self.__collide = False
+        self.__hit_box = Polygone([self.__origin])
+
+    def set_rigid_body(self,val):
+        self.__rigid_body = val
+        if val:
+            self.__collide = True #A rigid body collides
+
+    def get_rigid_body(self):
+        return self.__rigid_body
+
+    def set_collide(self,val):
+        self.__collide = val
+
+    def get_collide(self):
+        return self.__collide
+
+    def set_hit_box(self,val):
+        return self.__hit_box = val
+
+    def get_hit_box(self):
+        """ Compute the hit box according to the position / rotation / scale """
+        transform = self.get_transform() #Recompute the hit box to avoid comulating errors due to operations on floats that approximate computations
+        return self.__hit_box.apply_transform(transform)
+
     def reset_update(self):
         self.__tr_need_up = True
         self.__inv_tr_need_up = True
