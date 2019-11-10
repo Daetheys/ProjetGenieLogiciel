@@ -2,6 +2,7 @@ from node import Node
 
 class SpriteNode(Node):
     def __init__(self):
+        super().__init__()
 	self.__state = None #stay,move,damaged,collision,
 	self.__giver = None #
 

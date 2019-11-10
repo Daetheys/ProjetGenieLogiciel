@@ -73,5 +73,11 @@ class Rect:
     def get_position(self):
         return Vector(x=self.__left,y=self.__top)
 
-    def get_size(self):
+    def get_dimension(self):
         return Vector(x=self.__width,y=self.__height)
+
+    def set_position(self,pos):
+        (self.__left,self.__top) = (pos.x,pos.y)
+
+    def set_dimension(self,dim):
+        (self.__width,self.__height) = (dim.x,dim.y)

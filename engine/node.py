@@ -5,7 +5,7 @@ from vector import Vector
 
 class Node(Transformable):
     def __init__(self):
-        super.__init__()
+        super().__init__()
         self.__children = []
         self.__parent = None
         self.__marked_for_removal = False

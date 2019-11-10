@@ -9,7 +9,7 @@ class Vector:
         self.y = y
 
     def __eq__(self,vect):
-        return self.x == vect.x and self.y == vect.y
+        return np.isclose(self.x,vect.x) and np.isclose(self.y,vect.y)
 
     def __repr__(self):
         return "Vector("+str(self.x)+","+str(self.y)+")"

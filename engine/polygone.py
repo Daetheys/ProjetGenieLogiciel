@@ -26,6 +26,8 @@ class Line:
         if l2.vert:
             return Vector(l2.x,self.a*l2.x+self.b)
         if self.a-l2.a == 0:
+            if self.b == l2.b:
+                return Line(self.a,self.b) #Superposed lines
             return None #Parallel lines
         x = (l2.b-self.b)/(self.a-l2.a)
         y = self.a*x+self.b
@@ -58,16 +60,23 @@ class Segment:
         ls = s.get_line()
         l = self.get_line()
         inter_p = l.intersect_point(ls)
-        print("interp",self,s,inter_p,"\n")
         if inter_p is None: 
             return False #They don't collide
-        return self.is_in_interval_x(inter_p.x) and s.is_in_interval_x(inter_p.x)
+        if isinstance(inter_p,Line):
+            return True
+        return self.is_in_interval_x(inter_p.x) and s.is_in_interval_x(inter_p.x) and self.is_in_interval_y(inter_p.y) and s.is_in_interval_y(inter_p.y)
 
     def is_in_interval_x(self,x):
         """ Returns if x in the interval of this segment """
         minx = min(self.p1.x,self.p2.x)
         maxx = max(self.p1.x,self.p2.x)
         return minx <= x and x <= maxx
+
+    def is_in_interval_y(self,y):
+        """ Returns if x in the interval of this segment """
+        miny = min(self.p1.y,self.p2.y)
+        maxy = max(self.p1.y,self.p2.y)
+        return miny <= y and y <= maxy
     
     def length(self):
         return ((self.p1.x-self.p2.x)**2+(self.p1.y-self.p2.y)**2)**0.5
@@ -90,13 +99,14 @@ class Polygon:
     def __init__(self,points):
         self.__points = points
         self.compute_segments()
+        self.compute_max_min()
 
     def compute_segments(self):
         """ Computes segments from points """
         self.__segments = []
-        for i in range(len(self.__points)):
-            p1 = self.__points[i%len(self.__points)]
-            p2 = self.__points[(i+1)%len(self.__points)]
+        for i in range(len(self.get_points())):
+            p1 = self.get_points()[i%len(self.get_points())]
+            p2 = self.get_points()[(i+1)%len(self.get_points())]
             self.__segments.append(Segment(p1,p2))
 
     def get_points(self):
@@ -107,19 +117,19 @@ class Polygon:
     
     def translate(self,vector):
         """ Translates the polygon """
-        for p in self.__points:
+        for p in self.get_points():
             p.x += vector.x
             p.y += vector.y
 
     def point_in(self,point):
         """ Returns true if the vector point is in the polygon """
-        if point in self.__points:
+        if point in self.get_points():
             return True
         count = 0
         line = Line(0,point.y)
-        for i in range(len(self.__points)):
-            p1 = self.__points[i%len(self.__points)]
-            p2 = self.__points[(i+1)%len(self.__points)]
+        for i in range(len(self.get_points())):
+            p1 = self.__points[i%len(self.get_points())]
+            p2 = self.__points[(i+1)%len(self.get_points())]
             if p1.x <= point.x or p2.x <= point.x:
                 s = Segment(p1,p2)
                 if s.collide_line(line):
@@ -127,18 +137,52 @@ class Polygon:
         return count%2 == 1
 
     def intersect_segment(self,s):
-        for si in self.__segments:
+        for si in self.get_segments():
             if s.collide_segment(si):
                 return True
         return False
 
     def apply_transform(self,transform):
         li = []
-        for p in self.__points:
+        for p in self.get_points():
             v = transform.transform_vect(p)
-            li.append(v)
-        poly = Polygone(v)
+            li.append(Vector(v[0],v[1]))
+        poly = Polygon(li)
         return poly
+
+    def compute_max_min(self):
+        max_x = None
+        min_x = None
+        max_y = None
+        min_y = None
+        for p in self.get_points():
+            if max_x is None or p.x > max_x:
+                max_x = p.x
+            if min_x is None or p.x < min_x:
+                min_x = p.x
+            if max_y is None or p.y > max_y:
+                max_y = p.y
+            if min_y is None or p.y < min_y:
+                min_y = p.y
+        self.max_x = max_x
+        self.max_y = max_y
+        self.min_x = min_x
+        self.min_y = min_y
+
+    def get_max_x(self):
+        return self.max_x
+
+    def get_max_y(self):
+        return self.max_y
+
+    def get_min_x(self):
+        return self.min_x
+
+    def get_min_y(self):
+        return self.min_y
+
+    def __eq__(self,p):
+        return self.get_points() == p.get_points()
 
     def __repr__(self):
         return "Poly("+str(self.__segments)+")"

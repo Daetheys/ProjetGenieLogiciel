@@ -7,6 +7,7 @@ path += "/engine"
 sys.path.append(path)
 from polygone import *
 from vector import Vector
+from transform import Transform
 from hypothesis import given
 from hypothesis.strategies import integers, lists
 
@@ -64,6 +65,12 @@ def test_segment_collide_segment():
     s3 = Segment(Vector(0,0),Vector(0,2))
     s4 = Segment(Vector(-0.5,0.5),Vector(0.5,0.5))
     assert s4.collide_segment(s3)
+    s4 = Segment(Vector(0,0),Vector(0,1))
+    s5 = Segment(Vector(0,-1),Vector(0,2))
+    assert s4.collide_segment(s5)
+    s6 = Segment(Vector(0,2),Vector(2,2))
+    s7 = Segment(Vector(-1,2),Vector(1,2))
+    assert s6.collide_segment(s7)
 
 def test_is_in_interval_x():
     s1 = Segment(Vector(-1,1),Vector(2,1))
@@ -133,3 +140,29 @@ def test_polygon_intersect_segment():
     assert p.intersect_segment(s2)
     s3 = Segment(Vector(2.001,2),Vector(3,3))
     assert not(p.intersect_segment(s3))
+
+def test_polygon_apply_transform():
+    v1 = Vector(-1,-1)
+    v2 = Vector(2,-1)
+    v3 = Vector(2,2)
+    v4 = Vector(-1,2)
+    p = Polygon([v1,v2,v3,v4])
+    t = Transform()
+    t.rotate(3*np.pi/2)
+    pat = p.apply_transform(t)
+    v21 = Vector(1,-1)
+    v22 = Vector(1,2)
+    v23 = Vector(-2,2)
+    v24 = Vector(-2,-1)
+    p2 = Polygon([v21,v22,v23,v24])
+    assert pat == p2
+
+def test_polygon_max_min():
+    v1 = Vector(0,3)
+    v2 = Vector(4,5)
+    v3 = Vector(0,8)
+    p = Polygon([v1,v2,v3])
+    assert p.get_max_x() == 4
+    assert p.get_max_y() == 8
+    assert p.get_min_x() == 0
+    assert p.get_min_y() == 3

@@ -1,6 +1,10 @@
-class MovableNode:
+from vector import Vector
+from node import Node
+
+class MovableNode(Node):
     """ A node that can move with more powerfull functions"""
     def __init__(self):
+        super().__init__()
         self.__speed = Vector(0,0)
         self.__angular_speed = 0
     def set_speed(self,speed):

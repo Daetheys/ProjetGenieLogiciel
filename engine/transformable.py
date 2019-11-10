@@ -2,6 +2,7 @@
 import numpy as np
 from transform import Transform
 from vector import Vector
+from polygone import *
 
 #travis github CI
 
@@ -21,7 +22,7 @@ class Transformable:
         #-----------------------------
         self.__rigid_body = False
         self.__collide = False
-        self.__hit_box = Polygone([self.__origin])
+        self.__hit_box = Polygon([self.__origin])
 
     def set_rigid_body(self,val):
         self.__rigid_body = val
@@ -102,7 +103,7 @@ class Transformable:
             sys = sy*sine
             tx = -mx*sxc - my*sys + x
             ty =  mx*sxs - my*syc + y
-            self.__transform = Transform(sxc,sys,tx,-sxs,syc,ty,0,0,1)
+            self.__transform = Transform(np.array([[sxc,sys,tx],[-sxs,syc,ty],[0,0,1]]))
             self.__tr_need_up = False
         # Error : returned None at 'get_transform' because the transform_matrix
         # was None and __tr_need_up == False
