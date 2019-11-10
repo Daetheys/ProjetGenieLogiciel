@@ -25,7 +25,7 @@ def test_rect1():
     assert not(R.contains(1,0))
     assert not(R.contains(0,1))
     assert R.get_position() == Vector(1,1)
-    assert R.get_size() == Vector(2,2)
+    assert R.get_dimension() == Vector(2,2)
     R2 = Rect(2,2,1,1)
     assert R.intersects(R2)
     R3 = Rect(4,4,2,1)
