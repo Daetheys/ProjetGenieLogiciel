@@ -5,3 +5,6 @@ class SolidPlatform(ControlableNode):
         super().__init__()
         self.set_hit_box(polygon)
         self.set_rigid_body(True)
+
+    def __repr__(self):
+        return "SolidPlatform("+str(self.get_hit_box())+")"

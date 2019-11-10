@@ -181,8 +181,14 @@ class Polygon:
     def get_min_y(self):
         return self.min_y
 
+    def copy(self):
+        l = []
+        for p in self.get_points():
+            l.append(p.copy())
+        return Polygon(l)
+
     def __eq__(self,p):
         return self.get_points() == p.get_points()
 
     def __repr__(self):
-        return "Poly("+str(self.__segments)+")"
+        return "Poly("+str(self.get_points())+")"

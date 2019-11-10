@@ -28,3 +28,6 @@ class Vector:
 
     def to_tuple(self):
         return (self.x,self.y)
+
+    def copy(self):
+        return Vector(self.x,self.y)

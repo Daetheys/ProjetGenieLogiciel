@@ -10,9 +10,12 @@ class GameLevel:
         self.camera.set_dimension(Vector(10,5))
         self.objects = objects
         self.compute_size_level()
-        self.physics_resolution = 0.1
-        self.collision_objects = []
-        self.compute_collision_objects()
+        self.physics_resolution = 1
+        self.data_collision_objects = {}
+        self.compute_data_collision_objects()
+
+    def get_camera(self):
+        return self.camera
 
     def compute_size_level(self):
         """ Computes the size of the level """
@@ -39,24 +42,3 @@ class GameLevel:
 
     def get_size_level(self):
         return self.size_level
-
-    def compute_collision_objects(self):
-        """ Computes the array to compute collisions in O(1) """
-        ref_rect = self.camera.rect #Camera rect
-        v = ref_rect.get_dimension()
-        offset = self.physics_resolution
-        ref_rect.set_dimension( Vector(v.x+2*offset,v.y+2*offset) ) #Add an offset around the camera rect in order to handle physics while the camera is moving
-        (min_x,max_x,min_y,max_y) = self.size_level
-        size_x = int( (max_x-min_x)/self.physics_resolution ) #Size of the array
-        size_y = int( (max_y-min_y)/self.physics_resolution )
-        for n in range(size_y):
-            self.collision_objects.append([])
-            for m in range(size_x):
-                self.collision_objects[n].append([])
-                #Computes the x and y pos for the camera
-                x_pos = m*self.physics_resolution + min_x - offset
-                y_pos = n*self.physics_resolution + min_y - offset
-                ref_rect.set_position(Vector(x_pos,y_pos))
-                for o in self.objects:
-                    if o.get_collide() and self.camera.is_in_camera(o.get_hit_box()):
-                        self.collision_objects[n][m].append(o) #Store a pointer to objects that are in the camera

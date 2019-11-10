@@ -2,6 +2,7 @@ import sys
 import os
 import numpy as np
 import copy as copy
+import random
 
 path = os.getcwd()
 path += "/engine"
@@ -10,6 +11,7 @@ from polygone import *
 from vector import Vector
 from transform import Transform
 from solidPlatform import SolidPlatform
+from camera import Camera
 from gameLevel import GameLevel
 from hypothesis import given
 from hypothesis.strategies import integers, lists
@@ -21,7 +23,7 @@ def test_size_level():
     v4 = Vector(0,1)
     p = Polygon([v1,v2,v3,v4])
     plat1 = SolidPlatform(p)
-    p2 = copy.copy(p)
+    p2 = p.copy()
     p2.translate(Vector(3,2))
     plat2 = SolidPlatform(p2)
     gl = GameLevel([plat1,plat2])
