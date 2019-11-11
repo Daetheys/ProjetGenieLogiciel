@@ -1,8 +1,9 @@
 from vector import Vector
 from node import Node
+from spriteNode import SpriteNode
 
-class MovableNode(Node):
-    """ A node that can move with more powerfull functions"""
+class MovableNode(SpriteNode):
+    """ A node that can move with more powerful functions"""
     def __init__(self):
         super().__init__()
         self.__speed = Vector(0,0)

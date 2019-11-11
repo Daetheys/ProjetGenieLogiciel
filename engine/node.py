@@ -15,7 +15,7 @@ class Node(Transformable):
             del son
 
     def get_parent(self):
-        return self.__parent()
+        return self.__parent
 
     def attach_children(self,child):
         if child.__parent.__children is not None:
@@ -46,7 +46,7 @@ class Node(Transformable):
         for child in self.__children:
             child.draw(transform)
 
-    def draw_current(self,transform):
+    def draw_current(self,fen):
         pass
 
     def update(self, dt):

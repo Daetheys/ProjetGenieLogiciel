@@ -24,12 +24,12 @@ def test_size_level():
     v4 = Vector(-1,1)
     p = Polygon([v1,v2,v3,v4])
     plat1 = SolidPlatform(p)
-    plat1.translate(Vector(x,y))
+    plat1.translate(Vector(2,1))
     p2 = p.copy()
     p2.translate(Vector(3,2))
     plat2 = SolidPlatform(p2)
     gl = GameLevel([plat1,plat2])
-    assert gl.size_level == (0,4,0,3)
+    assert gl.size_level == (-1,3,-1,2)
 
 def test_physics_step1():
     v1 = Vector(0,0)
@@ -40,7 +40,7 @@ def test_physics_step1():
     plat1 = SolidPlatform(p)
     gravity = Gravity(10)
     plat1.add_force(gravity)
-    gl = GameLevel([plat1])
+    gl = GameLevel([plat1],[])
     gl.physics_step(1)
     assert plat1.get_position() == Vector(0,-10)
     p2 = p.copy()
@@ -62,7 +62,7 @@ def test_physics_step2():
     plat1.add_force(gravity)
     print(plat1.get_hit_box())
     print(plat2.get_hit_box())
-    gl = GameLevel([plat1,plat2])
+    gl = GameLevel([plat1,plat2],[])
     for i in range(100):
         gl.physics_step(0.01)
         print(plat1.get_hit_box())

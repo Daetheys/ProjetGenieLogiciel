@@ -1,5 +1,6 @@
 from camera import Camera
 from vector import Vector
+import pygame
 
 class GameLevel:
     """ Level of the game """
@@ -7,7 +8,7 @@ class GameLevel:
         """ The player spawn in (0,0) """
         self.camera = Camera()
         self.camera.set_position(Vector(0,0))
-        self.camera.set_dimension(Vector(10,5))
+        self.camera.set_dimension(Vector(10,10))
         self.objects = objects
         self.compute_size_level()
 
@@ -54,3 +55,7 @@ class GameLevel:
                     if o.get_rigid_body() and o2.get_rigid_body():
                         o.apply_reaction(o2)
                         print("rigid")
+
+    def aff(self,fen):
+        self.camera.aff(self.objects,fen)
+        pygame.display.flip()
