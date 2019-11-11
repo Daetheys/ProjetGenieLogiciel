@@ -4,6 +4,7 @@ path = os.getcwd()
 path += "/engine"
 sys.path.append(path)
 from vector import Vector
+from transform import Transform
 
 class Line:
     """ Represents a line : y = ax+b """
@@ -52,9 +53,9 @@ class Segment:
 
     def collide_line(self,l):
         """ Returns true if it collides a specific line """
-        b1 = l.is_point_up(self.p1)
-        b2 = l.is_point_up(self.p2)
-        return b1+b2 == 1
+        b1 = int(l.is_point_up(self.p1))
+        b2 = int(l.is_point_up(self.p2))
+        return (b1+b2) == 1
 
     def collide_segment(self,s):
         ls = s.get_line()
@@ -121,17 +122,20 @@ class Polygon:
             p.x += vector.x
             p.y += vector.y
 
+    def rotate(self,angle):
+        t = Transform()
+        t.rotate(angle)
+        p = self.apply_transform(t)
+        self.__init__(p.get_points())
+
     def point_in(self,point):
         """ Returns true if the vector point is in the polygon """
         if point in self.get_points():
             return True
         count = 0
         line = Line(0,point.y)
-        for i in range(len(self.get_points())):
-            p1 = self.__points[i%len(self.get_points())]
-            p2 = self.__points[(i+1)%len(self.get_points())]
-            if p1.x <= point.x or p2.x <= point.x:
-                s = Segment(p1,p2)
+        for s in self.get_segments():
+            if s.p1.x <= point.x or s.p2.x <= point.x:
                 if s.collide_line(line):
                     count += 1
         return count%2 == 1
@@ -140,6 +144,28 @@ class Polygon:
         for si in self.get_segments():
             if s.collide_segment(si):
                 return True
+        return False
+
+    def points_in(self,poly):
+        """ Returns points of self that are in p """
+        l = []
+        for p in self.get_points():
+            if poly.point_in(p):
+                l.append(p)
+        return l
+
+    def segments_collide_with(self,poly):
+        """ Returns segments of self that are in poly """
+        l = []
+        for s in self.get_segments():
+            if poly.intersect_segment(s):
+                l.append(s)
+        return l
+
+    def collide(self,poly):
+        """ Returns True if the polygon collides with poly """
+        if poly.points_in(self) != [] or poly.segments_collide_with(self) != []:
+            return True
         return False
 
     def apply_transform(self,transform):

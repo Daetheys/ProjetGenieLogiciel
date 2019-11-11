@@ -77,7 +77,8 @@ class Transformable:
     def get_origin(self):
         return self.__origin
 
-    def move(self,move_x,move_y):
+    def translate(self,v):
+        (move_x,move_y) = (v.x,v.y)
         (x,y) = self.__position.x,self.__position.y
         self.set_position(x+move_x,y+move_y)
 

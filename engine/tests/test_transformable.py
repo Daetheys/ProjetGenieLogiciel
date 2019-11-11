@@ -6,6 +6,7 @@ path = os.getcwd()
 path += "/engine"
 sys.path.append(path)
 from transformable import Transformable
+from vector import Vector
 from hypothesis import given
 from hypothesis.strategies import integers, lists
 
@@ -39,7 +40,7 @@ def test_set_get(px,py,r,sx,sy,ox,oy):
 def test_move_rot_scal(mvx,mvy,rot,scalx,scaly):
     """ tests a serie of one move, one rotation, then one scaling """
     T = Transformable()
-    T.move(mvx,mvy)
+    T.translate(Vector(mvx,mvy))
     T.rotate(rot)
     T.scale(scalx,scaly)
     assert T.get_position().to_tuple() == (0+mvx,0+mvy)

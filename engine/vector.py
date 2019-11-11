@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import numpy as np
+from polygone import *
 
 class Vector:
     
@@ -8,11 +9,32 @@ class Vector:
         self.x = x
         self.y = y
 
+    def __neg__(self):
+        return Vector(-self.x,-self.y)
+
     def __eq__(self,vect):
         return np.isclose(self.x,vect.x) and np.isclose(self.y,vect.y)
 
     def __repr__(self):
         return "Vector("+str(self.x)+","+str(self.y)+")"
+
+    def __add__(self,vect):
+        return Vector(self.x+vect.x,self.y+vect.y)
+
+    def __mul__(self,val):
+        return Vector(self.x*val,self.y*val)
+
+    def __truediv__(self,val):
+        return Vector(self.x/val,self.y/val)
+
+    def orthogonal(self):
+        return Vector(self.y,-self.x)
+
+    def dot(self,v):
+        return self.x*v.x + self.y*v.y
+
+    def len(self):
+        return self.dot(self)**0.5
 
     def homogeneous(self):
         return np.array([[self.x],[self.y],[1]])

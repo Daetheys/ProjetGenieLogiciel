@@ -8,3 +8,6 @@ class SolidPlatform(ControlableNode):
 
     def __repr__(self):
         return "SolidPlatform("+str(self.get_hit_box())+")"
+
+    def collide(self,o2):
+        print("collide")

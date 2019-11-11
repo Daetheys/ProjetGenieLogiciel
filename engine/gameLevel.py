@@ -3,19 +3,19 @@ from vector import Vector
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects):
+    def __init__(self,objects,player_pos):
         """ The player spawn in (0,0) """
         self.camera = Camera()
         self.camera.set_position(Vector(0,0))
         self.camera.set_dimension(Vector(10,5))
         self.objects = objects
         self.compute_size_level()
-        self.physics_resolution = 1
-        self.data_collision_objects = {}
-        self.compute_data_collision_objects()
 
     def get_camera(self):
         return self.camera
+
+    def get_objects(self):
+        return self.objects
 
     def compute_size_level(self):
         """ Computes the size of the level """
@@ -42,3 +42,15 @@ class GameLevel:
 
     def get_size_level(self):
         return self.size_level
+
+    def physics_step(self,dt):
+        for o in self.get_objects():
+            o.compute_speed(dt)
+            o.move()
+            for o2 in self.get_objects():
+                if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
+                    o.collide(o2)
+                    o2.collide(o)
+                    if o.get_rigid_body() and o2.get_rigid_body():
+                        o.apply_reaction(o2)
+                        print("rigid")
