@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from map import Map
-
 
 class World:
     
