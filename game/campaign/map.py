@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-from map_point import Map_Point
-import pygame
-
 
 class Map:
 

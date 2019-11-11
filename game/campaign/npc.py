@@ -5,9 +5,9 @@ class Npc(Character):
 	it has a dialogue
 	Npc (that can talk, sell items, etc..)
 	"""
-	def __init__(self,name,pic,ctalk=(0,0,0),inv=None,dial=""):
+	def __init__(self,name,pic,ctalk=(0,0,0),inv=None,dialogue=None):
 		Character.__init__(self,name,pic,ctalk,inv)
-		self.dial = dial#str, Dialogue
+		self.dialogue = dialogue#Dialogue
 
 	def __repr__(self):
 		return "NPCharacter :" + self.name
