@@ -8,7 +8,7 @@ class GameLevel:
         """ The player spawn in (0,0) """
         self.camera = Camera()
         self.camera.set_position(Vector(0,0))
-        self.camera.set_dimension(Vector(10,5))
+        self.camera.set_dimension(Vector(10,10))
         self.objects = objects
         self.compute_size_level()
 
