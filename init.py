@@ -1,6 +1,6 @@
 """
-CanAbaelde v1
--maps are now well displayed
+Can·A·Baelde v1
+-menu is rebuilt with object-oriented programmation
 """
 import sys
 from os import getcwd

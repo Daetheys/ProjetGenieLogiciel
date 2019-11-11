@@ -16,7 +16,7 @@ def test_escape():
 
     newpid = fork()
     if newpid:#This first fork is for launching the menu and pyautogui in parallel
-        import menu
+        import init
         _exit(0)
     else:
         #A second thread, for launching the wait and the remaining tests in parallel
@@ -30,7 +30,7 @@ def test_exit_button():
 
     newpid = fork()
     if newpid:
-        import menu
+        import init
         _exit(0)
     else:
         sleep(1)
@@ -46,7 +46,7 @@ def test_inputs(txt):
     #test if whether game does crash with randomized inputs
     newpid = fork()
     if newpid:#This first fork is for launching the menu and the typer in parallel
-        import menu
+        import init
         _exit(0)
     else:
         sleep(1)
