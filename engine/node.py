@@ -46,7 +46,7 @@ class Node(Transformable):
         for child in self.__children:
             child.draw(transform)
 
-    def draw_current(self,transform):
+    def draw_current(self,fen):
         pass
 
     def update(self, dt):

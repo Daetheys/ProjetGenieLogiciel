@@ -40,5 +40,10 @@ class Camera:
             f_sides = f_sides or polygon.intersect_segment(side)
         return f_in or f_sides
 
+    def aff(self,objects,fen):
+        for o in objects:
+            if self.is_in_camera(o.get_hit_box()):
+                o.aff(fen)
+
     def __repr__(self):
         return "Camera("+str(self.rect)+")"
