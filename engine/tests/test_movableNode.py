@@ -35,5 +35,5 @@ def test_object_collide():
     assert not(mvn2.get_hit_box().collide(mvn.get_hit_box()))
     mvn2.move()
     assert mvn2.get_hit_box().collide(mvn.get_hit_box())
-    print("collid",mvn2.get_object_collide(p))
+    print("return",mvn2.get_object_collide(p))
     assert mvn2.get_object_collide(p) == Segment(Vector(0,1),Vector(1,1))
