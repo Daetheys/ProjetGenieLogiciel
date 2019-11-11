@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-Automata & Sprite Scheduler v2.1.1
+Automata & Sprite Scheduler v2.1.2
 -states now are associated to a sprite path
 -sprites can be directly loaded in the scheduler
 -and states will be associated to a pygame.surface
+-load_sprites now works
 """
 import sys
 import os
@@ -52,8 +53,8 @@ class SpriteScheduler:
 		After a call to sps.load_sprites(), sps.get_sprite() directly returns
 		the Pygame.surface object, and not the mere string 'path-to-image'
 		"""
-		for k,v in self.qn.items():
-			self.qn[k] = pygame.image.load(v).convert_alpha()
+		for k,v in self.ata.qn.items():
+			self.ata.qn[k] = pygame.image.load(v).convert_alpha()
 
 
 def __repr__(self):

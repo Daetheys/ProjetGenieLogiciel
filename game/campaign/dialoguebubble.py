@@ -9,4 +9,4 @@ class DialogueBubble:
         self.y = y
 
     def show(self):
-        fen.blit(self.background,(x,y))
+        self.fen.blit(self.background,(x,y))

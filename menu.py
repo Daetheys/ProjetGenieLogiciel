@@ -1,7 +1,6 @@
 """
-Menu v0.8.6
--banner is centered
--buttons are in the middle of the screen for all screen sizes
+Menu v0.8.7
+-maps are now well displayed
 """
 import sys
 from os import getcwd
