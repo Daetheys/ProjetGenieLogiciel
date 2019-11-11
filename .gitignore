@@ -1,6 +1,5 @@
 
-txt
-
-.hypothesis
+.hypothesis/*
+.pytest_cache/*
 *.pyc
 
