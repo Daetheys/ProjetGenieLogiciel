@@ -13,4 +13,5 @@ print(path)
 
 from launcher import Launcher
 
-g = Launcher()
+if __name__ == 'main':
+    g = Launcher()

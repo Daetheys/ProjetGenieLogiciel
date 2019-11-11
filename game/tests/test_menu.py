@@ -1,36 +1,37 @@
 import pyautogui
+pyautogui.FAILSAFE = False
 from os import fork,_exit
 from hypothesis import *
 from hypothesis.strategies import *
 from time import sleep
-"""
-XVFB now tests mouse exit
--but keyboard tests are disabled
--one still cannot execute several tests at the same time in xvfb
-"""
+from init import *
 
 """
+All tests are now activated.
+Thanks to the launcher class, one can launch several displays in one run.
+"""
+
 def test_escape():
     #testing if the escape button works at the root of the menu,
     #introducing various easy ways to test efficiently
 
     newpid = fork()
     if newpid:#This first fork is for launching the menu and pyautogui in parallel
-        import init
+        Launcher()
         _exit(0)
     else:
         #A second thread, for launching the wait and the remaining tests in parallel
         #could be added
-        sleep(1)#wait for the menu to initialize
+        sleep(2)#wait for the menu to initialize
         pyautogui.press('escape')
-"""
+
 
 def test_exit_button():
     #test if the game quits when exit button is touched
 
     newpid = fork()
     if newpid:
-        import init
+        Launcher()
         _exit(0)
     else:
         sleep(1)
@@ -38,17 +39,19 @@ def test_exit_button():
         pyautogui.doubleClick()
         pyautogui.moveTo(10, 765, duration=0.3, tween=pyautogui.easeInOutQuad)
         pyautogui.doubleClick()
+        #sleep(1)
 
-"""
+
 @given(text(min_size=40,max_size=200,alphabet=characters(blacklist_categories=('Cs',),blacklist_characters=("|,;"))))
 @settings(max_examples=5,deadline=None)
 def test_inputs(txt):
     #test if whether game does crash with randomized inputs
     newpid = fork()
     if newpid:#This first fork is for launching the menu and the typer in parallel
-        import init
+        Launcher()
         _exit(0)
     else:
-        sleep(1)
+        sleep(2)
         pyautogui.typewrite(txt)
-        pyautogui.press('escape')"""
+        pyautogui.press('escape')
+
