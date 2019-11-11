@@ -2,6 +2,7 @@ import numpy as np
 import json
 import sys
 import os
+import pygame
 
 path = os.getcwd()
 path += "/engine"
@@ -65,6 +66,10 @@ def test_loaded_sps():
     except TransitionUndefined:
         pass
     assert sps.ata.qn[sps.ata.cs] == 'data/img/void.png'
+    pygame.display.init()
+    window = pygame.display.set_mode((10,1))
+    sps.load_sprites()
+    pygame.display.quit()
 
 @given(text(min_size=1,max_size=8,alphabet=characters(blacklist_categories=('Cs',),blacklist_characters=("|,;"))),integers(max_value=30),text(min_size=1,max_size=5,alphabet=characters(blacklist_categories=('Cs',),blacklist_characters=("|,;"))))
 @settings(max_examples=100)
