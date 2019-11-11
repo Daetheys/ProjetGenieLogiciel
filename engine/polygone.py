@@ -172,7 +172,7 @@ class Polygon:
         li = []
         for p in self.get_points():
             v = transform.transform_vect(p)
-            li.append(Vector(v[0],v[1]))
+            li.append(Vector(v[0][0],v[1][0]))
         poly = Polygon(li)
         return poly
 

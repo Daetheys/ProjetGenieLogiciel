@@ -34,6 +34,6 @@ x2 = 2
 y2 = 1
 
 #To create an other platform with the same hit box it easy:
-p2 = p.copy() #very important to copy it and not using p or both platform would be linked (if one of them is moving to other will too)
+p2 = p.copy() #It's very important to copy it and not using p or both platform would be linked (if one of them is moving to other will too)
 plat2 = SolidPlatform(p2)
 plat2.translate(Vector(x2,y2))

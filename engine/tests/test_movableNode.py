@@ -25,7 +25,9 @@ def test_object_collide():
 
     p2 = p.copy()
     t = Transform()
+    print("p2",p2)
     p2.rotate(np.pi/4)
+    print("p2",p2)
     p2.translate(Vector(0,4))
     mvn2 = MovableNode()
     mvn2.set_hit_box(p2)
