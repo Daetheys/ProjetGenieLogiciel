@@ -1,5 +1,6 @@
 from node import Node
 import pygame
+from vector import Vector
 
 class SpriteNode(Node):
     def __init__(self):
@@ -19,8 +20,12 @@ class SpriteNode(Node):
     def get_state(self):
         return self.__state
 
-    def aff(self,fen):
+    def aff(self,fen,distorsion):
+        print("aff",self)
         s = self.__sps.get_sprite()
         img = pygame.image.load(s).convert_alpha()
+        image_dim = Vector(img.get_width(),img.get_height())
+        img = pygame.transform.smoothscale(img,distorsion.transform_vect(image_dim))
         pos = self.get_position()
-        fen.blit(img,(pos.x,pos.y))
+        #fen.blit(img,(pos.x*distorsion.x,pos.y*distorsion.y))
+        pygame.draw.polygon(fen,(0,255,0),(self.get_hit_box().apply_transform(distorsion)).to_tuples())

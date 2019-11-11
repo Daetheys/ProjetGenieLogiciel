@@ -4,18 +4,39 @@ from polygone import *
 class Camera:
     def __init__(self):
         self.rect = Rect()
+        self.fen = None #Undefined yet
 
     def set_position(self,pos):
         self.rect.set_position(pos)
 
     def set_dimension(self,size):
         self.rect.set_dimension(size)
+        if not(self.fen is None):
+            self.compute_distorsion()
 
     def get_position(self):
         return self.rect.get_position()
 
     def get_dimension(self):
         return self.rect.get_dimension()
+
+    def set_fen(self,fen):
+        self.fen = fen
+        self.compute_distorsion()
+
+    def get_fen(self):
+        return self.fen
+
+    def set_distorsion(self,dis):
+        self.distorsion = dis
+
+    def get_distorsion(self):
+        return self.distorsion
+
+    def compute_distorsion(self):
+        (width,height) = (self.fen.get_width(),self.fen.get_height())
+        dim = self.get_dimension()
+        self.distorsion = Transform().scale(Vector(width/dim.x,height/dim.y))
 
     def is_in_camera(self,polygon):
         """ Returns true if the polygon is completely in the camera's rect or if it intersects a side """
@@ -40,10 +61,10 @@ class Camera:
             f_sides = f_sides or polygon.intersect_segment(side)
         return f_in or f_sides
 
-    def aff(self,objects,fen):
+    def aff(self,objects):
         for o in objects:
             if self.is_in_camera(o.get_hit_box()):
-                o.aff(fen)
+                o.aff(self.get_fen(),self.get_distorsion())
 
     def __repr__(self):
         return "Camera("+str(self.rect)+")"

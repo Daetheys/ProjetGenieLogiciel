@@ -21,6 +21,8 @@ class Vector:
         return Vector(self.x+vect.x,self.y+vect.y)
 
     def __mul__(self,val):
+        if isinstance(val,Vector):
+            return Vector(self.x*val.x,self.y*val.y)
         return Vector(self.x*val,self.y*val)
 
     def __truediv__(self,val):

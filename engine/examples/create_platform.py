@@ -37,3 +37,5 @@ y2 = 1
 p2 = p.copy() #It's very important to copy it and not using p or both platform would be linked (if one of them is moving to other will too)
 plat2 = SolidPlatform(p2)
 plat2.translate(Vector(x2,y2))
+
+

@@ -213,6 +213,18 @@ class Polygon:
             l.append(p.copy())
         return Polygon(l)
 
+    def to_tuples(self):
+        l= []
+        for p in self.get_points():
+            l.append((p.x,p.y))
+        return l
+
+    def __mul__(self,vect):
+        l = []
+        for p in self.get_points():
+            l.append(p.copy()*vect)
+        return Polygon(l)
+
     def __eq__(self,p):
         return self.get_points() == p.get_points()
 
