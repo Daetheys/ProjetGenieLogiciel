@@ -6,6 +6,7 @@ from mapDisplayer import *
 from level_sequence import *
 from map import *
 from tools import *
+from shutil import copy2
 
 #The Game class, very pure, no buttons needed
 class Game:
@@ -25,9 +26,15 @@ class Game:
         returns the display window
         """
         #Display
-        with open("data/json/options.json","r") as file:
-            self.options = json.load(file)
-            #self.options["modeECRAN"]  = 0 ou FULLSCREEN
+        try:
+            with open("data/json/options.json","r") as file:
+                self.options = json.load(file)
+                #self.options["modeECRAN"]  = 0 ou FULLSCREEN
+        except FileNotFoundError:
+            with open("data/json/default_options.json","r") as file:
+                self.options = json.load(file)
+            copy2("data/json/default_options.json","data/json/options.json")
+
         pygame.init()
         #pygame.mixer.init() music is disabled
         pygame.display.set_caption("CAN·A·BAELDE")
@@ -85,17 +92,12 @@ class Game:
         mapkshan.set_map_points([mp])
 
         self.world.set_maps([mapkshan])
-        
+
     def create_characters(self):
-        self.dict_char = {}
+        self.characters = []
         with open("data/json/characters.json", "r") as read_file:
-            self.dict_char = json.load((read_file,self.dict_img),object_hook=create_char)
-                
-    def create_dialogues(self):
-        self.dial = {}
-        with open("data/json/dialogues.json", "r") as read_file:
-            self.dict_dial = json.load((read_file,self.dict_str,self.dict_char,self.dict_img,self._fenetre),object_hook=create_dial)
-                
+            for char in json.load(read_file):
+                self.characters.append(Character(char[0],self.dict_img[char[1]],char[2],char[3]))
 
     def init_music(self):
         """
