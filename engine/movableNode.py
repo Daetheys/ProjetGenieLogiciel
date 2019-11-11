@@ -90,14 +90,14 @@ class MovableNode(SpriteNode):
             print("--",factor_max,factor_min)
             print(points_in)
             print(segments_collide)
-            if len(points_in) < 1 and len(segments_collide) <1:
-                factor_max = factor
-            else:
-                factor_min = factor
             if len(points_in) == 1:
                 return points_in[0]
             if len(segments_collide) == 1:
                 return segments_collide[0]
+            if len(points_in) < 1 and len(segments_collide) <1:
+                factor_max = factor
+            else:
+                factor_min = factor
             
             timeout += 1
             if timeout > 10:

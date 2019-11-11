@@ -22,10 +22,9 @@ def test_object_collide():
     mvn = MovableNode()
     mvn.set_hit_box(p)
     mvn.set_rigid_body(True)
-
     p2 = p.copy()
     t = Transform()
-    p2.rotate(np.pi/4)
+    p2.rotate(np.pi/2)
     p2.translate(Vector(0,4))
     mvn2 = MovableNode()
     mvn2.set_hit_box(p2)
