@@ -40,5 +40,11 @@ class SpriteScheduler:
 			print("No transition from state "+str(self.ata.cs)+" with letter "+char+".")
 			raise TransitionUndefined
 
-	def __repr__(self):
+	def get_sprite(self):
+		"""
+		Returns the current sprite.
+		"""
+		return self.ata.qn[self.ata.cs]
+
+def __repr__(self):
 		return str(self.name)+"\nstates:"+str(self.ata.states)+"\ncs:"+str(self.ata.cs)+"\ntt:"+str(self.ata.tt)
