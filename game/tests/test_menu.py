@@ -20,6 +20,8 @@ def test_escape():
     newpid = fork()
     if newpid:#This first fork is for launching the menu and pyautogui in parallel
         Launcher()
+        _exit(0)
+        sleep(5)
         os.kill(os.getpid(), signal.SIGKILL)
     else:
         #A second thread, for launching the wait and the remaining tests in parallel
@@ -34,6 +36,8 @@ def test_exit_button():
     newpid = fork()
     if newpid:
         Launcher()
+        _exit(0)
+        sleep(5)
         os.kill(os.getpid(), signal.SIGKILL)
     else:
         sleep(1)
@@ -51,6 +55,8 @@ def test_inputs(txt):
     newpid = fork()
     if newpid:#This first fork is for launching the menu and the typer in parallel
         Launcher()
+        _exit(0)
+        sleep(5)
         os.kill(os.getpid(), signal.SIGKILL)
     else:
         sleep(2)
