@@ -87,10 +87,15 @@ class Game:
         self.world.set_maps([mapkshan])
         
     def create_characters(self):
-        self.characters = []
+        self.dict_char = {}
         with open("data/json/characters.json", "r") as read_file:
-            for char in json.load(read_file):
-                self.characters.append(Character(char[0],self.dict_img[char[1]],char[2],char[3]))
+            self.dict_char = json.load((read_file,self.dict_img),object_hook=create_char)
+                
+    def create_dialogues(self):
+        self.dial = {}
+        with open("data/json/dialogues.json", "r") as read_file:
+            self.dict_dial = json.load((read_file,self.dict_str,self.dict_char,self.dict_img,self._fenetre),object_hook=create_dial)
+                
 
     def init_music(self):
         """
