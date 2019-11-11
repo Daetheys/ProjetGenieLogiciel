@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 
-from map_point import Map_Point
 
 
-class Level(Map_Point):
+class Level:
     
     def __init__(self):
+        self.__childs = []
         
-        self.childs = []
+    def set_childs(self, childs):
+        self.__childs = childs
+        
+    def get_childs(self):
+        return self.__childs

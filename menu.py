@@ -12,6 +12,7 @@ path += "/campaign"#pour import map,etc..
 sys.path.append(path)
 print(path)
 import pygame
+from world import *
 from map_point import *
 from mapDisplayer import *
 from map import *
@@ -61,6 +62,15 @@ if LAUNCH:
     elif OPTIONS["LANGUAGE"] == "French":
         with open("data/json/fr.json", "r") as read_file:
             dict_str=json.load(read_file)
+            
+    #World
+    world = World()
+    
+    mapkshan = Map(dict_img["map_kshan"],"map_kshan")
+    mp = Map_Point(200,200,dict_img["img_mapf"],dict_img["img_map"])
+    mapkshan.set_map_points([mp])
+    
+    world.set_maps([mapkshan])
 
     #Utilitary functions using global variables
     def suppress_buttons(n):
@@ -269,12 +279,10 @@ def reaction_b11():
     
     #b111 = buttonMenu(b1xmin,b1xmax,b1ymin,b1ymax,dict_img["img_button"],"b111",dict_img["img_buttonH"],text="")
     #dict_img["map_kshan"]
-    mapkshan = Map(dict_img["map_kshan"])
-    mp = Map_Point(200,200,"data/img/red_point.png","data/img/gray_point.png")
-    mapkshan.set_map_points([mp])
-    bg =  pygame.transform.smoothscale(dict_img["map_kshan"], (OPTIONS["DISPLAYSIZE_X"],OPTIONS["DISPLAYSIZE_Y"]))
+    
+    bg =  pygame.transform.smoothscale(world.get_map("map_kshan").image, (OPTIONS["DISPLAYSIZE_X"],OPTIONS["DISPLAYSIZE_Y"]))
     while cnt:
-        cnt,quit_all = map_loop(bg=bg,map=mapkshan)
+        cnt,quit_all = map_loop(bg=bg,map=world.get_map("map_kshan"))
         if quit_all:
             cnt = False
             cnt_underlying = False

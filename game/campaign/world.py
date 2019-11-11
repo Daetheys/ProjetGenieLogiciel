@@ -6,10 +6,11 @@ from map import Map
 class World:
     
     def __init__(self):
-        self.__maps = []
+        self.__maps = {}
         
     def set_maps(self, maps):
-        self.__maps = maps
+        for map in maps:
+            self.__maps[map.name] = map
         
-    def get_maps(self):
-        return self.__maps
+    def get_map(self,name):
+        return self.__maps[name]

@@ -13,8 +13,8 @@ class Map_Point:
         self.__end_dialogue = None
         self.x = x
         self.y = y
-        self.__image = pygame.image.load(img).convert_alpha()
-        self.__image_finished = pygame.image.load(imgf).convert_alpha()
+        self.__image = img
+        self.__image_finished = imgf
 
     def set_start_dialogue(self, dialogue):
         self.__start_dialogue = dialogue
