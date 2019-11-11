@@ -57,15 +57,19 @@ class Segment:
         b2 = int(l.is_point_up(self.p2))
         return (b1+b2) == 1
 
-    def collide_segment(self,s):
-        ls = s.get_line()
+    def get_inter_line(self,ls,s):
         l = self.get_line()
         inter_p = l.intersect_point(ls)
         if inter_p is None: 
-            return False #They don't collide
-        if isinstance(inter_p,Line):
-            return True
-        return self.is_in_interval_x(inter_p.x) and s.is_in_interval_x(inter_p.x) and self.is_in_interval_y(inter_p.y) and s.is_in_interval_y(inter_p.y)
+            return None #They don't collide
+        if isinstance(inter_p,Line) or self.is_in_interval_x(inter_p.x) and s.is_in_interval_x(inter_p.x) and self.is_in_interval_y(inter_p.y) and s.is_in_interval_y(inter_p.y):
+            return inter_p
+        else:
+            return None
+
+    def collide_segment(self,s):
+        ls = s.get_line()
+        return bool(self.get_inter_line(ls,s))
 
     def is_in_interval_x(self,x):
         """ Returns if x in the interval of this segment """

@@ -2,6 +2,7 @@ from vector import Vector
 from node import Node
 from spriteNode import SpriteNode
 from polygone import *
+from transform import Transform
 
 class MovableNode(SpriteNode):
     """ A node that can move with more powerful functions"""
@@ -73,7 +74,7 @@ class MovableNode(SpriteNode):
         self.set_acc(acc/self.get_mass())
         self.set_ang_acc(ang_acc/self.get_ang_inertia())
 
-    def get_object_collide(self,p):
+    def get_direction_rigid_collide(self,p):
         """ Returns either the point or the segment that first created a collision between self (moving) and p (not moving) """
         speed = -self.get_speed().copy()
         ang_speed = -self.get_ang_speed()
@@ -104,7 +105,7 @@ class MovableNode(SpriteNode):
                 assert False #Timeout in get_object_collide
 
     def get_segment_collide(self,p):
-        obj = self.get_object_collide(p)
+        obj = self.get_direction_rigid_collide(p)
         if isinstance(obj,Vector):
             p_points = p.get_points()
             assert len(p_points) > 1 #Rigid bodies can't be reduced to 1 point
@@ -130,3 +131,29 @@ class MovableNode(SpriteNode):
     def apply_reaction(self,support):
         speed = self.get_resistance_support(support)
         self.set_speed(self.get_speed()+speed)
+
+    def correct_collide_rigid_body(self,support):
+        speed = -self.get_speed().copy()
+        ang_speed = -self.get_ang_speed()
+        factor_max = 1
+        factor_min = 0
+        timeout = 0
+        while 1: #Proceeds by dichotomia assuming last pos wasn't creating a collision but the new one is
+            factor = (factor_max+factor_min)/2
+            self_cpy = self.get_hit_box().copy()
+            assert self_cpy.collide(p)
+            self_cpy.translate(speed*factor)
+            self_cpy.rotate(ang_speed*factor)
+            points_in = p.points_in(self_cpy)
+            segments_collide = p.segments_collide_with(self_cpy)
+            if self_cpy.get_hit_box().collide(support.get_hit_box()):
+                if self_scpy.get_rigid_hit_box().collide(support.get_rigid_hit_box()):
+                    factor_min = factor
+                else:
+                    return speed*factor
+            else:
+                factor_max = factor
+            
+            timeout += 1
+            if timeout > 100:
+                assert False #Timeout in get_object_collide

@@ -1,3 +1,9 @@
+import sys
+import os
+path = os.getcwd()
+sys.path.append(path + "/engine")
+sys.path.append(path + "/game")
+
 from camera import Camera
 from vector import Vector
 import pygame

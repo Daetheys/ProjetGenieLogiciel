@@ -22,7 +22,8 @@ class Transformable:
         #-----------------------------
         self.__rigid_body = False
         self.__collide = False
-        self.__hit_box = Polygon([self.__origin])
+        self.__collide_hit_box = Polygon([self.__origin])
+        self.__rigid_hit_box = Polygon([self.__origin])
 
     def set_rigid_body(self,val):
         self.__rigid_body = val
@@ -40,11 +41,19 @@ class Transformable:
 
     def set_hit_box(self,val):
         self.__hit_box = val
+        t = Transform().scale(0.99) #0.01% smaller
+        self.set_rigid_hit_box(self.get_hit_box().apply_transform(t))
 
     def get_hit_box(self):
         """ Compute the hit box according to the position / rotation / scale """
         transform = self.get_transform() #Recompute the hit box to avoid comulating errors due to operations on floats that approximate computations
         return self.__hit_box.apply_transform(transform)
+
+    def set_rigid_hit_box(self,val):
+        self.__rigid_hit_box = val
+
+    def get_rigid_hit_box(self):
+        return self.__rigid_hit_box
 
     def reset_update(self):
         self.__tr_need_up = True

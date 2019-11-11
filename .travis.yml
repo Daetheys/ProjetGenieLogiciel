@@ -5,11 +5,13 @@ cache: pip
 dist: xenial
 services:
   - xvfb
-  - ffmpeg
 install:
   - pip install -r requirements.txt
 # command to run tests
 script:
+  - sudo add-apt-repository -y ppa:mc3man/trusty-media
+  - sudo apt-get -qq update
+  - sudo apt-get install -y ffmpeg
   - for file_py in */*.py; do pylint -E  --disable=E0401,E0602 $file_py; done
   - xvfb-run -a --server-args="-screen 0 1366x768x24" pytest
 

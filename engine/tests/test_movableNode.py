@@ -32,7 +32,8 @@ def test_object_collide_reaction():
     assert not(mvn.get_hit_box().collide(mvn2.get_hit_box()))
     mvn.move()
     assert mvn.get_hit_box().collide(mvn2.get_hit_box())
-    assert mvn.get_object_collide(p2) == Segment(Vector(0,4),Vector(1,4))
+    assert mvn.get_direction_rigid_collide(p2) == Segment(Vector(0,4),Vector(1,4))
     v = mvn.get_resistance_support(mvn2)
     mvn.apply_reaction(mvn2)
     assert mvn.get_speed() == Vector(0,0)
+    
