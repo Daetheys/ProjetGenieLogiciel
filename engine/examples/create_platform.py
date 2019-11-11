@@ -30,6 +30,9 @@ p = Polygon([v1,v2,v3,v4]) #Creates the polygon corresponding to the given seque
 plat = SolidPlatform(p)
 plat.translate(Vector(x,y))
 
+x2 = 2
+y2 = 1
+
 #To create an other platform with the same hit box it easy:
 p2 = p.copy() #very important to copy it and not using p or both platform would be linked (if one of them is moving to other will too)
 plat2 = SolidPlatform(p2)
