@@ -1,4 +1,4 @@
-class DialogueBubble:
+class Dialogue_Bubble:
 
     def __init__(self,msg,talker,background,fen,x,y):
         self.msg = msg

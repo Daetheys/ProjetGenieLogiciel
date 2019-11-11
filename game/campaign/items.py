@@ -3,7 +3,7 @@ class Item:
 	""" Items of the game:
 	has name, picture, type
 	"""
-	def __init__(self,name='Apple',pic=None,kind=None):
+	def __init__(self,name='Apple',pic=None):
 		self.name = name#str, name
 		self.pic = pic#pygame.Surface, picture
 		self.type = "   "#3-char str: csm for consommable, key, pas, etc..
@@ -35,7 +35,7 @@ class Passive(Item):
 class Inventory:
 	""" Inventory of a character. """
 	def __init__(self,items=[]):
-		self.items = items#Item list
+		self.items = items#(Item*int) list
 
 	def __repr__(self):
 		return "Inventory :" + str(self.items)
