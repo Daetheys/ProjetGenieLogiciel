@@ -18,7 +18,7 @@ pygame.init()
 fen = pygame.display.set_mode((500, 500),0)
 
 #Coordinates for the platform
-x = 5
+x = 1
 y = 6
 
 #Let's start by creating the polygon for hit_boxes
@@ -32,8 +32,8 @@ p = Polygon([v1,v2,v3,v4]) #Creates the polygon corresponding to the given seque
 plat = SolidPlatform(p)
 plat.translate(Vector(x,y))
 
-x2 = 2
-y2 = 6
+x2 = 7
+y2 = 5
 
 #To create an other platform with the same hit box it easy:
 p2 = p.copy() #It's very important to copy it and not using p or both platform would be linked (if one of them is moving to other will too)
@@ -41,5 +41,7 @@ plat2 = SolidPlatform(p2)
 plat2.translate(Vector(x2,y2))
 
 gl = GameLevel([plat,plat2],[])
-gl.aff(fen)
+gl.load_camera(fen) #Load the camera in the window fen
+gl.get_camera().set_dimension(Vector(10,10)) #Resize the camera
+gl.aff()
 pygame.time.wait(5000)

@@ -56,6 +56,9 @@ class GameLevel:
                         o.apply_reaction(o2)
                         print("rigid")
 
-    def aff(self,fen):
-        self.camera.aff(self.objects,fen)
+    def load_camera(self,fen):
+        self.camera.set_fen(fen)
+                        
+    def aff(self):
+        self.camera.aff(self.objects)
         pygame.display.flip()

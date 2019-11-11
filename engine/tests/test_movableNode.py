@@ -22,10 +22,9 @@ def test_object_collide():
     mvn = MovableNode()
     mvn.set_hit_box(p)
     mvn.set_rigid_body(True)
-
     p2 = p.copy()
     t = Transform()
-    p2.rotate(np.pi/4)
+    p2.rotate(np.pi/2)
     p2.translate(Vector(0,4))
     mvn2 = MovableNode()
     mvn2.set_hit_box(p2)
@@ -36,5 +35,5 @@ def test_object_collide():
     assert not(mvn2.get_hit_box().collide(mvn.get_hit_box()))
     mvn2.move()
     assert mvn2.get_hit_box().collide(mvn.get_hit_box())
-    print("collid",mvn2.get_object_collide(p))
+    print("return",mvn2.get_object_collide(p))
     assert mvn2.get_object_collide(p) == Segment(Vector(0,1),Vector(1,1))

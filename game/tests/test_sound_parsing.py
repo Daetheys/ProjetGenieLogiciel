@@ -8,5 +8,6 @@ sys.path.append(path + "/game/level_generation")
 from sound_parser import bpm_info
 
 def test_tern():
-	(_,tempo,_) = bpm_info(path + "/data/tests_musique2/120rythmeternaire.mp3")
+	(_,tempos,_) = bpm_info(path + "/data/tests_musique2/120rythmeternaire.mp3")
+	(tempo,_) = tempos[0]
 	assert(np.round(tempo) == 240)

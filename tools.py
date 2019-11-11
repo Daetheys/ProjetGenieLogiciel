@@ -4,7 +4,7 @@ def xyinbounds(mx,my,btn):
     b1xmin,b1xmax,b1ymin,b1ymax = btn.boundaries()
     return b1xmin <= mx and mx <= b1xmax and b1ymin <= my and my <= b1ymax
 
-def no_reaction():
+def no_reaction(g):
     return True, False
 
 def create_img(dct):
