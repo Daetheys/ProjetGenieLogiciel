@@ -13,7 +13,7 @@ from force import Gravity
 from hypothesis import given
 from hypothesis.strategies import integers, lists
 
-def test_object_collide():
+def test_object_collide_reaction():
     v1 = Vector(0,0)
     v2 = Vector(1,0)
     v3 = Vector(1,1)
@@ -24,16 +24,14 @@ def test_object_collide():
     mvn.set_rigid_body(True)
     p2 = p.copy()
     t = Transform()
-    p2.rotate(np.pi/2)
     p2.translate(Vector(0,4))
     mvn2 = MovableNode()
     mvn2.set_hit_box(p2)
     mvn2.set_rigid_body(True)
-    mvn2.set_speed(Vector(0,-3))
-    print("mvn",mvn.get_hit_box())
-    print("mvn2",mvn2.get_hit_box())
-    assert not(mvn2.get_hit_box().collide(mvn.get_hit_box()))
-    mvn2.move()
-    assert mvn2.get_hit_box().collide(mvn.get_hit_box())
-    print("return",mvn2.get_object_collide(p))
-    assert mvn2.get_object_collide(p) == Segment(Vector(0,1),Vector(1,1))
+    mvn.set_speed(Vector(0,4))
+    assert not(mvn.get_hit_box().collide(mvn2.get_hit_box()))
+    mvn.move()
+    assert mvn.get_hit_box().collide(mvn2.get_hit_box())
+    assert mvn.get_object_collide(p2) == Segment(Vector(0,4),Vector(1,4))
+    v = mvn.get_resistance_support(plat2)
+    assert v.dot(plat1.get_speed())

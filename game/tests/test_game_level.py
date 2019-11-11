@@ -5,8 +5,8 @@ import copy as copy
 import random
 
 path = os.getcwd()
-path += "/engine"
-sys.path.append(path)
+sys.path.append(path + "/engine")
+sys.path.append(path + "/game")
 from polygone import *
 from vector import Vector
 from transform import Transform
@@ -24,12 +24,11 @@ def test_size_level():
     v4 = Vector(-1,1)
     p = Polygon([v1,v2,v3,v4])
     plat1 = SolidPlatform(p)
-    plat1.translate(Vector(2,1))
     p2 = p.copy()
     p2.translate(Vector(3,2))
     plat2 = SolidPlatform(p2)
-    gl = GameLevel([plat1,plat2])
-    assert gl.size_level == (-1,3,-1,2)
+    gl = GameLevel([plat1,plat2],[])
+    assert gl.size_level == (-1,4,-1,3)
 
 def test_physics_step1():
     v1 = Vector(0,0)

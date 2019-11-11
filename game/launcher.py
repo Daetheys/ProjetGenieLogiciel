@@ -6,9 +6,17 @@ from pygame.locals import *
 class Launcher(Game):
 
     def __init__(self):
+        """ The Launcher class continues initialization (that Game began), initialises
+        all button-related activities, and launches the main loop"""
         Game.__init__(self)
         self.init_buttons()
         self.launch_game()
+
+    def init_buttons(self):
+        """ creates some initially displayed buttons"""
+        #Basic buttons
+        self.titlebanner = ButtonMenu(self,self.options["DISPLAYSIZE_X"]//2-695,self.options["DISPLAYSIZE_X"]//2+656,25,173,self.dict_img["img_titlebanner"],"banner")
+        self.exit = ButtonMenu(self,10,5+25*len(self.dict_str["exit"]),self.options["DISPLAYSIZE_Y"]-50,self.options["DISPLAYSIZE_Y"],self.dict_img["img_void"],"exit",text=self.dict_str["exit"],react=reaction_exit)
 
     def menu_loop(self,cnt = True,quit_all=False,background = None,scrolling=False,scrollist=[]):
         """
@@ -92,7 +100,9 @@ class Launcher(Game):
         return cnt,quit_all
 
     def map_loop(self,cnt = True,quit_all=False,bg = None,map=None):
-        """loop of a map"""
+        """loop of a map menu
+        displays all accessible map_points in map, over the map's image
+        """
         pygame.time.Clock().tick(self.options["FPS"])
         if bg is None: bg = self.dict_img["img_background"]
         if map is None: return cnt,quit_all
@@ -102,17 +112,12 @@ class Launcher(Game):
 
         pygame.display.flip()
 
+        """ event catching zone """
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == K_ESCAPE:
                     cnt = False
         return cnt,quit_all
-
-    def init_buttons(self):
-        """ creates some initially present buttons"""
-        #Basic buttons
-        self.titlebanner = ButtonMenu(self,self.options["DISPLAYSIZE_X"]//2-695,self.options["DISPLAYSIZE_X"]//2+656,25,173,self.dict_img["img_titlebanner"],"banner")
-        self.exit = ButtonMenu(self,10,5+25*len(self.dict_str["exit"]),self.options["DISPLAYSIZE_Y"]-50,self.options["DISPLAYSIZE_Y"],self.dict_img["img_void"],"exit",text=self.dict_str["exit"],react=reaction_exit)
 
     def launch_game(self):
         """ Launching the main loop """

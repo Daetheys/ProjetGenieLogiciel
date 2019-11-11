@@ -1,6 +1,7 @@
 from vector import Vector
 from node import Node
 from spriteNode import SpriteNode
+from polygone import *
 
 class MovableNode(SpriteNode):
     """ A node that can move with more powerful functions"""
@@ -87,20 +88,19 @@ class MovableNode(SpriteNode):
             self_cpy.rotate(ang_speed*factor)
             points_in = p.points_in(self_cpy)
             segments_collide = p.segments_collide_with(self_cpy)
-            print("--",factor_max,factor_min)
-            print(points_in)
-            print(segments_collide)
             if len(points_in) == 1:
                 return points_in[0]
             if len(segments_collide) == 1:
                 return segments_collide[0]
+            if len(points_in) == 2 and len(segments_collide) == 0:
+                return Segment(points_in[0],points_in[1])
             if len(points_in) < 1 and len(segments_collide) <1:
                 factor_max = factor
             else:
                 factor_min = factor
             
             timeout += 1
-            if timeout > 10:
+            if timeout > 100:
                 assert False #Timeout in get_object_collide
 
     def get_segment_collide(self,p):
