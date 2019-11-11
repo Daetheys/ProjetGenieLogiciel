@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import numpy as np
-from polygone import *
 
 class Vector:
     
