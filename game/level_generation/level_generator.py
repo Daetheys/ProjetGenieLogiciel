@@ -9,6 +9,7 @@ import os
 
 path = os.getcwd()
 sys.path.append(path + "/engine")
+sys.path.append(path + "/game")
 
 from vector import Vector
 from polygone import Polygon
