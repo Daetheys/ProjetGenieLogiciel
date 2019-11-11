@@ -4,9 +4,8 @@ class Character():
 	it has a name,
 	 a picture,
 	 talks with a certain color,
-	 has an inventory
-	 if it is an npc, there is a link to the corresponding class """
-	def __init__(self,name,pic,ctalk=(0,0,0),inv=None,npc=None):
+	 has an inventory"""
+	def __init__(self,name,pic,ctalk=(0,0,0),inv=None):
 		self.name = name#str, name
 		self.pic = pic#pygame.Surface, picture
 		self.ctalk = ctalk#int x int x int, color of talk

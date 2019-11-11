@@ -30,7 +30,7 @@ class Passive(Item):
 	def __init__(self,args=None):
 		Item.__init__(self)
 		self.effet = args#PassiveItem Effect
-		self.type = 'key'
+		self.type = 'pas'
 
 class Inventory:
 	""" Inventory of a character. """
