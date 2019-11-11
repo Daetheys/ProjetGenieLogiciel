@@ -5,8 +5,8 @@ import copy as copy
 import random
 
 path = os.getcwd()
-path += "/engine"
-sys.path.append(path)
+sys.path.append(path + "/engine")
+sys.path.append(path + "/game")
 from polygone import *
 from vector import Vector
 from transform import Transform
