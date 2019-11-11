@@ -1,3 +1,5 @@
+import pygame
+
 class Dialogue_Bubble:
 
     def __init__(self,msg,talker,background,fen,x,y):
@@ -9,4 +11,12 @@ class Dialogue_Bubble:
         self.y = y
 
     def show(self):
+        cnt = False
         self.fen.blit(self.background,(x,y))
+        self.fen.blit(self.talker.pic,(x,y))
+        while not cnt:
+            for event in pygame.event.get():
+                if event.key == K_SPACE:
+                    cnt = True
+                
+        

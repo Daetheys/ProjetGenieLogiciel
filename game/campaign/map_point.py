@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#from dialogue import Dialogue
-import pygame
 
 class Map_Point:
 
