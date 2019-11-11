@@ -85,7 +85,12 @@ class Game:
         mapkshan.set_map_points([mp])
 
         self.world.set_maps([mapkshan])
-
+        
+    def create_characters(self):
+        self.characters = []
+        with open("data/json/characters.json", "r") as read_file:
+            for char in json.load(read_file):
+                self.characters.append(Character(char[0],self.dict_img[char[1]],char[2],char[3]))
 
     def init_music(self):
         """

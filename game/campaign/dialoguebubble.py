@@ -14,6 +14,7 @@ class Dialogue_Bubble:
         cnt = False
         self.fen.blit(self.background,(x,y))
         self.fen.blit(self.talker.pic,(x,y))
+        T(fen,msg,x,y)
         while not cnt:
             for event in pygame.event.get():
                 if event.key == K_SPACE:
