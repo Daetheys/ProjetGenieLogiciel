@@ -125,7 +125,7 @@ class MovableNode(SpriteNode):
         (p1,p2) = (seg.p1,seg.p2)
         v = p2 + (-p1)
         v_orth = v.orthogonal()
-        return v_orth*self._speed.len()
+        return v_orth*self.get_speed().len()
 
     def apply_reaction(self,support):
         speed = self.get_resistance_support(support)

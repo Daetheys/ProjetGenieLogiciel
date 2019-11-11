@@ -33,5 +33,6 @@ def test_object_collide_reaction():
     mvn.move()
     assert mvn.get_hit_box().collide(mvn2.get_hit_box())
     assert mvn.get_object_collide(p2) == Segment(Vector(0,4),Vector(1,4))
-    v = mvn.get_resistance_support(plat2)
-    assert v.dot(plat1.get_speed())
+    v = mvn.get_resistance_support(mvn2)
+    mvn.apply_reaction(mvn2)
+    assert mvn.get_speed() == Vector(0,0)
