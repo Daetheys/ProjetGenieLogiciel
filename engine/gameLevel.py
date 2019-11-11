@@ -20,10 +20,10 @@ class GameLevel:
 
     def compute_size_level(self):
         """ Computes the size of the level """
-        maxi_x = 0
-        maxi_y = 0
-        mini_x = 0
-        mini_y = 0
+        maxi_x = None
+        maxi_y = None
+        mini_x = None
+        mini_y = None
         #Get the rect in which the level is
         for o in self.objects:
             hit_box = o.get_hit_box()
@@ -31,13 +31,13 @@ class GameLevel:
             val_max_y = hit_box.get_max_y()
             val_min_x = hit_box.get_min_x()
             val_min_y = hit_box.get_min_y()
-            if val_max_x > maxi_x:
+            if maxi_x is None or val_max_x > maxi_x:
                 maxi_x = val_max_x
-            if val_min_x < mini_x:
+            if mini_x is None or val_min_x < mini_x:
                 mini_x = val_min_x
-            if val_max_y > maxi_y:
+            if maxi_y is None or val_max_y > maxi_y:
                 maxi_y = val_max_y
-            if val_min_y < mini_y:
+            if mini_y is None or val_min_y < mini_y:
                 mini_y = val_min_y
         self.size_level = (mini_x,maxi_x,mini_y,maxi_y)
 
