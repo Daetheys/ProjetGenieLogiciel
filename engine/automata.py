@@ -114,7 +114,7 @@ def create_automaton(data,name=None,states=None,tt=None,cs=None,qn=None,jsonpars
 			#print(qn[st])
 			assert i >= len(data) or data[i] == ','
 			i += 1
-		if nocomment: assert i == len(data)
+		if nocomment: assert i == len(data) or data[i] == '|'
 		return Automata(name,states,tt,0,qn)
 
 	else:

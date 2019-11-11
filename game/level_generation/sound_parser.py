@@ -14,7 +14,7 @@ def bpm_info(file):
 	"""
 		Lit le fichier son "file", puis renvoie :
 			- le temps en secondes (flottant) du premier beat
-			- le BPM
+			- une liste de couples (numéro de beat, BPM après ce beat)
 			- le nombre de beats
 	"""
 	y, sr = librosa.core.load(file, sr=None)
@@ -41,4 +41,4 @@ def bpm_info(file):
 		plt.show()
 
 
-	return beat_times[1], tempo, (len(beat_times)-1)
+	return beat_times[1], [(0,tempo)], (len(beat_times)-1)

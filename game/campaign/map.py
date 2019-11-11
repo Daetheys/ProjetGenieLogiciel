@@ -6,12 +6,12 @@ import pygame
 
 class Map:
 
-    def __init__(self,img_surf):
+    def __init__(self,img_surf,name):
         self.__map_points = []
         self.__accessible = False
         self.__accessed = False
         self.__finished = False
-
+        self.name = name
         self.image = img_surf
 
     def set_map_points(self, map_points):
