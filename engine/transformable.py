@@ -112,7 +112,8 @@ class Transformable:
         return self.__transform
 
     def get_inverse_transform(self):
-        if self.inv_tr_need_up:
-            self.__inverse_transform = self.get_transform.get_inverse()
+        if self.__inv_tr_need_up:
+            self.__inverse_transform = self.get_transform().get_inverse()
             self.__inv_tr_need_up = False
         return self.__inverse_transform
+
