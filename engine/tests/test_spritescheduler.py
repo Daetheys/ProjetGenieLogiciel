@@ -64,6 +64,7 @@ def test_loaded_sps():
         assert False
     except TransitionUndefined:
         pass
+    assert sps.ata.qn[sps.ata.cs] == 'data/img/void.png'
 
 @given(text(min_size=1,max_size=8,alphabet=characters(blacklist_categories=('Cs',),blacklist_characters=("|,;"))),integers(max_value=30),text(min_size=1,max_size=5,alphabet=characters(blacklist_categories=('Cs',),blacklist_characters=("|,;"))))
 @settings(max_examples=100)
@@ -79,6 +80,7 @@ def test_sps(txt,n,chrs):
                 seen.append(chrs[k])
                 j = rrandint(0,n - 1)
                 data += str(i) + ',' + chrs[k] + '→' + str(j) + ';'
+    data += '|0=data/img/void.png,'
     sps = SpriteScheduler(txt)
     sps.ata = create_automaton(data)
     #print(data,seen)
@@ -89,7 +91,7 @@ def test_sps(txt,n,chrs):
     sps.step(chrs[0])
     assert sps.ata.cs == sps.ata.tt[0,chrs[0]]#testing a transition
     try:#testing transitionUndefined
-        sps.step(',')
+        sps.step(',')#no transition can be defined with this
         assert False
     except TransitionUndefined:
         pass
