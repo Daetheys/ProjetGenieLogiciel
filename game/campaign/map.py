@@ -19,3 +19,12 @@ class Map:
 
     def get_map_points(self):
         return self.__map_points
+        
+    def activation(self):
+        self.__accessible = True
+        
+    def is_accessed(self):
+        self.__accessed = True
+        
+    def is_finished(self):
+        self.__finished = True

@@ -12,8 +12,9 @@ sys.path.append(path)
 print(path)
 import pygame
 from world import *
-from map_point import *
+#from map_point import *
 from mapDisplayer import *
+from level_sequence import *
 from map import *
 import json
 from pygame.locals import *
@@ -66,7 +67,7 @@ if LAUNCH:
     world = World()
     
     mapkshan = Map(dict_img["map_kshan"],"map_kshan")
-    mp = Map_Point(200,200,dict_img["img_mapf"],dict_img["img_map"])
+    mp = Level_Sequence(200,200,dict_img["img_pointf"],dict_img["img_point"])
     mapkshan.set_map_points([mp])
     
     world.set_maps([mapkshan])
