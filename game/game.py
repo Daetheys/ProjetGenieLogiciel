@@ -1,11 +1,12 @@
 import pygame
 import json
+import codecs
 from world import *
 #from map_point import *
 from mapDisplayer import *
 from level_sequence import *
 from map import *
-from tools import *
+import tools
 from shutil import copy2
 
 #The Game class, very pure, no buttons needed
@@ -17,6 +18,8 @@ class Game:
         self.init_constants()
         self.init_music()
         self.load_languages()
+        self.init_characters()
+        self.init_dialogues()
         self.create_world()
         print("The game initialized properly")
 
@@ -45,7 +48,7 @@ class Game:
         """loads all images into self.dict_img, blits the first background"""
         #Images
         with open("data/json/img.json", "r") as read_file:
-            self.dict_img = json.load(read_file,object_hook=create_img)
+            self.dict_img = json.load(read_file,object_hook=tools.create_img)
         #Img_transformations
         self.dict_img["img_arrow"]  = pygame.transform.smoothscale(self.dict_img["img_arrow"],(40,40))
         self.dict_img["img_garrow"]  = pygame.transform.smoothscale(self.dict_img["img_garrow"],(40,40))
@@ -73,11 +76,23 @@ class Game:
     def load_languages(self):
         """ this function loads all avaliable languages in self.dict_str"""
         if self.options["LANGUAGE"] == "English":
-            with open("data/json/eng.json", "r") as read_file:
+            with codecs.open("data/json/eng.json", "r", "utf-8-sig") as read_file:
                 self.dict_str=json.load(read_file)
         elif self.options["LANGUAGE"] == "French":
-            with open("data/json/fr.json", "r") as read_file:
+            with codecs.open("data/json/fr.json", "r", "utf-8-sig") as read_file:
                 self.dict_str=json.load(read_file)
+                
+    def init_characters(self):
+        self.dict_char = {}
+        with codecs.open("data/json/characters.json", "r", "utf-8-sig") as read_file:
+            self.dict_char = json.load(read_file)
+            self.dict_char = tools.create_char(self.dict_char,self.dict_img)
+            
+    def init_dialogues(self):
+        self.dict_dial = {}
+        with codecs.open("data/json/dialogue.json", "r", "utf-8-sig") as read_file:
+            self.dict_dial = json.load(read_file)
+            self.dict_dial = tools.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img,self._fenetre)
 
     def create_world(self):
         """
@@ -88,16 +103,13 @@ class Game:
 
         #creating the map "Kshan"
         mapkshan = Map(self.dict_img["map_kshan"],"map_kshan")
-        mp = Level_Sequence(200,200,self.dict_img["img_pointf"],self.dict_img["img_point"])
+        mp = Level_Sequence(200,200,self.dict_img["img_pointf"],self.dict_img["img_point"],self)
+        mp.set_start_dialogue(self.dict_dial["dial_test"])
+        mp.set_end_dialogue(self.dict_dial["dial_testf"])
+        mp.is_accessible()
         mapkshan.set_map_points([mp])
 
         self.world.set_maps([mapkshan])
-
-    def create_characters(self):
-        self.characters = []
-        with open("data/json/characters.json", "r") as read_file:
-            for char in json.load(read_file):
-                self.characters.append(Character(char[0],self.dict_img[char[1]],char[2],char[3]))
 
     def init_music(self):
         """

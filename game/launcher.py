@@ -107,8 +107,11 @@ class Launcher(Game):
         if bg is None: bg = self.dict_img["img_background"]
         if map is None: return cnt,quit_all
         self._fenetre.blit(bg, (0,0))
+        list_button = []
         for mp in map.get_map_points():
             self._fenetre.blit(mp.get_image(), (mp.x,mp.y))
+            m,M = mp.get_image().get_size()
+            list_button.append(ButtonMenu(self,mp.x,mp.x+m,mp.y,mp.y+M,mp.get_image(),react = mp.launch,add_to_list=False))
 
         pygame.display.flip()
 
@@ -116,6 +119,24 @@ class Launcher(Game):
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == K_ESCAPE:
+                    cnt = False
+                    for i in range(len(list_button)):
+                        del list_button[i]
+            if event.type == MOUSEBUTTONDOWN:
+                mx,my = pygame.mouse.get_pos()
+                if event.button == 1:
+                    for b in list_button:
+                        if xyinbounds(mx,my,b):
+                            cntb,quit_allb = b.react(self)
+                            cnt  = cnt and cntb
+                            quit_all = quit_all or quit_allb
+        return cnt,quit_all
+        
+    def dial_loop(self,cnt = True,quit_all=False,bg = None,map=None):
+        pygame.time.Clock().tick(self.options["FPS"])
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == K_SPACE:
                     cnt = False
         return cnt,quit_all
 

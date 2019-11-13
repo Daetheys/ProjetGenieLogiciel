@@ -1,4 +1,7 @@
 from pygame.image import load
+from character import *
+from dialogue import *
+from dialoguebubble import *
 
 def xyinbounds(mx,my,btn):
     """ tests whether (mx,my) is within the bounds of the button btn """
@@ -13,7 +16,7 @@ def create_img(dct):
     
 def create_char(dict,dict_img):
     for char in dict:
-        dict[char] = Character(char,dict_img[dict[char][0]],dict[char][1],dict[char][2])
+        dict[char] = Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),dict[char][4])
     return dict
     
 def create_bubble(list,dict_str,dict_char,dict_img,fen):
