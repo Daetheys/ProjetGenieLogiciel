@@ -22,7 +22,7 @@ def create_char(dict,dict_img):
 def create_bubble(list,dict_str,dict_char,dict_img,fen):
     list_bubble = []
     for bubble in list:
-        list_bubble.append(Dialogue_Bubble(dict_str[bubble[0]],dict_char[bubble[1]],dict_img[bubble[2]],fen,bubble[3],bubble[4]))
+        list_bubble.append(Dialogue_Bubble(dict_str[bubble[0]],dict_char[bubble[1]],dict_img[bubble[2]],bubble[3],bubble[4]))
     return list_bubble
     
 def create_dial(dict,dict_str,dict_char,dict_img,fen):
