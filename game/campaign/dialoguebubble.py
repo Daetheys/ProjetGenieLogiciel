@@ -1,6 +1,7 @@
 import pygame
-import game
+import tools
 import buttonMenu
+
 
 class Dialogue_Bubble:
 
@@ -17,7 +18,7 @@ class Dialogue_Bubble:
         g.win().blit(self.talker.pic,(self.x,self.y))
         w = self.talker.pic.get_width()
         for i,line in enumerate(self.msg.split("\n")):
-            game.T(g.win(),line,self.x+w+10,self.y+i*40+5,size=40,center=False)
+            tools.T(g.win(),line,self.x+w+10,self.y+i*40+5,size=40,center=False)
 
     def show(self,g):
         w = self.background.get_height()
@@ -32,5 +33,5 @@ class Dialogue_Bubble:
             cnt,quit_all = g.dial_loop(self,blist=[b])
             if quit_all:
                 cnt = False
-                
-        
+
+

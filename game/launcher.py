@@ -68,6 +68,7 @@ class Launcher(Game):
                     for b in BUTTON_LIST:
                         if xyinbounds(mx,my,b):
                             print(b.name)
+                            #print(b.react)
                             cntb,quit_allb = b.react(self)
                             cnt  = cnt and cntb
                             quit_all = quit_all or quit_allb
@@ -142,6 +143,9 @@ class Launcher(Game):
             if event.type == pygame.KEYDOWN:
                 if event.key == K_SPACE:
                     cnt = False
+                if event.key == K_ESCAPE:
+                    cnt = False
+                    quit_all = True
         return cnt,quit_all
 
     def launch_game(self):
