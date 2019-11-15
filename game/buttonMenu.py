@@ -1,7 +1,6 @@
 import pygame
 from pygame.locals import *
 from tools import *
-from game import T
 import json
 
 #The global variable
@@ -134,6 +133,8 @@ def reaction_b11(g):
     #g.dict_img["map_kshan"]
 
     bg =  pygame.transform.smoothscale(g.world.get_map("map_kshan").image, (g.options["DISPLAYSIZE_X"],g.options["DISPLAYSIZE_Y"]))
+
+
     while cnt:
         cnt,quit_all = g.map_loop(bg=bg,map=g.world.get_map("map_kshan"))
         if quit_all:
@@ -240,23 +241,30 @@ def reaction_b341(g):
 
 def reaction_b321(g):
     g.options["LANGUAGE"] = "English"
-    with open("data/json/eng.json", "r") as read_file:
+    with open("data/json/eng.json", "r", encoding="utf-8-sig") as read_file:
         g.dict_str = json.load(read_file)
+    g.update_dialogues()
     for b in BUTTON_LIST:
         if b.name == "exit":
             b.text = g.dict_str["return"]
             b.xmax = 5 + 25*len(g.dict_str["return"])
     return True, False
 
-def reaction_b322(g):
+def reaction_b322(g):       #the map_point dialogues are not updated
     g.options["LANGUAGE"] = "French"
-    with open("data/json/fr.json", "r") as read_file:
+    with open("data/json/fr.json", "r", encoding="utf-8-sig") as read_file:
         g.dict_str = json.load(read_file)
+    g.update_dialogues()
     for b in BUTTON_LIST:
         if b.name == "exit":
             b.text = g.dict_str["return"]
             b.xmax = 5 + 25*len(g.dict_str["return"])
     return True, False
+
+def reaction_mp(g, mp):     #not used
+    mp.launch(g)
+
+
 
 
 class ButtonMenu:
@@ -299,6 +307,8 @@ class ButtonMenu:
     def activation(self,flag):
         self.activated = flag
         self.was_active = flag
+        return self
+
     def appear(self):
         """ an invisible button appears"""
         self.visible = True

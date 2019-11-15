@@ -1,42 +1,34 @@
 #!/usr/bin/env python3
 
 
-class Map_Point:
+class Map_Point:    #abstract class
 
-    def __init__(self,x,y,img,imgf):
-        self.__accessible = False
-        self.__accessed = False
-        self.__finished = False
-        self.__start_dialogue = None
-        self.__end_dialogue = None
+    def __init__(self,name,x,y,img,imgf):
+        self._accessible = False
+        self._accessed = False
+        self._finished = False
+        self._start_dialogue = None
+        self._end_dialogue = None
         self.x = x
         self.y = y
+        self.name = name
         self.__image = img
         self.__image_finished = imgf
 
     def set_start_dialogue(self, dialogue):
-        self.__start_dialogue = dialogue
+        self._start_dialogue = dialogue
 
     def set_end_dialogue(self, dialogue):
-        self.__end_dialogue = dialogue
+        self._end_dialogue = dialogue
 
     def get_start_dialogue(self):
-        return self.__start_dialogue
+        return self._start_dialogue
 
     def get_end_dialogue(self):
-        return self.__end_dialogue
+        return self._end_dialogue
 
     def get_image(self):
-        if self.__accessible:
-            return self.__image
-        else:
+        if self._finished:
             return self.__image_finished
-            
-    def activation(self):
-        self.__accessible = True
-        
-    def is_accessed(self):
-        self.__accessed = True
-        
-    def is_finished(self):
-        self.__finished = True
+        else:
+            return self.__image

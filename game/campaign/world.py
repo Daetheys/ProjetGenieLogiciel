@@ -12,3 +12,6 @@ class World:
         
     def get_map(self,name):
         return self.__maps[name]
+        
+    def get_maps(self):
+        return self.__maps
