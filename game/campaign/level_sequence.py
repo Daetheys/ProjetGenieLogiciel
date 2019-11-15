@@ -5,8 +5,8 @@ import pygame   #for ugly code
 
 class Level_Sequence(Map_Point):
     
-    def __init__(self,x,y,img,imgf):
-        Map_Point.__init__(self,x,y,img,imgf)
+    def __init__(self,name,x,y,img,imgf):
+        Map_Point.__init__(self,name,x,y,img,imgf)
         self.__levels = []
         self.__childs = []
         

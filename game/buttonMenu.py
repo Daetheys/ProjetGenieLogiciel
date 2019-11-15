@@ -242,9 +242,9 @@ def reaction_b341(g):
 
 def reaction_b321(g):
     g.options["LANGUAGE"] = "English"
-    with open("data/json/eng.json", "r") as read_file:
+    with open("data/json/eng.json", "r", encoding="utf-8-sig") as read_file:
         g.dict_str = json.load(read_file)
-    g.init_dialogues()
+    g.update_dialogues()
     for b in BUTTON_LIST:
         if b.name == "exit":
             b.text = g.dict_str["return"]
@@ -253,9 +253,9 @@ def reaction_b321(g):
 
 def reaction_b322(g):       #the map_point dialogues are not updated 
     g.options["LANGUAGE"] = "French"
-    with open("data/json/fr.json", "r") as read_file:
+    with open("data/json/fr.json", "r", encoding="utf-8-sig") as read_file:
         g.dict_str = json.load(read_file)
-    g.init_dialogues()
+    g.update_dialogues()
     for b in BUTTON_LIST:
         if b.name == "exit":
             b.text = g.dict_str["return"]

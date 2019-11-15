@@ -3,7 +3,7 @@
 
 class Map_Point:    #abstract class
 
-    def __init__(self,x,y,img,imgf):
+    def __init__(self,name,x,y,img,imgf):
         self._accessible = False
         self._accessed = False
         self._finished = False
@@ -11,6 +11,7 @@ class Map_Point:    #abstract class
         self._end_dialogue = None
         self.x = x
         self.y = y
+        self.name = name
         self.__image = img
         self.__image_finished = imgf
 

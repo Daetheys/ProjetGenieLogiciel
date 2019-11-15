@@ -17,3 +17,8 @@ class Boss_Level(Level):
     
     def __init__(self):
         self.__useless = True
+        
+class Random_Level(Level):
+    
+    def __init__(self):
+        self.__useless = True

@@ -13,4 +13,12 @@ class Character():
 
 	def __repr__(self):
 		return "Character :" + self.name
+		
+class Player(Character):
+	
+	def __init__(self,name,pic,ctalk=(0,0,0),inv=None):
+		Character.__init__(self,name,pic,ctalk,inv)
+
+	def __repr__(self):
+		return "Player :" + self.name
 
