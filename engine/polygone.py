@@ -5,6 +5,7 @@ path += "/engine"
 sys.path.append(path)
 from vector import Vector
 from transform import Transform
+import random
 
 class Line:
     """ Represents a line : y = ax+b """
@@ -19,6 +20,9 @@ class Line:
         if self.vert:
             return p.x == self.x
         return p.y >= self.a*p.x+self.b
+
+    def is_on_line(self,p):
+        return p.y == self.a*p.x+self.b
 
     def intersect_point(self,l2):
         """ Returns the intersect point between two given lines """
@@ -53,11 +57,14 @@ class Segment:
 
     def collide_line(self,l):
         """ Returns true if it collides a specific line """
+        if l.is_on_line(self.p1) or l.is_on_line(self.p2):
+            return True
         b1 = int(l.is_point_up(self.p1))
         b2 = int(l.is_point_up(self.p2))
         return (b1+b2) == 1
 
-    def get_inter_line(self,ls,s):
+    def get_inter_segment(self,s):
+        ls = s.get_line()
         l = self.get_line()
         inter_p = l.intersect_point(ls)
         if inter_p is None: 
@@ -68,8 +75,7 @@ class Segment:
             return None
 
     def collide_segment(self,s):
-        ls = s.get_line()
-        return bool(self.get_inter_line(ls,s))
+        return bool(self.get_inter_segment(s))
 
     def is_in_interval_x(self,x):
         """ Returns if x in the interval of this segment """
@@ -134,15 +140,21 @@ class Polygon:
 
     def point_in(self,point):
         """ Returns true if the vector point is in the polygon """
+        epsilon = 10**-5
         if point in self.get_points():
             return True
         count = 0
-        line = Line(0,point.y)
         for s in self.get_segments():
-            if s.p1.x <= point.x or s.p2.x <= point.x:
+            line = Line(0,point.y)
+            while line.b == s.p1.y or line.b == s.p2.y:
+                line.b += epsilon*random.random()
+            ls = s.get_line()
+            inter_p = line.intersect_point(ls)
+            if not(inter_p is None) and inter_p.x <= point.x:
                 if s.collide_line(line):
                     count += 1
         return count%2 == 1
+
 
     def intersect_segment(self,s):
         for si in self.get_segments():

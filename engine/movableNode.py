@@ -114,8 +114,8 @@ class MovableNode(SpriteNode):
             p2 = p_points[(index+1)%len(p_points)]
             s1 = Segment(p1,obj)
             s2 = Segment(obj,p2)
-            s1_collide = self.get_hit_box().segments_collide_with(Polygon([s1]))
-            s2_collide = self.get_hit_box().segments_collide_with(Polygon([s2]))
+            s1_collide = self.get_hit_box().segments_collide_with(Polygon([s1.p1,s1.p2]))
+            s2_collide = self.get_hit_box().segments_collide_with(Polygon([s2.p1,s2.p2]))
             assert s1_collide == s2_collide
             return s1_collide[0]
         else:
@@ -129,6 +129,10 @@ class MovableNode(SpriteNode):
         return v_orth*self.get_speed().len()
 
     def apply_reaction(self,support):
+        #Remove the collision
+        correction = self.correct_collide_rigid_body(support)
+        self.translate(correction)
+        #Correct the speed
         speed = self.get_resistance_support(support)
         self.set_speed(self.get_speed()+speed)
 
@@ -141,13 +145,12 @@ class MovableNode(SpriteNode):
         while 1: #Proceeds by dichotomia assuming last pos wasn't creating a collision but the new one is
             factor = (factor_max+factor_min)/2
             self_cpy = self.get_hit_box().copy()
-            assert self_cpy.collide(p)
+            self_cpy_rigid = self.get_rigid_hit_box().copy()
+            assert self_cpy.collide(support.get_hit_box())
             self_cpy.translate(speed*factor)
             self_cpy.rotate(ang_speed*factor)
-            points_in = p.points_in(self_cpy)
-            segments_collide = p.segments_collide_with(self_cpy)
-            if self_cpy.get_hit_box().collide(support.get_hit_box()):
-                if self_scpy.get_rigid_hit_box().collide(support.get_rigid_hit_box()):
+            if self_cpy.collide(support.get_hit_box()):
+                if self_cpy_rigid.collide(support.get_rigid_hit_box()):
                     factor_min = factor
                 else:
                     return speed*factor
