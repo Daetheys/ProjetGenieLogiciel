@@ -1,5 +1,5 @@
 import pygame
-import game
+import tools
 
 class Dialogue_Bubble:
 
@@ -16,7 +16,7 @@ class Dialogue_Bubble:
         g.win().blit(self.talker.pic,(self.x,self.y))
         w = self.talker.pic.get_width()
         for i,line in enumerate(self.msg.split("\n")):
-            game.T(g.win(),line,self.x+w+10,self.y+i*40+5,size=40,center=False)
+            tools.T(g.win(),line,self.x+w+10,self.y+i*40+5,size=40,center=False)
         if self.last:
             pass
         pygame.display.flip()
@@ -26,5 +26,5 @@ class Dialogue_Bubble:
             cnt,quit_all = g.dial_loop()
             if quit_all:
                 cnt = False
-                
-        
+
+
