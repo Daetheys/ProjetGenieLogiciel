@@ -5,4 +5,7 @@ class Dialogue:
 
     def show(self,g):
         for bubble in self.talk:
-            bubble.show(g)
+            quitall = bubble.show(g)
+            if quitall:
+                break
+        return quitall
