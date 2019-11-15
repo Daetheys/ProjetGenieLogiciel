@@ -132,8 +132,12 @@ class Launcher(Game):
                             quit_all = quit_all or quit_allb
         return cnt,quit_all
         
-    def dial_loop(self,cnt = True,quit_all=False,bg = None,map=None):
+    def dial_loop(self,dial_bubble,cnt = True,quit_all=False,bg = None,map=None,blist=[]):
         pygame.time.Clock().tick(self.options["FPS"])
+        dial_bubble.display(self)
+        for b in blist:
+            b.display(period=5,speed=1)
+        pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == K_SPACE:
