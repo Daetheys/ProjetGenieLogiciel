@@ -5,7 +5,7 @@ import buttonMenu
 
 class Dialogue_Bubble:
 
-    def __init__(self,msg,talker,background,x,y,last=False):
+    def __init__(self,msg,talker,background,x,y,last):
         self.msg = msg
         self.talker = talker
         self.background = background
@@ -21,8 +21,8 @@ class Dialogue_Bubble:
             tools.T(g.win(),line,self.x+w+10,self.y+i*40+5,size=40,center=False)
 
     def show(self,g):
-        w = self.background.get_height()
-        b = buttonMenu.ButtonMenu(g,g.options["DISPLAYSIZE_X"]-50,g.options["DISPLAYSIZE_X"]-50,self.y+w-40,self.y+w-40,g.dict_img["img_cont_dial"],picD=g.dict_img["img_end_dial"],add_to_list=False)
+        h_bg = self.background.get_height()
+        b = buttonMenu.ButtonMenu(g,g.options["DISPLAYSIZE_X"]-50,g.options["DISPLAYSIZE_X"]-10,self.y+h_bg-40,self.y+h_bg,g.dict_img["img_cont_dial"],picD=g.dict_img["img_end_dial"],add_to_list=False)
         if self.last:
             b.activation(False)
         else:

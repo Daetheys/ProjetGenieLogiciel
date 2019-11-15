@@ -330,7 +330,7 @@ class ButtonMenu:
         self.was_active = self.activated
         self.activated = False
 
-    def display(self,period=None,speed=None,refresh=False):
+    def display(self,period=None,speed=None,refresh=False,lock=True):
         """allow for the display of buttons"""
         if self.visible:
             mx,my = pygame.mouse.get_pos()
@@ -358,5 +358,5 @@ class ButtonMenu:
                 T(self.g.win(),self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,size=50)
             else:
                 T(self.g.win(),self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
-                self.g.win().blit(self.g.dict_img["img_layer_lock"],(self.xmin,self.__displayedY(self.ymin)))
+                if lock: self.g.win().blit(self.g.dict_img["img_layer_lock"],(self.xmin,self.__displayedY(self.ymin)))
             if refresh: pygame.display.flip()

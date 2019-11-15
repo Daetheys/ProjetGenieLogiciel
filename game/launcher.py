@@ -137,7 +137,10 @@ class Launcher(Game):
         pygame.time.Clock().tick(self.options["FPS"])
         dial_bubble.display(self)
         for b in blist:
-            b.display(period=5,speed=1)
+            if dial_bubble.last:
+                b.display(lock=False)
+            else:
+                b.display(period=5,speed=1,lock=False)
         pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
@@ -146,6 +149,12 @@ class Launcher(Game):
                 if event.key == K_ESCAPE:
                     cnt = False
                     quit_all = True
+            if event.type == MOUSEBUTTONDOWN:
+                mx,my = pygame.mouse.get_pos()
+                if event.button == 1:
+                    for b in blist:
+                        if xyinbounds(mx,my,b):
+                            cnt = False
         return cnt,quit_all
 
     def launch_game(self):
