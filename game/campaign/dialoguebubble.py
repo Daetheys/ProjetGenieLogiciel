@@ -12,7 +12,7 @@ class Dialogue_Bubble:
         self.x = x
         self.y = y
         self.last = last
-        
+
     def display(self,g):
         g.win().blit(self.background,(self.x,self.y))
         g.win().blit(self.talker.pic,(self.x,self.y))
@@ -33,5 +33,6 @@ class Dialogue_Bubble:
             cnt,quit_all = g.dial_loop(self,blist=[b])
             if quit_all:
                 cnt = False
+        return quit_all
 
 

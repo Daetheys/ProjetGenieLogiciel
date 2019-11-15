@@ -132,7 +132,7 @@ class Launcher(Game):
                             cnt  = cnt and cntb
                             quit_all = quit_all or quit_allb
         return cnt,quit_all
-        
+
     def dial_loop(self,dial_bubble,cnt = True,quit_all=False,bg = None,map=None,blist=[]):
         pygame.time.Clock().tick(self.options["FPS"])
         dial_bubble.display(self)
