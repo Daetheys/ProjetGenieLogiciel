@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 from map_point import Map_Point
+import pygame   #for ugly code
 
 class Level_Sequence(Map_Point):
     
-    def __init__(self,x,y,img,imgf,g):
-        Map_Point.__init__(self,x,y,img,imgf,g)
+    def __init__(self,x,y,img,imgf):
+        Map_Point.__init__(self,x,y,img,imgf)
         self.__levels = []
         self.__childs = []
         
@@ -22,13 +23,13 @@ class Level_Sequence(Map_Point):
         return self.__childs
         
     def is_accessible(self):
-        self.__accessible = True
+        self._accessible = True
         
     def is_accessed(self):
-        self.__accessed = True
+        self._accessed = True
         
     def is_finished(self):
-        self.__finished = True
+        self._finished = True
         for child in self.__childs:
             child.is_accessible
         
@@ -36,6 +37,8 @@ class Level_Sequence(Map_Point):
         if self._start_dialogue is not None:
             self._start_dialogue.show(g)
         self.is_accessed()
+        g.win().blit(g.dict_img["img_dial"],(0,400))  #ugly code just to separate start and end dialogue
+        pygame.display.flip()   #ugly code
         for level in self.__levels:
             level.launch()
         self.is_finished()

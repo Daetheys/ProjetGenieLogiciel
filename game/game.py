@@ -5,6 +5,7 @@ from world import *
 #from map_point import *
 from mapDisplayer import *
 from level_sequence import *
+from level import *
 from map import *
 import tools
 from shutil import copy2
@@ -103,10 +104,11 @@ class Game:
 
         #creating the map "Kshan"
         mapkshan = Map(self.dict_img["map_kshan"],"map_kshan")
-        mp = Level_Sequence(200,200,self.dict_img["img_pointf"],self.dict_img["img_point"],self)
+        mp = Level_Sequence(200,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp.set_start_dialogue(self.dict_dial["dial_test"])
         mp.set_end_dialogue(self.dict_dial["dial_testf"])
         mp.is_accessible()
+        mp.set_levels([Boss_Level()])
         mapkshan.set_map_points([mp])
 
         self.world.set_maps([mapkshan])
