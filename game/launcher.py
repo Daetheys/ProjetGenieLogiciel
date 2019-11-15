@@ -68,6 +68,7 @@ class Launcher(Game):
                     for b in BUTTON_LIST:
                         if xyinbounds(mx,my,b):
                             print(b.name)
+                            #print(b.react)
                             cntb,quit_allb = b.react(self)
                             cnt  = cnt and cntb
                             quit_all = quit_all or quit_allb
@@ -131,13 +132,16 @@ class Launcher(Game):
                             cnt  = cnt and cntb
                             quit_all = quit_all or quit_allb
         return cnt,quit_all
-        
+
     def dial_loop(self,cnt = True,quit_all=False,bg = None,map=None):
         pygame.time.Clock().tick(self.options["FPS"])
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == K_SPACE:
                     cnt = False
+                if event.key == K_ESCAPE:
+                    cnt = False
+                    quit_all = True
         return cnt,quit_all
 
     def launch_game(self):
