@@ -17,8 +17,8 @@ class Game:
         self.init_images()
         self.init_constants()
         self.init_music()
-        self.load_languages()
         self.init_characters()
+        self.load_languages(True)
         self.create_dialogues()
         self.create_world()
         print("The game initialized properly.")
@@ -75,7 +75,7 @@ class Game:
         self.b32xmax = 2*self.options["DISPLAYSIZE_X"]//3+250
         self.yoffset = int(self.options["DISPLAYSIZE_Y"]/4.5)
 
-    def load_languages(self):
+    def load_languages(self,fst=False):
         """ this function loads all avaliable languages in self.dict_str"""
         if self.options["LANGUAGE"] == "English":
             with open("data/json/eng.json", "r", encoding="utf-8-sig") as read_file:
@@ -83,6 +83,7 @@ class Game:
         elif self.options["LANGUAGE"] == "French":
             with open("data/json/fr.json", "r", encoding="utf-8-sig") as read_file:
                 self.dict_str=json.load(read_file)
+        if not fst: self.update_dialogues()
 
     def init_characters(self):
         self.dict_char = {}

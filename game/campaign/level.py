@@ -10,6 +10,7 @@ class Level:    #will be an abstract class
     def launch(self):
         #launch the level
         pygame.time.wait(2000)
+        pygame.event.get()
         return True #for now, if we launch a level, we win
 
 

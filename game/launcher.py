@@ -68,6 +68,7 @@ class Launcher(Game):
                     for b in BUTTON_LIST:
                         if xyinbounds(mx,my,b):
                             print(b.name)
+                            #print(b.react)
                             cntb,quit_allb = b.react(self)
                             cnt  = cnt and cntb
                             quit_all = quit_all or quit_allb
@@ -131,13 +132,29 @@ class Launcher(Game):
                             cnt  = cnt and cntb
                             quit_all = quit_all or quit_allb
         return cnt,quit_all
-        
-    def dial_loop(self,cnt = True,quit_all=False,bg = None,map=None):
+
+    def dial_loop(self,dial_bubble,cnt = True,quit_all=False,bg = None,map=None,blist=[]):
         pygame.time.Clock().tick(self.options["FPS"])
+        dial_bubble.display(self)
+        for b in blist:
+            if dial_bubble.last:
+                b.display(lock=False)
+            else:
+                b.display(period=5,speed=1,lock=False)
+        pygame.display.flip()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == K_SPACE:
                     cnt = False
+                if event.key == K_ESCAPE:
+                    cnt = False
+                    quit_all = True
+            if event.type == MOUSEBUTTONDOWN:
+                mx,my = pygame.mouse.get_pos()
+                if event.button == 1:
+                    for b in blist:
+                        if xyinbounds(mx,my,b):
+                            cnt = False
         return cnt,quit_all
 
     def launch_game(self):
