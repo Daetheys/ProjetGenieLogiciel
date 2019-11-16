@@ -1,4 +1,5 @@
 import os,sys
+import numpy as np
 
 path = os.getcwd()
 path += "/engine"
@@ -6,6 +7,12 @@ sys.path.append(path)
 from vector import Vector
 from transform import Transform
 import random
+
+DEBUG = True
+
+def debug(txt):
+    if DEBUG:
+        print("DEBUG : ",txt)
 
 class Line:
     """ Represents a line : y = ax+b """
@@ -16,18 +23,30 @@ class Line:
         self.x = x
 
     def is_point_up(self,p):
-        """ Returns true if the point p is in the up side of the line """
+        """ Returns true if the point p is in the up side of the line or in the line"""
         if self.vert:
             return p.x == self.x
         return p.y >= self.a*p.x+self.b
 
     def is_on_line(self,p):
-        return p.y == self.a*p.x+self.b
+        """ Returns true if the point is in the line """
+        if self.vert:
+            return np.isclose(p.x,self.x)
+        return np.isclose(p.y,self.a*p.x+self.b)
+
+    def contains(self,v):
+        return self.is_on_line(v)
 
     def intersect_point(self,l2):
         """ Returns the intersect point between two given lines """
         if self.vert:
-            return Vector(self.x,l2.a*self.x+l2.b)
+            if l2.vert:
+                if self.x == l2.x:
+                    return Line(0,0,True,self.x)
+                else:
+                    return None
+            else:
+                return Vector(self.x,l2.a*self.x+l2.b)
         if l2.vert:
             return Vector(l2.x,self.a*l2.x+self.b)
         if self.a-l2.a == 0:
@@ -40,7 +59,7 @@ class Line:
 
     def __eq__(self,l2):
         if self.vert and l2.vert:
-            return self.x and l2.x
+            return np.isclose(self.x,l2.x)
         if not(self.vert) and not(l2.vert):
             return self.a == l2.a and self.b == l2.b
 
@@ -63,7 +82,13 @@ class Segment:
         b2 = int(l.is_point_up(self.p2))
         return (b1+b2) == 1
 
+    def contains(self,v):
+        """ Returns True if the vector v is in the segment """
+        l = self.get_line()
+        return l.is_on_line(v) and self.is_in_interval_x(v.x) and self.is_in_interval_y(v.y)
+
     def get_inter_segment(self,s):
+        """ Returns a point that is the intersection of both segments. If they don't intersect, return None. If they intersect in more than a point , actually the function returns the line of intersection (the specific segment of intersection is not usefull yet """
         ls = s.get_line()
         l = self.get_line()
         inter_p = l.intersect_point(ls)
@@ -92,6 +117,7 @@ class Segment:
                     return None
 
     def collide_segment(self,s):
+        """ Returns true if both segment intersect """
         return bool(self.get_inter_segment(s))
 
 
@@ -108,14 +134,19 @@ class Segment:
         return miny <= y and y <= maxy
 
     def length(self):
+        """ Returns the length of the segment """
         return ((self.p1.x-self.p2.x)**2+(self.p1.y-self.p2.y)**2)**0.5
 
     def get_line(self):
+        """ Returns the line corresponding to the orientation of this segment """
         if self.p1.x-self.p2.x == 0:
             return Line(0,0,True,self.p1.x)
         a = (self.p1.y-self.p2.y)/(self.p1.x-self.p2.x)
         b = self.p1.y - a*self.p1.x
         return Line(a,b)
+
+    def get_vector(self):
+        return self.p2+ (-self.p1)
 
     def __eq__(self,s):
         return self.p1 == s.p1 and self.p2 == s.p2
@@ -157,24 +188,62 @@ class Polygon:
         self.__init__(p.get_points())
 
     def point_in(self,point):
+        if point in self.get_points():
+            return True
+        sum_angle = 0
+        for s in self.get_segments():
+            print("s",s)
+            s2 = Segment(point,s.p1)
+            s3 = Segment(point,s.p2)
+            v2 = s2.get_vector()
+            v3 = s3.get_vector()
+            sens = np.sign(v2.x*v3.y - v2.y*v3.x)
+            a = s.length()
+            b = s2.length()
+            c = s3.length()
+            angle = -sens*np.arccos( (-a**2 + b**2 + c**2)/(2*b*c) )
+            sum_angle += angle
+        return abs(sum_angle) > np.pi #Is either np.pi*2 or 0 (but with approximation let's cut at np.pi)
+        
+    def point_in2(self,point):
         """ Returns true if the vector point is in the polygon """
-        epsilon = 10**-5
+        debug("CALLED polygon.point_in with",self,point)
         if point in self.get_points():
             return True
         count = 0
-        for s in self.get_segments():
+        segments = self.get_segments()
+        tested = [False for i in range(len(self.get_points()))]
+        for i,s in enumerate(segments):
+            debug("--i,s",i,s)
+            debug("tested",tested)
             line = Line(0,point.y)
-            while line.b == s.p1.y or line.b == s.p2.y:
-                line.b += epsilon*random.random()
-            ls = s.get_line()
-            inter_p = line.intersect_point(ls)
-            if not(inter_p is None) and inter_p.x <= point.x:
-                if s.collide_line(line):
+            if line.b == s.p1.y and not(tested[i-1]):
+                s2 = segments[(i-1)%len(segments)]
+                up1b = line.is_point_up(s2.p1)
+                up2b = line.is_point_up(s.p2)
+                if s.p1.x <= point.x and ( up1b != up2b ):
+                    tested[i] = True
                     count += 1
+
+            elif line.b == s.p2.y and not(tested[(i)%len(tested)]):
+                s2 = segments[(i+1)%len(segments)]
+                up1b = line.is_point_up(s2.p2)
+                up2b = line.is_point_up(s.p1)
+                if s.p2.x <= point.x and ( up1b != up2b ):
+                    tested[i] = True
+                    count += 1
+            else:
+                ls = s.get_line()
+                inter_p = line.intersect_point(ls)
+                if not(inter_p is None) and inter_p.x <= point.x:
+                    if s.collide_line(line) and not(tested[(i-1)%len(tested)]) and not(tested[i%len(tested)]):
+                        count += 1
+            debug("count",count)
         return count%2 == 1
 
 
     def intersect_segment(self,s):
+        """ Returns True if self intersects s """
         for si in self.get_segments():
             if s.collide_segment(si):
                 return True
@@ -203,6 +272,7 @@ class Polygon:
         return False
 
     def apply_transform(self,transform):
+        """ Apply a transformation on this polygon and returns it"""
         li = []
         for p in self.get_points():
             v = transform.transform_vect(p)
@@ -211,6 +281,7 @@ class Polygon:
         return poly
 
     def compute_max_min(self):
+        """ Compute the rect hull of this polygon (store them inside the object) """
         max_x = None
         min_x = None
         max_y = None
@@ -242,12 +313,14 @@ class Polygon:
         return self.min_y
 
     def copy(self):
+        """ Copies this polygon and returns it """
         l = []
         for p in self.get_points():
             l.append(p.copy())
         return Polygon(l)
 
     def to_tuples(self):
+        """ Returns the list of tuples corresponding to this polygon (usefull with pygame) """
         l= []
         for p in self.get_points():
             l.append((p.x,p.y))

@@ -59,9 +59,11 @@ class GameLevel:
             o.move()
             for o2 in self.get_objects():
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
+                    self.aff()
                     o.collide(o2)
                     o2.collide(o)
                     if o.get_rigid_body() and o2.get_rigid_body():
+                        print("------------------rigid",o,o2)
                         o.apply_reaction(o2)
 
     def load_camera(self,fen):

@@ -18,6 +18,6 @@ class Gravity(Force):
         return self.__g
     
     def get_acc(self,movablenode):
-        accy = -self.get_g()
+        accy = self.get_g()
         return (Vector(0,accy),movablenode.get_ang_acc())
 

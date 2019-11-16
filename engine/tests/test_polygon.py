@@ -9,7 +9,7 @@ from polygone import *
 from vector import Vector
 from transform import Transform
 from hypothesis import given
-from hypothesis.strategies import integers, lists
+from hypothesis.strategies import integers, lists, tuples
 
 def test_line_point_up():
     l1 = Line(1,1)
@@ -194,3 +194,83 @@ def test_more1():
 
     assert not(p1.collide(p2))
 
+def test_more2():
+    p1 = Polygon([Vector(-2.0,6.0), Vector(2.0,6.0), Vector(2.0,10.0), Vector(-2.0,10.0)])
+    p2 = Polygon([Vector(-1.0,1.999969482421875), Vector(3.0,1.999969482421875), Vector(3.0,5.999969482421875), Vector(-1.0,5.999969482421875)])
+
+    assert p1.points_in(p2) == []
+
+# ----------------------
+#
+#       BIG TESTS
+#
+# ----------------------
+VALUE = 10**5
+
+@given(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE))
+def test_big_line_inter(a,b,a2,b2):
+    l = Line(a,b)
+    l2 = Line(a2,b2)
+    inter_p = l.intersect_point(l2)
+    if inter_p is None:
+        assert a == a2 and b != b2
+    elif isinstance(inter_p,Line):
+        assert a == a2 and b == b2
+    else:
+        assert np.isclose(a*inter_p.x+b,a2*inter_p.x+b2)
+        assert np.isclose(a*inter_p.x+b,inter_p.y)
+
+@given(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE))
+def test_big_line_inter2(a,b,x):
+    l = Line(a,b)
+    l2 = Line(0,0,True,x)
+    inter_p1 = l.intersect_point(l2)
+    inter_p2 = l2.intersect_point(l)
+    assert np.isclose(inter_p1.x,x)
+    assert np.isclose(a*inter_p1.x+b,inter_p1.y)
+
+    assert np.isclose(inter_p2.x,x)
+    assert np.isclose(a*inter_p2.x+b,inter_p2.y)
+
+@given(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE))
+def test_big_line_inter3(x,x2):
+    l = Line(0,0,True,x)
+    l2 = Line(0,0,True,x2)
+    inter_p = l.intersect_point(l2)
+    if isinstance(inter_p,Line):
+        assert np.isclose(x,x2)
+    else:
+        assert inter_p is None
+        assert x != x2
+
+@given(tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)),tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)),tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)),tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)))
+def test_big_segments(p11,p12,p21,p22):
+    if not(p11 == p12 or p21 == p22):
+        (x11,y11) = p11
+        (x12,y12) = p12
+        (x21,y21) = p21
+        (x22,y22) = p22
+        s1 = Segment(Vector(x11,y11),Vector(x12,y12))
+        s2 = Segment(Vector(x21,y21),Vector(x22,y22))
+        v1 = s1.get_inter_segment(s2)
+        v2 = s2.get_inter_segment(s1)
+        print("inter",v1,v2)
+        assert (v1 == v2)
+        if not(v1 is None):
+            if not(isinstance(v1,Line)):
+                assert s1.contains(v1)
+                assert s2.contains(v1)
+
+"""
+@given(lists(tuples(integers(),integers())),tuples(integers(),integers()))
+def test_big_is_in_poly(l,pt):
+    if len(l) > 3:
+        lv = []
+        for (x,y) in l:
+            v = Vector(x,y)
+            if not(v in lv):
+                lv.append(v)
+        p = Polygon(lv)
+        pt = Vector(pt[0],pt[1])
+        b = p.point_in(pt)
+"""

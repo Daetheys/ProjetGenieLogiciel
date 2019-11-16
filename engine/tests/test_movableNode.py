@@ -41,7 +41,7 @@ def test_direction_rigid_collide():
     assert mvn.get_hit_box().collide(mvn2.get_hit_box())
     print(mvn.get_direction_rigid_collide(p2))
     assert mvn.get_direction_rigid_collide(p2) == Segment(Vector(0,3),Vector(2,3))
-
+"""
 def test_full_1():
     v1 = Vector(-1,-1)
     v2 = Vector(1,-1)
@@ -64,3 +64,4 @@ def test_full_1():
     mvn.move()
     assert mvn.get_hit_box().collide(mvn2.get_hit_box())
     assert mvn.get_direction_rigid_collide(p2) == Segment(Vector(-1,3),Vector(1,3))
+"""

@@ -93,6 +93,9 @@ class MovableNode(SpriteNode):
             self_cpy.rotate(ang_speed*factor)
             points_in = p.points_in(self_cpy)
             segments_collide = p.segments_collide_with(self_cpy)
+            print("p",p)
+            print("self cpy",self_cpy)
+            print("factor",factor,points_in,segments_collide)
             if len(points_in) == 1:
                 return points_in[0]
             if len(segments_collide) == 1:
@@ -103,14 +106,12 @@ class MovableNode(SpriteNode):
                 factor_max = factor
             else:
                 factor_min = factor
-            
             timeout += 1
             if timeout > 100:
                 assert False #Timeout in get_object_collide
 
     def get_segment_collide(self,p):
         obj = self.get_direction_rigid_collide(p)
-        print("obj",obj)
         if isinstance(obj,Vector):
             p_points = p.get_points()
             assert len(p_points) > 1 #Rigid bodies can't be reduced to 1 point
