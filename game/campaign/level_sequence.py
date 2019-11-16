@@ -40,9 +40,9 @@ class Level_Sequence(Map_Point):
                 return True,False#ne charge pas le level
         self.is_accessed()
         g.win().blit(g.dict_img["img_dial"],(0,400))  #ugly code just to separate start and end dialogue
-        pygame.display.flip()   #ugly code
+        g.flip()   #ugly code
         for level in self.__levels:
-            level.launch()
+            level.launch(g)
         self.is_finished()
         if self._end_dialogue is not None:
             self._end_dialogue.show(g)

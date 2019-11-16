@@ -4,6 +4,10 @@ from spriteNode import SpriteNode
 from polygone import *
 from transform import Transform
 
+import pygame
+
+DEBUG = False
+
 class MovableNode(SpriteNode):
     """ A node that can move with more powerful functions"""
     def __init__(self):
@@ -106,6 +110,7 @@ class MovableNode(SpriteNode):
 
     def get_segment_collide(self,p):
         obj = self.get_direction_rigid_collide(p)
+        print("obj",obj)
         if isinstance(obj,Vector):
             p_points = p.get_points()
             assert len(p_points) > 1 #Rigid bodies can't be reduced to 1 point
@@ -114,23 +119,54 @@ class MovableNode(SpriteNode):
             p2 = p_points[(index+1)%len(p_points)]
             s1 = Segment(p1,obj)
             s2 = Segment(obj,p2)
-            s1_collide = self.get_hit_box().segments_collide_with(Polygon([s1]))
-            s2_collide = self.get_hit_box().segments_collide_with(Polygon([s2]))
+            s1_collide = self.get_hit_box().segments_collide_with(Polygon([s1.p1,s1.p2]))
+            s2_collide = self.get_hit_box().segments_collide_with(Polygon([s2.p1,s2.p2]))
+            """
+            print("self",self)
+            print("p",p)
+            print("obj",obj)
+            print("p_points",p_points)
+            print("index",index)
+            print("p1",p1)
+            print("p2",p2)
+            print("s1",s1)
+            print("s2",s2)
+            print("s1_collide",s1_collide)
+            print("s2_collide",s2_collide)
+            """
+            
             assert s1_collide == s2_collide
-            return s1_collide[0]
+            #s_collide = s1_collide + s2_collide
+            return (s1_collide[0],-1)
         else:
-            return obj
+            return (obj,1)
 
     def get_resistance_support(self,support):
-        seg = self.get_segment_collide(support.get_hit_box())
+        (seg,sg) = self.get_segment_collide(support.get_hit_box())
         (p1,p2) = (seg.p1,seg.p2)
         v = p2 + (-p1)
-        v_orth = v.orthogonal()
-        return v_orth*self.get_speed().len()
+        v_orthn = v.orthogonal().normalise()
+        if DEBUG:
+            print("sg",sg)
+            print("seg",seg)
+            print("v",v)
+            print("orth",v_orthn)
+        return v_orthn*(self.get_speed().len())*sg
 
     def apply_reaction(self,support):
+        
+        #Get how to remove the collision
+        correction = self.correct_collide_rigid_body(support)
+        #Get how to correct the speed
         speed = self.get_resistance_support(support)
+        #Correct position and speed
+        self.translate(correction)
         self.set_speed(self.get_speed()+speed)
+        if DEBUG:
+            print("final self box",self.get_hit_box())
+            print("final support box",support.get_hit_box())
+            print("final collide",self.get_hit_box().collide(support.get_hit_box()))
+            print("final rigid",self.get_rigid_hit_box().collide(support.get_rigid_hit_box()))
 
     def correct_collide_rigid_body(self,support):
         speed = -self.get_speed().copy()
@@ -141,19 +177,30 @@ class MovableNode(SpriteNode):
         while 1: #Proceeds by dichotomia assuming last pos wasn't creating a collision but the new one is
             factor = (factor_max+factor_min)/2
             self_cpy = self.get_hit_box().copy()
-            assert self_cpy.collide(p)
+            self_cpy_rigid = self.get_rigid_hit_box().copy()
+            assert self_cpy.collide(support.get_hit_box())
             self_cpy.translate(speed*factor)
             self_cpy.rotate(ang_speed*factor)
-            points_in = p.points_in(self_cpy)
-            segments_collide = p.segments_collide_with(self_cpy)
-            if self_cpy.get_hit_box().collide(support.get_hit_box()):
-                if self_scpy.get_rigid_hit_box().collide(support.get_rigid_hit_box()):
+            self_cpy_rigid.translate(speed*factor)
+            self_cpy_rigid.rotate(ang_speed*factor)
+            if DEBUG:
+                print("factor",factor)
+            if self_cpy.collide(support.get_hit_box()):
+                if self_cpy_rigid.collide(support.get_rigid_hit_box()):
                     factor_min = factor
                 else:
+                    if DEBUG:
+                        print("resulting move",speed*factor)
                     return speed*factor
             else:
                 factor_max = factor
             
             timeout += 1
             if timeout > 100:
-                assert False #Timeout in get_object_collide
+                if DEBUG:
+                    print("timeout speed",self.get_speed())
+                    print("timeout self",self.get_hit_box())
+                    print("timeout support",support.get_hit_box())
+                    print("timeout rigid self",self.get_rigid_hit_box())
+                    print("timeout rigid supppot",support.get_rigid_hit_box())
+                assert False #Timeout in get_object_collide (rigid)

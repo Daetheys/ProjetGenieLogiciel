@@ -49,7 +49,7 @@ class Launcher(Game):
                 self._fenetre.blit(pygame.transform.flip(self.dict_img["img_arrow"],False,True),(self.options["DISPLAYSIZE_X"]//2+250,250))
             else:
                 self._fenetre.blit(pygame.transform.flip(self.dict_img["img_garrow"],False,True),(self.options["DISPLAYSIZE_X"]//2+250,250))
-        pygame.display.flip()
+        self.flip()
 
         #KEYBOARD HANDLER
         #keys = pygame.key.get_pressed()
@@ -114,7 +114,7 @@ class Launcher(Game):
             m,M = mp.get_image().get_size()
             list_button.append(ButtonMenu(self,mp.x,mp.x+m,mp.y,mp.y+M,mp.get_image(),react = mp.launch,add_to_list=False))
 
-        pygame.display.flip()
+        self.flip()
 
         """ event catching zone """
         for event in pygame.event.get():
@@ -141,7 +141,7 @@ class Launcher(Game):
                 b.display(lock=False)
             else:
                 b.display(period=5,speed=1,lock=False)
-        pygame.display.flip()
+        self.flip()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == K_SPACE:

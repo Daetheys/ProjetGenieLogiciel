@@ -31,6 +31,10 @@ class Vector:
     def orthogonal(self):
         return Vector(self.y,-self.x)
 
+    def normalise(self):
+        norm = self.len()
+        return Vector(self.x/norm,self.y/norm)
+    
     def dot(self,v):
         return self.x*v.x + self.y*v.y
 

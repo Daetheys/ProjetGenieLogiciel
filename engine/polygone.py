@@ -5,6 +5,7 @@ path += "/engine"
 sys.path.append(path)
 from vector import Vector
 from transform import Transform
+import random
 
 class Line:
     """ Represents a line : y = ax+b """
@@ -19,6 +20,9 @@ class Line:
         if self.vert:
             return p.x == self.x
         return p.y >= self.a*p.x+self.b
+
+    def is_on_line(self,p):
+        return p.y == self.a*p.x+self.b
 
     def intersect_point(self,l2):
         """ Returns the intersect point between two given lines """
@@ -53,23 +57,43 @@ class Segment:
 
     def collide_line(self,l):
         """ Returns true if it collides a specific line """
+        if l.is_on_line(self.p1) or l.is_on_line(self.p2):
+            return True
         b1 = int(l.is_point_up(self.p1))
         b2 = int(l.is_point_up(self.p2))
         return (b1+b2) == 1
 
-    def get_inter_line(self,ls,s):
+    def get_inter_segment(self,s):
+        ls = s.get_line()
         l = self.get_line()
         inter_p = l.intersect_point(ls)
-        if inter_p is None: 
+        if inter_p is None:
             return None #They don't collide
-        if isinstance(inter_p,Line) or self.is_in_interval_x(inter_p.x) and s.is_in_interval_x(inter_p.x) and self.is_in_interval_y(inter_p.y) and s.is_in_interval_y(inter_p.y):
-            return inter_p
         else:
-            return None
+            if isinstance(inter_p,Line):
+                #To check if collinear segments intersect (only check x coordinate is enough)
+                sfsp1x = self.is_in_interval_x(s.p1.x)
+                sfsp2x = self.is_in_interval_x(s.p2.x)
+                ssfp1x = s.is_in_interval_x(self.p1.x)
+                ssfp2x = s.is_in_interval_x(self.p2.x)
+                if sfsp1x or sfsp2x or ssfp1x or ssfp2x:
+                    return inter_p
+                else:
+                    return None
+            else:
+                #To check if a non collinear segments intersect (must check x and y)
+                sfpx = self.is_in_interval_x(inter_p.x)
+                spx = s.is_in_interval_x(inter_p.x)
+                sfpy = self.is_in_interval_y(inter_p.y)
+                spy = s.is_in_interval_y(inter_p.y)
+                if sfpx and spx and sfpy and spy:
+                    return inter_p
+                else:
+                    return None
 
     def collide_segment(self,s):
-        ls = s.get_line()
-        return bool(self.get_inter_line(ls,s))
+        return bool(self.get_inter_segment(s))
+
 
     def is_in_interval_x(self,x):
         """ Returns if x in the interval of this segment """
@@ -82,10 +106,10 @@ class Segment:
         miny = min(self.p1.y,self.p2.y)
         maxy = max(self.p1.y,self.p2.y)
         return miny <= y and y <= maxy
-    
+
     def length(self):
         return ((self.p1.x-self.p2.x)**2+(self.p1.y-self.p2.y)**2)**0.5
-        
+
     def get_line(self):
         if self.p1.x-self.p2.x == 0:
             return Line(0,0,True,self.p1.x)
@@ -98,7 +122,7 @@ class Segment:
 
     def __repr__(self):
         return "Segment("+repr(self.p1)+","+repr(self.p2)+")"
-        
+
 class Polygon:
     """ Polygon made of a list of vector points"""
     def __init__(self,points):
@@ -119,7 +143,7 @@ class Polygon:
 
     def get_segments(self):
         return self.__segments
-    
+
     def translate(self,vector):
         """ Translates the polygon """
         for p in self.get_points():
@@ -134,15 +158,21 @@ class Polygon:
 
     def point_in(self,point):
         """ Returns true if the vector point is in the polygon """
+        epsilon = 10**-5
         if point in self.get_points():
             return True
         count = 0
-        line = Line(0,point.y)
         for s in self.get_segments():
-            if s.p1.x <= point.x or s.p2.x <= point.x:
+            line = Line(0,point.y)
+            while line.b == s.p1.y or line.b == s.p2.y:
+                line.b += epsilon*random.random()
+            ls = s.get_line()
+            inter_p = line.intersect_point(ls)
+            if not(inter_p is None) and inter_p.x <= point.x:
                 if s.collide_line(line):
                     count += 1
         return count%2 == 1
+
 
     def intersect_segment(self,s):
         for si in self.get_segments():
@@ -234,3 +264,17 @@ class Polygon:
 
     def __repr__(self):
         return "Poly("+str(self.get_points())+")"
+
+class Rectangle(Polygon):
+
+    def __init__(self,x,y,l,h):
+        """ To create a basic rectangle, the init function is changed.
+        It takes the x,y coordinates of the top left corner,
+        the length & the height of the Rectangle. It creates then the
+        appropriate Vector objects, and initializes itself like a Polygon."""
+        a = Vector(x,y)
+        b = Vector(x+l,y)
+        c = Vector(x+l,y+h)
+        d = Vector(x,y+h)
+        points = [a,b,c,d]
+        Polygon.__init__(self,points)

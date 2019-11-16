@@ -2,7 +2,6 @@ import sys
 import os
 path = os.getcwd()
 sys.path.append(path + "/engine")
-sys.path.append(path + "/game")
 
 from camera import Camera
 from vector import Vector
@@ -50,6 +49,10 @@ class GameLevel:
     def get_size_level(self):
         return self.size_level
 
+    def refresh(self,dt):
+        self.physics_step(dt)
+        self.aff()
+
     def physics_step(self,dt):
         for o in self.get_objects():
             o.compute_speed(dt)
@@ -60,7 +63,6 @@ class GameLevel:
                     o2.collide(o)
                     if o.get_rigid_body() and o2.get_rigid_body():
                         o.apply_reaction(o2)
-                        print("rigid")
 
     def load_camera(self,fen):
         self.camera.set_fen(fen)

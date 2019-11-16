@@ -126,7 +126,19 @@ def test_polygone_point_in():
     p = Polygon([v1,v2,v3,v4])
     assert p.point_in(Vector(0.5,0.3))
     assert p.point_in(Vector(1,1))
-    assert not(p.point_in(Vector(1.2,0)))
+    assert not(p.point_in(Vector(1.2,0.1)))
+
+def test_polygone_point_in2():
+    v1 = Vector(1,0)
+    v2 = Vector(2,1)
+    v3 = Vector(1,2)
+    v4 = Vector(0,1)
+    p = Polygon([v1,v2,v3,v4])
+    assert p.point_in(Vector(1,1))
+    assert not(p.point_in(Vector(2,2)))
+    assert p.point_in(Vector(0.5,1))
+    assert p.point_in(Vector((3**0.5)/2+0.001,(3**0.5)/2+0.001))
+    assert p.point_in(Vector(0.7,1.1))
 
 def test_polygon_intersect_segment():
     v1 = Vector(0,0)
@@ -166,3 +178,19 @@ def test_polygon_max_min():
     assert p.get_max_y() == 8
     assert p.get_min_x() == 0
     assert p.get_min_y() == 3
+
+def test_more1():
+    v1 = Vector(1,6)
+    v2 = Vector(1,5)
+    v3 = Vector(3,5)
+    v4 = Vector(3,6)
+    p1 = Polygon([v1,v2,v3,v4])
+
+    v21 = Vector(7,5)
+    v22 = Vector(7,4)
+    v23 = Vector(9,4)
+    v24 = Vector(9,5)
+    p2 = Polygon([v21,v22,v23,v24])
+
+    assert not(p1.collide(p2))
+

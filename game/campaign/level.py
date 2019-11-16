@@ -1,25 +1,27 @@
 #!/usr/bin/env python3
 
 import pygame
+from level_1 import *
 
 class Level:    #will be an abstract class
-    
+
     def __init__(self):
-        self.__useless = True
-        
-    def launch(self):
-        #launch the level
-        pygame.time.wait(2000)
-        pygame.event.get()
-        return True #for now, if we launch a level, we win
+        self.__useless = False
+
+    def launch(self,g):
+        """launch the level in the context of the game g"""
+        #pygame.time.wait(2000)
+        success = level_1_kshan(g)
+        pygame.event.get()#to capture inputs made during the wait
+        return success #for now, if we launch a level, we win
 
 
 class Boss_Level(Level):
-    
+
     def __init__(self):
         self.__useless = True
-        
+
 class Random_Level(Level):
-    
+
     def __init__(self):
         self.__useless = True
