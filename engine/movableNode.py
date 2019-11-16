@@ -82,26 +82,35 @@ class MovableNode(SpriteNode):
         """ Returns either the point or the segment that first created a collision between self (moving) and p (not moving) """
         speed = -self.get_speed().copy()
         ang_speed = -self.get_ang_speed()
+        
+        #Check if the function will work correctly
+        ancient_rigid_box = self.get_rigid_hit_box().translate2(speed)
+        assert not(ancient_rigid_box.collide(p))
+        assert self.get_rigid_hit_box().collide(p)
+        
         factor_max = 1
         factor_min = 0
         timeout = 0
         while 1: #Proceeds by dichotomia assuming last pos wasn't creating a collision but the new one is
             factor = (factor_max+factor_min)/2
-            self_cpy = self.get_hit_box().copy()
+            self_cpy = self.get_rigid_hit_box().copy()
             assert self_cpy.collide(p)
             self_cpy.translate(speed*factor)
             self_cpy.rotate(ang_speed*factor)
             points_in = p.points_in(self_cpy)
             segments_collide = p.segments_collide_with(self_cpy)
-            print("p",p)
-            print("self cpy",self_cpy)
-            print("factor",factor,points_in,segments_collide)
-            if len(points_in) == 1:
+            if DEBUG:
+                print("p",p)
+                print("self cpy",self_cpy)
+                print("factor",factor,points_in,segments_collide)
+            if len(points_in) == 1 and len(segments_collide) == 2:
+                #p has a corner in self
                 return points_in[0]
             if len(segments_collide) == 1:
+                #self has a corner in p
                 return segments_collide[0]
-            if len(points_in) == 2 and len(segments_collide) == 0:
-                return Segment(points_in[0],points_in[1])
+            #if len(points_in) == 2 and len(segments_collide) == 0:
+            #    return Segment(points_in[0],points_in[1])
             if len(points_in) < 1 and len(segments_collide) <1:
                 factor_max = factor
             else:
@@ -111,6 +120,8 @@ class MovableNode(SpriteNode):
                 assert False #Timeout in get_object_collide
 
     def get_segment_collide(self,p):
+        if DEBUG:
+            print("GET SEGMENT COLLIDE")
         obj = self.get_direction_rigid_collide(p)
         if isinstance(obj,Vector):
             p_points = p.get_points()
@@ -122,28 +133,37 @@ class MovableNode(SpriteNode):
             s2 = Segment(obj,p2)
             s1_collide = self.get_hit_box().segments_collide_with(Polygon([s1.p1,s1.p2]))
             s2_collide = self.get_hit_box().segments_collide_with(Polygon([s2.p1,s2.p2]))
-            """
-            print("self",self)
-            print("p",p)
-            print("obj",obj)
-            print("p_points",p_points)
-            print("index",index)
-            print("p1",p1)
-            print("p2",p2)
-            print("s1",s1)
-            print("s2",s2)
-            print("s1_collide",s1_collide)
-            print("s2_collide",s2_collide)
-            """
+            if True:
+                print("self",self)
+                print("p",p)
+                print("obj",obj)
+                print("p_points",p_points)
+                print("index",index)
+                print("p1",p1)
+                print("p2",p2)
+                print("s1",s1)
+                print("s2",s2)
+                print("s1_collide",s1_collide)
+                print("s2_collide",s2_collide)
+            #Handle both angle in segment
+            s_collide = [v for v in s1_collide if v in s2_collide]
+            #If s_collide is empty self and p are parallel
+            if s_collide == []:
+                assert len(s1_collide) == 1 and len(s2_collide) == 1
+                #Compute orth of speed
+                v = self.get_speed()
+                vorth = v.orthogonal()
+                pp1 = obj+vorth
+                pp2 = obj+(-vorth)
+                return (Segment(pp1,pp2),-1)
             
-            assert s1_collide == s2_collide
-            #s_collide = s1_collide + s2_collide
-            return (s1_collide[0],-1)
+            assert s_collide != []
+            return (s_collide[0],-1)
         else:
             return (obj,1)
 
     def get_resistance_support(self,support):
-        (seg,sg) = self.get_segment_collide(support.get_hit_box())
+        (seg,sg) = self.get_segment_collide(support.get_rigid_hit_box())
         (p1,p2) = (seg.p1,seg.p2)
         v = p2 + (-p1)
         v_orthn = v.orthogonal().normalise()
@@ -155,14 +175,19 @@ class MovableNode(SpriteNode):
         return v_orthn*(self.get_speed().len())*sg
 
     def apply_reaction(self,support):
-        
+        assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
         #Get how to remove the collision
         correction = self.correct_collide_rigid_body(support)
         #Get how to correct the speed
         speed = self.get_resistance_support(support)
         #Correct position and speed
+        print("pos",self.get_hit_box())
         self.translate(correction)
         self.set_speed(self.get_speed()+speed)
+        print("correction",correction)
+        print("pos",self.get_hit_box())
+        print("speed",speed)
+        print("final speed",self.get_speed())
         if DEBUG:
             print("final self box",self.get_hit_box())
             print("final support box",support.get_hit_box())
@@ -172,6 +197,12 @@ class MovableNode(SpriteNode):
     def correct_collide_rigid_body(self,support):
         speed = -self.get_speed().copy()
         ang_speed = -self.get_ang_speed()
+
+        #Check if the function will work correctly
+        ancient_rigid_box = self.get_rigid_hit_box().translate2(speed)
+        assert not(ancient_rigid_box.collide(support.get_rigid_hit_box()))
+        assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
+        
         factor_max = 1
         factor_min = 0
         timeout = 0

@@ -25,6 +25,14 @@ class Transformable:
         self.__collide_hit_box = Polygon([self.__origin])
         self.__rigid_hit_box = Polygon([self.__origin])
 
+    def copy(self):
+        clas = self.__class__
+        t2 = clas()
+        args = self.__dict__
+        for attr in args.keys():
+            setattr(t2,attr,getattr(self,attr))
+        return t2
+
     def set_rigid_body(self,val):
         self.__rigid_body = val
         if val:
@@ -91,6 +99,13 @@ class Transformable:
         (move_x,move_y) = (v.x,v.y)
         (x,y) = self.__position.x,self.__position.y
         self.set_position(x+move_x,y+move_y)
+
+    def translate2(self,v):
+        t2 = self.copy()
+        (move_x,move_y) = (v.x,v.y)
+        (x,y) = self.__position.x,self.__position.y
+        t2.set_position(x+move_x,y+move_y)
+        return t2
 
     def rotate(self,angle):
         self.set_rotation(self.__rotation+angle)

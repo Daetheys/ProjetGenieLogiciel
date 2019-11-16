@@ -200,6 +200,12 @@ def test_more2():
 
     assert p1.points_in(p2) == []
 
+def test_more3():
+    p1 = Polygon([Vector(-1.0,-1.0), Vector(1.0,-1.0), Vector(1.0,1.0), Vector(-1.0,1.0)])
+    p2 = Polygon([Vector(-1.0,3.0), Vector(1.0,3.0), Vector(1.0,5.0), Vector(-1.0,5.0)])
+    assert not(p1.collide(p2))
+
+
 # ----------------------
 #
 #       BIG TESTS
@@ -242,7 +248,7 @@ def test_big_line_inter3(x,x2):
     else:
         assert inter_p is None
         assert x != x2
-
+"""
 @given(tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)),tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)),tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)),tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)))
 def test_big_segments(p11,p12,p21,p22):
     if not(p11 == p12 or p21 == p22):
@@ -260,7 +266,7 @@ def test_big_segments(p11,p12,p21,p22):
             if not(isinstance(v1,Line)):
                 assert s1.contains(v1)
                 assert s2.contains(v1)
-
+"""
 """
 @given(lists(tuples(integers(),integers())),tuples(integers(),integers()))
 def test_big_is_in_poly(l,pt):

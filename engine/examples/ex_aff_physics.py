@@ -37,21 +37,21 @@ y2 = 8
 
 #To create an other platform with the same hit box it easy:
 p2 = p.copy() #It's very important to copy it and not using p or both platform would be linked (if one of them is moving to other will too)
-#plat.rotate(np.pi/15)
+plat.rotate(np.pi/5)
 
 plat2 = SolidPlatform(p2)
 plat2.translate(Vector(x2,y2))
 
-#plat2.rotate(np.pi/8)
-plat.set_speed(Vector(0,0.5))
+plat2.rotate(np.pi/5)
+plat2.set_speed(Vector(0,-0.5))
 
 gl = GameLevel([plat,plat2],[])
 gl.load_camera(fen) #Load the camera in the window fen
 gl.get_camera().set_dimension(Vector(25,25)) #Resize the camera
 gl.get_camera().set_position(Vector(-12,-5))
 gl.aff()
-for i in range(50):
+for i in range(10):
     gl.refresh(0.001)
     pygame.time.wait(50)
 
-pygame.time.wait(10000)
+pygame.time.wait(500)

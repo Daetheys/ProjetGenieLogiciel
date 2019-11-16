@@ -46,7 +46,7 @@ def test_physics_step1():
     print(plat1.get_hit_box(),p2)
     assert plat1.get_hit_box() == p2
 
-"""
+
 def test_physics_step2():
     #Check collision with rigid body and gravity
     v1 = Vector(-1,-1)
@@ -64,5 +64,6 @@ def test_physics_step2():
     for i in range(700):
         gl.physics_step(0.01)
     v = plat2.get_position()
+    print(v)
     assert v.y < 12
-"""
+

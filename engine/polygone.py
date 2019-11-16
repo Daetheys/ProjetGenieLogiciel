@@ -97,14 +97,20 @@ class Segment:
         else:
             if isinstance(inter_p,Line):
                 #To check if collinear segments intersect (only check x coordinate is enough)
-                sfsp1x = self.is_in_interval_x(s.p1.x)
-                sfsp2x = self.is_in_interval_x(s.p2.x)
-                ssfp1x = s.is_in_interval_x(self.p1.x)
-                ssfp2x = s.is_in_interval_x(self.p2.x)
-                if sfsp1x or sfsp2x or ssfp1x or ssfp2x:
-                    return inter_p
-                else:
+                sfmaxx = self.get_max_x()
+                sfminx = self.get_min_x()
+                smaxx = s.get_max_x()
+                sminx = s.get_min_x()
+
+                sfmaxy = self.get_max_y()
+                sfminy = self.get_min_y()
+                smaxy = s.get_max_y()
+                sminy = s.get_min_y()
+
+                if smaxx < sfminx or sfmaxx < sminx or smaxy < sfminy or sfmaxy < sminy:
                     return None
+                else:
+                    return inter_p
             else:
                 #To check if a non collinear segments intersect (must check x and y)
                 sfpx = self.is_in_interval_x(inter_p.x)
@@ -120,17 +126,28 @@ class Segment:
         """ Returns true if both segment intersect """
         return bool(self.get_inter_segment(s))
 
+    def get_min_x(self):
+        return min(self.p1.x,self.p2.x)
+
+    def get_max_x(self):
+        return max(self.p1.x,self.p2.x)
+
+    def get_min_y(self):
+        return min(self.p1.y,self.p2.y)
+
+    def get_max_y(self):
+        return max(self.p1.y,self.p2.y)
 
     def is_in_interval_x(self,x):
         """ Returns if x in the interval of this segment """
-        minx = min(self.p1.x,self.p2.x)
-        maxx = max(self.p1.x,self.p2.x)
+        minx = self.get_min_x()
+        maxx = self.get_max_x()
         return minx <= x and x <= maxx
 
     def is_in_interval_y(self,y):
         """ Returns if x in the interval of this segment """
-        miny = min(self.p1.y,self.p2.y)
-        maxy = max(self.p1.y,self.p2.y)
+        miny = self.get_min_y()
+        maxy = self.get_max_y()
         return miny <= y and y <= maxy
 
     def length(self):
@@ -176,10 +193,18 @@ class Polygon:
         return self.__segments
 
     def translate(self,vector):
-        """ Translates the polygon """
+        """ Translates the polygon (side effect)"""
         for p in self.get_points():
             p.x += vector.x
             p.y += vector.y
+
+    def translate2(self,vector):
+        """ Translates the polygon and returns a new one"""
+        poly = self.copy()
+        for p in poly.get_points():
+            p.x += vector.x
+            p.y += vector.y
+        return poly
 
     def rotate(self,angle):
         t = Transform()
@@ -192,7 +217,6 @@ class Polygon:
             return True
         sum_angle = 0
         for s in self.get_segments():
-            print("s",s)
             s2 = Segment(point,s.p1)
             s3 = Segment(point,s.p2)
             v2 = s2.get_vector()
