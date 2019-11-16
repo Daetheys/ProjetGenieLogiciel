@@ -359,4 +359,4 @@ class ButtonMenu:
             else:
                 T(self.g.win(),self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
                 if lock: self.g.win().blit(self.g.dict_img["img_layer_lock"],(self.xmin,self.__displayedY(self.ymin)))
-            if refresh: pygame.display.flip()
+            if refresh: g.flip()

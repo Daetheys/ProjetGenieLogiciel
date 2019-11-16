@@ -55,7 +55,7 @@ class Game:
         self.dict_img["img_cont_dial"]  = pygame.transform.smoothscale(self.dict_img["img_cont_dial"],(40,40))
         self.dict_img["img_end_dial"]  = pygame.transform.smoothscale(self.dict_img["img_end_dial"],(40,40))
         self._fenetre.blit(self.dict_img["img_background"],(0,0))
-        pygame.display.flip()
+        self.flip()
 
     def win(self):
         """ returns the window where the game is displayed"""
@@ -136,3 +136,7 @@ class Game:
         for map in self.world.get_maps().values():
             for map_point in map.get_map_points():
                 self.init_dialogues(map_point)
+
+    def flip(self):
+        pygame.display.flip()
+        

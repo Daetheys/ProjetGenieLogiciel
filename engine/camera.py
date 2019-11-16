@@ -41,10 +41,10 @@ class Camera:
         (width,height) = (self.fen.get_width(),self.fen.get_height())
         dim = self.get_dimension()
         pos = self.get_position()
-        
+
         self.distorsion = Transform()
         self.distorsion = self.distorsion.scale(Vector(width/dim.x,height/dim.y))
-        self.distorsion = self.distorsion.translate(-pos.copy())
+        self.distorsion = self.distorsion.translate(-pos.copy())#why .copy ??
 
     def is_in_camera(self,polygon):
         """ Returns true if the polygon is completely in the camera's rect or if it intersects a side """
@@ -73,7 +73,7 @@ class Camera:
         v = self.get_dimension()
         pr = pygame.Rect(0,0,self.get_fen().get_width(),self.get_fen().get_height())
         pygame.draw.rect(self.get_fen(),(0,0,0),pr)
-    
+
     def aff(self,objects):
         if not(self.get_fen() is None):
             self.flashblack()
@@ -82,4 +82,6 @@ class Camera:
                 o.aff(self.get_fen(),self.get_distorsion())
 
     def __repr__(self):
-        return "Camera("+str(self.rect)+")"
+        txt = "Camera("+str(self.rect)+")"
+        if self.fen is None: txt += "(not init)"
+        return txt
