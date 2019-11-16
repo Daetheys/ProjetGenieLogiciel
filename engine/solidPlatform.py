@@ -14,4 +14,5 @@ class SolidPlatform(ControlableNode):
         return "SolidPlatform("+str(self.get_hit_box())+")"
 
     def collide(self,o2):
-        print("collide")
+        #print("collide")
+        pass

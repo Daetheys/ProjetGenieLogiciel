@@ -7,6 +7,8 @@ path += "/error"
 sys.path.append(path)
 from exception import WrongRectWidth,WrongRectHeight
 
+import pygame
+
 class Rect:
     """ The Y axis is directed to bottom """
     def __init__(self,left=0,top=0,width=0,height=0):
@@ -81,3 +83,6 @@ class Rect:
 
     def set_dimension(self,dim):
         (self.__width,self.__height) = (dim.x,dim.y)
+
+    def to_pygame(self):
+        return pygame.Rect(self.__left,self.__top,self.__width,self.__height)

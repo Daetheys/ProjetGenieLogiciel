@@ -41,7 +41,7 @@ class Transformable:
 
     def set_hit_box(self,val):
         self.__collide_hit_box = val
-        t = Transform().scale(0.99) #0.01% smaller
+        t = Transform().scale(0.95) #5% smaller
         self.set_rigid_hit_box(self.get_hit_box().apply_transform(t))
 
     def get_hit_box(self):
@@ -53,7 +53,8 @@ class Transformable:
         self.__rigid_hit_box = val
 
     def get_rigid_hit_box(self):
-        return self.__rigid_hit_box
+        transform = self.get_transform() #Recompute the hit box to avoid comulating errors due to operations on floats that approximate computations
+        return self.__rigid_hit_box.apply_transform(transform)
 
     def reset_update(self):
         self.__tr_need_up = True

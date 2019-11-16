@@ -67,15 +67,33 @@ class Segment:
         ls = s.get_line()
         l = self.get_line()
         inter_p = l.intersect_point(ls)
-        if inter_p is None: 
+        if inter_p is None:
             return None #They don't collide
-        if isinstance(inter_p,Line) or self.is_in_interval_x(inter_p.x) and s.is_in_interval_x(inter_p.x) and self.is_in_interval_y(inter_p.y) and s.is_in_interval_y(inter_p.y):
-            return inter_p
         else:
-            return None
+            if isinstance(inter_p,Line):
+                #To check if collinear segments intersect (only check x coordinate is enough)
+                sfsp1x = self.is_in_interval_x(s.p1.x)
+                sfsp2x = self.is_in_interval_x(s.p2.x)
+                ssfp1x = s.is_in_interval_x(self.p1.x)
+                ssfp2x = s.is_in_interval_x(self.p2.x)
+                if sfsp1x or sfsp2x or ssfp1x or ssfp2x:
+                    return inter_p
+                else:
+                    return None
+            else:
+                #To check if a non collinear segments intersect (must check x and y)
+                sfpx = self.is_in_interval_x(inter_p.x)
+                spx = s.is_in_interval_x(inter_p.x)
+                sfpy = self.is_in_interval_y(inter_p.y)
+                spy = s.is_in_interval_y(inter_p.y)
+                if sfpx and spx and sfpy and spy:
+                    return inter_p
+                else:
+                    return None
 
     def collide_segment(self,s):
         return bool(self.get_inter_segment(s))
+            
 
     def is_in_interval_x(self,x):
         """ Returns if x in the interval of this segment """

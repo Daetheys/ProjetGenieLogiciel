@@ -1,6 +1,8 @@
 from rect import Rect
 from polygone import *
 
+import pygame
+
 class Camera:
     def __init__(self):
         self.rect = Rect()
@@ -8,6 +10,8 @@ class Camera:
 
     def set_position(self,pos):
         self.rect.set_position(pos)
+        if not(self.fen is None):
+            self.compute_distorsion()
 
     def set_dimension(self,size):
         self.rect.set_dimension(size)
@@ -36,7 +40,11 @@ class Camera:
     def compute_distorsion(self):
         (width,height) = (self.fen.get_width(),self.fen.get_height())
         dim = self.get_dimension()
-        self.distorsion = Transform().scale(Vector(width/dim.x,height/dim.y))
+        pos = self.get_position()
+        
+        self.distorsion = Transform()
+        self.distorsion = self.distorsion.scale(Vector(width/dim.x,height/dim.y))
+        self.distorsion = self.distorsion.translate(-pos.copy())
 
     def is_in_camera(self,polygon):
         """ Returns true if the polygon is completely in the camera's rect or if it intersects a side """
@@ -61,7 +69,14 @@ class Camera:
             f_sides = f_sides or polygon.intersect_segment(side)
         return f_in or f_sides
 
+    def flashblack(self):
+        v = self.get_dimension()
+        pr = pygame.Rect(0,0,self.get_fen().get_width(),self.get_fen().get_height())
+        pygame.draw.rect(self.get_fen(),(0,0,0),pr)
+    
     def aff(self,objects):
+        if not(self.get_fen() is None):
+            self.flashblack()
         for o in objects:
             if self.is_in_camera(o.get_hit_box()):
                 o.aff(self.get_fen(),self.get_distorsion())

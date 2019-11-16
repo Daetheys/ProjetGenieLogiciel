@@ -43,10 +43,10 @@ def test_direction_rigid_collide():
     assert mvn.get_direction_rigid_collide(p2) == Segment(Vector(0,3),Vector(2,3))
 
 def test_full_1():
-    v1 = Vector(0,0)
-    v2 = Vector(1,0)
+    v1 = Vector(-1,-1)
+    v2 = Vector(1,-1)
     v3 = Vector(1,1)
-    v4 = Vector(0,1)
+    v4 = Vector(-1,1)
     p = Polygon([v1,v2,v3,v4])
     mvn = MovableNode()
     mvn.set_hit_box(p)
@@ -63,10 +63,4 @@ def test_full_1():
     assert not(mvn.get_hit_box().collide(mvn2.get_hit_box()))
     mvn.move()
     assert mvn.get_hit_box().collide(mvn2.get_hit_box())
-    assert mvn.get_direction_rigid_collide(p2) == Segment(Vector(0,4),Vector(1,4))
-    v = mvn.get_resistance_support(mvn2)
-    speed = mvn.correct_collide_rigid_body(mvn2)
-    assert speed == Vector(0,-1)
-    mvn.apply_reaction(mvn2)
-    assert mvn.get_speed() == Vector(0,0)
-
+    assert mvn.get_direction_rigid_collide(p2) == Segment(Vector(-1,3),Vector(1,3))

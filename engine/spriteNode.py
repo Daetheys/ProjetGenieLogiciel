@@ -21,7 +21,6 @@ class SpriteNode(Node):
         return self.__state
 
     def aff(self,fen,distorsion):
-        print("aff",self)
         s = self.__sps.get_sprite()
         img = pygame.image.load(s).convert_alpha()
         image_dim = Vector(img.get_width(),img.get_height())
@@ -29,3 +28,4 @@ class SpriteNode(Node):
         pos = self.get_position()
         #fen.blit(img,(pos.x*distorsion.x,pos.y*distorsion.y))
         pygame.draw.polygon(fen,(0,255,0),(self.get_hit_box().apply_transform(distorsion)).to_tuples())
+        pygame.draw.polygon(fen,(255,0,0),(self.get_rigid_hit_box().apply_transform(distorsion)).to_tuples())
