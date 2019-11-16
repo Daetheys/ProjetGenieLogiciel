@@ -1,6 +1,6 @@
-import pygame
-import tools
 import buttonMenu
+import pygame
+from pygame.font import Font
 
 
 class Dialogue_Bubble:
@@ -17,12 +17,25 @@ class Dialogue_Bubble:
         g.win().blit(self.background,(self.x,self.y))
         g.win().blit(self.talker.pic,(self.x,self.y))
         w = self.talker.pic.get_width()
-        for i,line in enumerate(self.msg.split("\n")):
-            tools.T(g.win(),line,self.x+w+10,self.y+i*40+5,size=40,center=False)
+        x_text,y_text = self.x+w+10,self.y+5
+        font = Font(None,40)
+        words = [line.split(" ") for line in self.msg.splitlines()]
+        space = font.size(' ')[0]
+        for line in words:
+            for word in line:
+                word_surface = font.render(word, 1, (0,0,0))
+                word_width,word_height = word_surface.get_size()
+                if x_text + word_width >= self.background.get_width():
+                    x_text = self.x+w+10  # Reset the x.
+                    y_text += word_height  # Start on new row.
+                g.win().blit(word_surface, (x_text, y_text))
+                x_text += word_width + space
+            x_text = self.x+w+10  # Reset the x.
+            y_text += word_height  # Start on new row.
 
     def show(self,g):
-        h_bg = self.background.get_height()
-        b = buttonMenu.ButtonMenu(g,g.options["DISPLAYSIZE_X"]-50,g.options["DISPLAYSIZE_X"]-10,self.y+h_bg-40,self.y+h_bg,g.dict_img["img_cont_dial"],picD=g.dict_img["img_end_dial"],add_to_list=False)
+        w_bg, h_bg = self.background.get_size()
+        b = buttonMenu.ButtonMenu(g,self.x+w_bg-50,self.x+w_bg-10,self.y+h_bg-40,self.y+h_bg,g.dict_img["img_cont_dial"],picD=g.dict_img["img_end_dial"],add_to_list=False)
         if self.last:
             b.activation(False)
         else:
