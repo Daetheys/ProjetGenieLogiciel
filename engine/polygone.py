@@ -93,7 +93,7 @@ class Segment:
 
     def collide_segment(self,s):
         return bool(self.get_inter_segment(s))
-            
+
 
     def is_in_interval_x(self,x):
         """ Returns if x in the interval of this segment """
@@ -106,10 +106,10 @@ class Segment:
         miny = min(self.p1.y,self.p2.y)
         maxy = max(self.p1.y,self.p2.y)
         return miny <= y and y <= maxy
-    
+
     def length(self):
         return ((self.p1.x-self.p2.x)**2+(self.p1.y-self.p2.y)**2)**0.5
-        
+
     def get_line(self):
         if self.p1.x-self.p2.x == 0:
             return Line(0,0,True,self.p1.x)
@@ -122,7 +122,7 @@ class Segment:
 
     def __repr__(self):
         return "Segment("+repr(self.p1)+","+repr(self.p2)+")"
-        
+
 class Polygon:
     """ Polygon made of a list of vector points"""
     def __init__(self,points):
@@ -143,7 +143,7 @@ class Polygon:
 
     def get_segments(self):
         return self.__segments
-    
+
     def translate(self,vector):
         """ Translates the polygon """
         for p in self.get_points():
@@ -264,3 +264,17 @@ class Polygon:
 
     def __repr__(self):
         return "Poly("+str(self.get_points())+")"
+
+class Rectangle(Polygon):
+
+    def __init__(self,x,y,l,h):
+        """ To create a basic rectangle, the init function is changed.
+        It takes the x,y coordinates of the top left corner,
+        the length & the height of the Rectangle. It creates then the
+        appropriate Vector objects, and initializes itself like a Polygon."""
+        a = Vector(x,y)
+        b = Vector(x+l,y)
+        c = Vector(x+l,y+h)
+        d = Vector(x,y+h)
+        points = [a,b,c,d]
+        Polygon.__init__(self,points)

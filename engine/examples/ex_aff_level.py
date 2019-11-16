@@ -22,7 +22,7 @@ x = 1
 y = 6
 
 #Let's start by creating the polygon for hit_boxes
-v1 = Vector(0,0) #Creates a point
+v1 = Vector(0,0) #Creates a point -> NEVER CREATE A POINT IN (0,0) !
 v2 = Vector(0,-1)
 v3 = Vector(2,-1)
 v4 = Vector(2,0)
@@ -45,3 +45,4 @@ gl.load_camera(fen) #Load the camera in the window fen
 gl.get_camera().set_dimension(Vector(10,10)) #Resize the camera
 gl.aff()
 pygame.time.wait(5000)
+pygame.display.quit()
