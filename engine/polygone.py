@@ -8,7 +8,7 @@ from vector import Vector
 from transform import Transform
 import random
 
-DEBUG = True
+DEBUG = False
 
 def debug(txt):
     if DEBUG:
@@ -87,44 +87,25 @@ class Segment:
         l = self.get_line()
         return l.is_on_line(v) and self.is_in_interval_x(v.x) and self.is_in_interval_y(v.y)
 
-    def get_inter_segment(self,s):
-        """ Returns a point that is the intersection of both segments. If they don't intersect, return None. If they intersect in more than a point , actually the function returns the line of intersection (the specific segment of intersection is not usefull yet """
-        ls = s.get_line()
-        l = self.get_line()
-        inter_p = l.intersect_point(ls)
-        if inter_p is None:
-            return None #They don't collide
-        else:
-            if isinstance(inter_p,Line):
-                #To check if collinear segments intersect (only check x coordinate is enough)
-                sfmaxx = self.get_max_x()
-                sfminx = self.get_min_x()
-                smaxx = s.get_max_x()
-                sminx = s.get_min_x()
-
-                sfmaxy = self.get_max_y()
-                sfminy = self.get_min_y()
-                smaxy = s.get_max_y()
-                sminy = s.get_min_y()
-
-                if smaxx < sfminx or sfmaxx < sminx or smaxy < sfminy or sfmaxy < sminy:
-                    return None
-                else:
-                    return inter_p
-            else:
-                #To check if a non collinear segments intersect (must check x and y)
-                sfpx = self.is_in_interval_x(inter_p.x)
-                spx = s.is_in_interval_x(inter_p.x)
-                sfpy = self.is_in_interval_y(inter_p.y)
-                spy = s.is_in_interval_y(inter_p.y)
-                if sfpx and spx and sfpy and spy:
-                    return inter_p
-                else:
-                    return None
-
     def collide_segment(self,s):
         """ Returns true if both segment intersect """
-        return bool(self.get_inter_segment(s))
+        def check_side(s1,s2):
+            v1 = s1.get_vector()
+            s12 = Segment(s1.p2,s2.p1)
+            s22 = Segment(s1.p2,s2.p2)
+            v12 = s12.get_vector()
+            v22 = s22.get_vector()
+            return np.sign(v1.cross(v12)) != np.sign(v1.cross(v22))
+        std = check_side(self,s) and check_side(s,self)
+        rect_hull_inter = not(s.get_max_x() < self.get_min_x() or self.get_max_x() < s.get_min_x() or s.get_max_y() < self.get_min_y() or self.get_max_y() < s.get_min_y())
+        col = self.get_vector().cross(s.get_vector()) == 0 and rect_hull_inter
+        if DEBUG:
+            print(self,s)
+            print(check_side(self,s))
+            print(check_side(s,self))
+            print(std,rect_hull_inter,col)
+        return std or col
+        
 
     def get_min_x(self):
         return min(self.p1.x,self.p2.x)
@@ -222,48 +203,14 @@ class Polygon:
             v2 = s2.get_vector()
             v3 = s3.get_vector()
             sens = np.sign(v2.x*v3.y - v2.y*v3.x)
+            if sens == 0 and v2.dot(v3) < 0:
+                return True #Point in a segment
             a = s.length()
             b = s2.length()
             c = s3.length()
             angle = -sens*np.arccos( (-a**2 + b**2 + c**2)/(2*b*c) )
             sum_angle += angle
         return abs(sum_angle) > np.pi #Is either np.pi*2 or 0 (but with approximation let's cut at np.pi)
-        
-    def point_in2(self,point):
-        """ Returns true if the vector point is in the polygon """
-        debug("CALLED polygon.point_in with",self,point)
-        if point in self.get_points():
-            return True
-        count = 0
-        segments = self.get_segments()
-        tested = [False for i in range(len(self.get_points()))]
-        for i,s in enumerate(segments):
-            debug("--i,s",i,s)
-            debug("tested",tested)
-            line = Line(0,point.y)
-            if line.b == s.p1.y and not(tested[i-1]):
-                s2 = segments[(i-1)%len(segments)]
-                up1b = line.is_point_up(s2.p1)
-                up2b = line.is_point_up(s.p2)
-                if s.p1.x <= point.x and ( up1b != up2b ):
-                    tested[i] = True
-                    count += 1
-
-            elif line.b == s.p2.y and not(tested[(i)%len(tested)]):
-                s2 = segments[(i+1)%len(segments)]
-                up1b = line.is_point_up(s2.p2)
-                up2b = line.is_point_up(s.p1)
-                if s.p2.x <= point.x and ( up1b != up2b ):
-                    tested[i] = True
-                    count += 1
-            else:
-                ls = s.get_line()
-                inter_p = line.intersect_point(ls)
-                if not(inter_p is None) and inter_p.x <= point.x:
-                    if s.collide_line(line) and not(tested[(i-1)%len(tested)]) and not(tested[i%len(tested)]):
-                        count += 1
-            debug("count",count)
-        return count%2 == 1
 
 
     def intersect_segment(self,s):
