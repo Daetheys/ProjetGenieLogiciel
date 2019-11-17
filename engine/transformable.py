@@ -49,7 +49,7 @@ class Transformable:
 
     def set_hit_box(self,val):
         self.__collide_hit_box = val
-        t = Transform().scale(0.95) #5% smaller
+        t = Transform().scale(0.999) #5% smaller
         self.set_rigid_hit_box(self.get_hit_box().apply_transform(t))
 
     def get_hit_box(self):

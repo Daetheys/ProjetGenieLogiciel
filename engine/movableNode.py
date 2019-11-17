@@ -109,8 +109,8 @@ class MovableNode(SpriteNode):
             if len(segments_collide) == 1:
                 #self has a corner in p
                 return segments_collide[0]
-            #if len(points_in) == 2 and len(segments_collide) == 0:
-            #    return Segment(points_in[0],points_in[1])
+            if len(points_in) == 2 and len(segments_collide) == 0:
+                return Segment(points_in[0],points_in[1])
             if len(points_in) < 1 and len(segments_collide) <1:
                 factor_max = factor
             else:

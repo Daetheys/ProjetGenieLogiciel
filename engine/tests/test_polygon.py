@@ -267,8 +267,7 @@ def test_big_segments(p11,p12,p21,p22):
                 assert s1.contains(v1)
                 assert s2.contains(v1)
 """
-"""
-@given(lists(tuples(integers(),integers())),tuples(integers(),integers()))
+@given(lists(tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE))),tuples(integers(min_value=-VALUE,max_value=VALUE),integers(min_value=-VALUE,max_value=VALUE)))
 def test_big_is_in_poly(l,pt):
     if len(l) > 3:
         lv = []
@@ -279,4 +278,6 @@ def test_big_is_in_poly(l,pt):
         p = Polygon(lv)
         pt = Vector(pt[0],pt[1])
         b = p.point_in(pt)
-"""
+        if b:
+            assert p.min_x <= pt.x <= p.max_x
+            assert p.min_y <= pt.y <= p.max_y
