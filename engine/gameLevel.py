@@ -6,6 +6,7 @@ sys.path.append(path + "/engine")
 from camera import Camera
 from vector import Vector
 import pygame
+import time
 
 class GameLevel:
     """ Level of the game """
@@ -50,8 +51,11 @@ class GameLevel:
         return self.size_level
 
     def refresh(self,dt):
+        t = time.clock()
         self.physics_step(dt)
+        print("ipsp",1/(time.clock()-t))
         self.aff()
+        print("ipsf",1/(time.clock()-t))
 
     def physics_step(self,dt):
         for o in self.get_objects():

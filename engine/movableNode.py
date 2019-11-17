@@ -5,6 +5,7 @@ from polygone import *
 from transform import Transform
 
 import pygame
+import time
 
 DEBUG = False
 
@@ -80,17 +81,20 @@ class MovableNode(SpriteNode):
 
     def get_direction_rigid_collide(self,p):
         """ Returns either the point or the segment that first created a collision between self (moving) and p (not moving) """
+        t = time.clock()
         speed = -self.get_speed().copy()
         ang_speed = -self.get_ang_speed()
-        
+        """
         #Check if the function will work correctly
         ancient_rigid_box = self.get_rigid_hit_box().translate2(speed)
         assert not(ancient_rigid_box.collide(p))
         assert self.get_rigid_hit_box().collide(p)
-        
+        """
         factor_max = 1
         factor_min = 0
         timeout = 0
+        print("pre comp",time.clock()-t)
+        t = time.clock()
         while 1: #Proceeds by dichotomia assuming last pos wasn't creating a collision but the new one is
             factor = (factor_max+factor_min)/2
             self_cpy = self.get_rigid_hit_box().copy()
@@ -99,17 +103,19 @@ class MovableNode(SpriteNode):
             self_cpy.rotate(ang_speed*factor)
             points_in = p.points_in(self_cpy)
             segments_collide = p.segments_collide_with(self_cpy)
-            if DEBUG:
-                print("p",p)
-                print("self cpy",self_cpy)
-                print("factor",factor,points_in,segments_collide)
             if len(points_in) == 1 and len(segments_collide) == 2:
                 #p has a corner in self
+                print("getf",time.clock()-t)
+                print(timeout)
                 return points_in[0]
             if len(segments_collide) == 1:
                 #self has a corner in p
+                print("getf",time.clock()-t)
+                print(timeout)
                 return segments_collide[0]
             if len(points_in) == 2 and len(segments_collide) == 0:
+                print("getf",time.clock()-t)
+                print(timeout)
                 return Segment(points_in[0],points_in[1])
             if len(points_in) < 1 and len(segments_collide) <1:
                 factor_max = factor
@@ -120,8 +126,6 @@ class MovableNode(SpriteNode):
                 assert False #Timeout in get_object_collide
 
     def get_segment_collide(self,p):
-        if DEBUG:
-            print("GET SEGMENT COLLIDE")
         obj = self.get_direction_rigid_collide(p)
         if isinstance(obj,Vector):
             p_points = p.get_points()
@@ -133,18 +137,6 @@ class MovableNode(SpriteNode):
             s2 = Segment(obj,p2)
             s1_collide = self.get_hit_box().segments_collide_with(Polygon([s1.p1,s1.p2]))
             s2_collide = self.get_hit_box().segments_collide_with(Polygon([s2.p1,s2.p2]))
-            if True:
-                print("self",self)
-                print("p",p)
-                print("obj",obj)
-                print("p_points",p_points)
-                print("index",index)
-                print("p1",p1)
-                print("p2",p2)
-                print("s1",s1)
-                print("s2",s2)
-                print("s1_collide",s1_collide)
-                print("s2_collide",s2_collide)
             #Handle both angle in segment
             s_collide = [v for v in s1_collide if v in s2_collide]
             #If s_collide is empty self and p are parallel
@@ -177,18 +169,21 @@ class MovableNode(SpriteNode):
     def apply_reaction(self,support):
         assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
         #Get how to remove the collision
+        t = time.clock()
         correction = self.correct_collide_rigid_body(support)
+        print("corr",time.clock()-t)
+        t = time.clock()
         #Get how to correct the speed
         speed = self.get_resistance_support(support)
+        print("speed",time.clock()-t)
         #Correct position and speed
-        print("pos",self.get_hit_box())
         self.translate(correction)
         self.set_speed(self.get_speed()+speed)
-        print("correction",correction)
-        print("pos",self.get_hit_box())
-        print("speed",speed)
-        print("final speed",self.get_speed())
         if DEBUG:
+            print("correction",correction)
+            print("pos",self.get_hit_box())
+            print("speed",speed)
+            print("final speed",self.get_speed())
             print("final self box",self.get_hit_box())
             print("final support box",support.get_hit_box())
             print("final collide",self.get_hit_box().collide(support.get_hit_box()))
