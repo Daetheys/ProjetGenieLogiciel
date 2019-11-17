@@ -38,7 +38,8 @@ class Transform:
         return self.transform_vect(Vector(x,y))
 
     def transform_vect(self,v):
-        return np.dot(self.matrix[:2,:],v.homogeneous())
+        arr = np.dot(self.matrix[:2,:],v.homogeneous())
+        return arr
 
     def combine(self,t1):
         self.matrix = np.dot(self.matrix,t1.get_matrix())

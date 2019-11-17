@@ -78,7 +78,7 @@ class MovableNode(SpriteNode):
             ang_acc += ang_accf
         self.set_acc(acc/self.get_mass())
         self.set_ang_acc(ang_acc/self.get_ang_inertia())
-    """
+    
     def get_direction_rigid_collide(self,p):
         """ Returns either the point or the segment that first created a collision between self (moving) and p (not moving) """
         t = time.clock()
@@ -245,3 +245,4 @@ class MovableNode(SpriteNode):
             print("final support box",support.get_hit_box())
             print("final collide",self.get_hit_box().collide(support.get_hit_box()))
             print("final rigid",self.get_rigid_hit_box().collide(support.get_rigid_hit_box()))
+"""
