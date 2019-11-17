@@ -3,12 +3,13 @@ from spriteScheduler import *
 import copy
 
 class SolidPlatform(ControlableNode):
-    def __init__(self,polygon):
+    def __init__(self,polygon,name='empty'):
         ControlableNode.__init__(self)
         self.set_hit_box(polygon)
         self.set_rigid_body(True)
-        self.set_sps(SpriteScheduler('ex2'))
+        self.set_sps(SpriteScheduler(name))
         self.get_sps().load_automaton()
+        self.get_sps().load_sprites()
 
     def copy(self):
         clas = self.__class__
@@ -33,8 +34,8 @@ class Pattern(SolidPlatform):
     can now be considered as patterns objects. Be sure to type the right
     patternYype in the self.pt field.  """
 
-    def __init__(self,polygon):
-        SolidPlatform.__init__(self,polygon)
+    def __init__(self,polygon,name='empty'):
+        SolidPlatform.__init__(self,polygon,name)
         self.pt = ""#patternType
         self.period = 1
         self.init_delay = 0

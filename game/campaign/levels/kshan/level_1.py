@@ -34,7 +34,7 @@ def level_1_kshan(g):
     v4 = Vector(rhs,0)
     rh = Polygon([v1,v3,v4,v2]) #Creates the polygon corresponding to the given sequence
     #It's a rhombus
-    prh = Pattern(rh)
+    prh = Pattern(rh,"name")
     prh.pt = "UpDown"
     prh.translate(Vector(rhx,rhy))
     prh.speed = 30
@@ -54,7 +54,7 @@ def level_1_kshan(g):
     RH.append(tau)
     tau.translate(Vector(-1000,200))
 
-    tau.create_sps("name")
+    tau.create_sps("spike")
     rec = Rectangle(-300,-400,largeur,800)
     pr = SolidPlatform(rec)
     pr.translate(Vector(-200,800))

@@ -38,6 +38,8 @@ class SpriteNode(Node):
             if self.__sps.loaded:
                 img = self.__sps.get_sprite()
             else:
+                print("Images should never be imported on-the-fly!")
+                exit(0)
                 s = self.__sps.get_sprite()
                 img = pygame.image.load(s).convert_alpha()
             image_dim = Vector(img.get_width(),img.get_height())
@@ -45,13 +47,13 @@ class SpriteNode(Node):
             dist = scale.transform_vect(image_dim)
             img = pygame.transform.smoothscale(img,dist)
             pos = self.get_position()
-            print("-------1",pos,trans)
+            #print("-------1",pos,trans)
             pos = pos.apply_transform(scale)
             vpos = Vector(pos[0],pos[1])
             pos = vpos.apply_transform(trans)
             vpos = Vector(pos[0],pos[1])
-            print("-------2",pos)
+            #print("-------2",pos)
             fen.blit(img,(vpos.x ,vpos.y ))
-        if True:
+        else:
             pygame.draw.polygon(fen,(0,255,0),(self.get_hit_box().apply_transform(scale).apply_transform(trans)).to_tuples())
             pygame.draw.polygon(fen,(188,0,0),(self.get_rigid_hit_box().apply_transform(scale).apply_transform(trans)).to_tuples())

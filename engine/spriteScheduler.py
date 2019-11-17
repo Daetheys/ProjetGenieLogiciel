@@ -56,9 +56,15 @@ class SpriteScheduler:
 		After a call to sps.load_sprites(), sps.get_sprite() directly returns
 		the Pygame.surface object, and not the mere string 'path-to-image'
 		"""
-		self.loaded = True
-		for k,v in self.ata.qn.items():
-			self.ata.qn[k] = pygame.image.load(v).convert_alpha()
+		if not self.loaded:
+			self.loaded = True
+			for k,v in self.ata.qn.items():
+				if type(v) == type(""):
+					self.ata.qn[k] = pygame.image.load(v).convert_alpha()
+				#Somewhere, one loads an automaton once too much as this if is
+				#necessary. This can be stopped. We must act immediatly.
+		else:
+			print("WARNING : You are trying to load already loaded images!")
 
 
 def __repr__(self):
