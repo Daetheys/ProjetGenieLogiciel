@@ -42,10 +42,19 @@ class Camera:
         dim = self.get_dimension()
         pos = self.get_position()
 
+        distorsion_scale = Transform().scale(Vector(width/dim.x,height/dim.y))
+        distorsion_translate = Transform().translate(-pos)
+        self.distorsion = (distorsion_scale,distorsion_translate)
+    """
+    def compute_distorsion(self):
+        (width,height) = (self.fen.get_width(),self.fen.get_height())
+        dim = self.get_dimension()
+        pos = self.get_position()
+
         self.distorsion = Transform()
         self.distorsion = self.distorsion.scale(Vector(width/dim.x,height/dim.y))
         self.distorsion = self.distorsion.translate(-pos.copy())#why .copy ??
-
+    """
     def is_in_camera(self,polygon):
         """ Returns true if the polygon is completely in the camera's rect or if it intersects a side """
         f_in = True
