@@ -24,6 +24,7 @@ class SpriteScheduler:
 		"""
 		self.name = name
 		self.ata = None
+		self.loaded = False
 
 	def load_automaton(self):
 		"""
@@ -55,6 +56,7 @@ class SpriteScheduler:
 		After a call to sps.load_sprites(), sps.get_sprite() directly returns
 		the Pygame.surface object, and not the mere string 'path-to-image'
 		"""
+		self.loaded = True
 		for k,v in self.ata.qn.items():
 			self.ata.qn[k] = pygame.image.load(v).convert_alpha()
 

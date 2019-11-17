@@ -20,6 +20,7 @@ class SpriteNode(Node):
         """
         sche = SpriteScheduler(name)
         sche.load_automaton()
+        sche.load_sprites()
         self.__sps = sche
 
     def get_sps(self):
@@ -33,15 +34,20 @@ class SpriteNode(Node):
         return self.__state
 
     def aff(self,fen,distorsion):
-        s = self.__sps.get_sprite()
-        #if self.__sps is not None: print(s)
-        #else: print("!!!!!!",s)
-        img = pygame.image.load(s).convert_alpha()
-        image_dim = Vector(img.get_width(),img.get_height())
-        dist = distorsion.transform_vect(image_dim)
-        #img = pygame.transform.smoothscale(img,dist)
-        pos = self.get_position()
-        #fen.blit(img,(pos.x*distorsion.x,pos.y*distorsion.y))
-        pygame.draw.polygon(fen,(0,255,0),(self.get_hit_box().apply_transform(distorsion)).to_tuples())
-        pygame.draw.polygon(fen,(188,0,0),(self.get_rigid_hit_box().apply_transform(distorsion)).to_tuples())
-        #fen.blit(img,self.get_position().to_tuple())
+        if  self.__sps is not None:
+            if self.__sps.loaded:
+                img = self.__sps.get_sprite()
+            else:
+                s = self.__sps.get_sprite()
+                img = pygame.image.load(s).convert_alpha()
+            image_dim = Vector(img.get_width(),img.get_height())
+            scale,trans = distorsion
+            dist = scale.transform_vect(image_dim)
+            img = pygame.transform.smoothscale(img,dist)
+            pos = self.get_position()
+            pos.apply_transform(scale)
+            pos.apply_transform(trans)
+            fen.blit(img,(pos.x ,pos.y ))
+        if True:
+            pygame.draw.polygon(fen,(0,255,0),(self.get_hit_box().apply_transform(scale).apply_transform(trans)).to_tuples())
+            pygame.draw.polygon(fen,(188,0,0),(self.get_rigid_hit_box().apply_transform(scale).apply_transform(trans)).to_tuples())
