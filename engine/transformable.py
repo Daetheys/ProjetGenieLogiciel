@@ -7,6 +7,7 @@ from polygone import *
 #travis github CI
 
 class Transformable:
+    """ Represents a vector """
     def __init__(self):
         self.__origin = Vector() # Origine du Transformable
         self.__position = Vector() # Coordonnees du Transformable dans l'environnement
@@ -26,6 +27,7 @@ class Transformable:
         self.__rigid_hit_box = Polygon([self.__origin])
 
     def copy(self):
+        """ Returns a copy of this vector """
         clas = self.__class__
         t2 = clas()
         args = self.__dict__
@@ -34,20 +36,25 @@ class Transformable:
         return t2
 
     def set_rigid_body(self,val):
+        """ Sets whether it's a rigid body or not """
         self.__rigid_body = val
         if val:
             self.__collide = True #A rigid body collides
 
     def get_rigid_body(self):
+        """ Returns if it's a rigid body """
         return self.__rigid_body
 
     def set_collide(self,val):
+        """ Sets whether this can collide """
         self.__collide = val
 
     def get_collide(self):
+        """ Returns if this collides """
         return self.__collide
 
     def set_hit_box(self,val):
+        """ Set the collide hit box of this """
         self.__collide_hit_box = val
         t = Transform().scale(0.999) #0.1% smaller
         self.set_rigid_hit_box(self.get_hit_box().apply_transform(t))
@@ -58,49 +65,64 @@ class Transformable:
         return self.__collide_hit_box.apply_transform(transform)
 
     def set_rigid_hit_box(self,val):
+        """ Set the rigid body hit box -- Don't use it if you don't know what you're doing """
         self.__rigid_hit_box = val
 
     def get_rigid_hit_box(self):
+        """ Returns the rigid hit box """
         transform = self.get_transform() #Recompute the hit box to avoid comulating errors due to operations on floats that approximate computations
         return self.__rigid_hit_box.apply_transform(transform)
 
+    """
     def reset_update(self):
         self.__tr_need_up = True
         self.__inv_tr_need_up = True
+    """
 
     def set_position(self,x,y):
+        """ Set the positino of this """
         self.__position = Vector(x,y)
-        self.reset_update()
+        #self.reset_update()
 
     def set_rotation(self,ang):
+        """ Set the rotation of this """
         self.__rotation = ang%(2*np.pi) #Il faut que ce soit positif !!
 
     def set_scale(self,scale_x,scale_y):
+        """ Set the scale """
         self.__scale = Vector(scale_x,scale_y)
         self.reset_update()
-
+    """
     def set_origin(self,x,y):
+        #Don't use it
         self.__origin = Vector(x,y)
         self.reset_update()
-
+    """
     def get_position(self):
+        """ Returns the position """
         return self.__position
 
     def get_rotation(self):
+        """ Returns the rotation """
         return self.__rotation
 
     def get_scale(self):
+        """ Returns the scale """
         return self.__scale
-
+    """
     def get_origin(self):
+        #Don't use it
         return self.__origin
+    """
 
     def translate(self,v):
+        """ Translates this (side effect)"""
         (move_x,move_y) = (v.x,v.y)
         (x,y) = self.__position.x,self.__position.y
         self.set_position(x+move_x,y+move_y)
 
     def translate2(self,v):
+        """ Copies this, translates it and returns the new translated Transformable """
         t2 = self.copy()
         (move_x,move_y) = (v.x,v.y)
         (x,y) = self.__position.x,self.__position.y
@@ -108,14 +130,17 @@ class Transformable:
         return t2
 
     def rotate(self,angle):
+        """ Rotates this """
         self.set_rotation(self.__rotation+angle)
 
     def scale(self,scalex,scaley):
+        """ Scales this """
         (x,y) = self.__scale.x,self.__scale.y
         (x2,y2) = (scalex,scaley)
         self.set_scale(x+x2,y+y2)
-
+    """
     def get_transform(self):
+        #Don't use it
         (x,y) = self.__position.x,self.__position.y
         (sx,sy) = self.__scale.x,self.__scale.y
         (mx,my) = self.__origin.x,self.__origin.y
@@ -135,10 +160,11 @@ class Transformable:
         # was None and __tr_need_up == False
         assert self.__transform != None
         return self.__transform
-
+    
     def get_inverse_transform(self):
+        #Don't use it
         if self.__inv_tr_need_up:
             self.__inverse_transform = self.get_transform().get_inverse()
             self.__inv_tr_need_up = False
         return self.__inverse_transform
-
+    """

@@ -3,6 +3,7 @@ from spriteScheduler import *
 import copy
 
 class SolidPlatform(ControlableNode):
+    """ SolidPlatform of the game """
     def __init__(self,polygon,name='empty'):
         ControlableNode.__init__(self)
         self.set_hit_box(polygon)
@@ -12,6 +13,7 @@ class SolidPlatform(ControlableNode):
         self.get_sps().load_sprites()
 
     def copy(self):
+        """ Returns the copy of this """
         clas = self.__class__
         t2 = clas(self.get_hit_box())
         args = self.__dict__
@@ -24,6 +26,7 @@ class SolidPlatform(ControlableNode):
         return "SolidPlatform("+str(self.get_hit_box())+")"
 
     def collide(self,o2):
+        """ Function called when this collides something else """
         #print("collide")
         pass
 
