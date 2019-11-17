@@ -6,6 +6,7 @@ sys.path.append(path + "/engine")
 from camera import Camera
 from vector import Vector
 import pygame
+import time
 
 class GameLevel:
     """ Level of the game """
@@ -50,8 +51,11 @@ class GameLevel:
         return self.size_level
 
     def refresh(self,dt):
+        t = time.clock()
         self.physics_step(dt)
+        print("ipsp",1/(time.clock()-t))
         self.aff()
+        print("ipsf",1/(time.clock()-t))
 
     def physics_step(self,dt):
         for o in self.get_objects():
@@ -61,7 +65,8 @@ class GameLevel:
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
                     o.collide(o2)
                     o2.collide(o)
-                    if o.get_rigid_body() and o2.get_rigid_body():
+                    if o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
+                        #print("------------------rigid",o,o2)
                         o.apply_reaction(o2)
 
     def load_camera(self,fen):
