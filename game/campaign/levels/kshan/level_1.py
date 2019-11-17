@@ -49,6 +49,12 @@ def level_1_kshan(g):
         RH[-1].translate(Vector(80,0))
         RH[-1].init_delay += 2
 
+    tau = prh.copy()
+    tau.pt = "Square"
+    RH.append(tau)
+    tau.translate(Vector(-1000,200))
+
+    tau.create_sps("name")
     rec = Rectangle(-300,-400,largeur,800)
     pr = SolidPlatform(rec)
     pr.translate(Vector(-200,800))
@@ -66,6 +72,7 @@ def level_1_kshan(g):
     gl = GameLevel(L+RH,[])
     gl.load_camera(g.win())#Load the camera in the window fen
     gl.get_camera().set_dimension(Vector(1280,720)) #Resize the camera
+    #Usually 2000,2000 (moins de distortion ?) or 2560,1440 (plus grosse résolution)
     gl.get_camera().set_position(Vector(0,0)) #change pos of  the camera
     gl.aff()
 

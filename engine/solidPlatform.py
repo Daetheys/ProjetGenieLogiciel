@@ -52,4 +52,14 @@ class Pattern(SolidPlatform):
                     self.translate(Vector(0,self.speed))
                 else:
                     self.translate(Vector(0,-self.speed))
+        elif self.pt == "Square":
+            if t > self.init_delay:
+                if (t-self.init_delay) % self.period < self.period/4:
+                    self.translate(Vector(0,self.speed))
+                elif (t-self.init_delay) % self.period < self.period/2:
+                    self.translate(Vector(self.speed,0))
+                elif (t-self.init_delay) % self.period < 3*self.period/4:
+                    self.translate(Vector(0,-self.speed))
+                else:
+                    self.translate(Vector(-self.speed,0))
 

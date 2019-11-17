@@ -32,6 +32,8 @@ class SpriteScheduler:
 		for automata in dict_ata.values():
 			if automata.name == self.name:
 				self.ata = automata
+		if self.ata is None:
+			print("Initialization Failed ! name:"+str(self.name))
 
 	def step(self,char):
 		""" does one step of execution of the automaton """
