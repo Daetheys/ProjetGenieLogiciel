@@ -41,8 +41,10 @@ class Level_Sequence(Map_Point):
         self.is_accessed()
         g.win().blit(g.dict_img["img_dial"],(0,400))  #ugly code just to separate start and end dialogue
         g.flip()   #ugly code
+
+        reussite = []
         for level in self.__levels:
-            level.launch(g)
+            reussite.append(level.launch(g))#pour savoir quels niveaux ont été réussis !
         self.is_finished()
         if self._end_dialogue is not None:
             self._end_dialogue.show(g)
