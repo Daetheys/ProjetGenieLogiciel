@@ -34,6 +34,9 @@ class Vector:
     def normalise(self):
         norm = self.len()
         return Vector(self.x/norm,self.y/norm)
+
+    def cross(self,v):
+        return self.x*v.y-self.y*v.x
     
     def dot(self,v):
         return self.x*v.x + self.y*v.y

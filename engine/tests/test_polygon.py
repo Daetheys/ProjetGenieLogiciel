@@ -71,6 +71,9 @@ def test_segment_collide_segment():
     s6 = Segment(Vector(0,2),Vector(2,2))
     s7 = Segment(Vector(-1,2),Vector(1,2))
     assert s6.collide_segment(s7)
+    s6 = Segment(Vector(0,2),Vector(2,2))
+    s7 = Segment(Vector(-1,2),Vector(1,2))
+    assert s6.collide_segment(s7)
 
 def test_is_in_interval_x():
     s1 = Segment(Vector(-1,1),Vector(2,1))
