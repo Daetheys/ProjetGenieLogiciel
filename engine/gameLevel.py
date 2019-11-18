@@ -51,13 +51,12 @@ class GameLevel:
         return self.size_level
 
     def refresh(self,dt):
-        t = time.clock()
+        """ Excutes one step of duration dt in the level """
         self.physics_step(dt)
-        print("ipsp",1/(time.clock()-t))
         self.aff()
-        print("ipsf",1/(time.clock()-t))
 
     def physics_step(self,dt):
+        """ Compute collisions """
         for o in self.get_objects():
             o.compute_speed(dt)
             o.move()
@@ -70,8 +69,10 @@ class GameLevel:
                         o.apply_reaction(o2)
 
     def load_camera(self,fen):
+        """ Loads the actual camera of the Level """
         self.camera.set_fen(fen)
                         
     def aff(self):
+        """ Aff all objects that are in the camera of this """
         self.camera.aff(self.objects)
         pygame.display.flip()

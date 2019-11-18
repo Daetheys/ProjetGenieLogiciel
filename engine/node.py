@@ -4,6 +4,7 @@ from transformable import Transformable
 from vector import Vector
 
 class Node(Transformable):
+    """ Node with children """
     def __init__(self):
         super().__init__()
         self.__children = []
@@ -15,32 +16,39 @@ class Node(Transformable):
             del son
 
     def get_parent(self):
+        """ Returns parent of this node """
         return self.__parent
 
     def attach_children(self,child):
+        """ Attach a node to this """
         if child.__parent.__children is not None:
             child.__parent.__children.remove(child)
         child.__parent = self
         self.__children.append(child)
 
     def detach_children(self,child):
+        """ Detach a node """
         if child.__parent is not self:
             return
         child.__parent = None
         self.__children.remove(child)
 
     def remove_wrecks(self):
+        """ Remove marked to be deleted nodes """
         for child in self.__children:
             if child.__marked_for_removal:
                 del child
 
     def stage_for_removal(self):
+        """ Mark this node to be deleted """
         self.__marked_for_removal=True
 
     def is_stage_for_removal(self):
+        """ Returns if a node is marked to be deleted """
         return self.__marked_for_removal
 
     def draw(self,transform):
+        """ Computes transformations on everyone """
         transform = transform*get_transform()
         self.draw_current(transform)
         for child in self.__children:

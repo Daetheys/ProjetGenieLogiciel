@@ -34,6 +34,7 @@ class SpriteNode(Node):
         return self.__state
 
     def aff(self,fen,distorsion):
+        """ Aff this node on the camera"""
         if  self.__sps is not None:
             if self.__sps.loaded:
                 img = self.__sps.get_sprite()
