@@ -25,6 +25,21 @@ class Transform:
         #else:
            #raise WrongSizeMatrix(matrix)
 
+    def copy(self):
+        tr = Transform()
+        tr.matrix = self.matrix.copy()
+        return tr
+
+    def __repr__(self):
+        return str(self.matrix)
+
+    def cut_translate(self):
+        mat = self.matrix.copy()
+        mat[:,2] = np.array([0,0,0])
+        mat[2,:] = np.array([0,0,0])
+        mat[2,2] = 1
+        return Transform(mat)
+    
     def get_matrix(self):
         """ Returns the matrix """
         return self.matrix
@@ -45,11 +60,11 @@ class Transform:
     def transform_vect(self,v):
         """ Transforms a vector /!\ Returns a np.array """
         arr = np.dot(self.matrix[:2,:],v.homogeneous())
-        return arr
+        return Vector(arr[0][0],arr[1][0])
 
     def combine(self,t1):
         """ Dot with an other transform """
-        self.matrix = np.dot(self.matrix,t1.get_matrix())
+        self.matrix = np.dot(t1.get_matrix(),self.matrix)
         return self
 
     def translate(self,v):

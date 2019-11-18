@@ -159,6 +159,12 @@ class Polygon:
         self.compute_segments()
         self.compute_max_min()
 
+    def __truediv__(self,v):
+        p2 = self.copy()
+        for i in range(len(p2.get_points())):
+            p2.__points[i] /= v
+        return p2
+
     def compute_segments(self):
         """ Computes segments from points """
         self.__segments = []
@@ -247,7 +253,7 @@ class Polygon:
         li = []
         for p in self.get_points():
             v = transform.transform_vect(p)
-            li.append(Vector(v[0][0],v[1][0]))
+            li.append(v)
         poly = Polygon(li)
         return poly
 

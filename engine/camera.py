@@ -56,29 +56,11 @@ class Camera:
         distorsion_translate = Transform().translate(-pos)
         self.distorsion = (distorsion_scale,distorsion_translate)
 
-    def is_in_camera(self,polygon):
+    def is_in_camera(self,poly):
         """ Returns true if the polygon is completely in the camera's rect or if it intersects a side """
-        f_in = True
-        for p in polygon.get_points():
-            if not(self.rect.contains_vect(p)):
-                f_in = False
-        rv = self.rect.get_position()
-        (rx,ry) = (rv.x,rv.y)
-        sv = self.rect.get_dimension()
-        (sx,sy) = (sv.x,sv.y)
-        tl = Vector(rx,ry)
-        bl = Vector(rx,ry+sy)
-        tr = Vector(rx+sx,ry)
-        br = Vector(rx+sx,ry+sy)
-        left_seg = Segment(tl,bl)
-        top_seg = Segment(tl,tr)
-        right_seg = Segment(tr,br)
-        bot_seg = Segment(bl,br)
-        f_sides = False
-        for side in [left_seg,top_seg,right_seg,bot_seg]:
-            f_sides = f_sides or polygon.intersect_segment(side)
-        return f_in or f_sides
-
+        r = self.rect.collide(poly)
+        return bool(r)
+    
     def flashblack(self):
         """ Fill the camera with black in order to blit images right after """
         v = self.get_dimension()

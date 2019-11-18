@@ -73,25 +73,27 @@ class Transformable:
         transform = self.get_transform() #Recompute the hit box to avoid comulating errors due to operations on floats that approximate computations
         return self.__rigid_hit_box.apply_transform(transform)
 
-    """
+
     def reset_update(self):
         self.__tr_need_up = True
         self.__inv_tr_need_up = True
-    """
+
 
     def set_position(self,x,y):
         """ Set the positino of this """
         self.__position = Vector(x,y)
-        #self.reset_update()
+        self.reset_update()
 
     def set_rotation(self,ang):
         """ Set the rotation of this """
         self.__rotation = ang%(2*np.pi) #Il faut que ce soit positif !!
+        self.reset_update()
 
     def set_scale(self,scale_x,scale_y):
         """ Set the scale """
         self.__scale = Vector(scale_x,scale_y)
         self.reset_update()
+        
     """
     def set_origin(self,x,y):
         #Don't use it
@@ -138,9 +140,8 @@ class Transformable:
         (x,y) = self.__scale.x,self.__scale.y
         (x2,y2) = (scalex,scaley)
         self.set_scale(x+x2,y+y2)
-    """
+        
     def get_transform(self):
-        #Don't use it
         (x,y) = self.__position.x,self.__position.y
         (sx,sy) = self.__scale.x,self.__scale.y
         (mx,my) = self.__origin.x,self.__origin.y
@@ -160,7 +161,7 @@ class Transformable:
         # was None and __tr_need_up == False
         assert self.__transform != None
         return self.__transform
-    
+    """
     def get_inverse_transform(self):
         #Don't use it
         if self.__inv_tr_need_up:

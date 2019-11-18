@@ -78,18 +78,13 @@ class MovableNode(SpriteNode):
             ang_acc += ang_accf
         self.set_acc(acc/self.get_mass())
         self.set_ang_acc(ang_acc/self.get_ang_inertia())
-    
+    """
     def get_direction_rigid_collide(self,p):
-        """ Returns either the point or the segment that first created a collision between self (moving) and p (not moving) """
+        # Returns either the point or the segment that first created a collision between self (moving) and p (not moving)
         t = time.clock()
         speed = -self.get_speed().copy()
         ang_speed = -self.get_ang_speed()
-        """
-        #Check if the function will work correctly
-        ancient_rigid_box = self.get_rigid_hit_box().translate2(speed)
-        assert not(ancient_rigid_box.collide(p))
-        assert self.get_rigid_hit_box().collide(p)
-        """
+        
         factor_max = 1
         factor_min = 0
         timeout = 0
@@ -209,40 +204,16 @@ class MovableNode(SpriteNode):
                     print("timeout rigid supppot",support.get_rigid_hit_box())
                 assert False #Timeout in get_object_collide (rigid)
         """
-
-    def get_vect_inter(self,rect):
-        lp1 = self.get_rigid_hit_box().points_in(rect)
-        lp2 = rect.get_rigid_hit_box().points_in(self.get_rigid_hit_box())
-        assert len(lp1+lp2) == 1
-        return (lp1+lp2)[0]
-
-    def get_edge_inter(self,rect):
-        pass
-
-    def compute_correction(self,rect):
-        inter_p = get_vect_inter(rect)
-        v = self.get_speed()
-
+    
     def apply_reaction(self,support):
         assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
         #Get how to remove the collision
-        t = time.clock()
-        correction = self.compute_correction(support)
-        print("corr",time.clock()-t)
-        t = time.clock()
+        correction = self.get_rigid_hit_box().remove_collide(support.get_rigid_hit_box())
         #Get how to correct the speed
-        speed = self.get_resistance_support(support)
-        print("speed",time.clock()-t)
+        print("speed",self.get_speed())
+        speed = correction.normalise()*self.get_speed()
         #Correct position and speed
         self.translate(correction)
         self.set_speed(self.get_speed()+speed)
-        if DEBUG:
-            print("correction",correction)
-            print("pos",self.get_hit_box())
-            print("speed",speed)
-            print("final speed",self.get_speed())
-            print("final self box",self.get_hit_box())
-            print("final support box",support.get_hit_box())
-            print("final collide",self.get_hit_box().collide(support.get_hit_box()))
-            print("final rigid",self.get_rigid_hit_box().collide(support.get_rigid_hit_box()))
-"""
+        print("speed",speed,self.get_speed())
+

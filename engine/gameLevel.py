@@ -16,7 +16,7 @@ class GameLevel:
         self.camera.set_position(Vector(0,0))
         self.camera.set_dimension(Vector(10,10))
         self.objects = objects
-        self.compute_size_level()
+        #self.compute_size_level()
 
     def get_camera(self):
         return self.camera
@@ -65,7 +65,7 @@ class GameLevel:
                     o.collide(o2)
                     o2.collide(o)
                     if o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
-                        #print("------------------rigid",o,o2)
+                        print("------------------rigid",o,o2)
                         o.apply_reaction(o2)
 
     def load_camera(self,fen):

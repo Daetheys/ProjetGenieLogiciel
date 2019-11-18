@@ -35,6 +35,7 @@ class SpriteNode(Node):
 
     def aff(self,fen,distorsion):
         """ Aff this node on the camera"""
+        scale,trans = distorsion
         if  self.__sps is not None:
             if self.__sps.loaded:
                 img = self.__sps.get_sprite()
@@ -44,17 +45,14 @@ class SpriteNode(Node):
                 s = self.__sps.get_sprite()
                 img = pygame.image.load(s).convert_alpha()
             image_dim = Vector(img.get_width(),img.get_height())
-            scale,trans = distorsion
             dist = scale.transform_vect(image_dim)
             img = pygame.transform.smoothscale(img,dist)
             pos = self.get_position()
             #print("-------1",pos,trans)
             pos = pos.apply_transform(scale)
-            vpos = Vector(pos[0],pos[1])
-            pos = vpos.apply_transform(trans)
-            vpos = Vector(pos[0],pos[1])
+            pos = pos.apply_transform(trans)
             #print("-------2",pos)
-            fen.blit(img,(vpos.x ,vpos.y ))
+            fen.blit(img,(pos.x ,vpos.y ))
         else:
             pygame.draw.polygon(fen,(0,255,0),(self.get_hit_box().apply_transform(scale).apply_transform(trans)).to_tuples())
             pygame.draw.polygon(fen,(188,0,0),(self.get_rigid_hit_box().apply_transform(scale).apply_transform(trans)).to_tuples())

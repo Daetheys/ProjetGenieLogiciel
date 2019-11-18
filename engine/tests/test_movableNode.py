@@ -21,13 +21,13 @@ def test_copy(px,py,r,sx,sy,ox,oy):
     T.set_position(px,py)
     T.set_rotation(r)
     T.set_scale(sx,sy)
-    T.set_origin(ox,oy)
+    #T.set_origin(ox,oy)
     T.set_speed(Vector(2,3))
     T2 = T.copy()
     assert T2.get_position().to_tuple() == (px,py)
     assert T2.get_rotation() == r%(2*np.pi)
     assert T2.get_scale().to_tuple() == (sx,sy)
-    assert T2.get_origin().to_tuple() == (ox,oy)
+    #assert T2.get_origin().to_tuple() == (ox,oy)
     assert T2.get_speed() == Vector(2,3)
     
 
@@ -36,7 +36,7 @@ def test_direction_rigid_collide():
     v2 = Vector(2,1)
     v3 = Vector(1,2)
     v4 = Vector(0,1)
-    p = Polygon([v1,v2,v3,v4])
+    p = Rect([v1,v2,v3,v4])
     mvn = MovableNode()
     mvn.set_hit_box(p)
     mvn.set_rigid_body(True)
@@ -45,7 +45,7 @@ def test_direction_rigid_collide():
     v22 = Vector(2,0)
     v23 = Vector(2,1)
     v24 = Vector(0,1)
-    p2 = Polygon([v21,v22,v23,v24])
+    p2 = Rect([v21,v22,v23,v24])
     p2.translate(Vector(0,3))
     
     mvn2 = MovableNode()
