@@ -16,6 +16,14 @@ class CollideTransformable(Transformable):
         self.__collide_hit_box = Polygon([Vector(0,0)])
         self.__rigid_hit_box = Polygon([Vector(0,0)])
 
+    def copy(self):
+        t = CollideTransformable()
+        super.__init__(t)
+        t.set_collide(self.get_collide())
+        t.set_rigid_body(self.get_rigid_body())
+        t.set_hit_box(self.get_hit_box())
+        return t
+
     def set_rigid_body(self,val):
         """ Sets whether it's a rigid body or not """
         self.__rigid_body = val

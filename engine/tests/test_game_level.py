@@ -3,6 +3,7 @@ import os
 import numpy as np
 import copy as copy
 import random
+import pygame
 
 path = os.getcwd()
 sys.path.append(path + "/engine")
@@ -13,8 +14,13 @@ from solidPlatform import SolidPlatform
 from camera import Camera
 from gameLevel import GameLevel
 from force import Gravity
+from hit_box import HitBox
+from rect import Rect
 from hypothesis import given
 from hypothesis.strategies import integers, lists
+
+pygame.init()
+fen = pygame.display.set_mode((500, 500),0)
 
 def test_size_level():
     v1 = Vector(-1,-1)
@@ -25,9 +31,10 @@ def test_size_level():
     Hb = HitBox(R)
     plat1 = SolidPlatform(Hb)
     Hb2 = Hb.copy()
-    plat2 = SolidPlatform(p2)
+    plat2 = SolidPlatform(Hb2)
     plat2.translate(Vector(3,2))
     gl = GameLevel([plat1,plat2],[])
+    pass
 
 def test_physics_step1():
     R = Rect(-1,-1,2,2)
