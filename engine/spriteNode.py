@@ -9,6 +9,13 @@ class SpriteNode(Node):
         self.__state = None #stay,move,damaged,collision,
         self.__sps = None #
 
+    def copy(self):
+        sn = SpriteNode()
+        super().__init__(sn)
+        sn.set_state(self.get_state())
+        sn.set_sps(self.get_sps().copy())
+        return sn
+
     def set_sps(self,sche):
         self.__sps = sche
 

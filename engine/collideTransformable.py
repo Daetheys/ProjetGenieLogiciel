@@ -18,10 +18,11 @@ class CollideTransformable(Transformable):
 
     def copy(self):
         t = CollideTransformable()
-        super.__init__(t)
+        super().__init__(t)
         t.set_collide(self.get_collide())
         t.set_rigid_body(self.get_rigid_body())
-        t.set_hit_box(self.get_hit_box())
+        Hb = self.get_hit_box().copy()
+        t.set_hit_box(Hb)
         return t
 
     def set_rigid_body(self,val):

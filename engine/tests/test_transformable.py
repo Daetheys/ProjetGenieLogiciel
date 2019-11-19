@@ -23,6 +23,15 @@ def test_init():
     assert T.get_scale().to_tuple() == (1,1)
     #assert T.get_origin().to_tuple() == (0,0)
 
+def test_copy():
+    T = Transformable()
+    T.set_position(5,4)
+    T.rot(45)
+    T.set_scale(7,8)
+    T2 = T.copy()
+    T.set_position(7,8)
+    assert T2.get_position() == Vector(5,4)
+
 @given(integers(),integers(),integers(),integers(),integers(),integers(),integers())
 
 def test_set_get(px,py,r,sx,sy,ox,oy):
