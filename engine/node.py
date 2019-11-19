@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-from transformable import Transformable
+from collideTransformable import CollideTransformable
 from vector import Vector
 
-class Node(Transformable):
+class Node(CollideTransformable):
     """ Node with children """
     def __init__(self):
         super().__init__()

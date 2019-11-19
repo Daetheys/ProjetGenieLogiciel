@@ -33,11 +33,21 @@ class Transform:
     def __repr__(self):
         return str(self.matrix)
 
+    def __eq__(self,tr):
+        return np.allclose(self.matrix,tr.matrix)
+
     def cut_translate(self):
+        """ Returns the transform without translation """
         mat = self.matrix.copy()
         mat[:,2] = np.array([0,0,0])
         mat[2,:] = np.array([0,0,0])
         mat[2,2] = 1
+        return Transform(mat)
+
+    def get_translate(self):
+        """ Returns only the translation of this """
+        mat = self.matrix.copy()
+        mat[:,:2] = np.array([[1,0],[0,1],[0,0]])
         return Transform(mat)
     
     def get_matrix(self):
@@ -63,7 +73,7 @@ class Transform:
         return Vector(arr[0][0],arr[1][0])
 
     def combine(self,t1):
-        """ Dot with an other transform """
+        """ Dot with an other transform -> right side """
         self.matrix = np.dot(t1.get_matrix(),self.matrix)
         return self
 
@@ -77,7 +87,6 @@ class Transform:
     
     def rotate(self,angle):
         """ Rotates the matrix """
-        angle *= -1
         cos = np.cos(angle)
         sin = np.sin(angle)
         rotation_matrix = np.array([ \

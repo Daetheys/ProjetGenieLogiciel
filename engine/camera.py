@@ -58,8 +58,8 @@ class Camera:
 
     def is_in_camera(self,poly):
         """ Returns true if the polygon is completely in the camera's rect or if it intersects a side """
-        r = self.rect.collide(poly)
-        return bool(r)
+        r = self.rect.collide_poly(poly)
+        return r
     
     def flashblack(self):
         """ Fill the camera with black in order to blit images right after """
@@ -72,7 +72,7 @@ class Camera:
         if not(self.get_fen() is None):
             self.flashblack()
         for o in objects:
-            if self.is_in_camera(o.get_hit_box()):
+            if self.is_in_camera(o.get_hit_box().get_world_poly()):
                 o.aff(self.get_fen(),self.get_distorsion())
 
     def __repr__(self):

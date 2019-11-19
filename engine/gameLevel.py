@@ -65,8 +65,8 @@ class GameLevel:
                     o.collide(o2)
                     o2.collide(o)
                     if o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
-                        print("------------------rigid",o,o2)
-                        o.apply_reaction(o2)
+                        #print("------------------rigid",o,o2)
+                        o.apply_solid_reaction(o2)
 
     def load_camera(self,fen):
         """ Loads the actual camera of the Level """

@@ -214,7 +214,9 @@ class Polygon:
             a = s.length()
             b = s2.length()
             c = s3.length()
-            angle = -sens*np.arccos( (-a**2 + b**2 + c**2)/(2*b*c) )
+            val = (-a**2 + b**2 + c**2)/(2*b*c)
+            val = max(min(1,val),-1)
+            angle = -sens*np.arccos( val )
             sum_angle += angle
         return abs(sum_angle) > np.pi #Is either np.pi*2 or 0 (but with approximation let's cut at np.pi)
 

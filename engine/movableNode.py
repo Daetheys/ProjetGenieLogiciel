@@ -78,6 +78,19 @@ class MovableNode(SpriteNode):
             ang_acc += ang_accf
         self.set_acc(acc/self.get_mass())
         self.set_ang_acc(ang_acc/self.get_ang_inertia())
+
+    def apply_solid_reaction(self,support):
+        assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
+        #Get how to remove the collision
+        correction = self.get_rigid_hit_box().remove_collide(support.get_rigid_hit_box())
+        #Get how to correct the speed
+        #print("speed",self.get_speed())
+        speed = correction.normalise()*self.get_speed()
+        #Correct position and speed
+        self.translate(correction)
+        self.set_speed(self.get_speed()+speed)
+        #print("speed",speed,self.get_speed())
+        
     """
     def get_direction_rigid_collide(self,p):
         # Returns either the point or the segment that first created a collision between self (moving) and p (not moving)
@@ -204,16 +217,4 @@ class MovableNode(SpriteNode):
                     print("timeout rigid supppot",support.get_rigid_hit_box())
                 assert False #Timeout in get_object_collide (rigid)
         """
-    
-    def apply_reaction(self,support):
-        assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
-        #Get how to remove the collision
-        correction = self.get_rigid_hit_box().remove_collide(support.get_rigid_hit_box())
-        #Get how to correct the speed
-        print("speed",self.get_speed())
-        speed = correction.normalise()*self.get_speed()
-        #Correct position and speed
-        self.translate(correction)
-        self.set_speed(self.get_speed()+speed)
-        print("speed",speed,self.get_speed())
 

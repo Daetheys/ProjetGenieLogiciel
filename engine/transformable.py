@@ -3,14 +3,15 @@ import numpy as np
 from transform import Transform
 from vector import Vector
 from polygone import *
+import copy
 
 #travis github CI
 
 class Transformable:
     """ Represents a vector """
     def __init__(self):
-        self.__origin = Vector() # Origine du Transformable
-        self.__position = Vector() # Coordonnees du Transformable dans l'environnement
+        self.__origin = Vector(0,0) # Origine du Transformable (CONST for now)
+        self.__position = Vector(0,0) # Coordonnees du Transformable dans l'environnement
         self.__rotation = 0 # Rotation actuelle du Transformable
         self.__scale = Vector(1.,1.) # Ecard du transformable
         self.__transform = None # Transformation
@@ -18,13 +19,6 @@ class Transformable:
         self.__inverse_transform = None # Transformation inverse
         self.__inv_tr_need_up = True # Inverse Transformation need update
 
-        #-----------------------------
-        #         Collisions
-        #-----------------------------
-        self.__rigid_body = False
-        self.__collide = False
-        self.__collide_hit_box = Polygon([self.__origin])
-        self.__rigid_hit_box = Polygon([self.__origin])
 
     def copy(self):
         """ Returns a copy of this vector """
@@ -32,47 +26,8 @@ class Transformable:
         t2 = clas()
         args = self.__dict__
         for attr in args.keys():
-            setattr(t2,attr,getattr(self,attr))
+            setattr(t2,attr,copy.copy(getattr(self,attr)))
         return t2
-
-    def set_rigid_body(self,val):
-        """ Sets whether it's a rigid body or not """
-        self.__rigid_body = val
-        if val:
-            self.__collide = True #A rigid body collides
-
-    def get_rigid_body(self):
-        """ Returns if it's a rigid body """
-        return self.__rigid_body
-
-    def set_collide(self,val):
-        """ Sets whether this can collide """
-        self.__collide = val
-
-    def get_collide(self):
-        """ Returns if this collides """
-        return self.__collide
-
-    def set_hit_box(self,val):
-        """ Set the collide hit box of this """
-        self.__collide_hit_box = val
-        t = Transform().scale(0.999) #0.1% smaller
-        self.set_rigid_hit_box(self.get_hit_box().apply_transform(t))
-
-    def get_hit_box(self):
-        """ Compute the hit box according to the position / rotation / scale """
-        transform = self.get_transform() #Recompute the hit box to avoid comulating errors due to operations on floats that approximate computations
-        return self.__collide_hit_box.apply_transform(transform)
-
-    def set_rigid_hit_box(self,val):
-        """ Set the rigid body hit box -- Don't use it if you don't know what you're doing """
-        self.__rigid_hit_box = val
-
-    def get_rigid_hit_box(self):
-        """ Returns the rigid hit box """
-        transform = self.get_transform() #Recompute the hit box to avoid comulating errors due to operations on floats that approximate computations
-        return self.__rigid_hit_box.apply_transform(transform)
-
 
     def reset_update(self):
         self.__tr_need_up = True
@@ -159,13 +114,13 @@ class Transformable:
             self.__tr_need_up = False
         # Error : returned None at 'get_transform' because the transform_matrix
         # was None and __tr_need_up == False
-        assert self.__transform != None
+        assert self.__transform is not None
         return self.__transform
-    """
+    
     def get_inverse_transform(self):
         #Don't use it
         if self.__inv_tr_need_up:
             self.__inverse_transform = self.get_transform().get_inverse()
             self.__inv_tr_need_up = False
         return self.__inverse_transform
-    """
+

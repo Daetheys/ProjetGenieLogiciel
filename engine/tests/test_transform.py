@@ -53,11 +53,11 @@ def test_rotate():
     angle1 = np.pi
     angle2 = 2*np.pi
     T = Transform(np.array([[2,0,0],[0,1,0],[0,0,1]]))
-    T0 = T.rotate(angle0)
+    T0 = T.rotate(-angle0)
     T = Transform(np.array([[2,0,0],[0,1,0],[0,0,1]]))
-    T1 = T.rotate(angle1)
+    T1 = T.rotate(-angle1)
     T = Transform(np.array([[2,0,0],[0,1,0],[0,0,1]]))
-    T2 = T.rotate(angle2)
+    T2 = T.rotate(-angle2)
     M0 = T0.get_matrix()
     M1 = T1.get_matrix()
     M2 = T2.get_matrix()
