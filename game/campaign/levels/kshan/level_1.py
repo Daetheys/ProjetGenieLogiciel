@@ -14,11 +14,10 @@ from solidPlatform import SolidPlatform,Pattern
 from gameLevel import GameLevel
 from hypothesis import given
 from hypothesis.strategies import integers, lists
+from hitbox import Hitbox
+from rect import Rect
 
 def level_1_kshan(g):
-
-
-
     largeur = 600
     epf = 150 + largeur#ecart inter plateforme
 
@@ -28,13 +27,16 @@ def level_1_kshan(g):
     rhy = 0
     rhs = 40#size
     #Let's start by creating the polygon for hit_boxes
-    v1 = Vector(-rhs,0) #Creates a point -> NEVER MAKE A POINT IN 0,0 !!!
+    """v1 = Vector(-rhs,0) #Creates a point -> NEVER MAKE A POINT IN 0,0 !!!
     v2 = Vector(0,-rhs)
     v3 = Vector(0,rhs)
-    v4 = Vector(rhs,0)
-    rh = Polygon([v1,v3,v4,v2]) #Creates the polygon corresponding to the given sequence
+    v4 = Vector(rhs,0)"""
+    rh = Rect(-rhs,-rhs,2*rhs,2*rhs) #Creates the polygon corresponding to the given sequence
+    rh = Hitbox(rh) #Creates the polygon corresponding to the given sequence
+
     #It's a rhombus
     prh = Pattern(rh,"name")
+    prh.rot(45)
     prh.pt = "UpDown"
     prh.translate(Vector(rhx,rhy))
     prh.speed = 30
@@ -44,6 +46,7 @@ def level_1_kshan(g):
     print(str("!!!!")+prh2.pt+str("\n\n !!!\n\n"))
 
     RH = [prh]
+    prh.create_sps("Rhombus")
     for _ in range(1,10):
         RH.append(RH[-1].copy())
         RH[-1].translate(Vector(80,0))
@@ -55,7 +58,7 @@ def level_1_kshan(g):
     tau.translate(Vector(-1000,200))
 
     tau.create_sps("spike")
-    rec = Rectangle(-300,-400,largeur,800)
+    rec = Rect(-300,-400,largeur,800)
     pr = SolidPlatform(rec)
     pr.translate(Vector(-200,800))
 
