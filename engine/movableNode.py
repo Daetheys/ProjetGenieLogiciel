@@ -24,14 +24,17 @@ class MovableNode(SpriteNode):
     def copy(self):
         print("mvn cpy")
         mn = MovableNode()
-        SpriteNode.__init__(mn)
+        self.paste_in(mn)
+        return mn
+
+    def paste_in(self,mn):
+        SpriteNode.paste_in(self,mn)
         mn.set_speed(self.get_speed())
         mn.set_ang_speed(self.get_ang_speed())
         mn.set_acc(self.get_acc())
         mn.set_ang_acc(self.get_ang_acc())
         mn.set_mass(self.get_mass())
         mn.set_ang_inertia(self.get_ang_inertia)
-        return mn
 
     def set_mass(self,val):
         self.__mass = val

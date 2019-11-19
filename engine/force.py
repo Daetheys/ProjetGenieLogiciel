@@ -5,7 +5,6 @@ class Force:
     def __init__(self):
         pass
 
-    @abstractmethod
     def get_acc(self,movablenode):
         pass
 

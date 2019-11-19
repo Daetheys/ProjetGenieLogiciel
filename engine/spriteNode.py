@@ -10,12 +10,15 @@ class SpriteNode(Node):
         self.__sps = None #
 
     def copy(self):
-        print("sn cpy")
         sn = SpriteNode()
-        Node.copy(sn)
-        sn.set_state(self.get_state())
-        sn.set_sps(self.get_sps().copy())
+        self.paste_in(sn)
         return sn
+
+    def paste_in(self,sn):
+        Node.paste_in(self,sn)
+        sn.set_state(self.get_state())
+        if self.get_sps() is not None:
+            sn.set_sps(self.get_sps().copy())
 
     def set_sps(self,sche):
         self.__sps = sche

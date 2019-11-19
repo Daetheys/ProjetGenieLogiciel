@@ -16,6 +16,7 @@ class GameLevel:
         self.camera.set_position(Vector(0,0))
         self.camera.set_dimension(Vector(10,10))
         self.objects = objects
+        self.player_pos = player_pos
         #self.compute_size_level()
 
     def get_camera(self):

@@ -16,19 +16,19 @@ from force import Gravity
 from hypothesis import given
 from hypothesis.strategies import integers, lists
 
-from hit_box import HitBox
+from hitbox import Hitbox
 
 pygame.init()
 fen = pygame.display.set_mode((500, 500),0)
 
 #Coordinates for the platform
-x = -5
-y = 1
+x = 0
+y = 10
 
 #Let's start by creating the polygon for hit_boxes
 
 p = Rect(-1,-1,2,2) #Creates the polygon corresponding to the given sequence -> it's a rectangle
-hb = HitBox(p)
+hb = Hitbox(p)
 #Now let's build the platform associated to this polygon and move it to our coordinates
 plat = SolidPlatform(hb)
 plat.set_sps(None)
@@ -39,30 +39,32 @@ x2 = -6
 y2 = 5
 
 #To create an other platform with the same hit box it easy:
-hb2 = hb.copy()
-plat2 = SolidPlatform(hb2)
+plat2 = plat.copy()
 plat2.set_sps(None)
-plat2.translate(Vector(10,5))
-
-hb3 = hb2.copy()
+plat2.rot(90)
+plat2.translate(Vector(0,-10))
+print(plat2.get_position())
+print(plat.get_position())
+"""
+hb3 = hb.copy()
 plat3 = SolidPlatform(hb3)
 plat3.set_sps(None)
 plat3.translate(Vector(10.5,1))
 
-hb4 = hb2.copy()
+hb4 = hb.copy()
 plat4 = SolidPlatform(hb4)
 plat4.set_sps(None)
 plat4.translate(Vector(9,10))
-
+"""
 gravity = Gravity(10)
 
 #plat2.rotate(np.pi/5)
 #plat2.add_force(gravity)
-plat.add_force(gravity)
+#plat.add_force(gravity)
 plat2.add_force(gravity)
-plat3.add_force(gravity)
+#plat3.add_force(gravity)
 
-gl = GameLevel([plat,plat2,plat3,plat4],[])
+gl = GameLevel([plat,plat2],[])
 gl.load_camera(fen) #Load the camera in the window fen
 gl.get_camera().set_dimension(Vector(50,50)) #Resize the camera
 gl.get_camera().set_position(Vector(-12,-12))
