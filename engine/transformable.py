@@ -23,7 +23,7 @@ class Transformable:
     def copy(self):
         """ Returns a copy of this vector """
         t = Transformable()
-        vp = t.get_position()
+        vp = self.get_position()
         t.set_position(vp.x,vp.y)
         t.set_rotation(self.get_rotation())
         vs = self.get_scale()
