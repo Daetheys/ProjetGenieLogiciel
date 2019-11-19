@@ -2,7 +2,7 @@ import numpy as np
 from transform import Transform
 from vector import Vector
 from transformable import Transformable
-from hit_box import HitBox
+from hitbox import Hitbox
 from polygone import *
 
 class CollideTransformable(Transformable):

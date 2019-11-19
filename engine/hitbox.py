@@ -2,18 +2,18 @@ from rect import Rect
 from transform import Transform
 from vector import Vector
 
-class HitBox:
+class Hitbox:
     """ Hit box class """
     def __init__(self,rect):
         self.rect = rect
         self.ctransformable = None
 
     def __repr__(self):
-        return "HitBox("+str(self.rect)+","+str(self.get_ctrbl())+")"
+        return "Hitbox("+str(self.rect)+","+str(self.get_ctrbl())+")"
 
     def copy(self):
         """ UNLINKED COPY """
-        hb = HitBox(self.rect.copy())
+        hb = Hitbox(self.rect.copy())
         return hb
 
     def rescale(self,alpha):

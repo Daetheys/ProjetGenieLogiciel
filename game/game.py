@@ -128,9 +128,9 @@ class Game:
         """
         pygame.mixer.init()
         #Music
-        #pygame.mixer.music.load(music_menu)
-        #pygame.mixer.music.fadeout(500)
-        #pygame.mixer.music.play(-1)
+        pygame.mixer.music.load("data/tests_musique2/120rythmeternaire.mp3")
+        pygame.mixer.music.fadeout(500)
+        pygame.mixer.music.play(-1)
 
     def update_dialogues(self):
         self.create_dialogues()
@@ -140,4 +140,4 @@ class Game:
 
     def flip(self):
         pygame.display.flip()
-        
+
