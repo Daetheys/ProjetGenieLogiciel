@@ -17,8 +17,9 @@ class CollideTransformable(Transformable):
         self.__rigid_hit_box = Polygon([Vector(0,0)])
 
     def copy(self):
+        print("coll tr")
         t = CollideTransformable()
-        super().__init__(t)
+        Transformable.__init__(t)
         t.set_collide(self.get_collide())
         t.set_rigid_body(self.get_rigid_body())
         Hb = self.get_hit_box().copy()

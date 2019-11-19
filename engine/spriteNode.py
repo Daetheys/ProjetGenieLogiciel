@@ -10,8 +10,9 @@ class SpriteNode(Node):
         self.__sps = None #
 
     def copy(self):
+        print("sn cpy")
         sn = SpriteNode()
-        super().__init__(sn)
+        Node.copy(sn)
         sn.set_state(self.get_state())
         sn.set_sps(self.get_sps().copy())
         return sn
@@ -28,7 +29,7 @@ class SpriteNode(Node):
         sche = SpriteScheduler(name)
         sche.load_automaton()
         sche.load_sprites()
-        self.__sps = sche
+        self.set_sps(sche)
 
     def get_sps(self):
         """ returns the spriteScheduler associated with the spriteNode"""

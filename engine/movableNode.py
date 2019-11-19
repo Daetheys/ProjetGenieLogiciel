@@ -22,10 +22,11 @@ class MovableNode(SpriteNode):
         self.__ang_inertia = 1 #SI 
 
     def copy(self):
+        print("mvn cpy")
         mn = MovableNode()
-        super().__init__(mn)
+        SpriteNode.__init__(mn)
         mn.set_speed(self.get_speed())
-        mn.set_ang_speed(self.angular_speed())
+        mn.set_ang_speed(self.get_ang_speed())
         mn.set_acc(self.get_acc())
         mn.set_ang_acc(self.get_ang_acc())
         mn.set_mass(self.get_mass())

@@ -22,12 +22,15 @@ class Transformable:
 
     def copy(self):
         """ Returns a copy of this vector """
+        print("copy trbl")
         t = Transformable()
         vp = self.get_position()
         t.set_position(vp.x,vp.y)
         t.set_rotation(self.get_rotation())
         vs = self.get_scale()
+        print("vs",vs)
         t.set_scale(vs.x,vs.y)
+        print("t",t.get_scale())
         return t
 
     def reset_update(self):
