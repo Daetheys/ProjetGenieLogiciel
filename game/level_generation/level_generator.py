@@ -15,6 +15,8 @@ from vector import Vector
 from polygone import Polygon
 from gameLevel import GameLevel
 from solidPlatform import SolidPlatform
+from hitbox import Hitbox
+from rect import Rect
 
 speed_factor = 350
 
@@ -31,6 +33,7 @@ def platform(x,y,xmax):
 		supérieur gauche aux coordonnées x,y
 		Renvoie un SolidPlatform
 	"""
+	""" Ancien code écrit par Elies
 	p = Polygon([
 			Vector(0,0),
 			Vector(xmax-x,0),
@@ -38,6 +41,10 @@ def platform(x,y,xmax):
 			Vector(0,24)
 		])
 	plat = SolidPlatform(p)
+	"""
+	plat = SolidPlatform(Hitbox(Rect(abs(xmax-x)//2,12,abs(xmax-x),24)))
+	#plat.create_sps("Platform")#voir un sprite
+	plat.set_sps(None)#voir une hitbox
 	plat.translate(Vector(x,y))
 	return plat
 
@@ -63,12 +70,13 @@ def generate_level(filename):
 			tempo_index = tempo_index + 1
 
 
-	y = 0
-	jump_points[0] = -10000
-	
+	y = 500#initially the height is at 500
+	jump_points[0] = 0#avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
+
 	for i in range(nb_beats):
+		#pourquoi +50 et +24 ?
 		platforms.append(platform(jump_points[i]+50,y,jump_points[i+1]+24))
 
-		y += random.randint(-48,48)
+		y += random.randint(-48,48)#at each point the y coordinate changes
 
 	return GameLevel(platforms,[])
