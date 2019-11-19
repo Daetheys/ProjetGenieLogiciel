@@ -19,7 +19,18 @@ class MovableNode(SpriteNode):
         self.__ang_acc = 0
         self.__force_effect = {}
         self.__mass = 1 #kg
-        self.__ang_inertia = 1 #SI
+        self.__ang_inertia = 1 #SI 
+
+    def copy(self):
+        mn = MovableNode()
+        super().__init__(mn)
+        mn.set_speed(self.get_speed())
+        mn.set_ang_speed(self.angular_speed())
+        mn.set_acc(self.get_acc())
+        mn.set_ang_acc(self.get_ang_acc())
+        mn.set_mass(self.get_mass())
+        mn.set_ang_inertia(self.get_ang_inertia)
+        return mn
 
     def set_mass(self,val):
         self.__mass = val
@@ -45,6 +56,10 @@ class MovableNode(SpriteNode):
         self.__ang_speed = speed
     def get_ang_speed(self):
         return self.__ang_speed
+    def set_ang_inertia(self,val):
+        self.__ang_inertia = val
+    def get_ang_inertia(self):
+        return self.__ang_inertia
     
     def add_force(self,force):
         self.__force_effect[force] = None

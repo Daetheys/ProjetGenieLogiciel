@@ -16,7 +16,9 @@ class Node(CollideTransformable):
             del son
 
     def copy(self):
-        pass
+        n = Node()
+        super().__init__(n)
+        return n
 
     def get_parent(self):
         """ Returns parent of this node """
