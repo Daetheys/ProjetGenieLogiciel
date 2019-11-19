@@ -17,6 +17,9 @@ class Automata:
 		self.cs = cs#current state
 		self.qn = qn#map from states to sprites
 
+	def copy(self):
+		return Automata(self.name,self.states,self.tt,self.cs,self.qn)
+
 	def __repr__(self):
 		txt = """
 
