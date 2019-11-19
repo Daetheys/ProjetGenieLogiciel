@@ -3,6 +3,7 @@ from transform import Transform
 from vector import Vector
 from transformable import Transformable
 from hitbox import Hitbox
+from rect import Rect
 from polygone import *
 
 class CollideTransformable(Transformable):
@@ -13,18 +14,25 @@ class CollideTransformable(Transformable):
         #-----------------------------
         self.__rigid_body = False
         self.__collide = False
-        self.__collide_hit_box = Polygon([Vector(0,0)])
-        self.__rigid_hit_box = Polygon([Vector(0,0)])
+        self.__collide_hit_box = Hitbox(Rect(0,0,0,0))
+        self.__rigid_hit_box = Hitbox(Rect(0,0,0,0))
 
     def copy(self):
+        """ Returns the copy of this with right deep and shallow copies of arguments """
+        print("coll cpy")
         t = CollideTransformable()
-        super().__init__(t)
+        self.paste_in(t)
+        return t
+
+    def paste_in(self,t):
+        """ Copies this object in t (side effect)"""
+        Transformable.paste_in(self,t)
         t.set_collide(self.get_collide())
         t.set_rigid_body(self.get_rigid_body())
         Hb = self.get_hit_box().copy()
+        print("Hb",Hb)
         t.set_hit_box(Hb)
-        return t
-
+        
     def set_rigid_body(self,val):
         """ Sets whether it's a rigid body or not """
         self.__rigid_body = val

@@ -19,16 +19,19 @@ class Transformable:
         self.__inverse_transform = None # Transformation inverse
         self.__inv_tr_need_up = True # Inverse Transformation need update
 
-
     def copy(self):
         """ Returns a copy of this vector """
+        print("copy trbl")
         t = Transformable()
-        vp = t.get_position()
+        self.paste_in(t)
+        return t
+
+    def paste_in(self,t):
+        vp = self.get_position()
         t.set_position(vp.x,vp.y)
         t.set_rotation(self.get_rotation())
         vs = self.get_scale()
         t.set_scale(vs.x,vs.y)
-        return t
 
     def reset_update(self):
         self.__tr_need_up = True

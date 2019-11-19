@@ -9,7 +9,7 @@ class ControlableNode(MovableNode):
 
     def copy(self):
         cn = ControlableNode()
-        super().__init__(cn)
+        MovableNode.__init__(cn)
         cn.set_controller(self.get_controller)
         return cn
         
