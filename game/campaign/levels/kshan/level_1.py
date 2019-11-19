@@ -43,7 +43,7 @@ def level_1_kshan(g):
     prh.period = 700//prh.speed
     prh2 = prh.copy()
     prh2.translate(Vector(80,0))
-    print(str("!!!!")+prh2.pt+str("\n\n !!!\n\n"))
+    print(str("!!!!") + prh2.pt + str("\n\n !!!\n\n"))
 
     RH = [prh]
     prh.create_sps("Rhombus")
@@ -58,7 +58,7 @@ def level_1_kshan(g):
     tau.translate(Vector(-1000,200))
 
     tau.create_sps("spike")
-    rec = Rect(-300,-400,largeur,800)
+    rec = Hitbox(Rect(-300,-400,largeur,800))
     pr = SolidPlatform(rec)
     pr.translate(Vector(-200,800))
 
@@ -100,6 +100,7 @@ def level_1_kshan(g):
 
         for pat in RH:
             pat.pattern(t)
+            pat.send_char("a")
 
         #Updating the camera
         x,y = gl.get_camera().get_position().to_tuple()

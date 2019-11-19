@@ -40,7 +40,7 @@ class SpriteScheduler:
 		""" does one step of execution of the automaton """
 		try:
 			self.ata.cs = self.ata.tt[self.ata.cs,char]
-			return True
+
 		except TransitionUndefined:
 			print("No transition from state "+str(self.ata.cs)+" with letter "+char+".")
 			raise TransitionUndefined

@@ -70,7 +70,7 @@ def test_pos_in_camera():
     
     S = SpriteNode()
     R = Rect(-1,-1,2,2)
-    Hb = HitBox(R)
+    Hb = Hitbox(R)
     S.set_hit_box(Hb)
     C = Camera()
     C.set_position(Vector(-1,-1))
