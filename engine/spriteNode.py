@@ -27,6 +27,11 @@ class SpriteNode(Node):
         """ returns the spriteScheduler associated with the spriteNode"""
         return self.__sps
 
+    def send_char(self,char):
+        """ Sends some character of information to the SpriteScheduler """
+        self.__sps.step(char)
+
+
     def set_state(self,state):
         self.__state = state
 
@@ -57,13 +62,15 @@ class SpriteNode(Node):
                 img = pygame.image.load(s).convert_alpha()
             image_dim = Vector(img.get_width(),img.get_height())
             dist = scale.transform_vect(image_dim)
-            img = pygame.transform.smoothscale(img,dist)
+            x,y = dist.to_tuple()
+
+            img = pygame.transform.smoothscale(img,(int(x),int(y)))
             pos = self.get_position()
             #print("-------1",pos,trans)
             pos = pos.apply_transform(scale)
             pos = pos.apply_transform(trans)
             #print("-------2",pos)
-            fen.blit(img,(pos.x ,vpos.y ))
+            fen.blit(img,(pos.x ,pos.y ))
         else:
             pos_vect = self.get_pos_camera(distorsion)
             pygame.draw.polygon(fen,(0,255,0),pos_vect.to_tuples())

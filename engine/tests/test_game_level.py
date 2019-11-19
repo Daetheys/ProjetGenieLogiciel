@@ -28,7 +28,7 @@ def test_size_level():
     v3 = Vector(1,1)
     v4 = Vector(-1,1)
     R = Rect(-1,-1,2,2)
-    Hb = HitBox(R)
+    Hb = Hitbox(R)
     plat1 = SolidPlatform(Hb)
     Hb2 = Hb.copy()
     plat2 = SolidPlatform(Hb2)
