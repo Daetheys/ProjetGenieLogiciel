@@ -126,7 +126,7 @@ class Game:
         Music is currently disabled.
         Please add a pulseaudio sink to xvfb before activating it.
         """
-        pass
+        pygame.mixer.init()
         #Music
         #pygame.mixer.music.load(music_menu)
         #pygame.mixer.music.fadeout(500)
