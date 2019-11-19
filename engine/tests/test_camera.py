@@ -10,7 +10,7 @@ from vector import Vector
 from camera import Camera
 from spriteNode import SpriteNode
 from rect import Rect
-from hit_box import HitBox
+from hitbox import Hitbox
 from hypothesis import given
 from hypothesis.strategies import integers, lists
 

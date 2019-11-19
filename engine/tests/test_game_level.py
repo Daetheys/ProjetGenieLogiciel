@@ -14,7 +14,7 @@ from solidPlatform import SolidPlatform
 from camera import Camera
 from gameLevel import GameLevel
 from force import Gravity
-from hit_box import HitBox
+from hitbox import Hitbox
 from rect import Rect
 from hypothesis import given
 from hypothesis.strategies import integers, lists
