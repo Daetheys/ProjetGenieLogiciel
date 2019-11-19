@@ -66,6 +66,13 @@ class SpriteScheduler:
 		else:
 			print("WARNING : You are trying to load already loaded images!")
 
+	def copy(self):
+		tau = SpriteScheduler(self.name)
+		tau.name = self.name
+		tau.ata = self.ata.copy()
+		tau.loaded = self.loaded
+		return tau
+
 
 def __repr__(self):
 		return str(self.name)+"\nstates:"+str(self.ata.states)+"\ncs:"+str(self.ata.cs)+"\ntt:"+str(self.ata.tt)
