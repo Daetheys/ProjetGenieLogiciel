@@ -1,1 +1,3 @@
-{"player": ["img_player",0,0,0,null], "pnj_test": ["img_pnj",0,0,0,null]}
+{"player": ["img_player",0,0,0,null],
+ "pnj_test": ["img_pnj",0,0,0,null],
+ "narrator": ["img_void",100,100,100,null]}
