@@ -15,6 +15,9 @@ class Node(CollideTransformable):
         for son in self.__children:
             del son
 
+    def copy(self):
+        pass
+
     def get_parent(self):
         """ Returns parent of this node """
         return self.__parent

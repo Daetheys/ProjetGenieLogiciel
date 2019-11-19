@@ -22,12 +22,13 @@ class Transformable:
 
     def copy(self):
         """ Returns a copy of this vector """
-        clas = self.__class__
-        t2 = clas()
-        args = self.__dict__
-        for attr in args.keys():
-            setattr(t2,attr,copy.copy(getattr(self,attr)))
-        return t2
+        t = Transformable()
+        vp = t.get_position()
+        t.set_position(vp.x,vp.y)
+        t.set_rotation(self.get_rotation())
+        vs = self.get_scale()
+        t.set_scale(vs.x,vs.y)
+        return t
 
     def reset_update(self):
         self.__tr_need_up = True
@@ -86,8 +87,12 @@ class Transformable:
         t2.set_position(x+move_x,y+move_y)
         return t2
 
+    def rot(self,angle):
+        """ Rotate this with degree """
+        self.set_rotation(self.__rotation + angle*np.pi/180)
+
     def rotate(self,angle):
-        """ Rotates this """
+        """ Rotates this with radian """
         self.set_rotation(self.__rotation+angle)
 
     def scale(self,scalex,scaley):
