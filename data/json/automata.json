@@ -1,1 +1,6 @@
-{"empty": "empty|1|0,a→0;|0=data/img/void.png,","spike": "spike|1|0,a→0;|0=data/img/spikes.png,","spritename": "name|4|0,a→0;1,a→2;2,a→2;|0=data/img/rhombus2.png,1=data/img/arrow.png,2=data/img/void.png,", "example2": "ex2|3|0,a→1;1,a→2;2,a→2;0,i→0;2,i→0;1,i→2;|0=data/img/default.png,1=data/img/void.png,2=data/img/void.png,"}
+{"empty": "empty|1|0,a→0;|0=data/img/void.png,",
+"spike": "spike|1|0,a→0;|0=data/img/spikes.png,",
+"Rhombus": "Rhombus|8|0,a→1;1,a→2;2,a→3;3,a→4;4,a→5;5,a→6;6,a→7;7,a→0;|0=data/img/rhombus2.png,1=data/img/rhombus2.png,2=data/img/rhombus2.png,3=data/img/rhombus2.png,4=data/img/rhombus.png,5=data/img/rhombus.png,6=data/img/rhombus.png,7=data/img/rhombus.png,",
+"spritename": "name|4|0,a→0;1,a→2;2,a→2;|0=data/img/rhombus2.png,1=data/img/arrow.png,2=data/img/void.png,",
+"example2": "ex2|3|0,a→1;1,a→2;2,a→2;0,i→0;2,i→0;1,i→2;|0=data/img/default.png,1=data/img/void.png,2=data/img/void.png,"}
+

@@ -14,7 +14,7 @@ from vector import Vector
 from polygone import Polygon
 from transformable import Transformable
 from transform import Transform
-from hit_box import HitBox
+from hitbox import Hitbox
 from hypothesis import given
 from hypothesis.strategies import integers, lists
 
