@@ -19,4 +19,7 @@
 "dial03": "Attention, le niveau commence après ce message !",
 "dial01f": "Et bravo ! Tu as gagné, tu es maintenant dans le dialogue de fin.",
 "dial02f" : "C'était facile...",
+"help" : "Aide",
+"-help-" : "---Aide---",
+"help_yourmusicfolder" : "Placez vous fichiers .mp3 dans le dossier data/your music/ pour y jouer.",
 "erase_savefile" : "Voulez vous rétablir vos options par défaut et SUPPRIMER VOTRE SAUVEGARDE ?"}

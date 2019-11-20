@@ -14,7 +14,7 @@ class Level:    #will be an abstract class
         #pygame.time.wait(2000)
         success = level_2_kshan(g)
         pygame.event.get()#to capture inputs made during the wait
-        return success #for now, if we launch a level, we win
+        return success
 
 
 class Boss_Level(Level):
