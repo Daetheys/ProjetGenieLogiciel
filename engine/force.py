@@ -5,6 +5,9 @@ class Force:
     def __init__(self):
         pass
 
+    def get_acc(self,movablenode):
+        pass
+
 class Gravity(Force):
     def __init__(self,g):
         self.__g = g

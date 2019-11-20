@@ -1,2 +1,7 @@
-{"dial_test":[["dial01","pnj_test","img_dial",0,400,false],["dial02","player","img_dial",0,400,false],["dial03","pnj_test","img_dial",0,400,true]],
-"dial_testf":[["dial01f","pnj_test","img_dial",0,400,false],["dial02f","player","img_dial",0,400,true]]}
+{"dial_test":[["dial01","pnj_test","img_dial",0,400,false],
+["dial02","player","img_dial",0,400,false],
+["dial03","pnj_test","img_dial",0,400,true]],
+"dial_testf":[["dial01f","pnj_test","img_dial",0,400,false],
+["dial02f","player","img_dial",0,400,true]],
+"dial_erase_savefile":[["erase_savefile","narrator","img_dial",0,400,true]]
+}
