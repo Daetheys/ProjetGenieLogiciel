@@ -161,8 +161,8 @@ class Launcher(Game):
         """ Launching the main loop """
         while not self.quitter_jeu:
             b1 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin,self.b1ymax,self.dict_img["img_button"],"b1",self.dict_img["img_buttonH"],text=self.dict_str["campaign_mode"],react=reaction_b1)
-            b2 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin+self.yoffset,self.b1ymax+self.yoffset,self.dict_img["img_button"],"b2",self.dict_img["img_button"],self.dict_img["img_buttonD"],text=self.dict_str["free_play"])
-            b2.activation(False)#désactivé par défaut
+            b2 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin+self.yoffset,self.b1ymax+self.yoffset,self.dict_img["img_button"],"b2",self.dict_img["img_buttonH"],self.dict_img["img_buttonD"],text=self.dict_str["free_play"],react=reaction_b2)
+            #b2.activation(False)#activé par défaut -> désactivé par défaut si on le débloque après lvl1?
             b3 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin+self.yoffset*2,self.b1ymax+self.yoffset*2,self.dict_img["img_button"],"b3",self.dict_img["img_buttonH"],text=self.dict_str["options"],react=reaction_b3)
 
             while self.continuer_menu:

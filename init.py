@@ -1,6 +1,6 @@
 """
-Can·A·Baelde v1
--menu is rebuilt with object-oriented programmation
+Can·A·Baelde v1.1
+
 """
 import sys
 from os import getcwd

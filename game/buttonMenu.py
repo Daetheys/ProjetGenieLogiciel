@@ -3,6 +3,15 @@ from pygame.locals import *
 from tools import *
 from shutil import copy2
 import json
+from os import listdir
+from os import getcwd
+import sys
+path = getcwd()
+path += "/game"#pour import mapDisplayer
+sys.path.append(path)
+path += "/level_generation"#pour import mapDisplayer
+sys.path.append(path)
+from level_generator import generate_level
 
 #The global variable
 BUTTON_LIST = []#to keep an eye on all buttons currently displayed
@@ -23,7 +32,6 @@ returns : bool x bool :  cnt,quit_all such that:
                         quit_all : do we quit all loops ?
 """
 
-
 def no_reaction(g):
     return True, False
 
@@ -42,6 +50,28 @@ def reaction_changeScreen(resx=1600,resy=900):
     def f(g):
         g.options["DISPLAYSIZE_X"] = resx
         g.options["DISPLAYSIZE_Y"] = resy
+        return True,False
+    return f
+
+def reaction_play(text):
+    """
+    allows the player to play a level,
+    that will be generated from the music at the file text
+    """
+    def f(g):
+        gl = generate_level(text)
+        """ ici mettre une loop de level """
+        return True,False
+    return f
+
+def reaction_message(dialkey):
+    """
+    returns the reaction button displaying the message corresponding to
+    the dialogue dialkey when pressed
+    """
+    def f(g):
+        d = g.dict_dial[dialkey]
+        d.show(g)
         return True,False
     return f
 
@@ -68,6 +98,49 @@ def reaction_b1(g):
 
     while cnt:
         cnt,quit_all = g.menu_loop()
+        if quit_all:
+            cnt = False
+            cnt_underlying = False
+
+    BUTTON_LIST[1].text = "exit"
+    BUTTON_LIST[1].xmax = 10+25*len(g.dict_str["exit"])
+    BUTTON_LIST[1].react = reaction_exit
+
+    suppress_buttons(2)#titlebanner,exit
+
+    return cnt_underlying,quit_all
+
+def reaction_b2(g):
+    """
+    effect of the second button of the first menu
+    triggers the level generator mode menu
+    """
+    global BUTTON_LIST
+    cnt = True
+    cnt_underlying = False
+    quit_all = False
+    suppress_buttons(2)
+
+    BUTTON_LIST[1].text = "return"
+    BUTTON_LIST[1].xmax = 5+25*len(g.dict_str["return"])
+    BUTTON_LIST[1].react = reaction_return
+
+    b2help = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b2help",g.dict_img["img_buttonH"],text="-help-",react=reaction_message("dial_help_yourmusicfolder"))
+
+    files = listdir("data/your music")
+    files.sort()
+    Lf = [b2help]
+    for f in files:
+        if f.endswith(".mp3"):#Remarque : aucune entrée de dictstr ne doit finir par .mp3 !
+            b = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*len(Lf),g.b1ymax+g.yoffset*len(Lf),g.dict_img["img_button"],"b pour "+f[:-4],g.dict_img["img_buttonH"],text=f[:-4],react=reaction_play("data/your music/"+f))
+            Lf.append(b)
+
+    #b21.activation(False)#désactivé par défaut -> en vrai sera activé
+
+
+
+    while cnt:
+        cnt,quit_all = g.menu_loop(scrolling=True,scrollist=Lf)
         if quit_all:
             cnt = False
             cnt_underlying = False

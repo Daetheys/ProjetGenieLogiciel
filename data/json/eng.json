@@ -19,4 +19,7 @@
 "dial03": "Watch out! The level is about to begin!",
 "dial01f": "Hurray! You won, and you are now reading the end dialogue.",
 "dial02f" : "So easy...",
+"help" : "Help",
+"-help-" : "---Help---",
+"help_yourmusicfolder" : "Put your .mp3 files in the data/your music/ folder to generate the appropriate level.",
 "erase_savefile" : "Do you want to restore default options and ERASE YOUR SAVEFILE ??"}

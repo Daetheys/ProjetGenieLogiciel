@@ -40,7 +40,7 @@ class Level_Sequence(Map_Point):
                 return True,False#ne charge pas le level
         self.is_accessed()
         g.win().blit(g.dict_img["img_dial"],(0,400))  #ugly code just to separate start and end dialogue
-        g.flip()   #ugly code
+        g.flip()
 
         reussite = []
         for level in self.__levels:

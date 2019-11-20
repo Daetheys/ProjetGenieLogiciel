@@ -109,7 +109,6 @@ def level_1_kshan(g):
         gl.aff()
         g.flip()
         t += 1
-    #pygame.display.quit()
 
     return True#You always succeed. perhaps return a score (integer) ?
 

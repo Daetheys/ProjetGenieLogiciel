@@ -24,6 +24,7 @@ from rect import Rect
 def level_2_kshan(g):
     """ level 2 """
     gl = generate_level("data/tests_musique2/130accordsmagiques2.mp3")
+    #gl = generate_level("data/your music/renegate.mp3")
     gl.load_camera(g.win())#Load the camera in the window fen
     gl.get_camera().set_dimension(Vector(1280,720)) #Resize the camera
     #Usually 2000,2000 (moins de distortion ?) or 2560,1440 (plus grosse résolution)
