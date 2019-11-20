@@ -15,7 +15,7 @@ class Player(ControlableNode):
     def jump(self):
         if self.can_jump:
             self.set_speed(self.get_speed()+Vector(0,-self.jump_strength))
-            self.can_jump = True
+            self.can_jump = False
 
     def allow_jump(self):
         self.can_jump = True

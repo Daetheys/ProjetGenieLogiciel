@@ -51,6 +51,14 @@ class GameLevel:
     def get_size_level(self):
         return self.size_level
 
+    def play(self):
+        player = Player()
+        plat.set_position(Vector(0,5))
+
+    def main_loop(self):
+        for event in pygame.event.get():
+            pass
+
     def refresh(self,dt):
         """ Excutes one step of duration dt in the level """
         self.physics_step(dt)
