@@ -61,8 +61,10 @@ class GameLevel:
 
     def refresh(self,dt):
         """ Excutes one step of duration dt in the level """
+        t = time.clock()
         self.physics_step(dt)
         self.aff()
+        print(time.clock()-t)
 
     def physics_step(self,dt):
         """ Compute collisions """
