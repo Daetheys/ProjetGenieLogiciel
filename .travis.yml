@@ -14,5 +14,5 @@ script:
   - sudo apt-get install pulseaudio
   - dbus-launch pulseaudio --start
   - for file_py in */*.py; do pylint -E  --disable=E0401,E0602 $file_py; done
-  - xvfb-run -a --server-args="-screen 0 1366x768x24" pytest
+  - xvfb-run -a --server-args="-screen 0 1600x900x24" pytest
 

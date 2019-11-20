@@ -148,6 +148,8 @@ class Game:
         except KeyError:
             return char
 
-    def flip(self):
+    def flip(self,txt=None):
+        if txt is not None:#is the SCORE usually
+            tools.T(self.win(),txt, self.options["DISPLAYSIZE_X"]-5*len(txt),0,250,250,250,center=False)
         pygame.display.flip()
 

@@ -157,8 +157,50 @@ class Launcher(Game):
                             cnt = False
         return cnt,quit_all
 
+    def launch_level(self,gl):
+        """ Initializing the main loop of a level,
+        where gl is a game level"""
+
+        gl.load_camera(self.win())#Load the camera in the window fen
+        gl.get_camera().set_dimension(Vector(1280,720)) #Resize the camera
+        #Usually 2000,2000 (moins de distortion ?) or 2560,1440 (plus grosse résolution)
+        gl.get_camera().set_position(Vector(-100,0)) #change pos of  the camera
+
+        t = 0#time
+        sec_wait = 3#POUR L'INSTANT, 3. SERA UN CHAMP DU GAME_LEVEL(duration) !!
+        while t < self.options["FPS"] * sec_wait:
+            if not self.loop_level(gl,t):
+                return False#on a perdu
+        pygame.event.get()
+        #pour ne pas sortir du menu même si les boutons ont été trop appuyés
+        #mashed buttons are handled by pygameeventget (doesn't quit the menu)
+        return True#true si réussite !
+
+    def loop_level(self,gl,t):
+        """ Running the main loop of a level gl at time t"""
+
+        pygame.time.Clock().tick(self.options["FPS"])
+        #print(t)
+        for event in pygame.event.get():
+            #Dans cette boucle, on envoie aux Controllers concernés
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    return False#You failed.
+                if event.key == K_UP:
+                    print("JUMP!")
+
+        #Updating the camera
+        x,y = gl.get_camera().get_position().to_tuple()
+        #print((x,y))
+        gl.get_camera().set_position(Vector(x+40,y))
+        gl.aff()
+        self.flip("SCORE: "+str(t))
+        t += 1
+
+        return True
+
     def launch_game(self):
-        """ Launching the main loop """
+        """ Launching the main loop of the main menu"""
         while not self.quitter_jeu:
             b1 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin,self.b1ymax,self.dict_img["img_button"],"b1",self.dict_img["img_buttonH"],text=self.dict_str["campaign_mode"],react=reaction_b1)
             b2 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin+self.yoffset,self.b1ymax+self.yoffset,self.dict_img["img_button"],"b2",self.dict_img["img_buttonH"],self.dict_img["img_buttonD"],text=self.dict_str["free_play"],react=reaction_b2)
