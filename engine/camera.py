@@ -67,10 +67,11 @@ class Camera:
         pr = pygame.Rect(0,0,self.get_fen().get_width(),self.get_fen().get_height())
         pygame.draw.rect(self.get_fen(),(0,0,0),pr)
 
-    def aff(self,objects):
+    def aff(self,objects,bg):
         """ Aff all objects that are in the camera """
         if not(self.get_fen() is None):
             self.flashblack()
+        bg.show()
         for o in objects:
             if self.is_in_camera(o.get_hit_box().get_world_poly()):
                 o.aff(self.get_fen(),self.get_distorsion())

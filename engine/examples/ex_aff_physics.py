@@ -72,7 +72,7 @@ gl.load_camera(fen) #Load the camera in the window fen
 gl.get_camera().set_dimension(Vector(20,20)) #Resize the camera
 gl.get_camera().set_position(Vector(-5,-5))
 gl.aff()
-for i in range(1000):
+for i in range(10000):
     gl.refresh(0.01)
     #pygame.time.wait(50)
 

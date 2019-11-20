@@ -5,25 +5,49 @@ sys.path.append(path + "/engine")
 
 from camera import Camera
 from vector import Vector
+from background import Background
+from parallax import Parallax
 import pygame
 import time
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1)]):
         """ The player spawn in (0,0) """
         self.camera = Camera()
         self.camera.set_position(Vector(0,0))
         self.camera.set_dimension(Vector(10,10))
         self.objects = objects
         self.player_pos = player_pos
-        #self.compute_size_level()
+        self.compute_size_level()
+
+        #Load Background
+        lpar = []
+        for (name,index) in limgpar:
+            p = Parallax(name,index)
+            lpar.append(p)
+        self.background = Background(lpar)
+
+        self.step = None
+
+        self.score = 0
 
     def get_camera(self):
         return self.camera
 
     def get_objects(self):
         return self.objects
+
+    def optimise_data(self):
+        step = self.get_camera().get_dimension().x
+        self.step = step
+        (minx,maxx,miny,maxy) = self.size_level
+        sorted_objects = [[] for i in range(maxx-minx)]
+        for o in self.objects:
+            posx = sorted_objects[i].get_position().x
+            sorted_objects[int(posx)+int(minx)].append(o)
+        
+        
 
     def compute_size_level(self):
         """ Computes the size of the level """
@@ -34,10 +58,10 @@ class GameLevel:
         #Get the rect in which the level is
         for o in self.objects:
             hit_box = o.get_hit_box()
-            val_max_x = hit_box.get_max_x()
-            val_max_y = hit_box.get_max_y()
-            val_min_x = hit_box.get_min_x()
-            val_min_y = hit_box.get_min_y()
+            val_max_x = hit_box.get_world_poly().get_max_x()
+            val_max_y = hit_box.get_world_poly().get_max_y()
+            val_min_x = hit_box.get_world_poly().get_min_x()
+            val_min_y = hit_box.get_world_poly().get_min_y()
             if maxi_x is None or val_max_x > maxi_x:
                 maxi_x = val_max_x
             if mini_x is None or val_min_x < mini_x:
@@ -64,7 +88,7 @@ class GameLevel:
         t = time.clock()
         self.physics_step(dt)
         self.aff()
-        print(time.clock()-t)
+        print(1/(time.clock()-t))
 
     def physics_step(self,dt):
         """ Compute collisions """
@@ -81,9 +105,16 @@ class GameLevel:
 
     def load_camera(self,fen):
         """ Loads the actual camera of the Level """
+        self.background.load(fen) #Loads the background too
         self.camera.set_fen(fen)
+
+    def get_background(self):
+        return self.background
+
+    def set_background(self,v):
+        self.background = v
                         
     def aff(self):
         """ Aff all objects that are in the camera of this """
-        self.camera.aff(self.objects)
+        self.camera.aff(self.objects,self.get_background())
         pygame.display.flip()

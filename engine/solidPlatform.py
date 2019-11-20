@@ -29,7 +29,6 @@ class SolidPlatform(ControlableNode):
 
     def collide(self,o2):
         """ Function called when this collides something else """
-        #print("collide")
         pass
 
 from vector import Vector

@@ -1,5 +1,14 @@
+import sys
+import os
+import numpy as np
+import pygame
+
+path = os.getcwd()
+path += "/engine"
+sys.path.append(path)
+
 from controlableNode import ControlableNode
-from solidePlatform import SolidPlatform
+from solidPlatform import SolidPlatform
 
 class Player(ControlableNode):
     def __init__(self):
