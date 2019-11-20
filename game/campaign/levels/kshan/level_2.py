@@ -37,7 +37,7 @@ def level_2_kshan(g):
     sec_wait = 3
     while t < g.options["FPS"] * sec_wait:#sec_wait seconds to wait
         pygame.time.Clock().tick(g.options["FPS"])
-        print(t)
+        #print(t)
         for event in pygame.event.get():
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:

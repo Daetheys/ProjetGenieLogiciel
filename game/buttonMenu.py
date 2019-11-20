@@ -60,7 +60,8 @@ def reaction_play(text):
     """
     def f(g):
         gl = generate_level(text)
-        """ ici mettre une loop de level """
+        g.launch_level(gl)
+        """ ceci lance le level correspondant """
         return True,False
     return f
 
@@ -122,10 +123,10 @@ def reaction_b2(g):
     suppress_buttons(2)
 
     BUTTON_LIST[1].text = "return"
-    BUTTON_LIST[1].xmax = 5+25*len(g.dict_str["return"])
+    BUTTON_LIST[1].xmax = 5 + 25 * len(g.dict_str["return"])
     BUTTON_LIST[1].react = reaction_return
 
-    b2help = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b2help",g.dict_img["img_buttonH"],text="-help-",react=reaction_message("dial_help_yourmusicfolder"))
+    b2help = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_buttonD"],"b2help",g.dict_img["img_buttonHD"],text="help",react=reaction_message("dial_help_yourmusicfolder"))
 
     files = listdir("data/your music")
     files.sort()
@@ -146,7 +147,7 @@ def reaction_b2(g):
             cnt_underlying = False
 
     BUTTON_LIST[1].text = "exit"
-    BUTTON_LIST[1].xmax = 10+25*len(g.dict_str["exit"])
+    BUTTON_LIST[1].xmax = 10 + 25 * len(g.dict_str["exit"])
     BUTTON_LIST[1].react = reaction_exit
 
     suppress_buttons(2)#titlebanner,exit
