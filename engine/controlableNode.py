@@ -13,16 +13,16 @@ class ControlableNode(MovableNode):
         cn.set_controller(self.get_controller)
         return cn
         
-    def set_controller(controller):
+    def set_controller(self,controller):
         self.__controller = controller
 
     def get_controller(self):
         return self.__controller
         
-    def add_action(action,method):
+    def add_action(self,action,method):
         self.__actions[action] = method
         
-    def execute(action):
+    def execute(self,action):
         return self.__actions[action]
         
         
