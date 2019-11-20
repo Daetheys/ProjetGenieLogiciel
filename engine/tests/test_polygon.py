@@ -163,7 +163,7 @@ def test_polygon_apply_transform():
     v4 = Vector(-1,2)
     p = Polygon([v1,v2,v3,v4])
     t = Transform()
-    t.rotate(3*np.pi/2)
+    t.rotate(-3*np.pi/2)
     pat = p.apply_transform(t)
     v21 = Vector(1,-1)
     v22 = Vector(1,2)

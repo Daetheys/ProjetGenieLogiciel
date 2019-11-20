@@ -9,20 +9,23 @@ class ControlableNode(MovableNode):
 
     def copy(self):
         cn = ControlableNode()
-        MovableNode.__init__(cn)
-        cn.set_controller(self.get_controller)
+        self.paste_in(cn)
         return cn
+
+    def paste_in(self,cn):
+        MovableNode.paste_in(self,cn)
+        cn.set_controller(self.get_controller())
         
-    def set_controller(controller):
+    def set_controller(self,controller):
         self.__controller = controller
 
     def get_controller(self):
         return self.__controller
         
-    def add_action(action,method):
+    def add_action(self,action,method):
         self.__actions[action] = method
         
-    def execute(action):
+    def execute(self,action):
         return self.__actions[action]
         
         

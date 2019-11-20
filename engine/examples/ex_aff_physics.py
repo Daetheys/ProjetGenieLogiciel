@@ -33,18 +33,18 @@ hb = Hitbox(p)
 plat = SolidPlatform(hb)
 plat.set_sps(None)
 plat.translate(Vector(x,y))
-plat.rotate(np.pi/4)
 
-x2 = -6
-y2 = 5
 
 #To create an other platform with the same hit box it easy:
 plat2 = plat.copy()
-plat2.set_sps(None)
-plat2.rot(90)
+#plat2.set_sps(None)
+
+print(plat2.get_sps())
+
+plat2.rot(45)
+plat.rotate(np.pi/4)
 plat2.translate(Vector(0,-10))
-print(plat2.get_position())
-print(plat.get_position())
+
 """
 hb3 = hb.copy()
 plat3 = SolidPlatform(hb3)
@@ -64,14 +64,16 @@ gravity = Gravity(10)
 plat2.add_force(gravity)
 #plat3.add_force(gravity)
 
+print(plat.get_hit_box().get_world_poly())
+print(plat2.get_hit_box().get_world_poly())
+
 gl = GameLevel([plat,plat2],[])
 gl.load_camera(fen) #Load the camera in the window fen
-gl.get_camera().set_dimension(Vector(50,50)) #Resize the camera
-gl.get_camera().set_position(Vector(-12,-12))
+gl.get_camera().set_dimension(Vector(20,20)) #Resize the camera
+gl.get_camera().set_position(Vector(-5,-5))
 gl.aff()
 for i in range(100):
-    print(i)
-    gl.refresh(0.001)
+    gl.refresh(0.01)
     #pygame.time.wait(500)
 
 pygame.time.wait(500)

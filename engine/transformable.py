@@ -21,7 +21,6 @@ class Transformable:
 
     def copy(self):
         """ Returns a copy of this vector """
-        print("copy trbl")
         t = Transformable()
         self.paste_in(t)
         return t

@@ -1,12 +1,14 @@
 from controlableNode import ControlableNode
 from spriteScheduler import *
+from hitbox import Hitbox
+from rect import Rect
 import copy
 
 class SolidPlatform(ControlableNode):
     """ SolidPlatform of the game """
-    def __init__(self,polygon,name='empty'):
+    def __init__(self,hb,name='empty'):
         ControlableNode.__init__(self)
-        self.set_hit_box(polygon)
+        self.set_hit_box(hb)
         self.set_rigid_body(True)
         self.set_sps(SpriteScheduler(name))
         self.get_sps().load_automaton()
@@ -14,16 +16,16 @@ class SolidPlatform(ControlableNode):
 
     def copy(self):
         """ Returns the copy of this """
-        clas = self.__class__
-        t2 = clas(self.get_hit_box())
-        args = self.__dict__
-        for attr in args.keys():
-            setattr(t2,attr,copy.copy(getattr(self,attr)))
-        return t2
+        sd = SolidPlatform(Hitbox(Rect(0,0,0,0)))
+        self.paste_in(sd)
+        return sd
+
+    def paste_in(self,t):
+        ControlableNode.paste_in(self,t)
 
 
     def __repr__(self):
-        return "SolidPlatform("+str(self.get_hit_box())+")"
+        return "SolidPlatform("+str(self.get_position())+","+str(self.get_hit_box())+")"
 
     def collide(self,o2):
         """ Function called when this collides something else """

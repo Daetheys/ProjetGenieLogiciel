@@ -16,7 +16,6 @@ class Node(CollideTransformable):
             del son
 
     def copy(self):
-        print("node cpy")
         n = Node()
         self.paste_in(n)
         return n

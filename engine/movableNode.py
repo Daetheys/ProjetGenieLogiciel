@@ -22,7 +22,6 @@ class MovableNode(SpriteNode):
         self.__ang_inertia = 1 #SI 
 
     def copy(self):
-        print("mvn cpy")
         mn = MovableNode()
         self.paste_in(mn)
         return mn
@@ -34,7 +33,7 @@ class MovableNode(SpriteNode):
         mn.set_acc(self.get_acc())
         mn.set_ang_acc(self.get_ang_acc())
         mn.set_mass(self.get_mass())
-        mn.set_ang_inertia(self.get_ang_inertia)
+        mn.set_ang_inertia(self.get_ang_inertia())
 
     def set_mass(self,val):
         self.__mass = val

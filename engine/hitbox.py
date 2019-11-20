@@ -8,8 +8,9 @@ class Hitbox:
         self.rect = rect
         self.ctransformable = None
 
-    def __repr__(self):
-        return "Hitbox("+str(self.rect)+","+str(self.get_ctrbl())+")"
+    """def __repr__(self):
+        return "Hitbox("+str(self.rect)+")"
+    """
 
     def copy(self):
         """ UNLINKED COPY """

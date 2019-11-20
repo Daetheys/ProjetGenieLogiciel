@@ -19,6 +19,8 @@ class SpriteNode(Node):
         sn.set_state(self.get_state())
         if self.get_sps() is not None:
             sn.set_sps(self.get_sps().copy())
+        else:
+            sn.set_sps(None)
 
     def set_sps(self,sche):
         self.__sps = sche
