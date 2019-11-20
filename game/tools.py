@@ -1,3 +1,13 @@
+'''
+json format :
+
+img : {name(str): path(str)}
+characters : {name(str): [image(str), color_talk_r(int), color_talk_g(int), color_talk_b(int), inventory]}
+dialogue : {name(str): [[name_bubble(str), character(str), image(str), x(int), y(int), is_last(bool)]]}
+            = {name(str): [Dialogue_Bubble(list)]}
+            = {name(str): talk(list)}
+'''
+
 from pygame.image import load
 from pygame.font import Font
 from character import *

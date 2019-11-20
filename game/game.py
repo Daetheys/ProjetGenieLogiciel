@@ -138,6 +138,16 @@ class Game:
             for map_point in map.get_map_points():
                 self.init_dialogues(map_point)
 
+    def dict_str_dflt(self,char):
+        """ Try to find if dict_str contains a value for the key 'char'.
+        If not, it  returns the char value itself.
+        This function is to be used with numbers, and strings when we do not
+        know at compile time whether they will be in dict_str or not."""
+        try:
+            return self.dict_str[char]
+        except KeyError:
+            return char
+
     def flip(self):
         pygame.display.flip()
 

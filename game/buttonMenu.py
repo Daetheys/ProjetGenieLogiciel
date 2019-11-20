@@ -56,13 +56,13 @@ def reaction_b1(g):
     quit_all = False
     suppress_buttons(2)
 
-    BUTTON_LIST[1].text = g.dict_str["return"]
+    BUTTON_LIST[1].text = "return"
     BUTTON_LIST[1].xmax = 5+25*len(g.dict_str["return"])
     BUTTON_LIST[1].react = reaction_return
 
-    b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text=g.dict_str["campaign_kshan"],react=reaction_b11)
-    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text=g.dict_str["campaign_fantasy"])
-    b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text=g.dict_str["campaign_future"])
+    b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text="campaign_kshan",react=reaction_b11)
+    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy")
+    b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_future")
     b12.activation(False)#désactivé par défaut
     b13.activation(False)#désactivé par défaut
 
@@ -72,7 +72,7 @@ def reaction_b1(g):
             cnt = False
             cnt_underlying = False
 
-    BUTTON_LIST[1].text = g.dict_str["exit"]
+    BUTTON_LIST[1].text = "exit"
     BUTTON_LIST[1].xmax = 10+25*len(g.dict_str["exit"])
     BUTTON_LIST[1].react = reaction_exit
 
@@ -90,16 +90,16 @@ def reaction_b3(g):
     cnt_underlying = False
     quit_all = False
     suppress_buttons(2)
-    BUTTON_LIST[1].text = g.dict_str["return"]
+    BUTTON_LIST[1].text = "return"
     BUTTON_LIST[1].xmax = 5+25*len(g.dict_str["return"])
     BUTTON_LIST[1].react = reaction_return
 
-    b31 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b31",g.dict_img["img_buttonH"],text=g.dict_str["volume"])
-    b32 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b32",g.dict_img["img_buttonH"],text=g.dict_str["choose_language"],react=reaction_b32)
-    b33 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b33",g.dict_img["img_buttonH"],text=g.dict_str["reset_save"],react=reaction_b33)
-    b34 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b34",g.dict_img["img_buttonH"],text=g.dict_str["graphics"],react=reaction_b34)
-    b35 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b35",g.dict_img["img_buttonH"],text=g.dict_str["credits"])
-    b36 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b36",g.dict_img["img_buttonH"],text=g.dict_str["achievements"])
+    b31 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b31",g.dict_img["img_buttonH"],text="volume")
+    b32 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b32",g.dict_img["img_buttonH"],text="choose_language",react=reaction_b32)
+    b33 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b33",g.dict_img["img_buttonH"],text="reset_save",react=reaction_b33)
+    b34 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b34",g.dict_img["img_buttonH"],text="graphics",react=reaction_b34)
+    b35 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b35",g.dict_img["img_buttonH"],text="credits")
+    b36 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b36",g.dict_img["img_buttonH"],text="achievements")
 
     while cnt:
         cnt,quit_all = g.menu_loop()
@@ -110,7 +110,7 @@ def reaction_b3(g):
     with open("data/json/options.json","w") as f:
         f.write(json.dumps(g.options))
 
-    BUTTON_LIST[1].text = g.dict_str["exit"]
+    BUTTON_LIST[1].text = "exit"
     BUTTON_LIST[1].xmax = 10+25*len(g.dict_str["exit"])
     BUTTON_LIST[1].react = reaction_exit
 
@@ -145,9 +145,9 @@ def reaction_b11(g):
 
     #suppress_buttons(2)#titlebanner,exit
 
-    b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text=g.dict_str["campaign_kshan"],react=reaction_b11)
-    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text=g.dict_str["campaign_fantasy"])
-    b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text=g.dict_str["campaign_future"])
+    b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text="campaign_kshan",react=reaction_b11)
+    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy")
+    b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_future")
     b12.activation(False)#désactivé par défaut
     b13.activation(False)#désactivé par défaut
 
@@ -181,12 +181,12 @@ def reaction_b32(g):
             cnt_underlying = False
 
     suppress_buttons(2)
-    b31 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b31",g.dict_img["img_buttonH"],text=g.dict_str["volume"])
-    b32 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b32",g.dict_img["img_buttonH"],text=g.dict_str["choose_language"],react=reaction_b32)
-    b33 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b33",g.dict_img["img_buttonH"],text=g.dict_str["reset_save"],react=reaction_b33)
-    b34 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b34",g.dict_img["img_buttonH"],text=g.dict_str["graphics"],react=reaction_b34)
-    b35 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b35",g.dict_img["img_buttonH"],text=g.dict_str["credits"])
-    b36 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b36",g.dict_img["img_buttonH"],text=g.dict_str["achievements"])
+    b31 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b31",g.dict_img["img_buttonH"],text="volume")
+    b32 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b32",g.dict_img["img_buttonH"],text="choose_language",react=reaction_b32)
+    b33 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b33",g.dict_img["img_buttonH"],text="reset_save",react=reaction_b33)
+    b34 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b34",g.dict_img["img_buttonH"],text="graphics",react=reaction_b34)
+    b35 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b35",g.dict_img["img_buttonH"],text="credits")
+    b36 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b36",g.dict_img["img_buttonH"],text="achievements")
 
     return cnt_underlying,quit_all
 
@@ -201,7 +201,7 @@ def reaction_b34(g):
     suppress_buttons(2)
 
 
-    b341 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b341",g.dict_img["img_buttonH"],text=g.dict_str["Activate Fullscreen"],react=reaction_b341)
+    b341 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b341",g.dict_img["img_buttonH"],text="Activate Fullscreen",react=reaction_b341)
     b342 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b342",g.dict_img["img_buttonH"],text="1600x900",react=reaction_changeScreen(resx=1600,resy=900))
     b343 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b343",g.dict_img["img_buttonH"],text="1280x720",react=reaction_changeScreen(resx=1280,resy=720))
     b344 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*3,g.b1ymax+g.yoffset*3,g.dict_img["img_button"],"b344",g.dict_img["img_buttonH"],text="1366x768",react=reaction_changeScreen(resx=1366,resy=768))
@@ -212,26 +212,26 @@ def reaction_b34(g):
     #b345.activation(False)
     #b346.activation(False)
     if g.options["modeECRAN"]:#if is in FULLSCREEN
-        b341.text = g.dict_str["Disable Fullscreen"]
+        b341.text = "Disable Fullscreen"
     else:
-        b341.text = g.dict_str["Activate Fullscreen"]
+        b341.text = "Activate Fullscreen"
     while cnt:
         cnt,quit_all = g.menu_loop(scrolling=True,scrollist=[b341,b342,b343,b344,b345,b346])
         if g.options["modeECRAN"]:#if is in FULLSCREEN
-            b341.text = g.dict_str["Disable Fullscreen"]
+            b341.text = "Disable Fullscreen"
         else:
-            b341.text = g.dict_str["Activate Fullscreen"]
+            b341.text = "Activate Fullscreen"
         if quit_all:
             cnt = False
             cnt_underlying = False
 
     suppress_buttons(2)
-    b31 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b31",g.dict_img["img_buttonH"],text=g.dict_str["volume"])
-    b32 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b32",g.dict_img["img_buttonH"],text=g.dict_str["choose_language"],react=reaction_b32)
-    b33 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b33",g.dict_img["img_buttonH"],text=g.dict_str["reset_save"],react=reaction_b33)
-    b34 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b34",g.dict_img["img_buttonH"],text=g.dict_str["graphics"],react=reaction_b34)
-    b35 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b35",g.dict_img["img_buttonH"],text=g.dict_str["credits"])
-    b36 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b36",g.dict_img["img_buttonH"],text=g.dict_str["achievements"])
+    b31 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b31",g.dict_img["img_buttonH"],text="volume")
+    b32 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b32",g.dict_img["img_buttonH"],text="choose_language",react=reaction_b32)
+    b33 = ButtonMenu(g,g.b31xmin,g.b31xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b33",g.dict_img["img_buttonH"],text="reset_save",react=reaction_b33)
+    b34 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b34",g.dict_img["img_buttonH"],text="graphics",react=reaction_b34)
+    b35 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b35",g.dict_img["img_buttonH"],text="credits")
+    b36 = ButtonMenu(g,g.b32xmin,g.b32xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b36",g.dict_img["img_buttonH"],text="achievements")
 
     return cnt_underlying,quit_all
 
@@ -249,7 +249,7 @@ def reaction_b321(g):
             b.xmax = 5 + 25*len(g.dict_str["return"])
     return True, False
 
-def reaction_b322(g):       #the map_point dialogues are not updated
+def reaction_b322(g):
     g.options["LANGUAGE"] = "French"
     g.load_languages()
     for b in BUTTON_LIST:
@@ -259,6 +259,10 @@ def reaction_b322(g):       #the map_point dialogues are not updated
     return True, False
 
 def reaction_b33(g):
+    """ reaction of the erase savefile button """
+    d = g.dict_dial["dial_erase_savefile"]
+    if d.show(g):#est ce que Echap/la croix a été pressée?
+        return True,False
     try:
         with open("data/json/default_options.json","r") as file:
             g.options = json.load(file)
@@ -268,7 +272,7 @@ def reaction_b33(g):
     g.load_languages()
     for b in BUTTON_LIST:
         if b.name == "exit":
-            b.text = g.dict_str["return"]
+            b.text = "return"
             b.xmax = 5 + 25*len(g.dict_str["return"])
     return True,False
 
@@ -355,8 +359,8 @@ class ButtonMenu:
                     self.up = True
                 self.g.win().blit(picture,(self.xmin,self.__displayedY(self.ymin)))
             if self.activated:
-                T(self.g.win(),self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,size=50)
+                T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,size=50)
             else:
-                T(self.g.win(),self.text,(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
+                T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
                 if lock: self.g.win().blit(self.g.dict_img["img_layer_lock"],(self.xmin,self.__displayedY(self.ymin)))
             if refresh: g.flip()
