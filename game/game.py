@@ -29,6 +29,8 @@ class Game:
         returns the display window
         """
         #Display
+        pygame.init()
+
         try:
             with open("data/json/options.json","r") as file:
                 self.options = json.load(file)
@@ -38,8 +40,17 @@ class Game:
                 self.options = json.load(file)
             copy2("data/json/default_options.json","data/json/options.json")
 
-        pygame.init()
-        #pygame.mixer.init() music is disabled
+
+        #cas de la trop faible résolution de l'écran
+        i = pygame.display.Info()
+        width = i.current_w
+        height = i.current_h
+        if width < self.options["DISPLAYSIZE_X"] or height < self.options["DISPLAYSIZE_Y"]:
+                self.options["DISPLAYSIZE_Y"] = height
+                self.options["DISPLAYSIZE_X"] = width
+                with open("data/json/options.json","w") as f:
+                    f.write(json.dumps(self.options))
+
         pygame.display.set_caption("CAN·A·BAELDE")
         pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
         self._fenetre = pygame.display.set_mode((self.options["DISPLAYSIZE_X"], self.options["DISPLAYSIZE_Y"]),self.options["modeECRAN"])#1920*1080
