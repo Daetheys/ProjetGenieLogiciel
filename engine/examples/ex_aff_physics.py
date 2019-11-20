@@ -45,6 +45,8 @@ plat2.rot(45)
 plat.rotate(np.pi/4)
 plat2.translate(Vector(0,-10))
 
+
+
 """
 hb3 = hb.copy()
 plat3 = SolidPlatform(hb3)
