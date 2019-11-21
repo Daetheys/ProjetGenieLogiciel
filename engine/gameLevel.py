@@ -14,7 +14,7 @@ import time
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1)]):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1),("data/img/asteroid.png",2)]):
         """ The player spawn in (0,0) """
         self.camera = Camera()
         self.camera.set_position(Vector(-12,-12))
