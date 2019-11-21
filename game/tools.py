@@ -8,6 +8,12 @@ dialogue : {name(str): [[name_bubble(str), character(str), image(str), x(int), y
             = {name(str): talk(list)}
 '''
 
+import os
+import sys
+path = os.getcwd()
+path += "/game/campaign"
+sys.path.append(path)
+
 from pygame.image import load
 from pygame.font import Font
 from character import *

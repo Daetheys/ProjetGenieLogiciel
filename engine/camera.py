@@ -7,7 +7,7 @@ path = os.getcwd()
 sys.path.append(path + "/engine")
 sys.path.append(path + "/game")
 
-import tools
+#import tools
 import pygame
 
 class Camera:
@@ -94,7 +94,7 @@ class Camera:
         d = self.get_dimension()
         x = p.x+int(d.x*5/6)
         y = p.y+int(d.y*1/6)
-        tools.T(self.get_fen(),str(score),x,y)
+        #tools.T(self.get_fen(),str(score),x,y)
 
     def __repr__(self):
         txt = "Camera("+str(self.rect)+")"

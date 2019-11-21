@@ -56,10 +56,7 @@ class PlayerController(KeyboardController):
 
     def execute(self,event,pressed):
         if event is not None and event.type == pygame.KEYUP:
-            print("up")
             if event.key == pygame.K_z:
                 self.target.stop_jump()
-        print("-",pressed[pygame.K_z])
         if pressed[pygame.K_z]:
-            print("refresh")
             self.target.refresh_jump()
