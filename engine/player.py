@@ -24,13 +24,20 @@ class Player(ControlableNode):
         #self.get_sps().load_sprites()
         self.controller = PlayerController(self)
         self.score = 0
-        self.jump_strength = 2.1
+        
+        self.jump_strength = 0.3
         self.can_jump = False
+        self.jump_size_max = 15
+        self.jump_size = self.jump_size_max
 
-    def jump(self):
-        if self.can_jump:
+    def refresh_jump(self):
+        if self.can_jump and self.jump_size > 0:
             self.set_speed(self.get_speed()+Vector(0,-self.jump_strength))
-            self.can_jump = False
+            self.jump_size -= 1
+
+    def stop_jump(self):
+        self.can_jump = False
+        self.jump_size = self.jump_size_max
 
     def allow_jump(self):
         self.can_jump = True
@@ -47,8 +54,12 @@ class PlayerController(KeyboardController):
         super().__init__()
         self.target = target
 
-    def execute(self,event):
-        if event.type == pygame.KEYDOWN:
+    def execute(self,event,pressed):
+        if event is not None and event.type == pygame.KEYUP:
+            print("up")
             if event.key == pygame.K_z:
-                print("JUMP")
-                self.target.jump()
+                self.target.stop_jump()
+        print("-",pressed[pygame.K_z])
+        if pressed[pygame.K_z]:
+            print("refresh")
+            self.target.refresh_jump()

@@ -39,7 +39,7 @@ class GameLevel:
         self.player.set_position(0,-5) #Init pos of the player
         #self.objects.append(self.player)
 
-        self.gravity = Gravity(50)
+        self.gravity = Gravity(100)
         self.player.add_force(self.gravity)
 
     def get_camera(self):
@@ -95,13 +95,15 @@ class GameLevel:
         dt = 0.001 #A régler en fonction des ips !!! (ici on suppose qu'on est a 1000ips)
         t = time.clock()
         self.main_loop(dt)
-        print("fps:",1/(time.clock()-t))
+        #print("fps:",1/(time.clock()-t))
         
     def main_loop(self,dt):
-        for event in pygame.event.get():
+        pressed = pygame.key.get_pressed()
+        print(pressed[pygame.K_z])
+        for event in pygame.event.get()+[None]:
             for o in self.get_objects_opti():
                 if o.get_controller() is not None:
-                    o.get_controller().execute(event)
+                    o.get_controller().execute(event,pressed)
         self.refresh(dt)
         self.camera.center_on(self.player)
         self.time += dt
@@ -119,8 +121,6 @@ class GameLevel:
 
     def physics_step(self,dt):
         """ Compute collisions """
-        
-        print("step")
         obj_opti = self.get_objects_opti()
         for o in obj_opti:
             #print(o)
