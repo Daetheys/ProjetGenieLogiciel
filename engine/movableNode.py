@@ -8,6 +8,7 @@ import pygame
 import time
 
 DEBUG = False
+MAXSPEED = 10 #Low MAXSPEED
 
 class MovableNode(SpriteNode):
     """ A node that can move with more powerful functions"""
@@ -52,6 +53,8 @@ class MovableNode(SpriteNode):
     def get_ang_acc(self):
         return self.__ang_acc
     def set_speed(self,speed):
+        if speed.len() > MAXSPEED:
+            speed = speed.normalise()*MAXSPEED
         self.__speed = speed
     def get_speed(self):
         return self.__speed

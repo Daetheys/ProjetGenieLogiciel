@@ -37,9 +37,9 @@ class GameLevel:
 
         self.player = Player()
         self.player.set_position(0,-5) #Init pos of the player
-        self.objects.append(self.player)
+        #self.objects.append(self.player)
 
-        self.gravity = Gravity(10)
+        self.gravity = Gravity(50)
         self.player.add_force(self.gravity)
 
     def get_camera(self):
@@ -60,11 +60,9 @@ class GameLevel:
             maxposx = o.get_hit_box().get_world_poly().get_max_x()
             minindexx = int( (minposx-minx)/step )
             maxindexx = int( (maxposx-minx)/step )+1 #Arrondi au sup
-            print("--",maxindexx,minindexx,maxposx,minposx)
             for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
                 sorted_objects[i].append(o)
         self.sorted_objects = sorted_objects
-        print("--",self.sorted_objects)
         
     def compute_size_level(self):
         """ Computes the size of the level """
@@ -93,19 +91,20 @@ class GameLevel:
         return self.size_level
 
     def play(self):
+        #Mettre une loop ici :'(
         dt = 0.001 #A régler en fonction des ips !!! (ici on suppose qu'on est a 1000ips)
-        self.main_loop(dt)
-
-    def main_loop(self,dt):
         t = time.clock()
+        self.main_loop(dt)
+        print("fps:",1/(time.clock()-t))
+        
+    def main_loop(self,dt):
         for event in pygame.event.get():
-            for o in self.objects:
+            for o in self.get_objects_opti():
                 if o.get_controller() is not None:
                     o.get_controller().execute(event)
         self.refresh(dt)
         self.camera.center_on(self.player)
         self.time += dt
-        print("fps:",1/(time.clock()-t))
 
     def refresh(self,dt):
         """ Excutes one step of duration dt in the level """
@@ -115,22 +114,29 @@ class GameLevel:
     def get_objects_opti(self):
         (minx,maxx,miny,maxy) = self.size_level
         x = self.camera.get_position().x
-        print("->",x)
         index = int((x-minx)/self.step)
         return self.sorted_objects[index]+self.sorted_objects[index+1]+[self.player]
 
     def physics_step(self,dt):
         """ Compute collisions """
         
-        #print(index,self.sorted_objects)
-        for o in self.get_objects_opti():
+        print("step")
+        obj_opti = self.get_objects_opti()
+        for o in obj_opti:
+            #print(o)
             o.compute_speed(dt)
             o.move()
             if o == self.player:
+                #Reposition the player
                 pos = o.get_position()
                 o.set_position(self.player_pos(self.time),pos.y)
-                print("-->",o.get_position().x)
-            for o2 in self.get_objects_opti():
+                #Cut X speed (for MAXSPEED)
+                speed = self.player.get_speed()
+                self.player.set_speed(Vector(0,speed.y))
+                #Kill player if below 200
+                if self.player.get_position().y > 200:
+                    return False #Game Over
+            for o2 in obj_opti:
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
                     o.collide(o2)
                     o2.collide(o)

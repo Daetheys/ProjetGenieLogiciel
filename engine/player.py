@@ -12,6 +12,7 @@ from solidPlatform import SolidPlatform
 from controller import KeyboardController
 from hitbox import Hitbox
 from rect import Rect
+from vector import Vector
 
 class Player(ControlableNode):
     def __init__(self):
@@ -23,7 +24,7 @@ class Player(ControlableNode):
         #self.get_sps().load_sprites()
         self.controller = PlayerController(self)
         self.score = 0
-        self.jump_strength = 5
+        self.jump_strength = 2.1
         self.can_jump = False
 
     def jump(self):
@@ -35,7 +36,6 @@ class Player(ControlableNode):
         self.can_jump = True
 
     def collide(self,o):
-        #print("Player collide")
         if isinstance(o,SolidPlatform):
             self.allow_jump()
 
@@ -45,6 +45,7 @@ class Player(ControlableNode):
 class PlayerController(KeyboardController):
     def __init__(self,target=None):
         super().__init__()
+        self.target = target
 
     def execute(self,event):
         if event.type == pygame.KEYDOWN:

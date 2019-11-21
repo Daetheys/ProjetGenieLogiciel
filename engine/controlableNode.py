@@ -4,7 +4,7 @@ class ControlableNode(MovableNode):
     """ Node with a controller """
     def __init__(self):
         super().__init__()
-        self.__controller = None
+        self.controller = None
         self.__actions = {"Nothing":do_nothing}
 
     def copy(self):
@@ -17,10 +17,10 @@ class ControlableNode(MovableNode):
         cn.set_controller(self.get_controller())
         
     def set_controller(self,controller):
-        self.__controller = controller
+        self.controller = controller
 
     def get_controller(self):
-        return self.__controller
+        return self.controller
         
     def add_action(self,action,method):
         self.__actions[action] = method
