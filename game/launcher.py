@@ -162,10 +162,10 @@ class Launcher(Game):
         where gl is a game level"""
 
         gl.load_camera(self.win())#Load the camera in the window fen
-        gl.get_camera().set_dimension(Vector(1280,720)) #Resize the camera
+        gl.get_camera().set_dimension(Vector(200,150)) #Resize the camera
         #Usually 2000,2000 (moins de distortion ?) or 2560,1440 (plus grosse résolution)
-        gl.get_camera().set_position(Vector(-100,0)) #change pos of  the camera
-
+        gl.get_camera().set_position(Vector(-100,-75)) #change pos of  the camera
+        gl.optimise_data() #Call it before launching the game of making modification in camera (be carefull it may take a while to execute
         t = 0#time
         sec_wait = 3#POUR L'INSTANT, 3. SERA UN CHAMP DU GAME_LEVEL(duration) !!
         while t < self.options["FPS"] * sec_wait:
@@ -179,6 +179,7 @@ class Launcher(Game):
     def loop_level(self,gl,t):
         """ Running the main loop of a level gl at time t"""
 
+        """ #In GameLevel
         pygame.time.Clock().tick(self.options["FPS"])
         #print(t)
         for event in pygame.event.get():
@@ -194,9 +195,11 @@ class Launcher(Game):
         #print((x,y))
         gl.get_camera().set_position(Vector(x+40,y))
         gl.aff()
-        self.flip("SCORE: "+str(t))
+        #self.flip("SCORE: "+str(t)) #Handled in GameLevel
         t += 1
-
+        """
+        gl.play()
+        
         return True
 
     def launch_game(self):

@@ -9,6 +9,9 @@ sys.path.append(path)
 
 from controlableNode import ControlableNode
 from solidPlatform import SolidPlatform
+from controller import KeyboardController
+from hitbox import Hitbox
+from rect import Rect
 
 class Player(ControlableNode):
     def __init__(self):
@@ -16,10 +19,12 @@ class Player(ControlableNode):
         self.set_hit_box(Hitbox(Rect(-1,-2,2,4)))
         self.set_rigid_body(True)
         self.set_sps(None)
-        self.get_sps().load_automaton()
-        self.get_sps().load_sprites()
-        jump_strength = 5
-        can_jump = False
+        #self.get_sps().load_automaton()
+        #self.get_sps().load_sprites()
+        self.controller = PlayerController(self)
+        self.score = 0
+        self.jump_strength = 5
+        self.can_jump = False
 
     def jump(self):
         if self.can_jump:
@@ -30,5 +35,19 @@ class Player(ControlableNode):
         self.can_jump = True
 
     def collide(self,o):
-        if isinstance(o,SolidePlatform):
+        #print("Player collide")
+        if isinstance(o,SolidPlatform):
             self.allow_jump()
+
+    def get_score(self):
+        return self.score
+
+class PlayerController(KeyboardController):
+    def __init__(self,target=None):
+        super().__init__()
+
+    def execute(self,event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_z:
+                print("JUMP")
+                self.target.jump()

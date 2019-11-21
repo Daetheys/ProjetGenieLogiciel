@@ -48,6 +48,8 @@ class Rect:
         r2 = Rect(l,t,w,h)
         return r2
 
+    def translate(self,v):
+        self.set_position(self.get_position()+v)
     
     def init_from_vectors(self,position,dimension):
         self.position = position

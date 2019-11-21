@@ -7,6 +7,8 @@ from camera import Camera
 from vector import Vector
 from background import Background
 from parallax import Parallax
+from player import Player
+from force import Gravity
 import pygame
 import time
 
@@ -15,11 +17,16 @@ class GameLevel:
     def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1)]):
         """ The player spawn in (0,0) """
         self.camera = Camera()
-        self.camera.set_position(Vector(0,0))
-        self.camera.set_dimension(Vector(10,10))
+        self.camera.set_position(Vector(-12,-12))
+        self.camera.set_dimension(Vector(25,25))
         self.objects = objects
         self.player_pos = player_pos
         self.compute_size_level()
+        
+        self.sorted_objects = None
+        self.step = None
+        self.optimise_data()
+        self.time = 0
 
         #Load Background
         lpar = []
@@ -28,9 +35,12 @@ class GameLevel:
             lpar.append(p)
         self.background = Background(lpar)
 
-        self.step = None
+        self.player = Player()
+        self.player.set_position(0,-5) #Init pos of the player
+        self.objects.append(self.player)
 
-        self.score = 0
+        self.gravity = Gravity(10)
+        self.player.add_force(self.gravity)
 
     def get_camera(self):
         return self.camera
@@ -39,16 +49,23 @@ class GameLevel:
         return self.objects
 
     def optimise_data(self):
+        """ Optimise collisions checks and aff """
+        #Call it before launching the game of making modification in camera (be carefull it may take a while to execute
         step = self.get_camera().get_dimension().x
         self.step = step
         (minx,maxx,miny,maxy) = self.size_level
-        sorted_objects = [[] for i in range(maxx-minx)]
+        sorted_objects = [[] for i in range( int((maxx-minx)/step) +2)]
         for o in self.objects:
-            posx = sorted_objects[i].get_position().x
-            sorted_objects[int(posx)+int(minx)].append(o)
+            minposx = o.get_hit_box().get_world_poly().get_min_x()
+            maxposx = o.get_hit_box().get_world_poly().get_max_x()
+            minindexx = int( (minposx-minx)/step )
+            maxindexx = int( (maxposx-minx)/step )+1 #Arrondi au sup
+            print("--",maxindexx,minindexx,maxposx,minposx)
+            for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
+                sorted_objects[i].append(o)
+        self.sorted_objects = sorted_objects
+        print("--",self.sorted_objects)
         
-        
-
     def compute_size_level(self):
         """ Computes the size of the level """
         maxi_x = None
@@ -76,26 +93,44 @@ class GameLevel:
         return self.size_level
 
     def play(self):
-        player = Player()
-        plat.set_position(Vector(0,5))
+        dt = 0.001 #A régler en fonction des ips !!! (ici on suppose qu'on est a 1000ips)
+        self.main_loop(dt)
 
-    def main_loop(self):
+    def main_loop(self,dt):
+        t = time.clock()
         for event in pygame.event.get():
-            pass
+            for o in self.objects:
+                if o.get_controller() is not None:
+                    o.get_controller().execute(event)
+        self.refresh(dt)
+        self.camera.center_on(self.player)
+        self.time += dt
+        print("fps:",1/(time.clock()-t))
 
     def refresh(self,dt):
         """ Excutes one step of duration dt in the level """
-        t = time.clock()
         self.physics_step(dt)
         self.aff()
-        print(1/(time.clock()-t))
+
+    def get_objects_opti(self):
+        (minx,maxx,miny,maxy) = self.size_level
+        x = self.camera.get_position().x
+        print("->",x)
+        index = int((x-minx)/self.step)
+        return self.sorted_objects[index]+self.sorted_objects[index+1]+[self.player]
 
     def physics_step(self,dt):
         """ Compute collisions """
-        for o in self.get_objects():
+        
+        #print(index,self.sorted_objects)
+        for o in self.get_objects_opti():
             o.compute_speed(dt)
             o.move()
-            for o2 in self.get_objects():
+            if o == self.player:
+                pos = o.get_position()
+                o.set_position(self.player_pos(self.time),pos.y)
+                print("-->",o.get_position().x)
+            for o2 in self.get_objects_opti():
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
                     o.collide(o2)
                     o2.collide(o)
@@ -116,5 +151,5 @@ class GameLevel:
                         
     def aff(self):
         """ Aff all objects that are in the camera of this """
-        self.camera.aff(self.objects,self.get_background())
+        self.camera.aff(self.get_objects_opti(),self.get_background(),self.player.get_score())
         pygame.display.flip()

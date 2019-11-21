@@ -71,3 +71,13 @@ def test_physics_step2():
     print(v)
     assert v.y < 12
 
+
+def test_opti():
+    R = Rect(-1,-1,2,2)
+    Hb = Hitbox(R)
+    plat1 = SolidPlatform(Hb)
+    plat = [plat1]
+    for i in range(100):
+        plat.append(plat[-1].copy())
+        plat[-1].translate(Vector(10,0))
+    gl = GameLevel(plat,[])

@@ -31,8 +31,8 @@ class KeyboardController(Controller):
     
     def __init__(self, target=None):
         super().__init__(self)
-        self.correspondance = {}
-        
+        #self.correspondance = {}
+    """
     def add_event(self,event,action):
         self.coorespondance[event] = action
         
@@ -42,7 +42,7 @@ class KeyboardController(Controller):
                 if event == my_event:
                     return self.correspondance[my_event]
         return ("Nothing")
-                    
+    """
     def execute(self):
         self._target.execute(get_event)()
         

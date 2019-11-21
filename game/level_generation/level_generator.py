@@ -42,7 +42,7 @@ def platform(x,y,xmax):
 		])
 	plat = SolidPlatform(p)
 	"""
-	plat = SolidPlatform(Hitbox(Rect(abs(xmax-x)//2,12,abs(xmax-x),24)))
+	plat = SolidPlatform(Hitbox(Rect(-abs(xmax-x)//2,12,abs(xmax-x),24)))
 	#plat.create_sps("Platform")#voir un sprite
 	plat.set_sps(None)#voir une hitbox
 	plat.translate(Vector(x,y))
@@ -68,11 +68,11 @@ def generate_level(filename):
 		if(i > last_beat):
 			tempo_index = tempo_index + 1
 
-	y = 500#initially the height is at 500
-	jump_points[0] = 0#avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
+	y = 0#initially the height is at 500 #It's at 0 now ^^
+	#jump_points[0] = 0#avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
 
 	for i in range(nb_beats):
-		#pourquoi +50 et +24 ?
+		#pourquoi +50 et +24 ? #La taille des plateformes non ?
 		platforms.append(platform(jump_points[i]+50,y,jump_points[i+1]+24))
 
 		y += random.randint(-48,48)#at each point the y coordinate changes

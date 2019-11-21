@@ -75,14 +75,14 @@ class Hitbox:
         p2 = hbox.points_in(self)
         if pf + p2 == []:
             return (Vector(0,0),Vector(0,0))
-        elif len(pf) == 1 and p2 == []:
+        elif len(pf) >= 1 and p2 == []:
             point = pf[0]
             nwi,d = hbox.rect.nearest_wall(point)
             #print("nwi,d",nwi,d)
             v = hbox.wall_index_to_vector(nwi)*d
             #print("v",v)
             return v.apply_transform(hbox.get_transform().cut_translate())*(1+epsilon)
-        elif pf == [] and len(p2) == 1:
+        elif pf == [] and len(p2) >= 1:
             nwi,d = self.rect.nearest_wall(p2[0])
             #print("nwi,d",nwi,d)
             v = self.wall_index_to_vector(nwi)*d

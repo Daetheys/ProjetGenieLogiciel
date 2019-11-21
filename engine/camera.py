@@ -1,6 +1,13 @@
 from rect import Rect
 from polygone import *
 
+import sys
+import os
+path = os.getcwd()
+sys.path.append(path + "/engine")
+sys.path.append(path + "/game")
+
+import tools
 import pygame
 
 class Camera:
@@ -8,6 +15,9 @@ class Camera:
     def __init__(self):
         self.rect = Rect()
         self.fen = None #Undefined yet
+
+    def move(self,v):
+        self.rect.translate(v)
 
     def set_position(self,pos):
         """ Sets the position of the camera in the GameLevel"""
@@ -60,6 +70,11 @@ class Camera:
         """ Returns true if the polygon is completely in the camera's rect or if it intersects a side """
         r = self.rect.collide_poly(poly)
         return r
+
+    def center_on(self,o):
+        pos = o.get_position()
+        pos = pos + (-self.get_dimension()/2)
+        self.set_position(pos)
     
     def flashblack(self):
         """ Fill the camera with black in order to blit images right after """
@@ -67,7 +82,7 @@ class Camera:
         pr = pygame.Rect(0,0,self.get_fen().get_width(),self.get_fen().get_height())
         pygame.draw.rect(self.get_fen(),(0,0,0),pr)
 
-    def aff(self,objects,bg):
+    def aff(self,objects,bg,score):
         """ Aff all objects that are in the camera """
         if not(self.get_fen() is None):
             self.flashblack()
@@ -75,6 +90,11 @@ class Camera:
         for o in objects:
             if self.is_in_camera(o.get_hit_box().get_world_poly()):
                 o.aff(self.get_fen(),self.get_distorsion())
+        p = self.get_position()
+        d = self.get_dimension()
+        x = p.x+int(d.x*5/6)
+        y = p.y+int(d.y*1/6)
+        tools.T(self.get_fen(),str(score),x,y)
 
     def __repr__(self):
         txt = "Camera("+str(self.rect)+")"
