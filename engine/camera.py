@@ -75,6 +75,12 @@ class Camera:
         pos = o.get_position()
         pos = pos + (-self.get_dimension()/2)
         self.set_position(pos)
+
+    def threeforth_on(self,o):
+        pos = o.get_position()
+        dim = self.get_dimension()
+        pos = pos + (-Vector(dim.x/4,dim.y/2))
+        self.set_position(pos)
     
     def flashblack(self):
         """ Fill the camera with black in order to blit images right after """

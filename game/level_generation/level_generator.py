@@ -78,7 +78,7 @@ def generate_level(filename):
 		y += random.randint(-48,48)#at each point the y coordinate changes
 
 	def player_pos(t):
-		return t*speed*60/tempo*4
+		return t*speed*60/tempo
 
 
 	return GameLevel(platforms,player_pos)

@@ -88,32 +88,40 @@ class GameLevel:
         self.size_level = (mini_x,maxi_x,mini_y,maxi_y)
 
     def get_size_level(self):
+        """ Returns the size of the level as a tuple (minx,maxx,miny,maxy) """
         return self.size_level
 
-    def play(self):
-        #Mettre une loop ici :'(
-        dt = 0.001 #A régler en fonction des ips !!! (ici on suppose qu'on est a 1000ips)
-        t = time.clock()
-        self.main_loop(dt)
-        #print("fps:",1/(time.clock()-t))
+    def play(self,fps):
+        """ Launches the gameLevel , returns +score if win, -score if lose """
+        print(fps)
+        dt = 0.001
+        try:
+            while 1:
+                self.main_loop(dt)
+        except EndGame as e:
+            return (e.final*e.score)
         
     def main_loop(self,dt):
+        """ Main loop of the game (controllers, physics, ...) """
         pressed = pygame.key.get_pressed()
-        print(pressed[pygame.K_z])
+        #Controller loop
         for event in pygame.event.get()+[None]:
             for o in self.get_objects_opti():
                 if o.get_controller() is not None:
                     o.get_controller().execute(event,pressed)
-        self.refresh(dt)
-        self.camera.center_on(self.player)
-        self.time += dt
-
-    def refresh(self,dt):
-        """ Excutes one step of duration dt in the level """
         self.physics_step(dt)
         self.aff()
+        self.camera.threeforth_on(self.player)
+        self.time += dt
+        #Win / Lose conditions
+        (minx,maxx,miny,maxy) = self.get_size_level()
+        if self.player.get_position().y > maxy: #C'est inversé :)
+            raise EndGame(-1,self.score)
+        if self.player.get_position().x > maxx:
+            raise EndGame(1,self.score)
 
     def get_objects_opti(self):
+        """ Optimise the data structure """
         (minx,maxx,miny,maxy) = self.size_level
         x = self.camera.get_position().x
         index = int((x-minx)/self.step)
@@ -133,9 +141,6 @@ class GameLevel:
                 #Cut X speed (for MAXSPEED)
                 speed = self.player.get_speed()
                 self.player.set_speed(Vector(0,speed.y))
-                #Kill player if below 200
-                if self.player.get_position().y > 200:
-                    return False #Game Over
             for o2 in obj_opti:
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
                     o.collide(o2)
@@ -159,3 +164,8 @@ class GameLevel:
         """ Aff all objects that are in the camera of this """
         self.camera.aff(self.get_objects_opti(),self.get_background(),self.player.get_score())
         pygame.display.flip()
+
+class EndGame(Exception):
+    def __init__(self,issue,score):
+        self.issue = issue
+        self.score = score

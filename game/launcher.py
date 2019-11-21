@@ -165,13 +165,15 @@ class Launcher(Game):
         gl.get_camera().set_dimension(Vector(200,150)) #Resize the camera
         #Usually 2000,2000 (moins de distortion ?) or 2560,1440 (plus grosse résolution)
         gl.get_camera().set_position(Vector(-100,-75)) #change pos of  the camera
-        gl.optimise_data() #Call it before launching the game of making modification in camera (be carefull it may take a while to execute
+        gl.optimise_data() #Call it before launching the game of making modification in camera (be carefull it may take a while to execute)
+        """
         t = 0#time
         sec_wait = 3#POUR L'INSTANT, 3. SERA UN CHAMP DU GAME_LEVEL(duration) !!
         while t < self.options["FPS"] * sec_wait:
             if not self.loop_level(gl,t):
                 return False#on a perdu
-        pygame.event.get()
+        """
+        gl.play(self.options["FPS"])
         #pour ne pas sortir du menu même si les boutons ont été trop appuyés
         #mashed buttons are handled by pygameeventget (doesn't quit the menu)
         return True#true si réussite !
