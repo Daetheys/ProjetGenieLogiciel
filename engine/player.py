@@ -56,6 +56,9 @@ class Player(ControlableNode):
         if isinstance(o,SolidPlatform):
             self.allow_jump()
 
+    def add_score(self,val):
+        self.score += val
+
     def get_score(self):
         return self.score
 

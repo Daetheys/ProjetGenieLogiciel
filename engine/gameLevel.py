@@ -9,6 +9,7 @@ from background import Background
 from parallax import Parallax
 from player import Player
 from force import Gravity
+from solidPlatform import SolidPlatform
 import pygame
 import time
 
@@ -30,17 +31,22 @@ class GameLevel:
         self.optimise_data()
         self.time = 0
 
+        self.end_platform_location = None
+        self.compute_end_platform_location()
+
         #Load Background
-        lpar = []
+        lpar = [] #List of Parallax
         for (name,index) in limgpar:
-            p = Parallax(name,index)
+            p = Parallax(name,index) #Create parallax with given speed
             lpar.append(p)
         self.background = Background(lpar)
 
+        #Creation of the player
         self.player = Player()
         self.player.set_position(0,-5) #Init pos of the player
-        #self.objects.append(self.player)
+        #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
+        #Creation of the gravity
         self.gravity = Gravity(100)
         self.player.add_force(self.gravity)
 
@@ -49,6 +55,13 @@ class GameLevel:
 
     def get_objects(self):
         return self.objects
+
+    def compute_end_platform_location(self):
+        self.end_platform_location = []
+        for o in self.get_objects():
+            if isinstance(o,SolidPlatform):
+                self.end_platform_location.append(o.get_hit_box().get_world_poly().get_max_x())
+        self.end_platform_location.sort()
 
     def optimise_data(self):
         """ Optimise collisions checks and aff """
@@ -110,10 +123,18 @@ class GameLevel:
             for o in self.get_objects_opti():
                 if o.get_controller() is not None:
                     o.get_controller().execute(event,pressed)
+        #Physics
         self.physics_step(dt)
+        #Aff
         self.aff()
+        #Camera
         self.camera.threeforth_on(self.player)
+        #Time
         self.time += dt
+        #Score
+        while len(self.end_platform_location) > 0 and self.player.get_position().x >= self.end_platform_location[0]:
+            del self.end_platform_location[0]
+            self.player.add_score(1000)
         #Win / Lose conditions
         (minx,maxx,miny,maxy) = self.get_size_level()
         if self.player.get_position().y > maxy: #C'est inversé :)

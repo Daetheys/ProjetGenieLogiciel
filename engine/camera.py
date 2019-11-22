@@ -7,7 +7,7 @@ path = os.getcwd()
 sys.path.append(path + "/engine")
 sys.path.append(path + "/game")
 
-#import tools
+import tools
 import pygame
 
 class Camera:
@@ -96,11 +96,12 @@ class Camera:
         for o in objects:
             if self.is_in_camera(o.get_hit_box().get_world_poly()):
                 o.aff(self.get_fen(),self.get_distorsion())
-        p = self.get_position()
         d = self.get_dimension()
-        x = p.x+int(d.x*5/6)
-        y = p.y+int(d.y*1/6)
-        #tools.T(self.get_fen(),str(score),x,y)
+        x = int(d.x*15/16)
+        y = int(d.y*1/16)
+        distorsion_scale = self.get_distorsion()[0]
+        vpos = distorsion_scale.transform_point(x,y)
+        tools.T(self.get_fen(),str(score),vpos.x,vpos.y,255,255,255,size=45)
 
     def __repr__(self):
         txt = "Camera("+str(self.rect)+")"
