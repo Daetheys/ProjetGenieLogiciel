@@ -18,4 +18,5 @@
                 "img_cont_dial": "data/img/dial_arrow.png",
                  "img_end_dial": "data/img/dial_cross.png",
                   "img_back": "data/img/back.jpg",
-                   "img_asteroid": "data/img/asteroid.png"}
+                   "img_asteroid": "data/img/asteroid.png",
+                    "img_leaderboard": "data/img/img_leaderboard.png"}

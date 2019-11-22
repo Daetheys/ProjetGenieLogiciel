@@ -93,7 +93,7 @@ class Game:
         self.yoffset = int(self.options["DISPLAYSIZE_Y"]/4.5)
 
         #Autres constantes
-        self.max_number_scores = 8#max number of saved scores
+        self.max_number_scores = 10#max number of saved scores
         self.player_name = "PLAYER"#will be in options/savefile soon
 
     def load_languages(self,fst=False):

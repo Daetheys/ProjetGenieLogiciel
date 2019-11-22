@@ -184,7 +184,7 @@ class Launcher(Game):
         self.dict_score[gl.name] = insert_score(self.score(gl.name),score,self.player_name,self.max_number_scores)
         
         msg_score = score_to_msg(self.dict_score[gl.name])
-        dial_score = Dialogue([Dialogue_Bubble(msg_score,self.dict_char["narrator"],self.dict_img["img_dial"],0,400,True)])
+        dial_score = Dialogue([Dialogue_Bubble(msg_score,self.dict_char["narrator"],self.dict_img["img_leaderboard"],300,50,True)])
         dial_score.show(self)
 
         with open("data/json/scores.json","w") as f:

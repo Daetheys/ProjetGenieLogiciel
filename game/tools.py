@@ -88,7 +88,7 @@ def insert_score(L,score,name,maxn):
     return L
     
 def score_to_msg(leaderboard):
-    msg=""
+    msg="LEADERBOARD\n\n"
     for i,score in enumerate(leaderboard):
         msg += str(i+1) + ") " + score[0] + " : " + str(score[1]) + "\n"
     return msg
