@@ -3,5 +3,5 @@
 .pytest_cache/*
 *.pyc
 data/json/options.json
-data/your*music/*
+data/your*music/*.mp3
 
