@@ -127,7 +127,7 @@ class GameLevel:
         self.physics_step(dt)
         #Aff
         self.aff()
-        #Camera
+        #Camera set position (3/4)
         self.camera.threeforth_on(self.player)
         #Time
         self.time += dt
