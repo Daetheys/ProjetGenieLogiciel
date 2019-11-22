@@ -24,7 +24,6 @@ class GameLevel:
         self.player_pos = player_pos
         self.compute_size_level()
         self.name = name
-        self.score = 42
 
         self.sorted_objects = None
         self.step = None
@@ -138,9 +137,9 @@ class GameLevel:
         #Win / Lose conditions
         (minx,maxx,miny,maxy) = self.get_size_level()
         if self.player.get_position().y > maxy: #C'est inversé :)
-            raise EndGame(False,self.score)
+            raise EndGame(False,self.player.get_score())
         if self.player.get_position().x > maxx:
-            raise EndGame(True,self.score)
+            raise EndGame(True,self.player.get_score())
 
     def get_objects_opti(self):
         """ Optimise the data structure """
