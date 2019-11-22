@@ -24,7 +24,6 @@ class GameLevel:
         self.player_pos = player_pos
         self.compute_size_level()
         self.name = name
-        self.score = 42
 
         self.sorted_objects = None
         self.step = None
@@ -39,6 +38,7 @@ class GameLevel:
         for (name,index) in limgpar:
             p = Parallax(name,index) #Create parallax with given speed
             lpar.append(p)
+            
         self.background = Background(lpar)
 
         #Creation of the player
