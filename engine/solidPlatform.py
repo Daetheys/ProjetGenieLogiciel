@@ -13,6 +13,10 @@ class SolidPlatform(ControlableNode):
         self.set_sps(SpriteScheduler(name))
         self.get_sps().load_automaton()
         self.get_sps().load_sprites()
+        self.center_hit_box()
+
+    def center_hit_box(self):
+        self.get_hit_box().center()
 
     def copy(self):
         """ Returns the copy of this """
@@ -22,7 +26,6 @@ class SolidPlatform(ControlableNode):
 
     def paste_in(self,t):
         ControlableNode.paste_in(self,t)
-
 
     def __repr__(self):
         return "SolidPlatform("+str(self.get_position())+","+str(self.get_hit_box())+")"

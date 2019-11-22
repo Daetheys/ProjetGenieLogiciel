@@ -24,6 +24,9 @@ class Rect:
         self.position = Vector(left,top)
         self.dimension = Vector(width,height)
 
+    def center(self):
+        self.set_position(-self.get_dimension()/2)
+
     def get_coord(self):
         v = self.get_position()
         d = self.get_dimension()

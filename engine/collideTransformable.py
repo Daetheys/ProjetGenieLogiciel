@@ -16,12 +16,17 @@ class CollideTransformable(Transformable):
         self.__collide = False
         self.__collide_hit_box = Hitbox(Rect(0,0,0,0))
         self.__rigid_hit_box = Hitbox(Rect(0,0,0,0))
+        self.center_hit_box()
 
     def copy(self):
         """ Returns the copy of this with right deep and shallow copies of arguments """
         t = CollideTransformable()
         self.paste_in(t)
         return t
+
+    def center_hit_box(self):
+        self.get_hit_box().center()
+        self.get_rigid_hit_box().center()
 
     def paste_in(self,t):
         """ Copies this object in t (side effect)"""
