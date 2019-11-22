@@ -21,6 +21,7 @@ class Game:
         self.load_languages(True)
         self.load_savefile()
         self.create_dialogues()
+        self.create_items()
         self.create_world()
         print("The game initialized properly.")
 
@@ -121,8 +122,7 @@ class Game:
     def create_items(self):
         self.dict_item = {}
         with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
-            self.dict_item = json.load(read_file)
-            self.dict_item = tools.create_item(self.dict_item)
+            self.dict_item = json.load(read_file, object_hook=tools.create_item)
 
     def create_world(self):
         """

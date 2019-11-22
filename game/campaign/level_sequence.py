@@ -28,10 +28,11 @@ class Level_Sequence(Map_Point):
     def set_accessed(self):
         self._accessed = True
 
-    def set_finished(self):
+    def set_finished(self,g):
         self._finished = True
         for child in self.__childs:
             child.set_accessible()
+        self.reward(g)
             
     def get_accessible(self):
         return self._accessible
@@ -54,7 +55,7 @@ class Level_Sequence(Map_Point):
         reussite = []
         for level in self.__levels:
             reussite.append(level.launch(g))#pour savoir quels niveaux ont été réussis !
-        self.set_finished()
+        self.set_finished(g)
         if self._end_dialogue is not None:
             self._end_dialogue.show(g)
             #la valeur de retour n'est pas utile ici, puisqu'on quitte de toute façon après.
@@ -62,4 +63,8 @@ class Level_Sequence(Map_Point):
         
     def reward(self,g):
         if self.name == "kshan_4A":
-            pass
+            g.player.add_to_inventory({g.dict_item["key_A"]:1})
+            print("key_A")
+        if self.name == "kshan_1":
+            g.player.add_to_inventory({g.dict_item["key_0"]:1})
+            print("key_0")

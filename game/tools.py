@@ -6,6 +6,7 @@ characters : {name(str): [image(str), color_talk_r(int), color_talk_g(int), colo
 dialogue : {name(str): [[name_bubble(str), character(str), image(str), x(int), y(int), is_last(bool)]]}
             = {name(str): [Dialogue_Bubble(list)]}
             = {name(str): talk(list)}
+items : {name(str): [type(str), args*]}
 '''
 
 import os
