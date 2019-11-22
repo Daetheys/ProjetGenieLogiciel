@@ -48,7 +48,7 @@ def platform(x,y,xmax):
 	plat.translate(Vector(x,y))
 	return plat
 
-def generate_level(filename):
+def generate_level(filename,name_of_level=''):
 	"""
 		Génère un niveau associé à la musique du fichier filename
 		Renvoie un GameLevel
@@ -78,7 +78,7 @@ def generate_level(filename):
 		y += random.randint(-48,48)#at each point the y coordinate changes
 
 	def player_pos(t):
-		return t*speed*60/tempo*4
+		return t*speed*60/tempo
 
 
-	return GameLevel(platforms,player_pos)
+	return GameLevel(platforms,player_pos,name=name_of_level)

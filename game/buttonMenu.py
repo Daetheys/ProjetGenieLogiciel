@@ -53,13 +53,14 @@ def reaction_changeScreen(resx=1600,resy=900):
         return True,False
     return f
 
-def reaction_play(text):
+def reaction_play(text,name):
     """
     allows the player to play a level,
     that will be generated from the music at the file text
+    the level will have the name 'name'
     """
     def f(g):
-        gl = generate_level(text)
+        gl = generate_level(text,name)
         g.launch_level(gl)
         """ ceci lance le level correspondant """
         return True,False
@@ -133,7 +134,7 @@ def reaction_b2(g):
     Lf = [b2help]
     for f in files:
         if f.endswith(".mp3"):#Remarque : aucune entrée de dictstr ne doit finir par .mp3 !
-            b = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*len(Lf),g.b1ymax+g.yoffset*len(Lf),g.dict_img["img_button"],"b pour "+f[:-4],g.dict_img["img_buttonH"],text=f[:-4],react=reaction_play("data/your music/"+f))
+            b = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*len(Lf),g.b1ymax+g.yoffset*len(Lf),g.dict_img["img_button"],"b pour "+f[:-4],g.dict_img["img_buttonH"],text=f[:-4],react=reaction_play("data/your music/"+f,f[:-4]))
             Lf.append(b)
 
     #b21.activation(False)#désactivé par défaut -> en vrai sera activé

@@ -75,6 +75,11 @@ class MovableNode(SpriteNode):
             return True
         except KeyError:
             return False
+    def remove_force(self,force):
+        try:
+            del self.__force_effect[force]
+        except KeyError:
+            pass
     def list_forces(self):
         return list(self.__force_effect.keys())
     def move(self):

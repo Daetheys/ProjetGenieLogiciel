@@ -14,7 +14,7 @@ import time
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1),("data/img/asteroid.png",2)]):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1),("data/img/asteroid.png",2)],name=''):
         """ The player spawn in (0,0) """
         self.camera = Camera()
         self.camera.set_position(Vector(-12,-12))
@@ -22,7 +22,9 @@ class GameLevel:
         self.objects = objects
         self.player_pos = player_pos
         self.compute_size_level()
-        
+        self.name = name
+        self.score = 42
+
         self.sorted_objects = None
         self.step = None
         self.optimise_data()
@@ -63,7 +65,7 @@ class GameLevel:
             for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
                 sorted_objects[i].append(o)
         self.sorted_objects = sorted_objects
-        
+
     def compute_size_level(self):
         """ Computes the size of the level """
         maxi_x = None
@@ -88,32 +90,40 @@ class GameLevel:
         self.size_level = (mini_x,maxi_x,mini_y,maxi_y)
 
     def get_size_level(self):
+        """ Returns the size of the level as a tuple (minx,maxx,miny,maxy) """
         return self.size_level
 
-    def play(self):
-        #Mettre une loop ici :'(
-        dt = 0.001 #A régler en fonction des ips !!! (ici on suppose qu'on est a 1000ips)
-        t = time.clock()
-        self.main_loop(dt)
-        #print("fps:",1/(time.clock()-t))
-        
+    def play(self,fps):
+        """ Launches the gameLevel , returns +score if win, -score if lose """
+        print(fps)
+        dt = 0.001
+        try:
+            while True:
+                self.main_loop(dt)
+        except EndGame as e:
+            return (e.issue, e.score)
+
     def main_loop(self,dt):
+        """ Main loop of the game (controllers, physics, ...) """
         pressed = pygame.key.get_pressed()
-        print(pressed[pygame.K_z])
-        for event in pygame.event.get()+[None]:
+        #Controller loop
+        for event in pygame.event.get() + [None]:
             for o in self.get_objects_opti():
                 if o.get_controller() is not None:
                     o.get_controller().execute(event,pressed)
-        self.refresh(dt)
-        self.camera.center_on(self.player)
-        self.time += dt
-
-    def refresh(self,dt):
-        """ Excutes one step of duration dt in the level """
         self.physics_step(dt)
         self.aff()
+        self.camera.threeforth_on(self.player)
+        self.time += dt
+        #Win / Lose conditions
+        (minx,maxx,miny,maxy) = self.get_size_level()
+        if self.player.get_position().y > maxy: #C'est inversé :)
+            raise EndGame(False,self.score)
+        if self.player.get_position().x > maxx:
+            raise EndGame(True,self.score)
 
     def get_objects_opti(self):
+        """ Optimise the data structure """
         (minx,maxx,miny,maxy) = self.size_level
         x = self.camera.get_position().x
         index = int((x-minx)/self.step)
@@ -133,9 +143,6 @@ class GameLevel:
                 #Cut X speed (for MAXSPEED)
                 speed = self.player.get_speed()
                 self.player.set_speed(Vector(0,speed.y))
-                #Kill player if below 200
-                if self.player.get_position().y > 200:
-                    return False #Game Over
             for o2 in obj_opti:
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
                     o.collide(o2)
@@ -154,8 +161,13 @@ class GameLevel:
 
     def set_background(self,v):
         self.background = v
-                        
+
     def aff(self):
         """ Aff all objects that are in the camera of this """
         self.camera.aff(self.get_objects_opti(),self.get_background(),self.player.get_score())
         pygame.display.flip()
+
+class EndGame(Exception):
+    def __init__(self,issue,score):
+        self.issue = issue
+        self.score = score

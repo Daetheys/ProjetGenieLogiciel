@@ -42,7 +42,9 @@ def test_physics_step1():
     plat1 = SolidPlatform(Hb)
     gravity = Gravity(10)
     plat1.add_force(gravity)
-    gl = GameLevel([plat1],[])
+    def pos(t):
+        return 0
+    gl = GameLevel([plat1],pos)
     gl.physics_step(1)
     assert plat1.get_position() == Vector(0,10)
     assert plat1.get_hit_box().get_world_poly() == Polygon([Vector(-1,9),Vector(1,9),Vector(1,11),Vector(-1,11)])

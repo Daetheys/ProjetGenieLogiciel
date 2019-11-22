@@ -8,6 +8,12 @@ dialogue : {name(str): [[name_bubble(str), character(str), image(str), x(int), y
             = {name(str): talk(list)}
 '''
 
+import os
+import sys
+path = os.getcwd()
+path += "/game/campaign"
+sys.path.append(path)
+
 from pygame.image import load
 from pygame.font import Font
 from character import *
@@ -55,3 +61,14 @@ def create_dial(dict,dict_str,dict_char,dict_img):
     for dial in dict:
         dict[dial] = Dialogue(create_bubble(dict[dial],dict_str,dict_char,dict_img))
     return dict
+
+def insert_score(L,score,name,maxn):
+    """ insère score,name dans L, en place et retourne L
+    L est une liste leaderboard """
+    for k in range(len(L)):
+        if L[k][1] < score:
+            name,L[k][0] = L[k][0],name
+            score,L[k][1] = L[k][1],score
+    if len(L) < maxn:
+        L.append([name,score])
+    return L

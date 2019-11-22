@@ -164,18 +164,28 @@ class Launcher(Game):
 
         gl.load_camera(self.win())#Load the camera in the window fen
         gl.get_camera().set_dimension(Vector(200,150)) #Resize the camera
-        #Usually 2000,2000 (moins de distortion ?) or 2560,1440 (plus grosse résolution)
+        #2560,1440 (plus grosse résolution)
         gl.get_camera().set_position(Vector(-100,-75)) #change pos of  the camera
-        gl.optimise_data() #Call it before launching the game of making modification in camera (be carefull it may take a while to execute
+        gl.optimise_data() #Call it before launching the game of making modification in camera (be careful it may take a while to execute)
+        """
         t = 0#time
         sec_wait = 3#POUR L'INSTANT, 3. SERA UN CHAMP DU GAME_LEVEL(duration) !!
         while t < self.options["FPS"] * sec_wait:
             if not self.loop_level(gl,t):
                 return False#on a perdu
-        pygame.event.get()
+        """
+        success, score = gl.play(self.options["FPS"])
+
+        if not success:#reduce score of defeats
+            score //= 2
+        #g.scores[gl.name]  = leaderboard of this level
+        self.dict_score[gl.name] = insert_score(self.score(gl.name),score,self.player_name,self.max_number_scores)
+
+        with open("data/json/scores.json","w") as f:
+            f.write(json.dumps(self.dict_score))
         #pour ne pas sortir du menu même si les boutons ont été trop appuyés
         #mashed buttons are handled by pygameeventget (doesn't quit the menu)
-        return True#true si réussite !
+        return success#true ssi réussite ! pour l'instant non utilisé.
 
     def loop_level(self,gl,t):
         """ Running the main loop of a level gl at time t"""
@@ -198,10 +208,11 @@ class Launcher(Game):
         gl.aff()
         #self.flip("SCORE: "+str(t)) #Handled in GameLevel
         t += 1
-        """
-        gl.play()
-        
+
+        #gl.play(t)
+
         return True
+        """
 
     def launch_game(self):
         """ Launching the main loop of the main menu"""

@@ -7,7 +7,7 @@ path = os.getcwd()
 sys.path.append(path + "/engine")
 sys.path.append(path + "/game")
 
-import tools
+#import tools
 import pygame
 
 class Camera:
@@ -75,6 +75,12 @@ class Camera:
         pos = o.get_position()
         pos = pos + (-self.get_dimension()/2)
         self.set_position(pos)
+
+    def threeforth_on(self,o):
+        pos = o.get_position()
+        dim = self.get_dimension()
+        pos = pos + (-Vector(dim.x/4,dim.y/2))
+        self.set_position(pos)
     
     def flashblack(self):
         """ Fill the camera with black in order to blit images right after """
@@ -94,7 +100,7 @@ class Camera:
         d = self.get_dimension()
         x = p.x+int(d.x*5/6)
         y = p.y+int(d.y*1/6)
-        tools.T(self.get_fen(),str(score),x,y)
+        #tools.T(self.get_fen(),str(score),x,y)
 
     def __repr__(self):
         txt = "Camera("+str(self.rect)+")"
