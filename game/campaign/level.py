@@ -12,7 +12,12 @@ class Level:    #will be an abstract class
     def launch(self,g):
         """launch the level in the context of the game g"""
         #pygame.time.wait(2000)
-        success = level_2_kshan(g)
+        def player_pos(t):
+            return t*100 #*8 to be faster (but it doesn't match the music anymore !
+
+        gl = GameLevel([SolidPlatform(Hitbox(Rect(10,12,20,24)))],player_pos,name="test_lvl_campaign")
+        #g.launch_music(text)
+        success = g.launch_level(gl)
         pygame.event.get()#to capture inputs made during the wait
         return success
 

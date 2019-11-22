@@ -16,8 +16,6 @@ sys.path.append(path)
 
 from pygame.image import load
 from pygame.font import Font
-from character import *
-from dialogue import *
 
 
 def T(cw,txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
@@ -46,9 +44,13 @@ def create_img(dct):
         dct[img] = load(dct[img]).convert_alpha()
     return dct
 
+import character
+import dialogue
+import items
+
 def create_char(dict,dict_img):
     for char in dict:
-        dict[char] = Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),dict[char][4])
+        dict[char] = character.Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),dict[char][4])
     return dict
 
 def create_bubble(list,dict_str,dict_char,dict_img):
@@ -59,13 +61,13 @@ def create_bubble(list,dict_str,dict_char,dict_img):
 
 def create_dial(dict,dict_str,dict_char,dict_img):
     for dial in dict:
-        dict[dial] = Dialogue(create_bubble(dict[dial],dict_str,dict_char,dict_img))
+        dict[dial] = dialogue.Dialogue(create_bubble(dict[dial],dict_str,dict_char,dict_img))
     return dict
-    
+
 def create_item(dict):
     for item in dict:
         if dict[item][0] == "key":
-            dict[item] = KeyItem(item,"key")
+            dict[item] = items.KeyItem(item,"key")
 
 def insert_score(L,score,name,maxn):
     """ insère score,name dans L, en place et retourne L
