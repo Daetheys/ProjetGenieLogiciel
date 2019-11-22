@@ -64,8 +64,7 @@ class Level_Sequence(Map_Point):
     def reward(self,g):
         if self.name == "kshan_4A":
             g.player.add_to_inventory({g.dict_item["key_A"]:1})
-            print("key_A")
+        if self.name == "kshan_4B":
+            g.player.add_to_inventory({g.dict_item["key_B"]:1})
         if self.name == "kshan_1":
-            print(g.dict_item)
             g.player.add_to_inventory({g.dict_item["key_0"]:1})
-            print("key_0")

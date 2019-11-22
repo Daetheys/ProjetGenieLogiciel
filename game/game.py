@@ -93,7 +93,7 @@ class Game:
         self.yoffset = int(self.options["DISPLAYSIZE_Y"]/4.5)
 
         #Autres constantes
-        self.max_number_scores = 10#max number of saved scores
+        self.max_number_scores = 8#max number of saved scores
         self.player_name = "PLAYER"#will be in options/savefile soon
 
     def load_languages(self,fst=False):
@@ -134,8 +134,8 @@ class Game:
         #creating the map "Kshan"
         mapkshan = Map(self.dict_img["map_kshan"],"map_kshan")
 
-        mp_1 = Level_Sequence("kshan_1",200,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_2 = Level_Sequence("kshan_2",400,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_1 = Level_Sequence("kshan_1",1100,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_2 = Level_Sequence("kshan_2",1000,300,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_3A = Level_Sequence("kshan_3A",200,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_4A = Level_Sequence("kshan_4A",200,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_3B = Level_Sequence("kshan_3B",400,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
