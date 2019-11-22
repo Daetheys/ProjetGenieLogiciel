@@ -27,25 +27,23 @@ class Player(ControlableNode):
         self.controller = PlayerController(self)
         self.score = 0
         
-        self.jump_strength = 0.5
-        self.can_jump = False
-        self.jump_size_max = 7
-        self.jump_size = self.jump_size_max
-
-    def refresh_jump(self):
-        """ Key actually pressed """
-        if self.can_jump and self.jump_size > 0:
-            self.set_speed(self.get_speed()+Vector(0,-self.jump_strength))
-            self.jump_size -= 1
+        self.jump_strength = 5000
+        self.can_jump = True
+        self.is_jumping = False
 
     def start_jump(self):
         """ Key has just been pressed """
-        pass
+        speed = self.get_speed()
+        print(self.can_jump, not self.is_jumping, speed.y >= 0)
+        if self.can_jump and (not self.is_jumping) and speed.y >= 0:
+            self.set_speed(Vector(speed.x, -self.jump_strength))
+            self.can_jump = False
 
     def stop_jump(self):
         """ Key has just been released """
-        self.can_jump = False
-        self.jump_size = self.jump_size_max
+        speed = self.get_speed()
+        self.set_speed(Vector(speed.x,0))
+        self.is_jumping = False
 
     def allow_jump(self):
         """ Allow the player to jump """
@@ -55,6 +53,7 @@ class Player(ControlableNode):
         """ Player collides with o """
         if isinstance(o,SolidPlatform):
             self.allow_jump()
+            self.is_jumping = False
 
     def add_score(self,val):
         self.score += val
@@ -70,11 +69,10 @@ class PlayerController(KeyboardController):
 
     def execute(self,event,pressed):
         """ Execute controller code """
+        jump_key = pygame.K_z
+        print(pressed[jump_key])
+        if pressed[jump_key]:
+            self.target.start_jump()
         if event is not None and event.type == pygame.KEYUP:
-            if event.key == pygame.K_z:
+            if event.key == jump_key:
                 self.target.stop_jump()
-        """if event is not None and event.type == pygame.KEYUP:
-            if event.key == pygame.K_z:
-                self.target.start_jump()"""
-        if pressed[pygame.K_z]:
-            self.target.refresh_jump()

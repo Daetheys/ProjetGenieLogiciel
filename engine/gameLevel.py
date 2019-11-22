@@ -159,6 +159,7 @@ class GameLevel:
 
     def physics_step(self,dt):
         """ Compute collisions """
+        print(self.player.get_speed())
         obj_opti = self.get_objects_opti()
         for o in obj_opti:
             #print(o)
@@ -168,9 +169,9 @@ class GameLevel:
                 #Reposition the player
                 pos = o.get_position()
                 o.set_position(self.player_pos(self.time),pos.y)
+
                 #Cut X speed (for MAXSPEED)
                 speed = self.player.get_speed()
-                print(speed)
                 self.player.set_speed(Vector(0,speed.y))
             for o2 in obj_opti:
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
