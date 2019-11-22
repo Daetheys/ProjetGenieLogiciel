@@ -68,6 +68,10 @@ def create_item(dict):
     for item in dict:
         if dict[item][0] == "key":
             dict[item] = KeyItem(item)
+        elif dict[item][0] == "pas":
+            dict[item] = Passive(item,dict[item][1])
+        elif dict[item][0] == "csm":
+            dict[item] = Consommable(item,dict[item][1])
     return dict
 
 def insert_score(L,score,name,maxn):
