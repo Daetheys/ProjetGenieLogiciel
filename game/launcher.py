@@ -187,7 +187,10 @@ class Launcher(Game):
         return success#true ssi réussite ! pour l'instant non utilisé.
 
     def loop_level(self,gl,t):
-        """ Running the main loop of a level gl at time t"""
+        """ Running the main loop of a level gl at time t
+
+        This function is obsolete. this loop is now executed in the "GameLevel"
+        class"""
 
         """ #In GameLevel
         pygame.time.Clock().tick(self.options["FPS"])
@@ -212,6 +215,7 @@ class Launcher(Game):
 
         return True
         """
+        pass
 
     def launch_game(self):
         """ Launching the main loop of the main menu"""
