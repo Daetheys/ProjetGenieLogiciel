@@ -42,7 +42,8 @@ def platform(x,y,xmax):
 		])
 	plat = SolidPlatform(p)
 	"""
-	plat = SolidPlatform(Hitbox(Rect(-abs(xmax-x)//2,12,abs(xmax-x),24)))
+	#plat = SolidPlatform(Hitbox(Rect(-abs(xmax-x)//2,12,abs(xmax-x),24)))
+	plat = SolidPlatform(Hitbox(Rect(0,0,xmax,12)))
 	#plat.create_sps("Platform")#voir un sprite
 	plat.set_sps(None)#voir une hitbox
 	plat.translate(Vector(x,y))
