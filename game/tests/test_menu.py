@@ -21,12 +21,12 @@ def test_escape():
     if newpid:#This first fork is for launching the menu and pyautogui in parallel
         Launcher()
         _exit(0)
-        sleep(5)
+        sleep(2)
         os.kill(os.getpid(), signal.SIGKILL)
     else:
         #A second thread, for launching the wait and the remaining tests in parallel
         #could be added
-        sleep(2)#wait for the menu to initialize
+        sleep(1)#wait for the menu to initialize
         pyautogui.press('escape')
 
 """
