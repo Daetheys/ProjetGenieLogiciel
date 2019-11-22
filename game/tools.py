@@ -6,6 +6,7 @@ characters : {name(str): [image(str), color_talk_r(int), color_talk_g(int), colo
 dialogue : {name(str): [[name_bubble(str), character(str), image(str), x(int), y(int), is_last(bool)]]}
             = {name(str): [Dialogue_Bubble(list)]}
             = {name(str): talk(list)}
+items : {name(str): [type(str), args*]}
 '''
 
 import os
@@ -18,6 +19,7 @@ from pygame.image import load
 from pygame.font import Font
 from character import *
 from dialogue import *
+from items import *
 
 
 def T(cw,txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
@@ -65,7 +67,8 @@ def create_dial(dict,dict_str,dict_char,dict_img):
 def create_item(dict):
     for item in dict:
         if dict[item][0] == "key":
-            dict[item] = KeyItem(item,"key")
+            dict[item] = KeyItem(item)
+    return dict
 
 def insert_score(L,score,name,maxn):
     """ insère score,name dans L, en place et retourne L
