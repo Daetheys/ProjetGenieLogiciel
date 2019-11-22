@@ -26,11 +26,11 @@ class CollideTransformable(Transformable):
         return t
 
     def center_hit_box(self):
+        """ Center its Hitbox """
         tc = self.get_hit_box().center()
         tr = self.get_rigid_hit_box().center()
-        print("tr,tc",tr,tc)
         assert tr == tc*self.rigid_size_factor
-        self.translate(tc)
+        self.translate(-tc)
 
     def paste_in(self,t):
         """ Copies this object in t (side effect)"""
@@ -67,6 +67,7 @@ class CollideTransformable(Transformable):
         rigidhb.rescale(self.rigid_size_factor)
         self.set_rigid_hit_box(rigidhb)
         #assert self.get_rigid_hit_box().get_ctrbl() == self
+        self.center_hit_box()
 
     def get_hit_box(self):
         """ Compute the hit box according to the position / rotation / scale """

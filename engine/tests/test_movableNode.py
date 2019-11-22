@@ -16,7 +16,7 @@ from hypothesis import given
 from hypothesis.strategies import integers, lists
 
 
-@given(integers(),integers(),integers(),integers(),integers(),integers(),integers())
+@given(integers(min_value=-1000,max_value=1000),integers(min_value=-1000,max_value=1000),integers(min_value=-1000,max_value=1000),integers(min_value=-1000,max_value=1000),integers(min_value=-1000,max_value=1000),integers(min_value=-1000,max_value=1000),integers(min_value=-1000,max_value=1000))
 def test_copy(px,py,r,sx,sy,ox,oy):
     """ tests that we can get exactly the set values"""
     T = MovableNode()
@@ -40,19 +40,21 @@ def test_copy(px,py,r,sx,sy,ox,oy):
 
 
 def test_full_1():
-    v1 = Vector(-1,-1)
-    v2 = Vector(1,-1)
-    v3 = Vector(1,1)
-    v4 = Vector(-1,1)
-    Hb = Hitbox(Rect(-1,-1,2,2))
+    Hb = Hitbox(Rect(0,0,2,2))
     mvn = MovableNode()
     mvn.set_hit_box(Hb)
     mvn.set_rigid_body(True)
+    print(mvn.get_hit_box().get_world_poly())
+    print(mvn.get_position())
 
-    mvn2 = mvn.copy()
+    Hb2 = Hitbox(Rect(0,3,2,2))
+    mvn2 = MovableNode()
+    mvn2.set_hit_box(Hb2)
+    mvn2.set_rigid_body(True)
+    print(mvn2.get_hit_box().get_world_poly())
+    print(mvn.get_position())
     
-    mvn.translate(Vector(0.001,4))
-    mvn.set_speed(Vector(0,-4))
+    mvn.set_speed(Vector(0,4))
     
     assert not(mvn.get_hit_box().collide(mvn2.get_hit_box()))
     
