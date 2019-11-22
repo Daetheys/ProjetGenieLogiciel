@@ -61,6 +61,7 @@ def reaction_play(text,name):
     """
     def f(g):
         gl = generate_level(text,name)
+        g.launch_music(text)
         g.launch_level(gl)
         """ ceci lance le level correspondant """
         return True,False
