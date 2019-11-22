@@ -21,12 +21,10 @@ class Player(ControlableNode):
         ControlableNode.__init__(self)
         self.set_hit_box(Hitbox(Rect(-1,-2,2,4)))
         self.set_rigid_body(True)
-        self.set_sps(None)
-        #self.get_sps().load_automaton()
-        #self.get_sps().load_sprites()
+        #self.create_sps("coin")
         self.controller = PlayerController(self)
         self.score = 0
-        
+
         self.jump_strength = 0.5
         self.can_jump = False
         self.jump_size_max = 7

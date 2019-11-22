@@ -26,15 +26,17 @@ def platform(x,y,xmax):
 	plat.translate(Vector(x,y))
 	return plat
 
-def level_hook(filename,name_of_level=''):
+def level_hook(name_of_level, level):
 	"""
 		Génère un niveau associé au fichier filename
 		Renvoie un GameLevel
 	"""
-	with open(filename, "r") as file:
-		level = file.read()
 
-	def player_pos(t):
-		return t*speed*60/tempo*8 #*8 to be faster (but it doesn't match the music anymore !
 
-	return GameLevel(platforms,player_pos,name=name_of_level)
+	def player_pos_create(speed,tempo):
+
+		def player_pos(t):
+			return t*speed*60/tempo*8 #*8 to be faster (but it doesn't match the music anymore !
+		return player_pos
+	platforms = [SolidPlatform(Hitbox(Rect(i[1],i[2],i[3],i[4]))) for i in level if i[0] == 'p']
+	return GameLevel(platforms,player_pos_create(10,60),name=name_of_level)
