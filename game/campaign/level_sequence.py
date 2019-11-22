@@ -66,5 +66,6 @@ class Level_Sequence(Map_Point):
             g.player.add_to_inventory({g.dict_item["key_A"]:1})
             print("key_A")
         if self.name == "kshan_1":
+            print(g.dict_item)
             g.player.add_to_inventory({g.dict_item["key_0"]:1})
             print("key_0")

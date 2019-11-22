@@ -17,11 +17,11 @@ class Game:
         self.init_images()
         self.init_constants()
         self.init_music()
+        self.create_items()
         self.init_characters()
         self.load_languages(True)
         self.load_savefile()
         self.create_dialogues()
-        self.create_items()
         self.create_world()
         print("The game initialized properly.")
 
@@ -105,6 +105,11 @@ class Game:
             with open("data/json/fr.json", "r", encoding="utf-8-sig") as read_file:
                 self.dict_str=json.load(read_file)
         if not fst: self.update_dialogues()
+        
+    def create_items(self):
+        self.dict_item = {}
+        with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
+            self.dict_item = json.load(read_file, object_hook=tools.create_item)
 
     def init_characters(self):
         self.dict_char = {}
@@ -118,11 +123,6 @@ class Game:
         with open("data/json/dialogue.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_dial = json.load(read_file)
             self.dict_dial = tools.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
-
-    def create_items(self):
-        self.dict_item = {}
-        with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
-            self.dict_item = json.load(read_file, object_hook=tools.create_item)
 
     def create_world(self):
         """

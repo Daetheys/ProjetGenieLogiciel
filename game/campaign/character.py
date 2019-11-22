@@ -18,10 +18,7 @@ class Character():
 		
 	def add_to_inventory(self,items):
 		for item in items:
-			if item in self.inv:
-				self.inv[item] += items[item]
-			else:
-				self.inv[item] = items[item]
+			self.inv[item] += items[item]
 		
 class Player(Character):
 	

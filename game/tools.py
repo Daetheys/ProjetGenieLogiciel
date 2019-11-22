@@ -17,6 +17,7 @@ sys.path.append(path)
 
 from pygame.image import load
 from pygame.font import Font
+from collections import defaultdict
 
 
 def T(cw,txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
@@ -51,7 +52,7 @@ import items
 
 def create_char(dict,dict_img):
     for char in dict:
-        dict[char] = character.Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),dict[char][4])
+        dict[char] = character.Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),defaultdict(int))
     return dict
 
 def create_bubble(list,dict_str,dict_char,dict_img):
@@ -68,11 +69,12 @@ def create_dial(dict,dict_str,dict_char,dict_img):
 def create_item(dict):
     for item in dict:
         if dict[item][0] == "key":
-            dict[item] = items.KeyItem(item,"key")
+            dict[item] = items.KeyItem(item)
         elif dict[item][0] == "pas":
             dict[item] = items.Passive(item,dict[item][1])
         elif dict[item][0] == "csm":
             dict[item] = items.Consommable(item,dict[item][1])
+    return dict
 
 def insert_score(L,score,name,maxn):
     """ insère score,name dans L, en place et retourne L
