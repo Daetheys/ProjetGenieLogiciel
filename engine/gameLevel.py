@@ -3,7 +3,7 @@ import os
 path = os.getcwd()
 sys.path.append(path + "/engine")
 
-from camera import Camera
+import camera
 from vector import Vector
 from background import Background
 from parallax import Parallax
@@ -17,7 +17,7 @@ class GameLevel:
     """ Level of the game """
     def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1),("data/img/asteroid.png",2)],name=''):
         """ The player spawn in (0,0) """
-        self.camera = Camera()
+        self.camera = camera.Camera()
         self.camera.set_position(Vector(-12,-12))
         self.camera.set_dimension(Vector(25,25))
         self.objects = objects
@@ -127,7 +127,7 @@ class GameLevel:
         self.physics_step(dt)
         #Aff
         self.aff()
-        #Camera
+        #Camera set position (3/4)
         self.camera.threeforth_on(self.player)
         #Time
         self.time += dt

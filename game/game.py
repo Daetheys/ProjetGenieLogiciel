@@ -118,7 +118,7 @@ class Game:
         with open("data/json/dialogue.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_dial = json.load(read_file)
             self.dict_dial = tools.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
-            
+
     def create_items(self):
         self.dict_item = {}
         with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
@@ -133,23 +133,23 @@ class Game:
 
         #creating the map "Kshan"
         mapkshan = Map(self.dict_img["map_kshan"],"map_kshan")
-        
+
         mp_1 = Level_Sequence("kshan_1",200,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_2 = Level_Sequence("kshan_2",400,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_3A = Level_Sequence("kshan_3A",200,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_4A = Level_Sequence("kshan_4A",200,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_3B = Level_Sequence("kshan_3B",400,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_4B = Level_Sequence("kshan_4B",400,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        
+
         self.init_dialogues(mp_1)
         self.init_dialogues(mp_2)
         self.init_dialogues(mp_3A)
         self.init_dialogues(mp_4A)
         self.init_dialogues(mp_3B)
         self.init_dialogues(mp_4B)
-        
+
         mp_1.set_levels([Boss_Level()])
-        mp_2.set_levels([Random_Level(),Boss_Level()])        
+        mp_2.set_levels([Random_Level(),Boss_Level()])
         mp_3A.set_levels([Boss_Level()])
         mp_4A.set_levels([Boss_Level()])
         mp_3B.set_levels([Boss_Level()])
@@ -159,13 +159,13 @@ class Game:
         mp_2.set_childs([mp_3A, mp_3B])
         mp_3A.set_childs([mp_4A])
         mp_3B.set_childs([mp_4B])
-        
+
         mp_1.set_accessible()
-        
+
         mapkshan.set_map_points([mp_1, mp_2, mp_3A, mp_3B, mp_4A, mp_4B])
-        
-        
-        
+
+
+
         self.world.set_maps([mapkshan])
 
     def init_dialogues(self,mp):
@@ -199,6 +199,13 @@ class Game:
         pygame.mixer.music.load("data/tests_musique/test.mp3")
         pygame.mixer.music.fadeout(500)
         pygame.mixer.music.play(-1)
+
+    def launch_music(self,music):
+        """launches the music"""
+        pygame.mixer.music.load(music)
+        #pygame.mixer.music.fadeout(500)
+        pygame.mixer.music.play(-1)
+
 
     def update_dialogues(self):
         self.create_dialogues()
