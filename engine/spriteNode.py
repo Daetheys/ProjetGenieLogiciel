@@ -51,10 +51,10 @@ class SpriteNode(Node):
     def get_state(self):
         return self.__state
 
-    def get_pos_camera(self,distorsion):
+    def get_pos_camera(self,distorsion,box):
         scale,trans = distorsion
-        transform = self.get_hit_box().get_transform()
-        world_pos = self.get_hit_box().get_self_poly()
+        transform = box.get_transform()
+        world_pos = box.get_self_poly()
         world_rot = transform.cut_translate()
         world_tr = transform.get_translate()
         pos_vect_rot = world_pos.apply_transform(world_rot)
@@ -85,6 +85,7 @@ class SpriteNode(Node):
             #print("-------2",pos)
             fen.blit(img,(pos.x ,pos.y ))
         else:
-            pos_vect = self.get_pos_camera(distorsion)
-            pygame.draw.polygon(fen,(0,255,0),pos_vect.to_tuples())
-            pygame.draw.polygon(fen,(188,0,0),pos_vect.to_tuples())
+            coll_box = self.get_pos_camera(distorsion,self.get_hit_box())
+            rigid_box = self.get_pos_camera(distorsion,self.get_rigid_hit_box())
+            pygame.draw.polygon(fen,(0,255,0),coll_box.to_tuples())
+            pygame.draw.polygon(fen,(188,0,0),rigid_box.to_tuples())

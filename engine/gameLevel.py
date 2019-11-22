@@ -28,14 +28,17 @@ class GameLevel:
         self.player_pos = player_pos
         self.compute_size_level()
         self.name = name
-        self.score = 42
-
-        self.sorted_objects = None
-        self.step = None
-        self.optimise_data()
         self.begin_time = 0
         self.time = 0
 
+        self.score = 42 #To be removed after merge branch
+
+        #To optimise physics
+        self.sorted_objects = None
+        self.step = None
+        self.optimise_data()
+
+        #Get end platform locations to compute score
         self.end_platform_location = None
         self.compute_end_platform_location()
 
@@ -52,7 +55,7 @@ class GameLevel:
         #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
         #Creation of the gravity
-        self.gravity = Gravity(0.1)
+        self.gravity = Gravity(10)
         self.player.add_force(self.gravity)
 
     def get_camera(self):
@@ -116,6 +119,7 @@ class GameLevel:
         dt = 1/fps
         #self.begin_time = get_current_time()
         #self.time = self.begin_time
+        print(self.get_objects_opti())
         try:
             while True:
                 self.main_loop(dt)
@@ -161,11 +165,8 @@ class GameLevel:
 
     def physics_step(self,dt):
         """ Compute collisions """
-        print(self.player.get_speed())
         obj_opti = self.get_objects_opti()
-        print("---")
         for o in obj_opti:
-            print(o,o.get_speed(),o.get_hit_box().get_world_poly())
             #print(o)
             o.compute_speed(dt)
             o.move()
@@ -179,10 +180,12 @@ class GameLevel:
                 self.player.set_speed(Vector(0,speed.y))
             for o2 in obj_opti:
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
+                    print("collide")
                     o.collide(o2)
                     o2.collide(o)
                     if o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
                         #print("------------------rigid",o,o2)
+                        print("rigid collide")
                         o.apply_solid_reaction(o2)
 
     def load_camera(self,fen):

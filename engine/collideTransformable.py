@@ -17,7 +17,7 @@ class CollideTransformable(Transformable):
         self.__collide_hit_box = Hitbox(Rect(0,0,0,0))
         self.__rigid_hit_box = Hitbox(Rect(0,0,0,0))
         self.rigid_size_factor = 0.999
-        self.center_hit_box()
+        #self.center_hit_box()
 
     def copy(self):
         """ Returns the copy of this with right deep and shallow copies of arguments """
@@ -60,14 +60,14 @@ class CollideTransformable(Transformable):
 
     def set_hit_box(self,val):
         """ Set the collide hit box of this """
+        tr = val.center()
         self.__collide_hit_box = val
         self.__collide_hit_box.link(self)
-        #assert self.get_hit_box().get_ctrbl() == self
         rigidhb = val.copy()
         rigidhb.rescale(self.rigid_size_factor)
         self.set_rigid_hit_box(rigidhb)
         #assert self.get_rigid_hit_box().get_ctrbl() == self
-        self.center_hit_box()
+        self.translate(-tr)
 
     def get_hit_box(self):
         """ Compute the hit box according to the position / rotation / scale """

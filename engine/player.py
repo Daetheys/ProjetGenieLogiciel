@@ -27,7 +27,7 @@ class Player(ControlableNode):
         self.controller = PlayerController(self)
         self.score = 0
         
-        self.jump_strength = 5000
+        self.jump_strength = 5
         self.can_jump = True
         self.is_jumping = False
 

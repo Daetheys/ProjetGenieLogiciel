@@ -8,9 +8,9 @@ class Hitbox:
         self.rect = rect
         self.ctransformable = None
 
-    """def __repr__(self):
-        return "Hitbox("+str(self.rect)+")"
-    """
+    def __repr__(self):
+        return "Hitbox("+str(self.get_world_poly())+")"
+    
 
     def center(self):
         return self.rect.center()
