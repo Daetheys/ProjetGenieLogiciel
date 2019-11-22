@@ -113,12 +113,13 @@ class GameLevel:
 
     def play(self,fps):
         """ Launches the gameLevel , returns +score if win, -score if lose """
-        dt = 0.001
+        dt = 1/fps
         self.begin_time = get_current_time()
         self.time = self.begin_time
         try:
             while True:
                 self.main_loop(dt)
+                pygame.time.Clock().tick(fps)
         except EndGame as e:
             return (e.issue, e.score)
 

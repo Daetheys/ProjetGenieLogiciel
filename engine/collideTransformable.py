@@ -16,6 +16,7 @@ class CollideTransformable(Transformable):
         self.__collide = False
         self.__collide_hit_box = Hitbox(Rect(0,0,0,0))
         self.__rigid_hit_box = Hitbox(Rect(0,0,0,0))
+        self.rigid_size_factor = 0.999
         self.center_hit_box()
 
     def copy(self):
@@ -25,8 +26,11 @@ class CollideTransformable(Transformable):
         return t
 
     def center_hit_box(self):
-        self.get_hit_box().center()
-        self.get_rigid_hit_box().center()
+        tc = self.get_hit_box().center()
+        tr = self.get_rigid_hit_box().center()
+        print("tr,tc",tr,tc)
+        assert tr == tc*self.rigid_size_factor
+        self.translate(tc)
 
     def paste_in(self,t):
         """ Copies this object in t (side effect)"""
@@ -60,7 +64,7 @@ class CollideTransformable(Transformable):
         self.__collide_hit_box.link(self)
         #assert self.get_hit_box().get_ctrbl() == self
         rigidhb = val.copy()
-        rigidhb.rescale(0.999)
+        rigidhb.rescale(self.rigid_size_factor)
         self.set_rigid_hit_box(rigidhb)
         #assert self.get_rigid_hit_box().get_ctrbl() == self
 
