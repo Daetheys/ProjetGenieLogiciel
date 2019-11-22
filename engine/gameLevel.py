@@ -12,6 +12,10 @@ from force import Gravity
 from solidPlatform import SolidPlatform
 import pygame
 import time
+from datetime import datetime
+
+def get_current_time():
+    return datetime.timestamp(datetime.now())
 
 class GameLevel:
     """ Level of the game """
@@ -29,6 +33,7 @@ class GameLevel:
         self.sorted_objects = None
         self.step = None
         self.optimise_data()
+        self.begin_time = 0
         self.time = 0
 
         self.end_platform_location = None
@@ -47,7 +52,7 @@ class GameLevel:
         #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
         #Creation of the gravity
-        self.gravity = Gravity(100)
+        self.gravity = Gravity(0.0001)
         self.player.add_force(self.gravity)
 
     def get_camera(self):
@@ -109,6 +114,8 @@ class GameLevel:
     def play(self,fps):
         """ Launches the gameLevel , returns +score if win, -score if lose """
         dt = 0.001
+        self.begin_time = get_current_time()
+        self.time = self.begin_time
         try:
             while True:
                 self.main_loop(dt)
@@ -116,6 +123,9 @@ class GameLevel:
             return (e.issue, e.score)
 
     def main_loop(self,dt):
+        new_time = get_current_time()
+        dt = new_time - self.time
+        self.time = new_time - self.begin_time
         """ Main loop of the game (controllers, physics, ...) """
         pressed = pygame.key.get_pressed()
         #Controller loop
@@ -125,12 +135,10 @@ class GameLevel:
                     o.get_controller().execute(event,pressed)
         #Physics
         self.physics_step(dt)
-        #Aff
-        self.aff()
         #Camera set position (3/4)
         self.camera.threeforth_on(self.player)
-        #Time
-        self.time += dt
+        #Aff
+        self.aff()
         #Score
         while len(self.end_platform_location) > 0 and self.player.get_position().x >= self.end_platform_location[0]:
             del self.end_platform_location[0]
@@ -162,6 +170,7 @@ class GameLevel:
                 o.set_position(self.player_pos(self.time),pos.y)
                 #Cut X speed (for MAXSPEED)
                 speed = self.player.get_speed()
+                print(speed)
                 self.player.set_speed(Vector(0,speed.y))
             for o2 in obj_opti:
                 if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
