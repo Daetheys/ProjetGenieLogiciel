@@ -17,12 +17,13 @@ def test_escape():
     #testing if the escape button works at the root of the menu,
     #introducing various easy ways to test efficiently
 
-    newpid = fork()
+    newpid = True#fork()
     if newpid:#This first fork is for launching the menu and pyautogui in parallel
-        Launcher()
-        _exit(0)
-        sleep(2)
-        os.kill(os.getpid(), signal.SIGKILL)
+        pass
+        #Launcher()
+        #_exit(0)
+        #sleep(2)
+        #os.kill(os.getpid(), signal.SIGKILL)
     else:
         #A second thread, for launching the wait and the remaining tests in parallel
         #could be added
