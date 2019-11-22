@@ -93,7 +93,6 @@ class GameLevel:
 
     def play(self,fps):
         """ Launches the gameLevel , returns +score if win, -score if lose """
-        print(fps)
         dt = 0.001
         try:
             while 1:

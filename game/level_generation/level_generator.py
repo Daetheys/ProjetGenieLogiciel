@@ -69,7 +69,7 @@ def generate_level(filename):
 			tempo_index = tempo_index + 1
 
 	y = 0#initially the height is at 500 #It's at 0 now ^^
-	#jump_points[0] = 0#avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
+	#jump_points[0] = 0 #avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
 
 	for i in range(nb_beats):
 		#pourquoi +50 et +24 ? #La taille des plateformes non ?
@@ -78,7 +78,7 @@ def generate_level(filename):
 		y += random.randint(-48,48)#at each point the y coordinate changes
 
 	def player_pos(t):
-		return t*speed*60/tempo
+		return t*speed*60/tempo*8 #*8 to be faster (but it doesn't match the music anymore !
 
 
 	return GameLevel(platforms,player_pos)
