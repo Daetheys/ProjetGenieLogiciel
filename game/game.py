@@ -19,6 +19,7 @@ class Game:
         self.init_music()
         self.init_characters()
         self.load_languages(True)
+        self.load_savefile()
         self.create_dialogues()
         self.create_world()
         print("The game initialized properly.")
@@ -75,8 +76,11 @@ class Game:
 
     def init_constants(self):
         """ this function initializes some constants"""
+        #ces constantes sont utilisées dans la boucle principale de menu
         self.quitter_jeu = False
         self.continuer_menu =  True
+
+        #constantes d'affichage
         self.b1xmin = self.options["DISPLAYSIZE_X"]//2 - 250
         self.b1xmax = self.options["DISPLAYSIZE_X"]//2 + 250
         self.b1ymin = 230
@@ -86,6 +90,10 @@ class Game:
         self.b32xmin = 2*self.options["DISPLAYSIZE_X"]//3-250
         self.b32xmax = 2*self.options["DISPLAYSIZE_X"]//3+250
         self.yoffset = int(self.options["DISPLAYSIZE_Y"]/4.5)
+
+        #Autres constantes
+        self.max_number_scores = 10#max number of saved scores
+        self.player_name = "PLAYER"#will be in options/savefile soon
 
     def load_languages(self,fst=False):
         """ this function loads all avaliable languages in self.dict_str"""
@@ -135,11 +143,11 @@ class Game:
         """
         initializes musical operations
         Music is currently disabled.
-        Please add a pulseaudio sink to xvfb before activating it.
+        Please add a pulseaudio sink to xvfb before activating it. (done)
         """
         pygame.mixer.init()
         #Music
-        pygame.mixer.music.load("data/tests_musique2/120rythmeternaire.mp3")
+        pygame.mixer.music.load("data/tests_musique/test.mp3")
         pygame.mixer.music.fadeout(500)
         pygame.mixer.music.play(-1)
 
@@ -158,6 +166,23 @@ class Game:
             return self.dict_str[char]
         except KeyError:
             return char
+
+    def score(self,name):
+        """ Try to find if dict_score contains a value for the key 'name'.
+        If not, it  returns [].
+        This function is to be used with name of levels"""
+        try:
+            return self.dict_score[name]
+        except KeyError:
+            return []
+
+    def load_savefile(self):
+        """ loads all the saved data """
+        with open("data/json/scores.json", "r", encoding="utf-8-sig") as read_file:
+            self.dict_score = json.load(read_file)
+
+            #for sc in self.score:
+            #    self.score[sc] = self.score[sc]
 
     def flip(self,txt=None):
         if txt is not None:#is the SCORE usually

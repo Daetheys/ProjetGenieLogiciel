@@ -14,7 +14,7 @@ import time
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1),("data/img/asteroid.png",2)]):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1),("data/img/asteroid.png",2)],name=''):
         """ The player spawn in (0,0) """
         self.camera = Camera()
         self.camera.set_position(Vector(-12,-12))
@@ -22,7 +22,9 @@ class GameLevel:
         self.objects = objects
         self.player_pos = player_pos
         self.compute_size_level()
-        
+        self.name = name
+        self.score = 42
+
         self.sorted_objects = None
         self.step = None
         self.optimise_data()
@@ -63,7 +65,7 @@ class GameLevel:
             for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
                 sorted_objects[i].append(o)
         self.sorted_objects = sorted_objects
-        
+
     def compute_size_level(self):
         """ Computes the size of the level """
         maxi_x = None
@@ -95,16 +97,16 @@ class GameLevel:
         """ Launches the gameLevel , returns +score if win, -score if lose """
         dt = 0.001
         try:
-            while 1:
+            while True:
                 self.main_loop(dt)
         except EndGame as e:
-            return (e.final*e.score)
-        
+            return (e.issue, e.score)
+
     def main_loop(self,dt):
         """ Main loop of the game (controllers, physics, ...) """
         pressed = pygame.key.get_pressed()
         #Controller loop
-        for event in pygame.event.get()+[None]:
+        for event in pygame.event.get() + [None]:
             for o in self.get_objects_opti():
                 if o.get_controller() is not None:
                     o.get_controller().execute(event,pressed)
@@ -115,9 +117,9 @@ class GameLevel:
         #Win / Lose conditions
         (minx,maxx,miny,maxy) = self.get_size_level()
         if self.player.get_position().y > maxy: #C'est inversé :)
-            raise EndGame(-1,self.score)
+            raise EndGame(False,self.score)
         if self.player.get_position().x > maxx:
-            raise EndGame(1,self.score)
+            raise EndGame(True,self.score)
 
     def get_objects_opti(self):
         """ Optimise the data structure """
@@ -158,7 +160,7 @@ class GameLevel:
 
     def set_background(self,v):
         self.background = v
-                        
+
     def aff(self):
         """ Aff all objects that are in the camera of this """
         self.camera.aff(self.get_objects_opti(),self.get_background(),self.player.get_score())
