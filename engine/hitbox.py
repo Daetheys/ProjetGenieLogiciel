@@ -12,6 +12,9 @@ class Hitbox:
         return "Hitbox("+str(self.rect)+")"
     """
 
+    def center(self):
+        return self.rect.center()
+
     def copy(self):
         """ UNLINKED COPY """
         hb = Hitbox(self.rect.copy())
