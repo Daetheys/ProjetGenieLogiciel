@@ -61,6 +61,11 @@ def create_dial(dict,dict_str,dict_char,dict_img):
     for dial in dict:
         dict[dial] = Dialogue(create_bubble(dict[dial],dict_str,dict_char,dict_img))
     return dict
+    
+def create_item(dict):
+    for item in dict:
+        if dict[item][0] == "key":
+            dict[item] = KeyItem(item,"key")
 
 def insert_score(L,score,name,maxn):
     """ insère score,name dans L, en place et retourne L

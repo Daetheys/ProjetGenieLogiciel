@@ -31,7 +31,7 @@ class Level_Sequence(Map_Point):
     def set_finished(self):
         self._finished = True
         for child in self.__childs:
-            child.is_accessible
+            child.set_accessible()
             
     def get_accessible(self):
         return self._accessible
@@ -50,7 +50,7 @@ class Level_Sequence(Map_Point):
         self.set_accessed()
         g.win().blit(g.dict_img["img_dial"],(0,400))  #ugly code just to separate start and end dialogue
         g.flip()
-
+        
         reussite = []
         for level in self.__levels:
             reussite.append(level.launch(g))#pour savoir quels niveaux ont été réussis !
@@ -59,3 +59,7 @@ class Level_Sequence(Map_Point):
             self._end_dialogue.show(g)
             #la valeur de retour n'est pas utile ici, puisqu'on quitte de toute façon après.
         return True,False
+        
+    def reward(self,g):
+        if self.name == "kshan_4A":
+            pass

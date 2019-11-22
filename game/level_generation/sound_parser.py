@@ -2,6 +2,7 @@ DEBUG = False
 
 import librosa.core, librosa.beat
 import numpy as np
+import audioread
 
 if(DEBUG):
 	import matplotlib

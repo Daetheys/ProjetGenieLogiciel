@@ -122,8 +122,7 @@ class Launcher(Game):
             if event.type == pygame.KEYDOWN:
                 if event.key == K_ESCAPE:
                     cnt = False
-                    for i in range(len(list_button)):
-                        del list_button[i]
+                    list_button = []
             if event.type == MOUSEBUTTONDOWN:
                 mx,my = pygame.mouse.get_pos()
                 if event.button == 1:

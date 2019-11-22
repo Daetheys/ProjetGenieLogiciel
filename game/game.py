@@ -110,12 +110,19 @@ class Game:
         with open("data/json/characters.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_char = json.load(read_file)
             self.dict_char = tools.create_char(self.dict_char,self.dict_img)
+        self.player = self.dict_char["player"]
 
     def create_dialogues(self):
         self.dict_dial = {}
         with open("data/json/dialogue.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_dial = json.load(read_file)
             self.dict_dial = tools.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
+            
+    def create_items(self):
+        self.dict_item = {}
+        with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
+            self.dict_item = json.load(read_file)
+            self.dict_item = tools.create_item(self.dict_item)
 
     def create_world(self):
         """
@@ -155,7 +162,7 @@ class Game:
         
         mp_1.set_accessible()
         
-        mapkshan.set_map_points([mp_1, mp_2, mp_3A, mp_3B, mp_4B, mp_4B])
+        mapkshan.set_map_points([mp_1, mp_2, mp_3A, mp_3B, mp_4A, mp_4B])
         
         
         
