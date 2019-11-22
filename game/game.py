@@ -110,12 +110,19 @@ class Game:
         with open("data/json/characters.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_char = json.load(read_file)
             self.dict_char = tools.create_char(self.dict_char,self.dict_img)
+        self.player = self.dict_char["player"]
 
     def create_dialogues(self):
         self.dict_dial = {}
         with open("data/json/dialogue.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_dial = json.load(read_file)
             self.dict_dial = tools.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
+            
+    def create_items(self):
+        self.dict_item = {}
+        with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
+            self.dict_item = json.load(read_file)
+            self.dict_item = tools.create_item(self.dict_item)
 
     def create_world(self):
         """
@@ -126,18 +133,60 @@ class Game:
 
         #creating the map "Kshan"
         mapkshan = Map(self.dict_img["map_kshan"],"map_kshan")
-        mp = Level_Sequence("test",200,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        self.init_dialogues(mp)
-        mp.is_accessible()
-        mp.set_levels([Boss_Level()])
-        mapkshan.set_map_points([mp])
+        
+        mp_1 = Level_Sequence("kshan_1",200,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_2 = Level_Sequence("kshan_2",400,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_3A = Level_Sequence("kshan_3A",200,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_4A = Level_Sequence("kshan_4A",200,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_3B = Level_Sequence("kshan_3B",400,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_4B = Level_Sequence("kshan_4B",400,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        
+        self.init_dialogues(mp_1)
+        self.init_dialogues(mp_2)
+        self.init_dialogues(mp_3A)
+        self.init_dialogues(mp_4A)
+        self.init_dialogues(mp_3B)
+        self.init_dialogues(mp_4B)
+        
+        mp_1.set_levels([Boss_Level()])
+        mp_2.set_levels([Random_Level(),Boss_Level()])        
+        mp_3A.set_levels([Boss_Level()])
+        mp_4A.set_levels([Boss_Level()])
+        mp_3B.set_levels([Boss_Level()])
+        mp_4B.set_levels([Boss_Level()])
 
+        mp_1.set_childs([mp_2])
+        mp_2.set_childs([mp_3A, mp_3B])
+        mp_3A.set_childs([mp_4A])
+        mp_3B.set_childs([mp_4B])
+        
+        mp_1.set_accessible()
+        
+        mapkshan.set_map_points([mp_1, mp_2, mp_3A, mp_3B, mp_4A, mp_4B])
+        
+        
+        
         self.world.set_maps([mapkshan])
 
     def init_dialogues(self,mp):
-        if mp.name == "test":
-            mp.set_start_dialogue(self.dict_dial["dial_test"])
-            mp.set_end_dialogue(self.dict_dial["dial_testf"])
+        if mp.name == "kshan_1":
+            mp.set_start_dialogue(self.dict_dial["dial_kshan1"])
+            mp.set_end_dialogue(self.dict_dial["dial_kshan1f"])
+        elif mp.name == "kshan_2":
+            mp.set_start_dialogue(self.dict_dial["dial_kshan2"])
+            mp.set_end_dialogue(self.dict_dial["dial_kshan2f"])
+        elif mp.name == "kshan_3A":
+            mp.set_start_dialogue(self.dict_dial["dial_kshan3A"])
+            mp.set_end_dialogue(self.dict_dial["dial_kshan3Af"])
+        elif mp.name == "kshan_4A":
+            mp.set_start_dialogue(self.dict_dial["dial_kshan4A"])
+            mp.set_end_dialogue(self.dict_dial["dial_kshan4Af"])
+        elif mp.name == "kshan_3B":
+            mp.set_start_dialogue(self.dict_dial["dial_kshan3B"])
+            mp.set_end_dialogue(self.dict_dial["dial_kshan3Bf"])
+        elif mp.name == "kshan_4B":
+            mp.set_start_dialogue(self.dict_dial["dial_kshan4B"])
+            mp.set_end_dialogue(self.dict_dial["dial_kshan4Bf"])
 
     def init_music(self):
         """

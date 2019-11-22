@@ -110,9 +110,10 @@ class Launcher(Game):
         self._fenetre.blit(bg, (0,0))
         list_button = []
         for mp in map.get_map_points():
-            self._fenetre.blit(mp.get_image(), (mp.x,mp.y))
-            m,M = mp.get_image().get_size()
-            list_button.append(ButtonMenu(self,mp.x,mp.x+m,mp.y,mp.y+M,mp.get_image(),react = mp.launch,add_to_list=False))
+            if mp.get_accessible():
+                self._fenetre.blit(mp.get_image(), (mp.x,mp.y))
+                m,M = mp.get_image().get_size()
+                list_button.append(ButtonMenu(self,mp.x,mp.x+m,mp.y,mp.y+M,mp.get_image(),react = mp.launch,add_to_list=False))
 
         self.flip()
 
@@ -121,8 +122,7 @@ class Launcher(Game):
             if event.type == pygame.KEYDOWN:
                 if event.key == K_ESCAPE:
                     cnt = False
-                    for i in range(len(list_button)):
-                        del list_button[i]
+                    list_button = []
             if event.type == MOUSEBUTTONDOWN:
                 mx,my = pygame.mouse.get_pos()
                 if event.button == 1:

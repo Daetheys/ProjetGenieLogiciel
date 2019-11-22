@@ -14,6 +14,13 @@ class Character():
 	def __repr__(self):
 		return "Character :" + self.name
 		
+	def add_to_inventory(items):
+		for item in items:
+			if item in self.inv:
+				self.inv[item] += items[item]
+			else:
+				self.inv[item] = items[item]
+		
 class Player(Character):
 	
 	def __init__(self,name,pic,ctalk=(0,0,0),inv=None):
