@@ -165,6 +165,12 @@ class Polygon:
             p2.__points[i] /= v
         return p2
 
+    def get_mass_center(self):
+        p = Vector(0,0)
+        for o in self.get_points():
+            p += o
+        return p/len(self.get_points())
+    
     def compute_segments(self):
         """ Computes segments from points """
         self.__segments = []

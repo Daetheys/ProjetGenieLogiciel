@@ -24,6 +24,10 @@ class ControlableNode(MovableNode):
         
     def add_action(self,action,method):
         self.__actions[action] = method
+
+    def collide(self,o,sides,o2_sides):
+        """ This collides o. Sides hit are [sides] for this and [o2_sides] for o (top:0,right:1,bot:2,left:3) """
+        pass
         
     def execute(self,action):
         return self.__actions[action]

@@ -19,22 +19,23 @@ class Player(ControlableNode):
     """ Player Class """
     def __init__(self):
         ControlableNode.__init__(self)
-        self.set_hit_box(Hitbox(Rect(-1,-2,2,4)))
+        self.set_hit_box(Hitbox(Rect(-1,-2,8,16)))
         self.set_rigid_body(True)
         self.set_sps(None)
         #self.get_sps().load_automaton()
         #self.get_sps().load_sprites()
         self.controller = PlayerController(self)
         self.score = 0
+        self.alive = True
         
-        self.jump_strength = 5
+        self.jump_strength = 9
         self.can_jump = True
         self.is_jumping = False
 
     def start_jump(self):
         """ Key has just been pressed """
         speed = self.get_speed()
-        print(self.can_jump, not self.is_jumping, speed.y >= 0)
+        #print(self.can_jump, not self.is_jumping, speed.y >= 0)
         if self.can_jump and (not self.is_jumping) and speed.y >= 0:
             self.set_speed(Vector(speed.x, -self.jump_strength))
             self.can_jump = False
@@ -49,12 +50,17 @@ class Player(ControlableNode):
         """ Allow the player to jump """
         self.can_jump = True
 
-    def collide(self,o):
+    def collide(self,o,sides,o2_sides):
         """ Player collides with o """
         if isinstance(o,SolidPlatform):
-            self.allow_jump()
-            self.is_jumping = False
-
+            if o2_sides == [0]:
+                self.allow_jump()
+                self.is_jumping = False
+            else:
+                #The player dies
+                print("Player Dies")
+                #self.alive = False
+            
     def add_score(self,val):
         self.score += val
 
@@ -70,9 +76,9 @@ class PlayerController(KeyboardController):
     def execute(self,event,pressed):
         """ Execute controller code """
         jump_key = pygame.K_z
-        print(pressed[jump_key])
         if pressed[jump_key]:
             self.target.start_jump()
         if event is not None and event.type == pygame.KEYUP:
             if event.key == jump_key:
                 self.target.stop_jump()
+        self.target.can_jump = False #Pour qu'on ne puisse pas sauter dans les airs

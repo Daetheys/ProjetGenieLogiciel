@@ -76,5 +76,5 @@ def test_pos_in_camera():
     C.set_position(Vector(-1,-1))
     C.set_dimension(Vector(4,4))
     C.set_fen(fen)
-    pos_vect = S.get_pos_camera(C.get_distorsion())
+    pos_vect = S.get_pos_camera(C.get_distorsion(),S.get_hit_box())
     assert pos_vect == Polygon([Vector(0,0),Vector(250,0),Vector(250,250),Vector(0,250)])

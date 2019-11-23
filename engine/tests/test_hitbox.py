@@ -14,6 +14,7 @@ from vector import Vector
 from polygone import Polygon
 from transformable import Transformable
 from transform import Transform
+from collideTransformable import CollideTransformable
 from hitbox import Hitbox
 from hypothesis import given
 from hypothesis.strategies import integers, lists
@@ -126,3 +127,57 @@ def test_hitbox5():
         T1.translate(v)
         assert not(Hb1.collide(Hb2))
 
+def test_hitbox6():
+    #Test collide_segments for all corners
+    
+    T1 = CollideTransformable()
+    T2 = CollideTransformable()
+    R1 = Rect(0,0,2,2)
+    R2 = Rect(1,1,2,2)
+    Hb1 = Hitbox(R1)
+    Hb2 = Hitbox(R2)
+    T1.set_hit_box(Hb1)
+    T2.set_hit_box(Hb2)
+    assert Hb1.collide_sides(Hb2) == ([1,2],[0,3])
+
+    T1 = CollideTransformable()
+    T2 = CollideTransformable()
+    R1 = Rect(0,0,2,2)
+    R2 = Rect(-1,-1,2,2)
+    Hb1 = Hitbox(R1)
+    Hb2 = Hitbox(R2)
+    T1.set_hit_box(Hb1)
+    T2.set_hit_box(Hb2)
+    assert Hb1.collide_sides(Hb2) == ([0,3],[1,2])
+
+    T1 = CollideTransformable()
+    T2 = CollideTransformable()
+    R1 = Rect(0,0,2,2)
+    R2 = Rect(1,-1,2,2)
+    Hb1 = Hitbox(R1)
+    Hb2 = Hitbox(R2)
+    T1.set_hit_box(Hb1)
+    T2.set_hit_box(Hb2)
+    assert Hb1.collide_sides(Hb2) == ([0,1],[2,3])
+
+    T1 = CollideTransformable()
+    T2 = CollideTransformable()
+    R1 = Rect(0,0,2,2)
+    R2 = Rect(-1,1,2,2)
+    Hb1 = Hitbox(R1)
+    Hb2 = Hitbox(R2)
+    T1.set_hit_box(Hb1)
+    T2.set_hit_box(Hb2)
+    assert Hb1.collide_sides(Hb2) == ([2,3],[0,1])
+    
+    #Test collide segment for arbitrary rotations
+    T1 = CollideTransformable()
+    T2 = CollideTransformable()
+    R1 = Rect(0,0,2,2)
+    R2 = Rect(1.001,1.001,2,2)
+    Hb1 = Hitbox(R1)
+    Hb2 = Hitbox(R2)
+    T1.set_hit_box(Hb1)
+    T2.set_hit_box(Hb2)
+    T2.rot(45)
+    assert Hb1.collide_sides(Hb2) == ([1,2],[3])

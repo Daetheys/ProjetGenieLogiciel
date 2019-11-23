@@ -14,6 +14,8 @@ import pygame
 import time
 from datetime import datetime
 
+DEBUG = False
+
 def get_current_time():
     return datetime.timestamp(datetime.now())
 
@@ -55,7 +57,7 @@ class GameLevel:
         #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
         #Creation of the gravity
-        self.gravity = Gravity(10)
+        self.gravity = Gravity(0)
         self.player.add_force(self.gravity)
 
     def get_camera(self):
@@ -116,22 +118,42 @@ class GameLevel:
 
     def play(self,fps):
         """ Launches the gameLevel , returns +score if win, -score if lose """
-        dt = 1/fps
         #self.begin_time = get_current_time()
         #self.time = self.begin_time
-        print(self.get_objects_opti())
+        #r = 0 #If an iteration is too long, this time will be put here to be added to next iteration
+        t0 = get_current_time()
+        tn = t0
         try:
             while True:
+                #Get time
+                now = get_current_time()
+                #Compute dt from previous iteration
+                dt = now-tn
+                #Updates time from the begining
+                self.time = tn-t0
+                print(now,dt,self.time)
+                #Launch the loop
                 self.main_loop(dt)
-                pygame.time.Clock().tick(fps)
+                #Updates tn to end the loop
+                tn = now
+                #t2 = time.clock()-t
+                #time_wait = 1/fps-t2
+                #if time_wait < 0:
+                #    r = time_wait #We are late !
+                #else:
+                #    time.sleep(time_wait) #Everything is ok
+                #    r = 0
+                #pygame.time.Clock().tick(1/fps-t2)
+                #print(1/(time.clock()-t),dt,self.time)
+                
         except EndGame as e:
+            #print("--",time.clock()-t0,self.time)
             return (e.issue, e.score)
 
     def main_loop(self,dt):
         #new_time = get_current_time()
         #dt = new_time - self.time
         #self.time = new_time - self.begin_time
-        self.time += dt
         """ Main loop of the game (controllers, physics, ...) """
         pressed = pygame.key.get_pressed()
         #Controller loop
@@ -142,7 +164,7 @@ class GameLevel:
         #Physics
         self.physics_step(dt)
         #Camera set position (3/4)
-        self.camera.threeforth_on(self.player)
+        self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
         #Aff
         self.aff()
         #Score
@@ -152,20 +174,32 @@ class GameLevel:
         #Win / Lose conditions
         (minx,maxx,miny,maxy) = self.get_size_level()
         if self.player.get_position().y > maxy: #C'est inversé :)
-            raise EndGame(False,self.score)
+            self.lose()
         if self.player.get_position().x > maxx:
-            raise EndGame(True,self.score)
+            self.win()
+
+    def win(self):
+        raise EndGame(True,self.score)
+
+    def lose(self):
+        raise EndGame(False,self.score)
 
     def get_objects_opti(self):
         """ Optimise the data structure """
         (minx,maxx,miny,maxy) = self.size_level
         x = self.camera.get_position().x
         index = int((x-minx)/self.step)
-        return self.sorted_objects[index]+self.sorted_objects[index+1]+[self.player]
+        return set(self.sorted_objects[index]+self.sorted_objects[index+1]+[self.player])
 
     def physics_step(self,dt):
         """ Compute collisions """
+        
         obj_opti = self.get_objects_opti()
+        if DEBUG:
+            print("---")
+            print("player rigid",self.player.get_rigid_hit_box())
+            for plat in obj_opti:
+                print("plat",plat,plat.get_rigid_hit_box())
         for o in obj_opti:
             #print(o)
             o.compute_speed(dt)
@@ -179,13 +213,18 @@ class GameLevel:
                 speed = self.player.get_speed()
                 self.player.set_speed(Vector(0,speed.y))
             for o2 in obj_opti:
-                if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
-                    print("collide")
-                    o.collide(o2)
-                    o2.collide(o)
+                #print("collide")
+                coll,coll2 = o.get_hit_box().collide_sides(o2.get_hit_box())
+                if o != o2 and coll+coll2:
+                    if DEBUG:
+                        print("collide",o,o2)
+                        print("o",o.get_hit_box(),o.get_rigid_hit_box())
+                        print("o2",o2.get_hit_box(),o2.get_rigid_hit_box())
+                    o.collide(o2,coll,coll2)
+                    o2.collide(o,coll2,coll)
                     if o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
-                        #print("------------------rigid",o,o2)
-                        print("rigid collide")
+                        if DEBUG:
+                            print("rigid")
                         o.apply_solid_reaction(o2)
 
     def load_camera(self,fen):

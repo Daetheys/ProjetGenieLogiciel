@@ -1,6 +1,7 @@
 from rect import Rect
 from transform import Transform
 from vector import Vector
+from polygone import Polygon
 
 class Hitbox:
     """ Hit box class """
@@ -13,6 +14,7 @@ class Hitbox:
     
 
     def center(self):
+        """ Centers the rectangle on (0,0) """
         return self.rect.center()
 
     def copy(self):
@@ -71,31 +73,46 @@ class Hitbox:
         """ Returns true if both hit box collide """
         return bool(self.points_in(hbox) + hbox.points_in(self))
 
+    def get_segments(self):
+        return self.get_world_poly().get_segments()
+
+    def collide_sides(self,hbox):
+        """ Returns sides of this and hbox that collide """
+        def compute_index(seglist,poly):
+            """ We assume seglist elements are in the same order than in poly.get_segments() - That is the case for the upper function and that's also why I don't want this little function to be accessible elsewhere """
+            li = []
+            seg = poly.get_segments()
+            index_seglist = 0
+            for index in range(len(seg)):
+                if index_seglist < len(seglist) and seg[index] == seglist[index_seglist]:
+                    li.append(index)
+                    index_seglist += 1
+            return li
+        polyf = self.get_world_poly()
+        poly2 = hbox.get_world_poly()
+        segcf = polyf.segments_collide_with(poly2)
+        segc2 = poly2.segments_collide_with(polyf)
+        return compute_index(segcf,polyf),compute_index(segc2,poly2)
+    
     def remove_collide(self,hbox):
         """ Returns the vector that self need to be moved by to remove the collision """
         epsilon = 0.0001
         pf = self.points_in(hbox)
         p2 = hbox.points_in(self)
-        if pf + p2 == []:
-            return (Vector(0,0),Vector(0,0))
+        if pf + p2 == []: #Shouldn't happen if use when a rigid collision occurs
+            return Vector(0,0)
         elif len(pf) >= 1 and p2 == []:
             point = pf[0]
             nwi,d = hbox.rect.nearest_wall(point)
-            #print("nwi,d",nwi,d)
             v = hbox.wall_index_to_vector(nwi)*d
-            #print("v",v)
             return v.apply_transform(hbox.get_transform().cut_translate())*(1+epsilon)
         elif pf == [] and len(p2) >= 1:
             nwi,d = self.rect.nearest_wall(p2[0])
-            #print("nwi,d",nwi,d)
             v = self.wall_index_to_vector(nwi)*d
-            #print("v",v)
             return -v.apply_transform(self.get_transform().cut_translate())*(1+epsilon)
         elif len(pf) == 1 and len(p2) == 1:
             nwi,d = self.rect.nearest_wall(p2[0])
-            #print("nwi,d",nwi,d)
             v = self.wall_index_to_vector(nwi)*d
-            #print("v",v)
             return -v.apply_transform(self.get_transform().cut_translate())*(1+epsilon)
         else:
             print("self",self.get_world_poly())

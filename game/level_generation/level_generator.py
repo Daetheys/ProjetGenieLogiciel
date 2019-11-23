@@ -68,9 +68,8 @@ def generate_level(filename,name_of_level=''):
 
 		if(i > last_beat):
 			tempo_index = tempo_index + 1
-	print(jump_points,speed,tempos)
 	y = 0#initially the height is at 500 #It's at 0 now ^^
-	#jump_points[0] = 0 #avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
+	jump_points[0] = -1000 #avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
 
 	for i in range(nb_beats):
 		#pourquoi +50 et +24 ? #La taille des plateformes non ?
