@@ -83,3 +83,20 @@ def test_opti():
         plat.append(plat[-1].copy())
         plat[-1].translate(Vector(10,0))
     gl = GameLevel(plat,[])
+
+def test_physics_high_fall():
+    R = Rect(0,0,10,16)
+    Hb = Hitbox(R)
+    plat = SolidPlatform(Hb)
+    def pos(t):
+        return 0
+    gl = GameLevel([plat],pos)
+    gl.player.set_position(0,-100)
+    gravity = Gravity(50)
+    gl.player.add_force(gravity) #Au cas où la gravité soit nulle dans Gl
+    timeout = 1000
+    while not(gl.player.get_hit_box().collide(plat.get_hit_box())) and timeout > 0:
+        gl.physics_step(0.01)
+        timeout -= 1
+    assert timeout > 0
+    assert gl.player.get_position().y <= 0

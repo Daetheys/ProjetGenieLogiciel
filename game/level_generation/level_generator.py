@@ -55,7 +55,7 @@ def generate_level(filename,name_of_level=''):
 		Renvoie un GameLevel
 	"""
 	(first_beat, tempos, nb_beats) = bpm_info(filename)
-
+	print("------",first_beat,tempos,nb_beats)
 	platforms = []
 
 	jump_points = [0]

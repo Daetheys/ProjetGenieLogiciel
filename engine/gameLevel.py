@@ -57,7 +57,7 @@ class GameLevel:
         #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
         #Creation of the gravity
-        self.gravity = Gravity(0)
+        self.gravity = Gravity(10)
         self.player.add_force(self.gravity)
 
     def get_camera(self):
@@ -134,7 +134,7 @@ class GameLevel:
                 print(now,dt,self.time)
                 #Launch the loop
                 self.main_loop(dt)
-                #Updates tn to end the loop
+                #Updates tn for the next iteration
                 tn = now
                 #t2 = time.clock()-t
                 #time_wait = 1/fps-t2
