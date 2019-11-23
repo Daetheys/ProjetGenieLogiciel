@@ -75,14 +75,26 @@ def test_physics_step2():
 """
 
 def test_opti():
-    R = Rect(-1,-1,2,2)
+    R = Rect(0,0,7,2)
     Hb = Hitbox(R)
     plat1 = SolidPlatform(Hb)
     plat = [plat1]
-    for i in range(100):
+    nb = 10
+    for i in range(nb):
         plat.append(plat[-1].copy())
         plat[-1].translate(Vector(10,0))
     gl = GameLevel(plat,[])
+    for i in range(nb):
+        assert len(gl.sorted_objects[i]) == 1
+    for x in range(nb*10):
+        print("--",x)
+        gl.get_camera().set_position(Vector(x/10,0))
+        for p in plat:
+            if gl.get_camera().is_in_camera(p.get_rigid_hit_box().get_world_poly()):
+                print("p",p)
+                print("p Hb",p.get_hit_box())
+                print("cam",gl.get_camera())
+                assert p in gl.get_objects_opti()
 
 def test_physics_high_fall():
     R = Rect(0,0,10,16)

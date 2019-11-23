@@ -37,7 +37,7 @@ class GameLevel:
 
         #To optimise physics
         self.sorted_objects = None
-        self.step = None
+        self.opti_step = 10
         self.optimise_data()
 
         #Get end platform locations to compute score
@@ -76,15 +76,19 @@ class GameLevel:
     def optimise_data(self):
         """ Optimise collisions checks and aff """
         #Call it before launching the game of making modification in camera (be carefull it may take a while to execute
-        step = self.get_camera().get_dimension().x
-        self.step = step
+        step = self.opti_step #self.get_camera().get_dimension().x
         (minx,maxx,miny,maxy) = self.size_level
-        sorted_objects = [[] for i in range( int((maxx-minx)/step) +2)]
+        sorted_objects = [[] for i in range( int((maxx-minx)/step+0.5) +1)]
         for o in self.objects:
             minposx = o.get_hit_box().get_world_poly().get_min_x()
             maxposx = o.get_hit_box().get_world_poly().get_max_x()
             minindexx = int( (minposx-minx)/step )
-            maxindexx = int( (maxposx-minx)/step )+1 #Arrondi au sup
+            maxindexx = int( (maxposx-minx)/step ) #Arrondi au sup
+            print("o",o)
+            print("minposx",minposx)
+            print("maxposx",maxposx)
+            print("minindexx",minindexx)
+            print("maxindexx",maxindexx)
             for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
                 sorted_objects[i].append(o)
         self.sorted_objects = sorted_objects
@@ -129,6 +133,7 @@ class GameLevel:
                 now = get_current_time()
                 #Compute dt from previous iteration
                 dt = now-tn
+                print(1/dt)
                 #Updates time from the begining
                 self.time = tn-t0
                 print(now,dt,self.time)
@@ -188,8 +193,18 @@ class GameLevel:
         """ Optimise the data structure """
         (minx,maxx,miny,maxy) = self.size_level
         x = self.camera.get_position().x
-        index = int((x-minx)/self.step)
-        return set(self.sorted_objects[index]+self.sorted_objects[index+1]+[self.player])
+        index = int((x-minx)/self.opti_step)
+        set_opti = set()
+        nb = int(self.camera.get_dimension().x/self.opti_step+0.5)+1
+        if DEBUG:
+            print("x",x)
+            print("minx",minx)
+            print("index",index)
+            print("nb",nb)
+        for i in range(nb):
+            if index+i < len(self.sorted_objects):
+                set_opti |= set(self.sorted_objects[index+i])
+        return set_opti | set([self.player])
 
     def physics_step(self,dt):
         """ Compute collisions """

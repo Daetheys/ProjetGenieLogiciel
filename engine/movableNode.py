@@ -8,7 +8,7 @@ import pygame
 import time
 
 DEBUG = False
-MAXSPEED = 50 #Low MAXSPEED
+MAXSPEED = 6 #Low MAXSPEED
 
 class MovableNode(SpriteNode):
     """ A node that can move with more powerful functions"""
