@@ -297,6 +297,25 @@ class Polygon:
     def get_min_y(self):
         return self.min_y
 
+    def to_rect(self):
+        if len(self.get_points()) == 4:
+            s = self.get_segments()[0]
+            l = s.get_line()
+            if l.vert:
+                angle = np.pi/2
+            else:
+                angle = np.arctan(l.a)
+            p = self.copy()
+            p.rotate(angle)
+            pts = p.get_points()
+            assert np.isclose(pts[0].y,pts[1].y)
+            assert np.isclose(pts[1].x,pts[2].x)
+            assert np.isclose(pts[2].y,pts[3].y)
+            assert np.isclose(pts[3].x,pts[0].x)
+            return (pts[0].x,pts[0].y,pts[1].x-pts[0].x,pts[2].y-pts[1].y),angle
+        else:
+            assert False #Cannot get a rectangle from this polygon
+
     def copy(self):
         """ Copies this polygon and returns it """
         l = []

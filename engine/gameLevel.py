@@ -84,11 +84,12 @@ class GameLevel:
             maxposx = o.get_hit_box().get_world_poly().get_max_x()
             minindexx = int( (minposx-minx)/step )
             maxindexx = int( (maxposx-minx)/step ) #Arrondi au sup
-            print("o",o)
-            print("minposx",minposx)
-            print("maxposx",maxposx)
-            print("minindexx",minindexx)
-            print("maxindexx",maxindexx)
+            if DEBUG:
+                print("o",o)
+                print("minposx",minposx)
+                print("maxposx",maxposx)
+                print("minindexx",minindexx)
+                print("maxindexx",maxindexx)
             for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
                 sorted_objects[i].append(o)
         self.sorted_objects = sorted_objects
@@ -133,10 +134,10 @@ class GameLevel:
                 now = get_current_time()
                 #Compute dt from previous iteration
                 dt = now-tn
-                print(1/dt)
+                #print(1/dt)
                 #Updates time from the begining
                 self.time = tn-t0
-                print(now,dt,self.time)
+                #print(now,dt,self.time)
                 #Launch the loop
                 self.main_loop(dt)
                 #Updates tn for the next iteration
@@ -160,6 +161,30 @@ class GameLevel:
         #dt = new_time - self.time
         #self.time = new_time - self.begin_time
         """ Main loop of the game (controllers, physics, ...) """
+        self.compute_controller()
+        self.physics_step(dt)
+        #Camera set position (3/4)
+        self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
+        #Aff
+        self.aff()
+        #Score
+        self.compute_score()
+        #Win / Lose conditions
+        self.compute_win_lose()
+
+    def compute_win_lose(self):
+        (minx,maxx,miny,maxy) = self.get_size_level()
+        if self.player.get_position().y > maxy: #C'est inversé :)
+            self.lose()
+        if self.player.get_position().x > maxx:
+            self.win()
+
+    def compute_score(self):
+        while len(self.end_platform_location) > 0 and self.player.get_position().x >= self.end_platform_location[0]:
+            del self.end_platform_location[0]
+            self.player.add_score(1000)
+
+    def compute_controller(self):
         pressed = pygame.key.get_pressed()
         #Controller loop
         for event in pygame.event.get() + [None]:
@@ -167,21 +192,6 @@ class GameLevel:
                 if o.get_controller() is not None:
                     o.get_controller().execute(event,pressed)
         #Physics
-        self.physics_step(dt)
-        #Camera set position (3/4)
-        self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
-        #Aff
-        self.aff()
-        #Score
-        while len(self.end_platform_location) > 0 and self.player.get_position().x >= self.end_platform_location[0]:
-            del self.end_platform_location[0]
-            self.player.add_score(1000)
-        #Win / Lose conditions
-        (minx,maxx,miny,maxy) = self.get_size_level()
-        if self.player.get_position().y > maxy: #C'est inversé :)
-            self.lose()
-        if self.player.get_position().x > maxx:
-            self.win()
 
     def win(self):
         raise EndGame(True,self.score)

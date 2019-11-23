@@ -19,9 +19,11 @@ class Player(ControlableNode):
     """ Player Class """
     def __init__(self):
         ControlableNode.__init__(self)
-        self.set_hit_box(Hitbox(Rect(-1,-2,8,16)))
+        self.set_hit_box(Hitbox(Rect(-1,-2,12,16)))
         self.set_rigid_body(True)
-        self.set_sps(None)
+        self.create_sps("player")
+        self.set_state("r")
+        #self.set_sps(None)
         #self.get_sps().load_automaton()
         #self.get_sps().load_sprites()
         self.controller = PlayerController(self)
@@ -39,6 +41,8 @@ class Player(ControlableNode):
         if self.can_jump and (not self.is_jumping) and speed.y >= 0:
             self.set_speed(Vector(speed.x, -self.jump_strength))
             self.can_jump = False
+            print("SET J")
+            self.set_state("j") #For the spriteScheduler -> state jump (j)
 
     def stop_jump(self):
         """ Key has just been released """
@@ -54,12 +58,24 @@ class Player(ControlableNode):
         """ Player collides with o """
         if isinstance(o,SolidPlatform):
             if o2_sides == [0]:
+
+                #if self.alive:
+                if self.can_jump:
+                    self.set_state("r") #For the spriteScheduler -> state run (r)
+                #Top side
                 self.allow_jump()
                 self.is_jumping = False
+
+                
             else:
                 #The player dies
-                print("Player Dies")
-                #self.alive = False
+                self.die()
+
+    def die(self):
+        """ Kills the player """
+        #self.set_state("d") #For the spriteScheduler -> state die (d)
+        print("Player Dies")
+        self.alive = False
             
     def add_score(self,val):
         self.score += val

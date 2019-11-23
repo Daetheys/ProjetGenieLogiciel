@@ -182,6 +182,14 @@ def test_polygon_max_min():
     assert p.get_min_x() == 0
     assert p.get_min_y() == 3
 
+def test_to_rect():
+    v1 = Vector(-1,-1)
+    v2 = Vector(1,-1)
+    v3 = Vector(1,1)
+    v4 = Vector(-1,1)
+    p = Polygon([v1,v2,v3,v4])
+    p.to_rect() == (-1,-1,2,2),0
+
 def test_more1():
     v1 = Vector(1,6)
     v2 = Vector(1,5)
@@ -207,7 +215,6 @@ def test_more3():
     p1 = Polygon([Vector(-1.0,-1.0), Vector(1.0,-1.0), Vector(1.0,1.0), Vector(-1.0,1.0)])
     p2 = Polygon([Vector(-1.0,3.0), Vector(1.0,3.0), Vector(1.0,5.0), Vector(-1.0,5.0)])
     assert not(p1.collide(p2))
-
 
 # ----------------------
 #

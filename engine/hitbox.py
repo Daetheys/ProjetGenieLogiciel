@@ -12,7 +12,9 @@ class Hitbox:
     def __repr__(self):
         return "Hitbox("+str(self.get_world_poly())+")"
     
-
+    def get_rect(self):
+        return self.rect
+    
     def center(self):
         """ Centers the rectangle on (0,0) """
         return self.rect.center()

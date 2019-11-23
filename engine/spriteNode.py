@@ -8,6 +8,8 @@ class SpriteNode(Node):
         Node.__init__(self)
         self.__state = None #stay,move,damaged,collision,
         self.__sps = None #
+        self.animation_speed = 3
+        self.animation_step = 0
 
     def copy(self):
         sn = SpriteNode()
@@ -67,23 +69,31 @@ class SpriteNode(Node):
         scale,trans = distorsion
         if  self.__sps is not None:
             if self.__sps.loaded:
+                print("state",self.__sps.ata.cs,self.__state)
+                if self.animation_step >= self.animation_speed:
+                    self.__sps.step(self.__state)
+                    self.animation_step = 0
+                self.animation_step += 1
                 img = self.__sps.get_sprite()
             else:
                 print("Images should never be imported on-the-fly!")
                 exit(0)
                 s = self.__sps.get_sprite()
                 img = pygame.image.load(s).convert_alpha()
-            image_dim = Vector(img.get_width(),img.get_height())
-            dist = scale.transform_vect(image_dim)
-            x,y = dist.to_tuple()
-
-            img = pygame.transform.smoothscale(img,(int(x),int(y)))
-            pos = self.get_position()
+            #image_dim = Vector(img.get_width(),img.get_height())
+            #dist = scale.transform_vect(image_dim)
+            #x,y = dist.to_tuple()
+            #(bx,by,bw,bh) = self.get_hit_box().get_rect().get_coord()
+            #print(" ",bw,bh)
+            #print("xy",int(x),int(y))
+            (px,py,pw,ph),a = self.get_pos_camera(distorsion,self.get_hit_box()).to_rect()
+            img = pygame.transform.smoothscale(img,(int(pw),int(ph)))
+            #pos = self.get_position()
             #print("-------1",pos,trans)
-            pos = pos.apply_transform(scale)
-            pos = pos.apply_transform(trans)
+            #pos = pos.apply_transform(scale)
+            #pos = pos.apply_transform(trans)
             #print("-------2",pos)
-            fen.blit(img,(pos.x ,pos.y ))
+            fen.blit(img,(int(px) ,int(py) ))
         else:
             coll_box = self.get_pos_camera(distorsion,self.get_hit_box())
             rigid_box = self.get_pos_camera(distorsion,self.get_rigid_hit_box())
