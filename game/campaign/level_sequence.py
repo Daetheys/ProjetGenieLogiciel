@@ -25,14 +25,13 @@ class Level_Sequence(Map_Point):
     def set_accessible(self):
         self._accessible = True
 
-    def set_accessed(self):
+    def set_accessed(self): #maybe useless
         self._accessed = True
 
     def set_finished(self,g):
         self._finished = True
         for child in self.__childs:
             child.set_accessible()
-        self.reward(g)
             
     def get_accessible(self):
         return self._accessible
@@ -44,27 +43,12 @@ class Level_Sequence(Map_Point):
         return self._finished
 
     def launch(self,g):
-        if self._start_dialogue is not None:
-            quit_all = self._start_dialogue.show(g)
-            if quit_all:
-                return True,False#ne charge pas le level
-        self.set_accessed()
-        g.win().blit(g.dict_img["img_dial"],(0,400))  #ugly code just to separate start and end dialogue
-        g.flip()
-        
-        reussite = []
+        self.set_accessed() #is it useful ?
+        reussite = True #pour réussir, il faut gagner tous les levels du level_sequence
         for level in self.__levels:
-            reussite.append(level.launch(g))#pour savoir quels niveaux ont été réussis !
-        self.set_finished(g)
-        if self._end_dialogue is not None:
-            self._end_dialogue.show(g)
-            #la valeur de retour n'est pas utile ici, puisqu'on quitte de toute façon après.
-        return True,False
+            reussite = reussite and level.launch(g)
+        if reussite:
+            self.set_finished(g)
         
-    def reward(self,g):
-        if self.name == "kshan_4A":
-            g.player.add_to_inventory({g.dict_item["key_A"]:1})
-        if self.name == "kshan_4B":
-            g.player.add_to_inventory({g.dict_item["key_B"]:1})
-        if self.name == "kshan_1":
-            g.player.add_to_inventory({g.dict_item["key_0"]:1})
+        return True,False #vérifier ce qu'il faut renvoyer...
+        

@@ -5,6 +5,7 @@ from pygame.locals import *
 from tools import score_to_msg
 from dialogue import Dialogue
 from dialoguebubble import Dialogue_Bubble
+from vector import Vector
 
 class Launcher(Game):
 
@@ -191,7 +192,7 @@ class Launcher(Game):
             f.write(json.dumps(self.dict_score))
         #pour ne pas sortir du menu même si les boutons ont été trop appuyés
         #mashed buttons are handled by pygameeventget (doesn't quit the menu)
-        return success#true ssi réussite ! pour l'instant non utilisé.
+        return success#true ssi réussite ! pour l'instant non utilisé. -> maintenant oui !
 
     def loop_level(self,gl,t):
         """ Running the main loop of a level gl at time t
