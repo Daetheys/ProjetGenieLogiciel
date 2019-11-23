@@ -18,7 +18,7 @@ from solidPlatform import SolidPlatform
 from hitbox import Hitbox
 from rect import Rect
 
-speed_factor = 1000
+speed_factor = 200
 
 def get_speed(tempo):
 	"""
@@ -68,15 +68,16 @@ def generate_level(filename,name_of_level=''):
 
 		if(i > last_beat):
 			tempo_index = tempo_index + 1
+
 	y = 0#initially the height is at 500 #It's at 0 now ^^
-	jump_points[0] = -1000 #avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
+	jump_points[0] = -1000 # Beginning platform
 
-	for i in range(nb_beats):
+	for i in range(nb_beats//2):
 		#pourquoi +50 et +24 ? #La taille des plateformes non ?
-		platforms.append(platform(jump_points[i]+50,y,jump_points[i+1]+24))
+		platforms.append(platform(jump_points[2*i]+50,y,jump_points[2*(i+1)]+24))
 
-		y += random.randint(-48,48)#at each point the y coordinate changes
+		y += random.randint(-24,24)#at each point the y coordinate changes
 
 	def player_pos(t):
-                return t*speed*60/tempo
+                return t*speed
 	return GameLevel(platforms,player_pos,name=name_of_level)

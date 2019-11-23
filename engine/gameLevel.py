@@ -57,7 +57,7 @@ class GameLevel:
         #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
         #Creation of the gravity
-        self.gravity = Gravity(10)
+        self.gravity = Gravity(35)
         self.player.add_force(self.gravity)
 
     def get_camera(self):

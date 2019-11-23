@@ -28,7 +28,7 @@ class Player(ControlableNode):
         self.score = 0
         self.alive = True
         
-        self.jump_strength = 9
+        self.jump_strength = 10
         self.can_jump = True
         self.is_jumping = False
 
