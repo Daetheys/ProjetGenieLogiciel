@@ -12,7 +12,8 @@ class Key(ControlableNode):
         ControlableNode.__init__(self)
         self.set_hit_box(hb)
         self.set_collide(True)
-        self.create_sps(SpriteScheduler("key"))
+        self.create_sps("key")
+        print("--",self.get_sps().ata)
         self.center_hit_box()
 
         self.taken = False
@@ -34,7 +35,9 @@ class Key(ControlableNode):
         if isinstance(o2,Player):
             if not(self.taken):
                 o2.set_inventory({KeyItem("key_1"):1})
+                print("INV",id(o2.get_inventory()))
                 self.taken = True
-                self.create_sps(SpriteScheduler('empty'))
+                self.create_sps('empty')
+                self.set_state('a')
                 
     

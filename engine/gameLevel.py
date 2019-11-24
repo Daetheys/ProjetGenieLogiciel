@@ -74,7 +74,7 @@ class GameLevel:
         return self.objects
 
     def load_inventory(self,inv):
-        self.player.set_inventory(inv)
+        self.player.load_inventory(inv)
 
     def compute_end_platform_location(self):
         self.end_platform_location = []
