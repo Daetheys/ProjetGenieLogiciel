@@ -10,7 +10,7 @@ class SolidPlatform(ControlableNode):
         ControlableNode.__init__(self)
         self.set_hit_box(hb)
         self.set_rigid_body(True)
-        self.set_sps(SpriteScheduler(name))
+        self.set_sps(SpriteScheduler("platform"))
         self.get_sps().load_automaton()
         self.get_sps().load_sprites()
         self.center_hit_box()

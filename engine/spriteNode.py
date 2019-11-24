@@ -6,7 +6,7 @@ from spriteScheduler import SpriteScheduler
 class SpriteNode(Node):
     def __init__(self):
         Node.__init__(self)
-        self.__state = None #stay,move,damaged,collision,
+        self.__state = 's' #stay,move,damaged,collision,
         self.__sps = None #
         self.animation_speed = 3
         self.animation_step = 0

@@ -181,7 +181,7 @@ class Game:
         #Music
         pygame.mixer.music.load("data/musics/Soliloquy.mp3")
         pygame.mixer.music.fadeout(500)
-        pygame.mixer.music.play(-1)
+        pygame.mixer.music.play()
 
     def launch_music(self,music):
         """launches the music"""
