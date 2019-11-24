@@ -193,10 +193,11 @@ class Game:
 
 
     def update_dialogues(self):
+        """ this is now an alias for create_dialogues, as map_points have currently no dialogues """
         self.create_dialogues()
-        for map in self.world.get_maps().values():
-            for map_point in map.get_map_points():
-                self.init_dialogues(map_point)
+        #for map in self.world.get_maps().values():
+        #    for map_point in map.get_map_points():
+        #        self.init_dialogues(map_point)
 
     def dict_str_dflt(self,char):
         """ Try to find if dict_str contains a value for the key 'char'.
