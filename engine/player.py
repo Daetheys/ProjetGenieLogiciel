@@ -35,7 +35,7 @@ class Player(ControlableNode):
         self.can_jump = True
         self.is_jumping = False
 
-        self.is_in_air = False
+        self.is_in_air = True
 
         self.jump_invincibility_max = 2
         self.jump_invincibility_countdown = 0
