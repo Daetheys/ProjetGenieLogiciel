@@ -47,7 +47,7 @@ class Level_2_2_kshan(Level):
         
         #g.launch_music(text)
         
-        success = self.check_victory(g, g.launch_level(gl))
+        success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
         
         

@@ -49,9 +49,9 @@ class Level_1_kshan(Level):
 
         gl = GameLevel(objects,player_pos,name="level_1_kshan")
         
-        #g.launch_music(text)
+        #g.launch_music(text) #too soon, create gap between music and level
         
-        success = self.check_victory(g, g.launch_level(gl))
+        success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
         
         
@@ -63,8 +63,7 @@ class Level_1_kshan(Level):
         else:
             self.fun_dialogue(g,"bad_end")
         
-        #return success
-        return True #because for now, we can't win...
+        return success
     
     def init_objects(self,g):
         plat_1 = SolidPlatform(Hitbox(Rect(-10,12,100,24)))
