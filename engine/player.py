@@ -2,6 +2,7 @@ import sys
 import os
 import numpy as np
 import pygame
+from collections import defaultdict
 
 path = os.getcwd()
 path += "/engine"
@@ -35,10 +36,14 @@ class Player(ControlableNode):
 
         self.is_in_air = True #Is acutally in the air
 
-        self.inventory = None #Ref to inventory to give items to Campaign mod
+        self.inventory = defaultdict(int) #Ref to inventory to give items to Campaign mod
 
-    def set_inventory(self,inv):
-        self.inventory = inv
+    def set_inventory(self,items):
+        for item in items:
+            if item.type == "csm":
+                self.inventory[item] += items[item]
+            else:
+                self.inventory[item] = items[item]
 
     def get_inventory(self):
         return self.inventory

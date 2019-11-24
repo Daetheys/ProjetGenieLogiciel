@@ -16,12 +16,15 @@ class Character():
 	def __repr__(self):
 		return "Character :" + self.name
 		
-	def add_to_inventory(self,items):
+	def set_inventory(self,items):
 		for item in items:
 			if item.type == "csm":
 				self.inv[item] += items[item]
 			else:
 				self.inv[item] = items[item]
+				
+	def get_inventory(self):
+		return self.inv
 		
 class Player(Character):
 	

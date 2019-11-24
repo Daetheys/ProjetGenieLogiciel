@@ -25,29 +25,37 @@ class Level_1_kshan(Level):
         
     def fun_dialogue(self,g,arg):
         if arg == "start":
-            g.dict_dial["dial_kshan1"].show(g)
+            if self.get_finished():
+                quit_all = g.dict_dial["dial_kshan1dv"].show(g)
+            else:
+                quit_all = g.dict_dial["dial_kshan1"].show(g)
         elif arg == "bad_end":
-            g.dict_dial["dial_kshan1f"].show(g)
+            quit_all = g.dict_dial["dial_kshan1bf"].show(g)
         elif arg == "good_end":
-            g.dict_dial["dial_kshan1f"].show(g)
+            quit_all = g.dict_dial["dial_kshan1gf"].show(g)
+        return quit_all
             
     def reward(self,g):
-        g.player.add_to_inventory({g.dict_item["key_0"]:1})
+        g.player.set_inventory({g.dict_item["key_0"]:1})
         
     def check_victory(self,g,arg):
         return arg
         
         
     def launch(self,g):
+        quit_all = self.fun_dialogue(g,"start")
         self.set_accessed()
-        self.fun_dialogue(g,"start")
+        
+        if quit_all:
+            return False
         
         def player_pos(t):
-            return t*2000 #*8 to be faster (but it doesn't match the music anymore !
+            return t*100 #*8 to be faster (but it doesn't match the music anymore !
             
         objects = self.init_objects(g)
 
         gl = GameLevel(objects,player_pos,name="level_1_kshan")
+        gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text) #too soon, create gap between music and level
         
@@ -66,11 +74,9 @@ class Level_1_kshan(Level):
         return success
     
     def init_objects(self,g):
-        plat_1 = SolidPlatform(Hitbox(Rect(-10,12,100,24)))
-        plat_1.set_sps(None)#voir une hitbox
+        plat_1 = SolidPlatform(Hitbox(Rect(-10,12,300,18)))
         
-        plat_2 = SolidPlatform(Hitbox(Rect(120,12,200,24)))
-        plat_2.set_sps(None)#voir une hitbox
+        plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         
         return [plat_1,plat_2]
         
