@@ -1,4 +1,6 @@
 
+""" A background is a list of parallax ordered by their layering (first in the list -> in the back) """
+
 class Background():
     """ List of Parallax """
     def __init__(self,lpar):

@@ -7,18 +7,20 @@ from rect import Rect
 from polygone import *
 from movableNode import MovableNode
 
+""" A collide Transformable is almost the last evolution of this terrifying evolution : it has two hit boxes : a collide one and a rigid one. In fact in pratice because all float computations are approximated it's necessary to have 2 hit boxes, one for collisions (only to say "I collide with you") and an other one for rigid body physics. The rigid body hit box is computed to be a bit smaller than the collide one and to be included in it """
+
+
 class CollideTransformable(MovableNode):
     def __init__(self):
         super().__init__()
         #-----------------------------
         #         Collisions
         #-----------------------------
-        self.__rigid_body = False
-        self.__collide = False
-        self.__collide_hit_box = Hitbox(Rect(0,0,0,0))
-        self.__rigid_hit_box = Hitbox(Rect(0,0,0,0))
-        self.rigid_size_factor = 0.999
-        #self.center_hit_box()
+        self.__rigid_body = False #Boolean if it's a rigid body
+        self.__collide = False #Boolean if it's a collide body
+        self.__collide_hit_box = Hitbox(Rect(0,0,0,0)) #Collide hit box (see Hit Box)
+        self.__rigid_hit_box = Hitbox(Rect(0,0,0,0)) #Rigid hit box
+        self.rigid_size_factor = 0.999 #Scale factor for rigid body hit box
 
     def copy(self):
         """ Returns the copy of this with right deep and shallow copies of arguments """
@@ -27,14 +29,16 @@ class CollideTransformable(MovableNode):
         return t
 
     def center_hit_box(self):
-        """ Center its Hitbox """
+        """ Center its Hitbox -> it's very important for the physics"""
+        #Centers hit boxes
         tc = self.get_hit_box().center()
         tr = self.get_rigid_hit_box().center()
-        assert tr == tc*self.rigid_size_factor
+        #Translates the transformable so that this last operation doesn't affect it's position in the world
+        assert tr == tc*self.rigid_size_factor #Verify that rigid_hit_box is included in the collide one
         self.translate(-tc)
 
     def paste_in(self,t):
-        """ Copies this object in t (side effect)"""
+        """ Paste this object in t (side effect)"""
         MovableNode.paste_in(self,t)
         t.set_collide(self.get_collide())
         t.set_rigid_body(self.get_rigid_body())
@@ -61,13 +65,16 @@ class CollideTransformable(MovableNode):
 
     def set_hit_box(self,val):
         """ Set the collide hit box of this """
+        #Centers the hit box
         tr = val.center()
+        #Assign the collide box
         self.__collide_hit_box = val
-        self.__collide_hit_box.link(self)
+        self.__collide_hit_box.link(self) #Link the hit box to this collidetransformable (see hitbox)
+        #Computes the rigid hit box inside
         rigidhb = val.copy()
         rigidhb.rescale(self.rigid_size_factor)
         self.set_rigid_hit_box(rigidhb)
-        #assert self.get_rigid_hit_box().get_ctrbl() == self
+        #Translates the transformable so that the given hit box stays the same after beeing centered
         self.translate(-tr)
 
     def get_hit_box(self):

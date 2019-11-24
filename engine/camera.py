@@ -10,6 +10,8 @@ sys.path.append(path + "/game")
 import tools
 import pygame
 
+""" A Camera object that represents what will be shown to the player. It uses a Rect (cf Rect) to define what is inside the view of the camera and then rescales and translates things so that they fit exactly in the window (it's the distorsion). This distorsion is a couple of Transform : (tr_scale,tr_translate) """
+
 class Camera:
     """ Camera object """
     def __init__(self):
@@ -17,6 +19,7 @@ class Camera:
         self.fen = None #Undefined yet
 
     def move(self,v):
+        """ Moves the camera """
         self.rect.translate(v)
 
     def set_position(self,pos):
@@ -72,11 +75,13 @@ class Camera:
         return r
 
     def center_on(self,pos):
+        """ Centers the camera on a position """
         pos = pos
         pos = pos + (-self.get_dimension()/2)
         self.set_position(pos)
 
     def threeforth_on(self,pos):
+        """ Makes a 3/4 on the position (this position will be on the left and 3/4 of the screen is free on the right -> usefull for a Canabalt style game """
         dim = self.get_dimension()
         pos += (-Vector(dim.x/4,dim.y/2))
         self.set_position(pos)
@@ -88,15 +93,19 @@ class Camera:
         pygame.draw.rect(self.get_fen(),(0,0,0),pr)
 
     def aff(self,objects,bg,score):
-        """ Aff all objects that are in the camera """
+        """ Show all objects of the given argument that are in the camera as well as the background and the score """
+        #Starts with a flashblack
         if not(self.get_fen() is None):
             self.flashblack()
+        #Shows the Bakcground (see Background)
         bg.show()
+        #Shows all objects that are in the camera
         for o in objects:
-            if self.is_in_camera(o.get_hit_box().get_world_poly()):
+            if self.is_in_camera(o.get_hit_box().get_world_poly()): #Checks if the hitbox is in the camera
                 o.aff(self.get_fen(),self.get_distorsion())
+        #Show the score
         d = self.get_dimension()
-        x = int(d.x*15/16)
+        x = int(d.x*15/16) #Computes where to put it
         y = int(d.y*1/16)
         distorsion_scale = self.get_distorsion()[0]
         vpos = distorsion_scale.transform_point(x,y)

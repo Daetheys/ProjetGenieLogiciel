@@ -4,6 +4,8 @@ from hitbox import Hitbox
 from rect import Rect
 import copy
 
+""" A standard platform of the game """
+
 class SolidPlatform(ControlableNode):
     """ SolidPlatform of the game """
     def __init__(self,hb,name='empty'):
@@ -17,6 +19,7 @@ class SolidPlatform(ControlableNode):
         self.mapping = "Repeatx"
 
     def center_hit_box(self):
+        """ Centers the hitbox """
         self.get_hit_box().center()
 
     def copy(self):
@@ -32,7 +35,7 @@ class SolidPlatform(ControlableNode):
         return "SolidPlatform("+str(self.get_position())+","+str(self.get_hit_box())+")" """
 
     def collide(self,o2,side,o2_side):
-        """ Function called when this collides something else """
+        """ Function called when this collides something else -> nothing to do there"""
         pass
 
 from vector import Vector

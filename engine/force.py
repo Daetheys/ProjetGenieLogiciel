@@ -1,7 +1,10 @@
 from vector import Vector
 
+""" A force is something that can influence a MovableNode by modifyin its acceleration """
+
+
 class Force:
-    """ Force Object """
+    """ Force Object : Abstract Class"""
     def __init__(self):
         pass
 
@@ -9,8 +12,9 @@ class Force:
         pass
 
 class Gravity(Force):
+    """ Simple gravity """
     def __init__(self,g):
-        self.__g = g
+        self.__g = g #Simple Gravity
 
     def set_g(self,g):
         """ Sets g """
@@ -23,17 +27,4 @@ class Gravity(Force):
     def get_acc(self,movablenode):
         """ Computes the acceleration of the movableNode """
         accy = self.get_g()
-        return (Vector(0,accy),movablenode.get_ang_acc())
-
-class Jump(Force):
-    def __init__(self,strength):
-        self.strength = strength
-
-    def set_strength(self,val):
-        self.strength = val
-
-    def get_strength(self):
-        return self.strength
-
-    def get_acc(self,movablenode):
-        return (Vector(0,-self.strength*movablenode.get_mass()),0)
+        return (Vector(0,accy)*movablenode.get_mass(),movablenode.get_ang_acc())

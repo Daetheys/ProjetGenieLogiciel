@@ -13,31 +13,29 @@ from controller import KeyboardController
 from hitbox import Hitbox
 from rect import Rect
 from vector import Vector
-from force import Jump
+
+""" The player object -> represents the player controllableNode """
 
 class Player(ControlableNode):
     """ Player Class """
     def __init__(self):
         ControlableNode.__init__(self)
-        self.set_hit_box(Hitbox(Rect(-1,-2,12,16)))
-        self.set_rigid_body(True)
+        self.set_hit_box(Hitbox(Rect(-1,-2,12,16))) #Specific Hit box
+        self.set_rigid_body(True) #it's a rigid body
 
-        self.create_sps("player")
-        self.set_state("r")
-        #self.set_sps(None)
-        #self.get_sps().load_automaton()
-        #self.get_sps().load_sprites()
-        self.controller = PlayerController(self)
-        self.score = 0
-        self.alive = True
+        self.create_sps("player") #Set sprite
+        self.set_state("r") #First state : runing ('r')
+        self.controller = PlayerController(self) #Controller for the player (see below)
+        self.score = 0 #Score of the player
+        self.alive = True #He is alive ... for now
         
-        self.jump_strength = 500
-        self.can_jump = True
-        self.is_jumping = False
+        self.jump_strength = 500 #Strength of the jump
+        self.can_jump = True #Can jump
+        self.is_jumping = False #Is actually jumping
 
-        self.is_in_air = True
+        self.is_in_air = True #Is acutally in the air
 
-        self.inventory = None
+        self.inventory = None #Ref to inventory to give items to Campaign mod
 
     def set_inventory(self,inv):
         self.inventory = inv
@@ -48,10 +46,9 @@ class Player(ControlableNode):
     def start_jump(self):
         """ Key has just been pressed """
         speed = self.get_speed()
-        #print(self.can_jump, not self.is_jumping, speed.y >= 0)
         if self.can_jump and (not self.is_jumping) and speed.y >= 0:
-            self.set_speed(Vector(speed.x, -self.jump_strength))
-            self.can_jump = False
+            self.set_speed(Vector(speed.x, -self.jump_strength)) #JUMP
+            self.can_jump = False #Cannot jump anymore
 
     def stop_jump(self):
         """ Key has just been released """
@@ -89,6 +86,7 @@ class Player(ControlableNode):
         self.alive = False
 
     def update(self):
+        """ Update var """
         self.can_jump = False #Pour qu'on ne puisse pas sauter dans les airs
         self.is_in_air = True #Pour la detection de la mort : le joueur doit être en l'air et entrer en collision
         #

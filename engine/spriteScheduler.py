@@ -17,6 +17,8 @@ path += "/engine"#pour import automata
 sys.path.append(path)
 from automata import *
 
+""" A SpriteScheduler is the interface between a SpriteNode and his sprites for animation. It uses an automaton where each state represents an sprite. If the spriteNode is runing for example , its status will be something like 'r' (for run) and each time SpriteScheduler.step(char) is called it will execute transitions in its automaton to get the next sprite of the animation. It's especially usefull because it makes it possible to switch between runing, jumping and death animation for example by adding transitions between those loops """
+
 class SpriteScheduler:
 	def __init__(self,name=""):
 		"""

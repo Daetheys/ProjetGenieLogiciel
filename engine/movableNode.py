@@ -11,6 +11,9 @@ DEBUG = False
 MAXMOVE = 11 #Max movement (pixels) per iteration
 SHOWCUT = False
 
+""" A Movable Node is the evolution of a SpriteNode. It has a speed and some basic information about physics but no hitbox yet """
+
+
 class MovableNode(SpriteNode):
     """ A node that can move with more powerful functions"""
     def __init__(self):
@@ -24,11 +27,13 @@ class MovableNode(SpriteNode):
         self.__ang_inertia = 1 #SI 
 
     def copy(self):
+        """ Returns a copy of itself """
         mn = MovableNode()
         self.paste_in(mn)
         return mn
 
     def paste_in(self,mn):
+        """ Paste it in mn """
         SpriteNode.paste_in(self,mn)
         mn.set_speed(self.get_speed())
         mn.set_ang_speed(self.get_ang_speed())
@@ -67,21 +72,26 @@ class MovableNode(SpriteNode):
         return self.__ang_inertia
     
     def add_force(self,force):
+        """ Add a force to this node (cf force) """
         self.__force_effect[force] = None
     def affected_by_force(self,force):
+        """ Returns True if this node is affected by the given force """
         try:
             self.__force_effect[force]
             return True
         except KeyError:
             return False
     def remove_force(self,force):
+        """ Removes the effect of specific force """
         try:
             del self.__force_effect[force]
         except KeyError:
             pass
     def list_forces(self):
+        """ Returns the list of forces that affect this node """
         return list(self.__force_effect.keys())
     def move(self,dt):
+        """ Moves according to it speed and to the small given time dt. It movement may be cut so that the physics works well """
         v = self.get_speed()*dt
         if v.len() > MAXMOVE:
             if SHOWCUT:
@@ -90,15 +100,18 @@ class MovableNode(SpriteNode):
         self.translate(v)
         self.rotate(self.get_ang_speed())
     def reverse_move(self):
+        """ Reverse the last move (not used and shouldn't be)"""
         self.translate(-self.get_speed())
         self.rotate(-self.get_ang_speed())
     def compute_speed(self,dt):
+        """ Computes the actual speed according to its acceleration and dt"""
         #Compute acc
         self.compute_effect_forces()
         #Compute speed
         self.set_speed(self.get_speed() + self.get_acc()*dt)
         self.set_ang_speed(self.get_ang_speed() + self.get_ang_acc()*dt)
     def compute_effect_forces(self):
+        """ Computes the effect of forces on this node and modify acceleration """
         forces = self.list_forces()
         acc = Vector(0,0)
         ang_acc = 0
@@ -110,18 +123,17 @@ class MovableNode(SpriteNode):
         self.set_ang_acc(ang_acc/self.get_ang_inertia())
 
     def apply_solid_reaction(self,support):
+        """ Computes physics when this specific node rigid_collides with support"""
         assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
         #Get how to remove the collision
         correction = self.get_rigid_hit_box().remove_collide(support.get_rigid_hit_box())
         #Get how to correct the speed
-        #print("speed",self.get_speed())
         speed = correction.normalise()*self.get_speed()
         #Correct position and speed
         self.translate(correction)
         self.set_speed(self.get_speed()+speed)
-        #print("speed",speed,self.get_speed())
         
-    """ #OLD PHYSICS (1.0)
+    """ #OLD PHYSICS (1.0) -> It took me so much time to do it and to debug it I don't want to delete it -> it has been removed because it is too slow
     def get_direction_rigid_collide(self,p):
         # Returns either the point or the segment that first created a collision between self (moving) and p (not moving)
         t = time.clock()

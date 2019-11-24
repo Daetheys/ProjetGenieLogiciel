@@ -9,6 +9,8 @@ from exception import TransitionUndefined
 from collections import defaultdict
 from json import load as jsload
 
+""" A simple automaton for the SpriteScheduler """
+
 class Automata:
 	def __init__(self,name,states,tt,cs,qn):
 		self.name = name

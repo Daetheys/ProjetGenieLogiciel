@@ -5,11 +5,13 @@ from polygone import Polygon,Line,Segment
 
 DEBUG = False
 
+""" Fondamentally a hit box is a rect that has a link to a transformable. It uses its get_transform to compute collisions in its referential or in the real world """
+
 class Hitbox:
     """ Hit box class """
     def __init__(self,rect):
-        self.rect = rect
-        self.ctransformable = None
+        self.rect = rect #Rect
+        self.ctransformable = None #CollideTransformable
 
     def __repr__(self):
         return "Hitbox("+str(self.get_world_poly())+")"
@@ -38,7 +40,7 @@ class Hitbox:
         self.ctransformable = ct
 
     def link(self,ct):
-        """ Alias for set_ctrbl """
+        """ Alias for set_ctrbl -> easier to remember"""
         self.set_ctrbl(ct)
         
     def get_transform(self):
@@ -82,64 +84,57 @@ class Hitbox:
 
     def collide_sides(self,hbox):
         """ Returns sides of this and hbox that collide """
-        #def compute_index(seglist,poly):
-        #    """ We assume seglist elements are in the same order than in poly.get_segments() - That is the case for the upper function and that's also why I don't want this little function to be accessible elsewhere """
-        #    li = []
-        #    seg = poly.get_segments()
-        #    index_seglist = 0
-        #    for index in range(len(seg)):
-        #        if index_seglist < len(seglist) and seg[index] == seglist[index_seglist]:
-        #            li.append(index)
-        #            index_seglist += 1
-        #    return li
         polyf = self.get_world_poly()
         poly2 = hbox.get_world_poly()
+        #Computes the intersection polygon
         inter_poly = polyf.get_intersection(poly2)
-        lenf = 0
-        indexf = None
-        len2 = 0
-        index2 = None
+        #It will now be separed in 2 different parts : the one from polyf and the one from poly2. To estimate where the collision has happened this function will return the index of the longest segment for each of those parts. This index is 0 for the top, 1 for right, 2 for bottom and 3 for left.
+        lenf = 0 #Max length for segments of the part of polyf
+        indexf = None #Associated index
+        len2 = 0 #Max length for segments of the part of poly2
+        index2 = None #Associated index
         if DEBUG:
             print("self",self.get_world_poly())
             print("hbox",hbox.get_world_poly())
             print("inter poly",inter_poly)
+        #Check whether s is in polyf or in poly2 and checks with lenf and len2 to compute indexf and index2
         for s in inter_poly.get_segments():
             if DEBUG:
                 print("--s",s)
+            #Check in polyf if s is in it
             for i,sf in enumerate(polyf.get_segments()):
                 inter_p = sf.intersect_point(s)
                 if DEBUG:
                     print("i",i)
                     print("sf",sf)
                     print("inter_p",inter_p)
-                if isinstance(inter_p,Segment):
+                if isinstance(inter_p,Segment): #If the intersection is a segment, s is included in sf
                     length = s.length()
-                    if length >= lenf:
+                    if length >= lenf: #Check whether its length is high enough to be kept
                         if DEBUG:
                             print("OKf",length,lenf)
                         lenf = length
                         indexf = i
             if DEBUG:
                 print("--")
+            #Check in poly2 if s is in it
             for i,s2 in enumerate(poly2.get_segments()):
                 inter_p = s2.intersect_point(s)
                 if DEBUG:
                     print("i",i)
                     print("s2",s2)
                     print("inter_p",inter_p)
-                if isinstance(inter_p,Segment):
+                if isinstance(inter_p,Segment): #If the intersection is a segment, s is included in s2
                     length = s.length()
-                    if length >= len2:
+                    if length >= len2: #Check whether its length is high enough to be kept
                         if DEBUG:
                             print("OK")
                         len2 = length
                         index2 = i
         return indexf,index2
-        #segcf = polyf.segments_collide_with(poly2)
-        #segc2 = poly2.segments_collide_with(polyf)
-        #return compute_index(segcf,polyf),compute_index(segc2,poly2)
 
     def remove_collide(self,hbox):
+        """ removes the collision with hbox using the speed of self.get_ctrbl() """
         epsilon = (1-self.get_ctrbl().rigid_size_factor)/10
         direction = -self.get_ctrbl().get_speed()
         inter_poly = self.get_world_poly().get_intersection(hbox.get_world_poly())
@@ -180,9 +175,10 @@ class Hitbox:
                     if length > lenmax:
                         lenmax = length
         return direction.normalise()*(lenmax*(1+epsilon))
-    
+
+    """ Physics 2.0 (it took me so much time to o it I don't want to delete it) -> changed because it doesn't work that well
     def remove_collide2(self,hbox):
-        """ Returns the vector that self need to be moved by to remove the collision """
+        # Returns the vector that self need to be moved by to remove the collision (used on rigid body collide boxes)
         epsilon = 0.0001
         pf = self.points_in(hbox)
         p2 = hbox.points_in(self)
@@ -207,7 +203,7 @@ class Hitbox:
             print("pf",pf)
             print("p2",p2)
             assert False #Not handled by physics
-
+        """
     def wall_index_to_vector(self,index):
         if index == 0:
             return Vector(-1,0)

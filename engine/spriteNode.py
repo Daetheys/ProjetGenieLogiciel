@@ -3,22 +3,26 @@ import pygame
 from vector import Vector
 from spriteScheduler import SpriteScheduler
 
+""" It's the evolution of a simple Node : it has a sprite that can be shown on screen. It will need a SpriteScheduler to handle animations (cf SpriteScheduler). """
+
 class SpriteNode(Node):
     def __init__(self):
         Node.__init__(self)
-        self.__state = 's' #stay,move,damaged,collision,
-        self.__sps = None #
-        self.animation_speed = 3
-        self.animation_step = 0
+        self.__state = 's' #Represents the actual status of the SpriteNode (it's a letter for it's SpriteScheduler (cf SpriteScheduler)
+        self.__sps = None #SpriteScheduler-> if it's None hit boxes will be shown instead of the sprite
+        self.animation_speed = 3 #Speed of animation (number of frames a single frame stays)
+        self.animation_step = 0 #Count for the animation
 
-        self.mapping = "Flat" #Flat : étiré // Repeatx : Repeted along x
+        self.mapping = "Flat" #Way to show the image : Flat : extended // Repeatx : Repeted along x
 
     def copy(self):
+        """ Returns a copy of this object """
         sn = SpriteNode()
         self.paste_in(sn)
         return sn
 
     def paste_in(self,sn):
+        """ Paste this object in sn """
         Node.paste_in(self,sn)
         sn.set_state(self.get_state())
         if self.get_sps() is not None:
@@ -56,6 +60,7 @@ class SpriteNode(Node):
         return self.__state
 
     def get_pos_camera(self,distorsion,box):
+        """ Returns the position of a given box in a camera that has a given distorsion (cf Camera) """
         scale,trans = distorsion
         transform = box.get_transform()
         world_pos = box.get_self_poly()
@@ -67,40 +72,43 @@ class SpriteNode(Node):
         return pos_vect
 
     def aff(self,fen,distorsion):
-        """ Aff this node on the camera"""
+        """ Show this node on the camera"""
         scale,trans = distorsion
-        if  self.__sps is not None:
-            if self.__sps.loaded:
-                if self.animation_step >= self.animation_speed:
-                    self.__sps.step(self.__state)
+        if  self.__sps is not None: #If it's None only hit boxes will be shown
+            if self.__sps.loaded: #Check if it's loaded
+                if self.animation_step >= self.animation_speed: #Wait for the animation
+                    self.__sps.step(self.__state) #Refresh the state/image
                     self.animation_step = 0
                 self.animation_step += 1
-                img = self.__sps.get_sprite()
+                img = self.__sps.get_sprite() #Get the image associated to the state of its SpriteScheduler
             else:
+                #BAD BAD BAD -> the SpriteScheduler should be loaded before using it -> use create_sps(name) instead of set_sps(name)
                 print("Images should never be imported on-the-fly!")
                 exit(0)
                 s = self.__sps.get_sprite()
                 img = pygame.image.load(s).convert_alpha()
-            #image_dim = Vector(img.get_width(),img.get_height())
-            #dist = scale.transform_vect(image_dim)
-            #x,y = dist.to_tuple()
-            #(bx,by,bw,bh) = self.get_hit_box().get_rect().get_coord()
-            #print(" ",bw,bh)
-            #print("xy",int(x),int(y))
+            #----------------------------------------
+            #  Computes where to blit on the camera
+            #----------------------------------------
+            #Get the box in which this spriteNode needs to be drawn
             (px,py,pw,ph),a = self.get_pos_camera(distorsion,self.get_hit_box()).to_rect()
+            #Check different types of mapping
             if self.mapping == "Flat":
+                #Extends the image
                 img = pygame.transform.smoothscale(img,(int(pw),int(ph)))
                 fen.blit(img,(int(px) ,int(py) ))
             elif self.mapping == "Repeatx":
+                #Repeat the image along x axis
                 dx = px
                 while dx < px+pw and ph != 0:
                     (w,h) = img.get_width(),img.get_height()
-                    ratio = (ph/h)
-                    img2 = pygame.transform.smoothscale(img,(int(ratio*w),int(ratio*h)))
-                    fen.blit(img2,(int(dx),int(py)),(0,0,px+pw-dx,ph))
-                    dx += w*ratio
+                    ratio = (ph/h) #Compute the ratio to fit Y
+                    img2 = pygame.transform.smoothscale(img,(int(ratio*w+0.5),int(ratio*h))) #Scales the image so that Y will fit
+                    fen.blit(img2,(int(dx+0.5),int(py)),(0,0,px+pw-dx,ph))
+                    dx += w*ratio #Translates the focus of blit in order to blit a row of sprites (usefull for textures)
                 
         else:
+            #Show the hit box because SpriteScheduler is None
             coll_box = self.get_pos_camera(distorsion,self.get_hit_box())
             rigid_box = self.get_pos_camera(distorsion,self.get_rigid_hit_box())
             pygame.draw.polygon(fen,(0,255,0),coll_box.to_tuples())

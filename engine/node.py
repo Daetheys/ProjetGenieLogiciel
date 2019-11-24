@@ -3,8 +3,10 @@
 from transformable import Transformable
 from vector import Vector
 
+""" A node is a bigger object than a Transformable. In fact it represents an architecture of transformable. When a Transform is applied to a node it is also applied to all its children like in a tree. This architecture is not used yet in our project but will be very useful later. """
+
 class Node(Transformable):
-    """ Node with children """
+    """ Node : Transformable with children """
     def __init__(self):
         super().__init__()
         self.__children = []
@@ -12,15 +14,18 @@ class Node(Transformable):
         self.__marked_for_removal = False
 
     def __del__(self):
+        """ Delete this node and its children """
         for son in self.__children:
             del son
 
     def copy(self):
+        """ Copies this node """
         n = Node()
         self.paste_in(n)
         return n
 
     def paste_in(self,n):
+        """ Paste this node in n """
         Transformable.paste_in(self,n)
 
     def get_parent(self):
@@ -63,16 +68,20 @@ class Node(Transformable):
             child.draw(transform)
 
     def draw_current(self,fen):
+        """ Compute things on this node (because it's not used yet this method is empty but will contain all useful stuff - depending on what we'll need later) """
         pass
 
     def update(self, dt):
+        """ Same concept than draw but to compute dynamic information """
         update_current(dt)
         for child in self.__children:
             child.update(dt)
 
     def update_current(self,dt):
+        """ Also empty ... for now """
         pass
 
+    """ #Not Used yet but will represent the stack of transformation of children that may impact the parent """
     def get_absolute_transform(self):
         transform = Transform()
         current = self
