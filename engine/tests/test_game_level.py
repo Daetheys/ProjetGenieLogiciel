@@ -75,11 +75,41 @@ def test_physics_step2():
 """
 
 def test_opti():
-    R = Rect(-1,-1,2,2)
+    R = Rect(0,0,7,2)
     Hb = Hitbox(R)
     plat1 = SolidPlatform(Hb)
     plat = [plat1]
-    for i in range(100):
+    nb = 10
+    for i in range(nb):
         plat.append(plat[-1].copy())
         plat[-1].translate(Vector(10,0))
     gl = GameLevel(plat,[])
+    for i in range(nb):
+        assert len(gl.sorted_objects[i]) == 1
+    for x in range(nb*10):
+        print("--",x)
+        gl.get_camera().set_position(Vector(x/10,0))
+        for p in plat:
+            if gl.get_camera().is_in_camera(p.get_rigid_hit_box().get_world_poly()):
+                print("p",p)
+                print("p Hb",p.get_hit_box())
+                print("cam",gl.get_camera())
+                assert p in gl.get_objects_opti()
+
+def test_physics_high_fall():
+    R = Rect(0,0,10,16)
+    Hb = Hitbox(R)
+    plat = SolidPlatform(Hb)
+    def pos(t):
+        return 0
+    gl = GameLevel([plat],pos)
+    gl.player.set_position(0,-100)
+    gravity = Gravity(50)
+    gl.player.add_force(gravity) #Au cas où la gravité soit nulle dans Gl
+    timeout = 1000
+    while not(gl.player.get_hit_box().collide(plat.get_hit_box())) and timeout > 0:
+        print(gl.player.get_hit_box())
+        gl.physics_step(0.01)
+        timeout -= 1
+    assert timeout > 0
+    assert gl.player.get_position().y <= 0

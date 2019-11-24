@@ -18,7 +18,7 @@ from solidPlatform import SolidPlatform
 from hitbox import Hitbox
 from rect import Rect
 
-speed_factor = 1000
+speed_factor = 200
 
 def get_speed(tempo):
 	"""
@@ -42,9 +42,10 @@ def platform(x,y,xmax):
 		])
 	plat = SolidPlatform(p)
 	"""
-	plat = SolidPlatform(Hitbox(Rect(-abs(xmax-x)//2,12,abs(xmax-x),24)))
+	#plat = SolidPlatform(Hitbox(Rect(-abs(xmax-x)//2,12,abs(xmax-x),24)))
+	plat = SolidPlatform(Hitbox(Rect(0,0,xmax-x,12)))
 	#plat.create_sps("Platform")#voir un sprite
-	plat.set_sps(None)#voir une hitbox
+	plat.set_sps(None)#To see the hitbox instead of a sprite
 	plat.translate(Vector(x,y))
 	return plat
 
@@ -54,7 +55,7 @@ def generate_level(filename,name_of_level=''):
 		Renvoie un GameLevel
 	"""
 	(first_beat, tempos, nb_beats) = bpm_info(filename)
-
+	print("------",first_beat,tempos,nb_beats)
 	platforms = []
 
 	jump_points = [0]
@@ -69,16 +70,14 @@ def generate_level(filename,name_of_level=''):
 			tempo_index = tempo_index + 1
 
 	y = 0#initially the height is at 500 #It's at 0 now ^^
-	#jump_points[0] = 0 #avec -10 000 ça ne marche pas, je ne sais pas pourquoi!
+	jump_points[0] = -1000 # Beginning platform
 
-	for i in range(nb_beats):
+	for i in range(nb_beats//2):
 		#pourquoi +50 et +24 ? #La taille des plateformes non ?
-		platforms.append(platform(jump_points[i]+50,y,jump_points[i+1]+24))
+		platforms.append(platform(jump_points[2*i]+50,y,jump_points[2*(i+1)]+24))
 
-		y += random.randint(-48,48)#at each point the y coordinate changes
+		y += random.randint(-24,24)#at each point the y coordinate changes
 
 	def player_pos(t):
-		return t*speed*60/tempo*8 #*8 to be faster (but it doesn't match the music anymore !
-
-
+                return t*speed
 	return GameLevel(platforms,player_pos,name=name_of_level)

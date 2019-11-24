@@ -2,6 +2,10 @@ from buttonMenu import *
 from game import *
 import pygame
 from pygame.locals import *
+from tools import score_to_msg
+from dialogue import Dialogue
+from dialoguebubble import Dialogue_Bubble
+from vector import Vector
 
 class Launcher(Game):
 
@@ -109,6 +113,9 @@ class Launcher(Game):
         if map is None: return cnt,quit_all
         self._fenetre.blit(bg, (0,0))
         list_button = []
+        b_inv = ButtonMenu(self,20,120,20,120,self.dict_img["img_inv"],react = reaction_inv,add_to_list=False)
+        b_inv.display()
+        list_button.append(b_inv)
         for mp in map.get_map_points():
             if mp.get_accessible():
                 self._fenetre.blit(mp.get_image(), (mp.x,mp.y))
@@ -157,7 +164,7 @@ class Launcher(Game):
                             cnt = False
         return cnt,quit_all
 
-    def launch_level(self,gl):
+    def launch_level(self,gl,music):
         """ Initializing the main loop of a level,
         where gl is a game level"""
 
@@ -173,18 +180,26 @@ class Launcher(Game):
             if not self.loop_level(gl,t):
                 return False#on a perdu
         """
+        if music is not None:
+            pygame.mixer.music.load(music)
+            #pygame.mixer.music.fadeout(500)
+            pygame.mixer.music.play(-1)
         success, score = gl.play(self.options["FPS"])
 
         if not success:#reduce score of defeats
             score //= 2
         #g.scores[gl.name]  = leaderboard of this level
         self.dict_score[gl.name] = insert_score(self.score(gl.name),score,self.player_name,self.max_number_scores)
+        
+        msg_score = score_to_msg(self.dict_score[gl.name])
+        dial_score = Dialogue([Dialogue_Bubble(msg_score,self.dict_char["narrator"],self.dict_img["img_leaderboard"],300,50,True)])
+        dial_score.show(self)
 
         with open("data/json/scores.json","w") as f:
             f.write(json.dumps(self.dict_score))
         #pour ne pas sortir du menu même si les boutons ont été trop appuyés
         #mashed buttons are handled by pygameeventget (doesn't quit the menu)
-        return success#true ssi réussite ! pour l'instant non utilisé.
+        return success#true ssi réussite ! pour l'instant non utilisé. -> maintenant oui !
 
     def loop_level(self,gl,t):
         """ Running the main loop of a level gl at time t

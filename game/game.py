@@ -9,6 +9,14 @@ from map import *
 import tools
 from shutil import copy2
 
+from level_1 import Level_1_kshan
+from level_2_1 import Level_2_1_kshan
+from level_2_2 import Level_2_2_kshan
+from level_3A import Level_3A_kshan
+from level_4A import Level_4A_kshan
+from level_3B import Level_3B_kshan
+from level_4B import Level_4B_kshan
+
 #The Game class, very pure, no buttons needed
 class Game:
 
@@ -17,11 +25,11 @@ class Game:
         self.init_images()
         self.init_constants()
         self.init_music()
+        self.create_items()
         self.init_characters()
         self.load_languages(True)
         self.load_savefile()
         self.create_dialogues()
-        self.create_items()
         self.create_world()
         print("The game initialized properly.")
 
@@ -67,6 +75,8 @@ class Game:
         self.dict_img["img_garrow"]  = pygame.transform.smoothscale(self.dict_img["img_garrow"],(40,40))
         self.dict_img["img_cont_dial"]  = pygame.transform.smoothscale(self.dict_img["img_cont_dial"],(40,40))
         self.dict_img["img_end_dial"]  = pygame.transform.smoothscale(self.dict_img["img_end_dial"],(40,40))
+        self.dict_img["img_inv"]  = pygame.transform.smoothscale(self.dict_img["img_inv"],(100,100))
+        self.dict_img["img_key"]  = pygame.transform.smoothscale(self.dict_img["img_key"],(64,64))
         self.dict_img["img_dial"] = pygame.transform.smoothscale(self.dict_img["img_dial"],(self.options["DISPLAYSIZE_X"],self.dict_img["img_dial"].get_height()))
         self._fenetre.blit(self.dict_img["img_background"],(0,0))
         self.flip()
@@ -105,6 +115,11 @@ class Game:
             with open("data/json/fr.json", "r", encoding="utf-8-sig") as read_file:
                 self.dict_str=json.load(read_file)
         if not fst: self.update_dialogues()
+        
+    def create_items(self):
+        self.dict_item = {}
+        with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
+            self.dict_item = json.load(read_file, object_hook=tools.create_item)
 
     def init_characters(self):
         self.dict_char = {}
@@ -119,11 +134,6 @@ class Game:
             self.dict_dial = json.load(read_file)
             self.dict_dial = tools.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
 
-    def create_items(self):
-        self.dict_item = {}
-        with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
-            self.dict_item = json.load(read_file, object_hook=tools.create_item)
-
     def create_world(self):
         """
         creates the World object, encapsulating all maps.
@@ -134,26 +144,19 @@ class Game:
         #creating the map "Kshan"
         mapkshan = Map(self.dict_img["map_kshan"],"map_kshan")
 
-        mp_1 = Level_Sequence("kshan_1",200,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_2 = Level_Sequence("kshan_2",400,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_3A = Level_Sequence("kshan_3A",200,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_4A = Level_Sequence("kshan_4A",200,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_3B = Level_Sequence("kshan_3B",400,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_4B = Level_Sequence("kshan_4B",400,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_1 = Level_Sequence("kshan_1",1100,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_2 = Level_Sequence("kshan_2",1000,300,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_3A = Level_Sequence("kshan_3A",800,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_4A = Level_Sequence("kshan_4A",700,330,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_3B = Level_Sequence("kshan_3B",1050,500,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_4B = Level_Sequence("kshan_4B",900,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
 
-        self.init_dialogues(mp_1)
-        self.init_dialogues(mp_2)
-        self.init_dialogues(mp_3A)
-        self.init_dialogues(mp_4A)
-        self.init_dialogues(mp_3B)
-        self.init_dialogues(mp_4B)
-
-        mp_1.set_levels([Boss_Level()])
-        mp_2.set_levels([Random_Level(),Boss_Level()])
-        mp_3A.set_levels([Boss_Level()])
-        mp_4A.set_levels([Boss_Level()])
-        mp_3B.set_levels([Boss_Level()])
-        mp_4B.set_levels([Boss_Level()])
+        mp_1.set_levels([Level_1_kshan()])
+        mp_2.set_levels([Level_2_1_kshan(),Level_2_2_kshan()])
+        mp_3A.set_levels([Level_3A_kshan()])
+        mp_4A.set_levels([Level_4A_kshan()])
+        mp_3B.set_levels([Level_3B_kshan()])
+        mp_4B.set_levels([Level_4B_kshan()])
 
         mp_1.set_childs([mp_2])
         mp_2.set_childs([mp_3A, mp_3B])
@@ -164,29 +167,8 @@ class Game:
 
         mapkshan.set_map_points([mp_1, mp_2, mp_3A, mp_3B, mp_4A, mp_4B])
 
-
-
         self.world.set_maps([mapkshan])
 
-    def init_dialogues(self,mp):
-        if mp.name == "kshan_1":
-            mp.set_start_dialogue(self.dict_dial["dial_kshan1"])
-            mp.set_end_dialogue(self.dict_dial["dial_kshan1f"])
-        elif mp.name == "kshan_2":
-            mp.set_start_dialogue(self.dict_dial["dial_kshan2"])
-            mp.set_end_dialogue(self.dict_dial["dial_kshan2f"])
-        elif mp.name == "kshan_3A":
-            mp.set_start_dialogue(self.dict_dial["dial_kshan3A"])
-            mp.set_end_dialogue(self.dict_dial["dial_kshan3Af"])
-        elif mp.name == "kshan_4A":
-            mp.set_start_dialogue(self.dict_dial["dial_kshan4A"])
-            mp.set_end_dialogue(self.dict_dial["dial_kshan4Af"])
-        elif mp.name == "kshan_3B":
-            mp.set_start_dialogue(self.dict_dial["dial_kshan3B"])
-            mp.set_end_dialogue(self.dict_dial["dial_kshan3Bf"])
-        elif mp.name == "kshan_4B":
-            mp.set_start_dialogue(self.dict_dial["dial_kshan4B"])
-            mp.set_end_dialogue(self.dict_dial["dial_kshan4Bf"])
 
     def init_music(self):
         """
@@ -196,7 +178,7 @@ class Game:
         """
         pygame.mixer.init()
         #Music
-        pygame.mixer.music.load("data/tests_musique/test.mp3")
+        pygame.mixer.music.load("data/musics/Soliloquy.mp3")
         pygame.mixer.music.fadeout(500)
         pygame.mixer.music.play(-1)
 

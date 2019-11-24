@@ -1,33 +1,45 @@
 #!/usr/bin/env python3
 
-import pygame
-from level_1 import *
-from level_2 import *
-
-class Level:    #will be an abstract class
+class Level:    #will be an abstract class -> it is now
 
     def __init__(self):
-        self.__useless = False
+        self._accessed = False
+        self._finished = False
+        pass
+        
+    def set_accessed(self):
+        self._accessed = True
 
-    def launch(self,g):
-        """launch the level in the context of the game g"""
-        #pygame.time.wait(2000)
-        def player_pos(t):
-            return t*100 #*8 to be faster (but it doesn't match the music anymore !
+    def set_finished(self):
+        self._finished = True
+    
+    def get_accessed(self):
+        return self._accessed
+        
+    def get_finished(self):
+        return self._finished
+        
+    def fun_dialogue(self,g,arg): #à definir dans les classes uniques
+        '''display the dialogue corresponding to the arg given and the attributes of the level
+        '''
+        pass
 
-        gl = GameLevel([SolidPlatform(Hitbox(Rect(10,12,20,24)))],player_pos,name="test_lvl_campaign")
-        #g.launch_music(text)
-        success = g.launch_level(gl)
-        pygame.event.get()#to capture inputs made during the wait
-        return success
+    def launch(self,g): #à définir dans les classes uniques
+        '''the main function of a level
+        '''
+        pass
 
-
-class Boss_Level(Level):
-
-    def __init__(self):
-        self.__useless = True
-
-class Random_Level(Level):
-
-    def __init__(self):
-        self.__useless = True
+    def reward(self,g): #à définir dans les classes uniques
+        '''the function that gives the reward
+        '''
+        pass
+            
+    def init_objects(self,g): #à définir dans les classes unqiues
+        '''initialize the objects used in the GameLevel
+        '''
+        pass
+        
+    def check_victory(self,g): #à définir dans les classes uniques
+        '''return True if the player passed the level and False otherwise
+        '''
+        pass

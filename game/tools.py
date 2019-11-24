@@ -17,6 +17,7 @@ sys.path.append(path)
 
 from pygame.image import load
 from pygame.font import Font
+from collections import defaultdict
 
 
 def T(cw,txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
@@ -32,7 +33,7 @@ def T(cw,txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
     cw.blit(text, textpos)
 
 
-from dialoguebubble import Dialogue_Bubble
+import dialoguebubble
 
 def xyinbounds(mx,my,btn):
     """ tests whether (mx,my) is within the bounds of the button btn """
@@ -51,13 +52,13 @@ import items
 
 def create_char(dict,dict_img):
     for char in dict:
-        dict[char] = character.Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),dict[char][4])
+        dict[char] = character.Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),defaultdict(int))
     return dict
 
 def create_bubble(list,dict_str,dict_char,dict_img):
     list_bubble = []
     for bubble in list:
-        list_bubble.append(Dialogue_Bubble(dict_str[bubble[0]],dict_char[bubble[1]],dict_img[bubble[2]],bubble[3],bubble[4],bubble[5]))
+        list_bubble.append(dialoguebubble.Dialogue_Bubble(dict_str[bubble[0]],dict_char[bubble[1]],dict_img[bubble[2]],bubble[3],bubble[4],bubble[5]))
     return list_bubble
 
 def create_dial(dict,dict_str,dict_char,dict_img):
@@ -68,11 +69,12 @@ def create_dial(dict,dict_str,dict_char,dict_img):
 def create_item(dict):
     for item in dict:
         if dict[item][0] == "key":
-            dict[item] = items.KeyItem(item,"key")
+            dict[item] = items.KeyItem(item)
         elif dict[item][0] == "pas":
             dict[item] = items.Passive(item,dict[item][1])
         elif dict[item][0] == "csm":
             dict[item] = items.Consommable(item,dict[item][1])
+    return dict
 
 def insert_score(L,score,name,maxn):
     """ insère score,name dans L, en place et retourne L
@@ -84,3 +86,15 @@ def insert_score(L,score,name,maxn):
     if len(L) < maxn:
         L.append([name,score])
     return L
+    
+def score_to_msg(leaderboard):
+    msg="LEADERBOARD\n\n"
+    for i,score in enumerate(leaderboard):
+        msg += str(i+1) + ") " + score[0] + " : " + str(score[1]) + "\n"
+    return msg
+    
+def inv_to_msg(inv):
+    msg="INVENTORY\n\n"
+    for item in inv:
+        msg += item.name + " : " + str(inv[item]) + "\n"
+    return msg

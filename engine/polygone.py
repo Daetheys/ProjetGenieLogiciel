@@ -74,6 +74,9 @@ class Segment:
         self.p1 = p1
         self.p2 = p2
 
+    def copy(self):
+        return Segment(self.p1.copy(),self.p2.copy())
+
     def collide_line(self,l):
         """ Returns true if it collides a specific line """
         if l.is_on_line(self.p1) or l.is_on_line(self.p2):
@@ -82,10 +85,41 @@ class Segment:
         b2 = int(l.is_point_up(self.p2))
         return (b1+b2) == 1
 
+    def get_inter_line(self,l):
+        if self.collide_line(l):
+            inter_p = self.get_line().intersect_point(l)
+            if isinstance(inter_p,Line):
+                return self.copy()
+            return inter_p
+        else:
+            return None    
+
     def contains(self,v):
         """ Returns True if the vector v is in the segment """
         l = self.get_line()
         return l.is_on_line(v) and self.is_in_interval_x(v.x) and self.is_in_interval_y(v.y)
+
+    def intersect_point(self,s):
+        if self.collide_segment(s):
+            lf = self.get_line()
+            ls = s.get_line()
+            ret = lf.intersect_point(ls)
+            if isinstance(ret,Line):
+                if ret.vert:
+                    x = self.p1.x
+                    miny = max(self.get_min_y(),s.get_min_y())
+                    maxy = min(self.get_max_y(),s.get_max_y())
+                    p1 = Vector(x,miny)
+                    p2 = Vector(x,maxy)
+                else:
+                    minx = max(self.get_min_x(),s.get_min_x())
+                    maxx = min(self.get_max_x(),s.get_max_x())
+                    p1 = Vector(minx,ret.a*minx+ret.b)
+                    p2 = Vector(maxx,ret.a*maxx+ret.b)
+                return Segment(p1,p2)
+            return ret
+        else:
+            return None
 
     def collide_segment(self,s):
         """ Returns true if both segment intersect """
@@ -165,6 +199,12 @@ class Polygon:
             p2.__points[i] /= v
         return p2
 
+    def get_mass_center(self):
+        p = Vector(0,0)
+        for o in self.get_points():
+            p += o
+        return p/len(self.get_points())
+    
     def compute_segments(self):
         """ Computes segments from points """
         self.__segments = []
@@ -290,6 +330,58 @@ class Polygon:
 
     def get_min_y(self):
         return self.min_y
+
+    #Needed for physics 2.0 and 3.0
+    #ASSUME this polygon reprensents a Rectangle, may assert False if not
+
+
+    def get_intersection(self,poly2):
+        """ Returns the polygon intersection of self and poly2 """
+        ptf = self.points_in(poly2)
+        pt2 = poly2.points_in(self)
+        pt_in = [pt2,ptf]
+        l_poly_inter = []
+        index = 0
+        for s in self.get_segments():
+            for ss in poly2.get_segments():
+                if s.collide_segment(ss):
+                    inter_p = s.intersect_point(ss)
+                    if isinstance(inter_p,Vector):
+                        if not(inter_p in ptf or inter_p in pt2):
+                            l_poly_inter += pt_in[index]+[inter_p]
+                            index += 1
+                    else:
+                        pass
+        if DEBUG:
+            print(pt_in)
+            print(l_poly_inter)
+        if l_poly_inter == []: #Un polygon est inclu dans l'autre
+            if len(ptf) > len(pt2):
+                l_poly_inter = ptf
+            else:
+                l_poly_inter = pt2
+        return Polygon(l_poly_inter)
+
+
+    def to_rect(self):
+        """ Will assert False if the polygon is not a rotated rectangle (angle can be 0). Else it will return the rectangle (posx,posy,width,height),angle """
+        if len(self.get_points()) == 4:
+            s = self.get_segments()[0]
+            l = s.get_line()
+            if l.vert:
+                angle = np.pi/2
+            else:
+                angle = np.arctan(l.a)
+            p = self.copy()
+            p.rotate(angle)
+            pts = p.get_points()
+            assert np.isclose(pts[0].y,pts[1].y)
+            assert np.isclose(pts[1].x,pts[2].x)
+            assert np.isclose(pts[2].y,pts[3].y)
+            assert np.isclose(pts[3].x,pts[0].x)
+            return (pts[0].x,pts[0].y,pts[1].x-pts[0].x,pts[2].y-pts[1].y),angle
+        else:
+            assert False #Cannot get a rectangle from this polygon
 
     def copy(self):
         """ Copies this polygon and returns it """

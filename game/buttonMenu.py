@@ -12,6 +12,8 @@ sys.path.append(path)
 path += "/level_generation"#pour import mapDisplayer
 sys.path.append(path)
 from level_generator import generate_level
+from tools import inv_to_msg
+from dialogue import Dialogue
 
 #The global variable
 BUTTON_LIST = []#to keep an eye on all buttons currently displayed
@@ -61,8 +63,8 @@ def reaction_play(text,name):
     """
     def f(g):
         gl = generate_level(text,name)
-        g.launch_music(text)
-        g.launch_level(gl)
+        
+        g.launch_level(gl,text)
         """ ceci lance le level correspondant """
         return True,False
     return f
@@ -354,6 +356,12 @@ def reaction_b33(g):
 
 def reaction_mp(g, mp):     #not used
     mp.launch(g)# si c'est un buttonmenu, ça doit avoir un argument
+    
+def reaction_inv(g):
+    msg_inv = inv_to_msg(g.player.inv)
+    dial_inv = Dialogue([Dialogue_Bubble(msg_inv,g.dict_char["narrator"],g.dict_img["img_leaderboard"],300,50,True)])
+    dial_inv.show(g)
+    return True,False
 
 
 

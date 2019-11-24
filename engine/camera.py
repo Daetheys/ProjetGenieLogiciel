@@ -71,15 +71,14 @@ class Camera:
         r = self.rect.collide_poly(poly)
         return r
 
-    def center_on(self,o):
-        pos = o.get_position()
+    def center_on(self,pos):
+        pos = pos
         pos = pos + (-self.get_dimension()/2)
         self.set_position(pos)
 
-    def threeforth_on(self,o):
-        pos = o.get_position()
+    def threeforth_on(self,pos):
         dim = self.get_dimension()
-        pos = pos + (-Vector(dim.x/4,dim.y/2))
+        pos += (-Vector(dim.x/4,dim.y/2))
         self.set_position(pos)
     
     def flashblack(self):

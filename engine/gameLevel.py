@@ -12,11 +12,18 @@ from force import Gravity
 from solidPlatform import SolidPlatform
 import pygame
 import time
+from datetime import datetime
+
+DEBUG = False
+
+def get_current_time():
+    return datetime.timestamp(datetime.now())
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos,limgpar=[("data/img/back.jpg",0),("data/img/asteroid.png",1),("data/img/asteroid.png",2)],name=''):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name=''):
         """ The player spawn in (0,0) """
+        assert objects != [] #Empty GameLevel -> Check your arguments it's not Nicolas's fault if you give an empty gameLevel
         self.camera = camera.Camera()
         self.camera.set_position(Vector(-12,-12))
         self.camera.set_dimension(Vector(25,25))
@@ -25,11 +32,21 @@ class GameLevel:
         self.compute_size_level()
         self.name = name
 
-        self.sorted_objects = None
-        self.step = None
-        self.optimise_data()
+        self.begin_time = 0
         self.time = 0
 
+        self.score = 42 #To be removed after merge branch
+
+        #Death animation
+        self.lost = False
+        self.countdown = 30
+
+        #To optimise physics
+        self.sorted_objects = None
+        self.opti_step = 10
+        self.optimise_data()
+
+        #Get end platform locations to compute score
         self.end_platform_location = None
         self.compute_end_platform_location()
 
@@ -43,11 +60,11 @@ class GameLevel:
 
         #Creation of the player
         self.player = Player()
-        self.player.set_position(0,-5) #Init pos of the player
+        self.player.set_position(0,-16) #Init pos of the player
         #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
         #Creation of the gravity
-        self.gravity = Gravity(100)
+        self.gravity = Gravity(60*35)
         self.player.add_force(self.gravity)
 
     def get_camera(self):
@@ -66,15 +83,14 @@ class GameLevel:
     def optimise_data(self):
         """ Optimise collisions checks and aff """
         #Call it before launching the game of making modification in camera (be carefull it may take a while to execute
-        step = self.get_camera().get_dimension().x
-        self.step = step
+        step = self.opti_step #self.get_camera().get_dimension().x
         (minx,maxx,miny,maxy) = self.size_level
-        sorted_objects = [[] for i in range( int((maxx-minx)/step) +2)]
+        sorted_objects = [[] for i in range( int((maxx-minx)/step+0.5) +1)]
         for o in self.objects:
             minposx = o.get_hit_box().get_world_poly().get_min_x()
             maxposx = o.get_hit_box().get_world_poly().get_max_x()
             minindexx = int( (minposx-minx)/step )
-            maxindexx = int( (maxposx-minx)/step )+1 #Arrondi au sup
+            maxindexx = int( (maxposx-minx)/step ) #Arrondi au sup
             for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
                 sorted_objects[i].append(o)
         self.sorted_objects = sorted_objects
@@ -108,15 +124,73 @@ class GameLevel:
 
     def play(self,fps):
         """ Launches the gameLevel , returns +score if win, -score if lose """
-        dt = 0.001
+        #self.begin_time = get_current_time()
+        #self.time = self.begin_time
+        #r = 0 #If an iteration is too long, this time will be put here to be added to next iteration
+        t0 = get_current_time()
+        tn = t0
         try:
             while True:
+                #Get time
+                now = get_current_time()
+                #Compute dt from previous iteration
+                dt = now-tn
+                print(1/dt)
+                #Updates time from the begining
+                self.time = tn-t0
+                #print(now,dt,self.time)
+                #Launch the loop
                 self.main_loop(dt)
+                #Updates tn for the next iteration
+                tn = now
+                #t2 = time.clock()-t
+                #time_wait = 1/fps-t2
+                #if time_wait < 0:
+                #    r = time_wait #We are late !
+                #else:
+                #    time.sleep(time_wait) #Everything is ok
+                #    r = 0
+                #pygame.time.Clock().tick(1/fps-t2)
+                #print(1/(time.clock()-t),dt,self.time)
+                
         except EndGame as e:
+            #print("--",time.clock()-t0,self.time)
             return (e.issue, e.score)
 
     def main_loop(self,dt):
+        #new_time = get_current_time()
+        #dt = new_time - self.time
+        #self.time = new_time - self.begin_time
         """ Main loop of the game (controllers, physics, ...) """
+        if self.lost:
+            if self.countdown > 0:
+                self.countdown -= 1
+            else:
+                raise EndGame(False,self.score)
+        self.compute_controller()
+        self.physics_step(dt)
+        #Camera set position (3/4)
+        self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
+        #Aff
+        self.aff()
+        #Score
+        self.compute_score()
+        #Win / Lose conditions
+        self.compute_win_lose()
+
+    def compute_win_lose(self):
+        (minx,maxx,miny,maxy) = self.get_size_level()
+        if self.player.get_position().y > maxy or not(self.player.alive): #C'est inversé :)
+            self.lose()
+        if self.player.get_position().x > maxx:
+            self.win()
+
+    def compute_score(self):
+        while len(self.end_platform_location) > 0 and self.player.get_position().x >= self.end_platform_location[0]:
+            del self.end_platform_location[0]
+            self.player.add_score(1000)
+
+    def compute_controller(self):
         pressed = pygame.key.get_pressed()
         #Controller loop
         for event in pygame.event.get() + [None]:
@@ -124,52 +198,61 @@ class GameLevel:
                 if o.get_controller() is not None:
                     o.get_controller().execute(event,pressed)
         #Physics
-        self.physics_step(dt)
-        #Aff
-        self.aff()
-        #Camera set position (3/4)
-        self.camera.threeforth_on(self.player)
-        #Time
-        self.time += dt
-        #Score
-        while len(self.end_platform_location) > 0 and self.player.get_position().x >= self.end_platform_location[0]:
-            del self.end_platform_location[0]
-            self.player.add_score(1000)
-        #Win / Lose conditions
-        (minx,maxx,miny,maxy) = self.get_size_level()
-        if self.player.get_position().y > maxy: #C'est inversé :)
-            raise EndGame(False,self.score)
-        if self.player.get_position().x > maxx:
-            raise EndGame(True,self.score)
+
+    def win(self):
+        raise EndGame(True,self.score)
+
+    def lose(self):
+        self.lost = True
 
     def get_objects_opti(self):
         """ Optimise the data structure """
         (minx,maxx,miny,maxy) = self.size_level
         x = self.camera.get_position().x
-        index = int((x-minx)/self.step)
-        return self.sorted_objects[index]+self.sorted_objects[index+1]+[self.player]
+        index = int((x-minx)/self.opti_step)
+        set_opti = set()
+        nb = int(self.camera.get_dimension().x/self.opti_step+0.5)+1
+        for i in range(nb):
+            if index+i < len(self.sorted_objects):
+                set_opti |= set(self.sorted_objects[index+i])
+        return set_opti | set([self.player])
 
     def physics_step(self,dt):
         """ Compute collisions """
+        
         obj_opti = self.get_objects_opti()
+        if DEBUG:
+            print("---")
+            print("player rigid",self.player.get_rigid_hit_box())
+            for plat in obj_opti:
+                print("plat",plat,plat.get_rigid_hit_box())
         for o in obj_opti:
             #print(o)
             o.compute_speed(dt)
-            o.move()
-            if o == self.player:
+            o.move(dt)
+            if o == self.player and self.player.alive:
                 #Reposition the player
                 pos = o.get_position()
                 o.set_position(self.player_pos(self.time),pos.y)
+
                 #Cut X speed (for MAXSPEED)
                 speed = self.player.get_speed()
-                self.player.set_speed(Vector(0,speed.y))
+                self.player.set_speed(Vector(1,speed.y)) #Player need to have a str pos speed
             for o2 in obj_opti:
-                if o != o2 and o.get_hit_box().collide(o2.get_hit_box()):
-                    o.collide(o2)
-                    o2.collide(o)
-                    if o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
-                        #print("------------------rigid",o,o2)
-                        o.apply_solid_reaction(o2)
+                #print("collide")
+                if o.get_hit_box().collide(o2.get_hit_box()):
+                    coll,coll2 = o.get_hit_box().collide_sides(o2.get_hit_box())
+                    if o != o2 and (coll or coll2):
+                        if DEBUG:
+                            print("collide",o,o2)
+                            print("o",o.get_hit_box(),o.get_rigid_hit_box())
+                            print("o2",o2.get_hit_box(),o2.get_rigid_hit_box())
+                        o.collide(o2,coll,coll2)
+                        o2.collide(o,coll2,coll)
+                        while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
+                            if DEBUG:
+                                print("rigid")
+                            o.apply_solid_reaction(o2)
 
     def load_camera(self,fen):
         """ Loads the actual camera of the Level """
