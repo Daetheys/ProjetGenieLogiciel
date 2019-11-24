@@ -37,9 +37,6 @@ class Player(ControlableNode):
 
         self.is_in_air = True
 
-        self.jump_invincibility_max = 2
-        self.jump_invincibility_countdown = 0
-
         self.inventory = None
 
     def set_inventory(self,inv):
@@ -69,7 +66,7 @@ class Player(ControlableNode):
     def collide(self,o,side,o2_side):
         """ Player collides with o """
         if isinstance(o,SolidPlatform):
-            if o2_side == 0:
+            if o2_side == 0 or o2_side == 1:
                 #Top side
 
                 if self.can_jump and self.alive:
@@ -77,14 +74,13 @@ class Player(ControlableNode):
                 self.allow_jump()
                 self.is_jumping = False
                 self.is_in_air = False
-                self.jump_invincibility_countdown = self.jump_invincibility_max
+                
 
                 
             else:
-                if self.is_in_air and self.jump_invincibility_countdown>0:
+                if self.is_in_air:
                     #The player dies
                     self.die()
-                self.jump_invincibility_countdown -= 1
 
     def die(self):
         """ Kills the player """
