@@ -106,7 +106,7 @@ class Game:
         #Autres constantes
         self.max_number_scores = 10#max number of saved scores
         self.player_name = "PLAYER"#will be in options/savefile soon
-        self.menu_music = "data/musics/Soliloquy.wav"
+        self.menu_music = "data/musics/Soliloquy.ogg"
 
     def load_languages(self,fst=False):
         """ this function loads all avaliable languages in self.dict_str"""

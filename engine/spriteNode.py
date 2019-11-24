@@ -103,7 +103,7 @@ class SpriteNode(Node):
                 while dx < px+pw and ph != 0:
                     (w,h) = img.get_width(),img.get_height()
                     ratio = (ph/h) #Compute the ratio to fit Y
-                    img2 = pygame.transform.smoothscale(img,(int(ratio*w+0.5),int(ratio*h))) #Scales the image so that Y will fit
+                    img2 = pygame.transform.smoothscale(img,(int(ratio*w)+1,int(ratio*h))) #Scales the image so that Y will fit
                     fen.blit(img2,(int(dx+0.5),int(py)),(0,0,px+pw-dx,ph))
                     dx += w*ratio #Translates the focus of blit in order to blit a row of sprites (usefull for textures)
                 
