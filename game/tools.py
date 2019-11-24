@@ -81,7 +81,7 @@ def insert_score(L,score,name,maxn):
     if len(L) < maxn:
         L.append([name,score,last])
     return L
-    
+
 def score_to_msg(leaderboard):
     msg="LEADERBOARD\n\n"
     for i,score in enumerate(leaderboard):
@@ -90,9 +90,53 @@ def score_to_msg(leaderboard):
         else:
             msg += str(i+1) + ") " + score[0] + " : " + str(score[1]) + "\n"
     return msg
-    
+
 def inv_to_msg(inv):
     msg="INVENTORY\n\n"
     for item in inv:
         msg += item.name + " : " + str(inv[item]) + "\n"
     return msg
+
+from pygame import Surface
+import pygame
+from random import randint as randomrandint
+
+def bgg(l,surf,MAX_X=1800,MAX_Y = 1800,plat_img=None):
+    """ background generator function
+    takes a surface, and blits onto a copied surface some platforms."""
+    height = 60
+    width = 200
+    gap = width + randomrandint(10,width)
+    speed = max(10,width//20)
+    def blit_list(l,s,surf):
+        for (x,y) in l:
+            surf.blit(s, (x,y))
+
+    if plat_img is None:
+        #Compute platform image
+        plat_img = pygame.Surface((width,height))
+        img = load("data/img/platform2.png")
+        ratio = img.get_height()/height
+        pygame.transform.smoothscale(plat_img,(int(img.get_width()*ratio),int(img.get_height()*ratio)))
+        for i in range(5):
+            plat_img.blit(img,(i*img.get_width()*ratio,0))
+
+    L = []
+    for i in range(len(l)):#suppression of leftmost platforms
+        if l[i][0] > -10 - width:
+            L.append((l[i][0] - speed,l[i][1]))
+
+    #adding platforms to the right
+    if L == []:
+        L.append((randomrandint(MAX_X-200,MAX_X-150),MAX_Y//2))
+    elif L[-1][0] < MAX_X:
+        L.append((L[-1][0] + randomrandint(gap,2*gap),L[-1][1] + randomrandint(-height,height)))
+    #print(L)
+    surfa = surf.copy()#copies the surface
+
+    #blitting platforms
+    blit_list(L,plat_img,surfa)
+    return surfa,L
+
+
+
