@@ -92,3 +92,9 @@ def score_to_msg(leaderboard):
     for i,score in enumerate(leaderboard):
         msg += str(i+1) + ") " + score[0] + " : " + str(score[1]) + "\n"
     return msg
+    
+def inv_to_msg(inv):
+    msg="INVENTORY\n\n"
+    for item in inv:
+        msg += item.name + " : " + str(inv[item]) + "\n"
+    return msg

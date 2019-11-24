@@ -15,24 +15,24 @@ class Item:
 class Consommable(Item):
 	""" self.type = type of an item. Usually strings of len 3."""
 	#ItemType, type of the item: consommable, key item, passive item, etc..
-	def __init__(self,args=None):
-		Item.__init__(self)
+	def __init__(self,name,args=None):
+		Item.__init__(self,name)
 		self.effet = args
 		self.type = 'csm'
 
 class KeyItem(Item):
-	def __init__(self,args=None):
-		Item.__init__(self)
+	def __init__(self,name,args=None):
+		Item.__init__(self,name)
 		self.key = args#KeyItemIdentifier
 		self.type = 'key'
 
 class Passive(Item):
-	def __init__(self,args=None):
-		Item.__init__(self)
+	def __init__(self,name,args=None):
+		Item.__init__(self,name)
 		self.effet = args#PassiveItem Effect
 		self.type = 'pas'
 
-class Inventory:
+class Inventory: #not used
 	""" Inventory of a character. """
 	def __init__(self,items=[]):
 		self.items = items#(Item*int) list

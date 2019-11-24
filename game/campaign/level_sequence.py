@@ -50,5 +50,5 @@ class Level_Sequence(Map_Point):
         if reussite:
             self.set_finished(g)
         
-        return True,False #vérifier ce qu'il faut renvoyer...
+        return True,False
         

@@ -10,7 +10,7 @@ class Level:    #will be an abstract class -> it is now
     def set_accessed(self):
         self._accessed = True
 
-    def set_finished(self,g):
+    def set_finished(self):
         self._finished = True
     
     def get_accessed(self):

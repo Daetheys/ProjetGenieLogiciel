@@ -18,7 +18,10 @@ class Character():
 		
 	def add_to_inventory(self,items):
 		for item in items:
-			self.inv[item] += items[item]
+			if item.type == "csm":
+				self.inv[item] += items[item]
+			else:
+				self.inv[item] = items[item]
 		
 class Player(Character):
 	
