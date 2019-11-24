@@ -203,36 +203,6 @@ class Launcher(Game):
         #mashed buttons are handled by pygameeventget (doesn't quit the menu)
         return success#true ssi réussite ! pour l'instant non utilisé. -> maintenant oui !
 
-    def loop_level(self,gl,t):
-        """ Running the main loop of a level gl at time t
-
-        This function is obsolete. this loop is now executed in the "GameLevel"
-        class"""
-
-        """ #In GameLevel
-        pygame.time.Clock().tick(self.options["FPS"])
-        #print(t)
-        for event in pygame.event.get():
-            #Dans cette boucle, on envoie aux Controllers concernés
-            if event.type == KEYDOWN:
-                if event.key == K_ESCAPE:
-                    return False#You failed.
-                if event.key == K_UP:
-                    print("JUMP!")
-
-        #Updating the camera
-        x,y = gl.get_camera().get_position().to_tuple()
-        #print((x,y))
-        gl.get_camera().set_position(Vector(x+40,y))
-        gl.aff()
-        #self.flip("SCORE: "+str(t)) #Handled in GameLevel
-        t += 1
-
-        #gl.play(t)
-
-        return True
-        """
-        pass
 
     def launch_game(self):
         """ Launching the main loop of the main menu"""

@@ -38,6 +38,10 @@ class SolidPlatform(ControlableNode):
         """ Function called when this collides something else -> nothing to do there"""
         pass
 
+
+
+'''
+not used anymore
 from vector import Vector
 class Pattern(SolidPlatform):
     """ class Pattern.
@@ -75,3 +79,4 @@ class Pattern(SolidPlatform):
                 else:
                     self.translate(Vector(-self.speed,0))
 
+'''

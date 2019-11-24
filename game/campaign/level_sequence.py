@@ -28,7 +28,7 @@ class Level_Sequence(Map_Point):
     def set_accessed(self): #maybe useless
         self._accessed = True
 
-    def set_finished(self,g):
+    def set_finished(self):
         self._finished = True
         for child in self.__childs:
             child.set_accessible()
@@ -48,7 +48,7 @@ class Level_Sequence(Map_Point):
         for level in self.__levels:
             reussite = reussite and level.launch(g)
         if reussite:
-            self.set_finished(g)
+            self.set_finished()
 
         g.launch_music(g.menu_music)#relance la musique du menu
 
