@@ -41,7 +41,6 @@ class Level_2_1_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
             
-        print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
             
         objects = self.init_objects(g)
 
@@ -65,6 +64,6 @@ class Level_2_1_kshan(Level):
     def init_objects(self,g):
         plat = []
         for i in range(10):
-            plat.append(SolidPlatform(Hitbox(Rect(i*110-10,-10,(i+1)*100,24))))
+            plat.append(SolidPlatform(Hitbox(Rect((i*120)-10,-10,100,18))))
         
         return plat

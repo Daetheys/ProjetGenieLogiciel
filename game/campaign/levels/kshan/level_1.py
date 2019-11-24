@@ -43,7 +43,7 @@ class Level_1_kshan(Level):
         self.fun_dialogue(g,"start")
         
         def player_pos(t):
-            return t*1000 #*8 to be faster (but it doesn't match the music anymore !
+            return t*100 #*8 to be faster (but it doesn't match the music anymore !
             
         objects = self.init_objects(g)
 
@@ -67,9 +67,9 @@ class Level_1_kshan(Level):
         return success
     
     def init_objects(self,g):
-        plat_1 = SolidPlatform(Hitbox(Rect(-10,12,100,24)))
+        plat_1 = SolidPlatform(Hitbox(Rect(-10,12,300,18)))
         
-        plat_2 = SolidPlatform(Hitbox(Rect(120,12,200,24)))
+        plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         
         return [plat_1,plat_2]
         
