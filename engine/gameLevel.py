@@ -168,7 +168,7 @@ class GameLevel:
             if self.countdown > 0:
                 self.countdown -= 1
             else:
-                raise EndGame(False,self.score)
+                raise EndGame(False,self.player.score)
         self.compute_controller()
         self.physics_step(dt)
         #Camera set position (3/4)
