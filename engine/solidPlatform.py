@@ -30,7 +30,7 @@ class SolidPlatform(ControlableNode):
     """def __repr__(self):
         return "SolidPlatform("+str(self.get_position())+","+str(self.get_hit_box())+")" """
 
-    def collide(self,o2,sides,o2_sides):
+    def collide(self,o2,side,o2_side):
         """ Function called when this collides something else """
         pass
 

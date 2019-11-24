@@ -220,7 +220,6 @@ def test_poly_get_intersection():
     p2 = Polygon([v12,v22,v32,v42])
     assert p.get_intersection(p2) == Polygon([Vector(0,0),Vector(1,0),Vector(1,1),Vector(0,1)])
 
-
 def test_to_rect():
     v1 = Vector(-1,-1)
     v2 = Vector(1,-1)

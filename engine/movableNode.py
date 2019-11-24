@@ -8,7 +8,8 @@ import pygame
 import time
 
 DEBUG = False
-MAXMOVE = 12 #Max movement (pixels) per iteration
+MAXMOVE = 11 #Max movement (pixels) per iteration
+SHOWCUT = False
 
 class MovableNode(SpriteNode):
     """ A node that can move with more powerful functions"""
@@ -83,7 +84,8 @@ class MovableNode(SpriteNode):
     def move(self,dt):
         v = self.get_speed()*dt
         if v.len() > MAXMOVE:
-            print("CUT")
+            if SHOWCUT:
+                print("CUT")
             v = self.get_speed().normalise()*MAXMOVE
         self.translate(v)
         self.rotate(self.get_ang_speed())

@@ -32,7 +32,7 @@ class SpriteScheduler:
 		"""
 		for automata in dict_ata.values():
 			if automata.name == self.name:
-				self.ata = automata
+				self.ata = automata.copy()
 		if self.ata is None:
 			print("Initialization Failed ! name:"+str(self.name))
 
@@ -74,5 +74,5 @@ class SpriteScheduler:
 		return tau
 
 
-def __repr__(self):
+	def __repr__(self):
 		return str(self.name)+"\nstates:"+str(self.ata.states)+"\ncs:"+str(self.ata.cs)+"\ntt:"+str(self.ata.tt)

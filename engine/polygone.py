@@ -105,10 +105,17 @@ class Segment:
             ls = s.get_line()
             ret = lf.intersect_point(ls)
             if isinstance(ret,Line):
-                minx = max(self.get_min_x(),s.get_min_x())
-                maxx = min(self.get_max_x(),s.get_max_x())
-                p1 = Vector(minx,ret.a*minx+ret.b)
-                p2 = Vector(maxx,ret.a*maxx+ret.b)
+                if ret.vert:
+                    x = self.p1.x
+                    miny = max(self.get_min_y(),s.get_min_y())
+                    maxy = min(self.get_max_y(),s.get_max_y())
+                    p1 = Vector(x,miny)
+                    p2 = Vector(x,maxy)
+                else:
+                    minx = max(self.get_min_x(),s.get_min_x())
+                    maxx = min(self.get_max_x(),s.get_max_x())
+                    p1 = Vector(minx,ret.a*minx+ret.b)
+                    p2 = Vector(maxx,ret.a*maxx+ret.b)
                 return Segment(p1,p2)
             return ret
         else:
@@ -324,11 +331,12 @@ class Polygon:
     def get_min_y(self):
         return self.min_y
 
-    #Needed for physics 2.0
+    #Needed for physics 2.0 and 3.0
     #ASSUME this polygon reprensents a Rectangle, may assert False if not
 
 
     def get_intersection(self,poly2):
+        """ Returns the polygon intersection of self and poly2 """
         ptf = self.points_in(poly2)
         pt2 = poly2.points_in(self)
         pt_in = [pt2,ptf]
@@ -344,6 +352,9 @@ class Polygon:
                             index += 1
                     else:
                         pass
+        if DEBUG:
+            print(pt_in)
+            print(l_poly_inter)
         if l_poly_inter == []: #Un polygon est inclu dans l'autre
             if len(ptf) > len(pt2):
                 l_poly_inter = ptf

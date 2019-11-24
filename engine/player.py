@@ -34,6 +34,11 @@ class Player(ControlableNode):
         self.can_jump = True
         self.is_jumping = False
 
+        self.is_in_air = False
+
+        self.jump_invincibility_max = 2
+        self.jump_invincibility_countdown = 0
+
     def start_jump(self):
         """ Key has just been pressed """
         speed = self.get_speed()
@@ -41,7 +46,6 @@ class Player(ControlableNode):
         if self.can_jump and (not self.is_jumping) and speed.y >= 0:
             self.set_speed(Vector(speed.x, -self.jump_strength))
             self.can_jump = False
-            self.set_state("j") #For the spriteScheduler -> state jump (j)
 
     def stop_jump(self):
         """ Key has just been released """
@@ -53,28 +57,38 @@ class Player(ControlableNode):
         """ Allow the player to jump """
         self.can_jump = True
 
-    def collide(self,o,sides,o2_sides):
+    def collide(self,o,side,o2_side):
         """ Player collides with o """
         if isinstance(o,SolidPlatform):
-            if o2_sides == [0]:
+            if o2_side == 0:
                 #Top side
 
-                #if self.alive:
-                if self.can_jump:
+                if self.can_jump and self.alive:
                     self.set_state("r") #For the spriteScheduler -> state run (r)
                 self.allow_jump()
                 self.is_jumping = False
+                self.is_in_air = False
+                self.jump_invincibility_countdown = self.jump_invincibility_max
 
                 
             else:
-                #The player dies
-                self.die()
+                if self.is_in_air and self.jump_invincibility_countdown>0:
+                    #The player dies
+                    self.die()
+                self.jump_invincibility_countdown -= 1
 
     def die(self):
         """ Kills the player """
-        #self.set_state("d") #For the spriteScheduler -> state die (d)
+        self.set_state("d") #For the spriteScheduler -> state die (d)
         print("Player Dies")
         self.alive = False
+
+    def update(self):
+        self.can_jump = False #Pour qu'on ne puisse pas sauter dans les airs
+        self.is_in_air = True #Pour la detection de la mort : le joueur doit être en l'air et entrer en collision
+        #
+        if self.alive:
+            self.set_state("j") #For the spriteScheduler -> state jump (j)
             
     def add_score(self,val):
         self.score += val
@@ -96,4 +110,4 @@ class PlayerController(KeyboardController):
         if event is not None and event.type == pygame.KEYUP:
             if event.key == jump_key:
                 self.target.stop_jump()
-        self.target.can_jump = False #Pour qu'on ne puisse pas sauter dans les airs
+        self.target.update()

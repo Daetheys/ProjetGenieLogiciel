@@ -108,6 +108,7 @@ def test_physics_high_fall():
     gl.player.add_force(gravity) #Au cas où la gravité soit nulle dans Gl
     timeout = 1000
     while not(gl.player.get_hit_box().collide(plat.get_hit_box())) and timeout > 0:
+        print(gl.player.get_hit_box())
         gl.physics_step(0.01)
         timeout -= 1
     assert timeout > 0

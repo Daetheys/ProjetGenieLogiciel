@@ -82,28 +82,69 @@ class Hitbox:
 
     def collide_sides(self,hbox):
         """ Returns sides of this and hbox that collide """
-        def compute_index(seglist,poly):
-            """ We assume seglist elements are in the same order than in poly.get_segments() - That is the case for the upper function and that's also why I don't want this little function to be accessible elsewhere """
-            li = []
-            seg = poly.get_segments()
-            index_seglist = 0
-            for index in range(len(seg)):
-                if index_seglist < len(seglist) and seg[index] == seglist[index_seglist]:
-                    li.append(index)
-                    index_seglist += 1
-            return li
+        #def compute_index(seglist,poly):
+        #    """ We assume seglist elements are in the same order than in poly.get_segments() - That is the case for the upper function and that's also why I don't want this little function to be accessible elsewhere """
+        #    li = []
+        #    seg = poly.get_segments()
+        #    index_seglist = 0
+        #    for index in range(len(seg)):
+        #        if index_seglist < len(seglist) and seg[index] == seglist[index_seglist]:
+        #            li.append(index)
+        #            index_seglist += 1
+        #    return li
         polyf = self.get_world_poly()
         poly2 = hbox.get_world_poly()
-        segcf = polyf.segments_collide_with(poly2)
-        segc2 = poly2.segments_collide_with(polyf)
-        return compute_index(segcf,polyf),compute_index(segc2,poly2)
+        inter_poly = polyf.get_intersection(poly2)
+        lenf = 0
+        indexf = None
+        len2 = 0
+        index2 = None
+        if DEBUG:
+            print("self",self.get_world_poly())
+            print("hbox",hbox.get_world_poly())
+            print("inter poly",inter_poly)
+        for s in inter_poly.get_segments():
+            if DEBUG:
+                print("--s",s)
+            for i,sf in enumerate(polyf.get_segments()):
+                inter_p = sf.intersect_point(s)
+                if DEBUG:
+                    print("i",i)
+                    print("sf",sf)
+                    print("inter_p",inter_p)
+                if isinstance(inter_p,Segment):
+                    length = s.length()
+                    if length >= lenf:
+                        if DEBUG:
+                            print("OKf",length,lenf)
+                        lenf = length
+                        indexf = i
+            if DEBUG:
+                print("--")
+            for i,s2 in enumerate(poly2.get_segments()):
+                inter_p = s2.intersect_point(s)
+                if DEBUG:
+                    print("i",i)
+                    print("s2",s2)
+                    print("inter_p",inter_p)
+                if isinstance(inter_p,Segment):
+                    length = s.length()
+                    if length >= len2:
+                        if DEBUG:
+                            print("OK")
+                        len2 = length
+                        index2 = i
+        return indexf,index2
+        #segcf = polyf.segments_collide_with(poly2)
+        #segc2 = poly2.segments_collide_with(polyf)
+        #return compute_index(segcf,polyf),compute_index(segc2,poly2)
 
     def remove_collide(self,hbox):
         epsilon = (1-self.get_ctrbl().rigid_size_factor)/10
         direction = -self.get_ctrbl().get_speed()
         inter_poly = self.get_world_poly().get_intersection(hbox.get_world_poly())
-        print(self.get_ctrbl())
-        print(direction)
+        #print(self.get_ctrbl())
+        #print(direction)
         if DEBUG:
             print("remove_collide")
             print("self rigid box",self.get_world_poly())

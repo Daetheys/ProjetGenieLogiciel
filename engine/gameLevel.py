@@ -36,6 +36,10 @@ class GameLevel:
 
         self.score = 42 #To be removed after merge branch
 
+        #Death animation
+        self.lost = False
+        self.countdown = 30
+
         #To optimise physics
         self.sorted_objects = None
         self.opti_step = 10
@@ -129,7 +133,7 @@ class GameLevel:
                 now = get_current_time()
                 #Compute dt from previous iteration
                 dt = now-tn
-                #print(1/dt)
+                print(1/dt)
                 #Updates time from the begining
                 self.time = tn-t0
                 #print(now,dt,self.time)
@@ -156,6 +160,11 @@ class GameLevel:
         #dt = new_time - self.time
         #self.time = new_time - self.begin_time
         """ Main loop of the game (controllers, physics, ...) """
+        if self.lost:
+            if self.countdown > 0:
+                self.countdown -= 1
+            else:
+                raise EndGame(False,self.score)
         self.compute_controller()
         self.physics_step(dt)
         #Camera set position (3/4)
@@ -169,7 +178,7 @@ class GameLevel:
 
     def compute_win_lose(self):
         (minx,maxx,miny,maxy) = self.get_size_level()
-        if self.player.get_position().y > maxy: #C'est inversé :)
+        if self.player.get_position().y > maxy or not(self.player.alive): #C'est inversé :)
             self.lose()
         if self.player.get_position().x > maxx:
             self.win()
@@ -192,7 +201,8 @@ class GameLevel:
         raise EndGame(True,self.score)
 
     def lose(self):
-        raise EndGame(False,self.score)
+        self.lost = True
+        
 
     def get_objects_opti(self):
         """ Optimise the data structure """
@@ -219,7 +229,7 @@ class GameLevel:
             #print(o)
             o.compute_speed(dt)
             o.move(dt)
-            if o == self.player:
+            if o == self.player and self.player.alive:
                 #Reposition the player
                 pos = o.get_position()
                 o.set_position(self.player_pos(self.time),pos.y)
@@ -229,18 +239,19 @@ class GameLevel:
                 self.player.set_speed(Vector(1,speed.y)) #Player need to have a str pos speed
             for o2 in obj_opti:
                 #print("collide")
-                coll,coll2 = o.get_hit_box().collide_sides(o2.get_hit_box())
-                if o != o2 and coll+coll2:
-                    if DEBUG:
-                        print("collide",o,o2)
-                        print("o",o.get_hit_box(),o.get_rigid_hit_box())
-                        print("o2",o2.get_hit_box(),o2.get_rigid_hit_box())
-                    o.collide(o2,coll,coll2)
-                    o2.collide(o,coll2,coll)
-                    while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
+                if o.get_hit_box().collide(o2.get_hit_box()):
+                    coll,coll2 = o.get_hit_box().collide_sides(o2.get_hit_box())
+                    if o != o2 and (coll or coll2):
                         if DEBUG:
-                            print("rigid")
-                        o.apply_solid_reaction(o2)
+                            print("collide",o,o2)
+                            print("o",o.get_hit_box(),o.get_rigid_hit_box())
+                            print("o2",o2.get_hit_box(),o2.get_rigid_hit_box())
+                        o.collide(o2,coll,coll2)
+                        o2.collide(o,coll2,coll)
+                        while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
+                            if DEBUG:
+                                print("rigid")
+                            o.apply_solid_reaction(o2)
 
     def load_camera(self,fen):
         """ Loads the actual camera of the Level """
