@@ -25,11 +25,14 @@ class Level_1_kshan(Level):
         
     def fun_dialogue(self,g,arg):
         if arg == "start":
-            quit_all = g.dict_dial["dial_kshan1"].show(g)
+            if self.get_finished():
+                quit_all = g.dict_dial["dial_kshan1dv"].show(g)
+            else:
+                quit_all = g.dict_dial["dial_kshan1"].show(g)
         elif arg == "bad_end":
-            quit_all = g.dict_dial["dial_kshan1f"].show(g)
+            quit_all = g.dict_dial["dial_kshan1bf"].show(g)
         elif arg == "good_end":
-            quit_all = g.dict_dial["dial_kshan1f"].show(g)
+            quit_all = g.dict_dial["dial_kshan1gf"].show(g)
         return quit_all
             
     def reward(self,g):
@@ -40,8 +43,8 @@ class Level_1_kshan(Level):
         
         
     def launch(self,g):
-        self.set_accessed()
         quit_all = self.fun_dialogue(g,"start")
+        self.set_accessed()
         
         if quit_all:
             return False

@@ -25,18 +25,24 @@ class Level_2_1_kshan(Level):
         
     def fun_dialogue(self,g,arg):
         if arg == "start":
-            g.dict_dial["dial_kshan2"].show(g)
+            if self.get_finished():
+                quit_all = g.dict_dial["dial_kshan2_1dv"].show(g)
+            else:
+                quit_all = g.dict_dial["dial_kshan2_1"].show(g)
         elif arg == "bad_end":
-            g.dict_dial["dial_kshan2f"].show(g)
+            quit_all = g.dict_dial["dial_kshan2_1bf"].show(g)
         elif arg == "good_end":
-            g.dict_dial["dial_kshan2f"].show(g)
+            quit_all = g.dict_dial["dial_kshan2_1gf"].show(g)
         
     def check_victory(self,g,arg):
         return arg
         
     def launch(self,g):
+        quit_all = self.fun_dialogue(g,"start")
         self.set_accessed()
-        self.fun_dialogue(g,"start")
+        
+        if quit_all:
+            return False
         
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
@@ -63,7 +69,10 @@ class Level_2_1_kshan(Level):
     
     def init_objects(self,g):
         plat = []
+        dist = -10
         for i in range(10):
-            plat.append(SolidPlatform(Hitbox(Rect((i*120)-10,-10,100,18))))
+            l = (i+1)*70%100 + 50
+            plat.append(SolidPlatform(Hitbox(Rect(dist,-10,l,18))))
+            dist += l + 20
         
         return plat
