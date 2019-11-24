@@ -5,12 +5,12 @@ from vector import Vector
 from polygone import *
 import copy
 
-#travis github CI
+""" A transformable is a 2D Object reprensented by its coordinates X and Y (position), it rotation and it scale. Those objects will be manipulated by Transform objects (matrix) to compute game mechanics and physics"""
 
 class Transformable:
     """ Represents a vector """
     def __init__(self):
-        self.__origin = Vector(0,0) # Origine du Transformable (CONST for now)
+        self.__origin = Vector(0,0) # Origine du Transformable (0,0) and constant for now (it's easier this way)
         self.__position = Vector(0,0) # Coordonnees du Transformable dans l'environnement
         self.__rotation = 0 # Rotation actuelle du Transformable
         self.__scale = Vector(1.,1.) # Ecard du transformable
@@ -26,6 +26,7 @@ class Transformable:
         return t
 
     def paste_in(self,t):
+        """ Paste all attributes of this object in t """
         vp = self.get_position()
         t.set_position(vp.x,vp.y)
         t.set_rotation(self.get_rotation())
@@ -33,6 +34,7 @@ class Transformable:
         t.set_scale(vs.x,vs.y)
 
     def reset_update(self):
+        """ Reset update booleans -> after a change of fondamental attributes of a Transformable """
         self.__tr_need_up = True
         self.__inv_tr_need_up = True
 
@@ -52,12 +54,6 @@ class Transformable:
         self.__scale = Vector(scale_x,scale_y)
         self.reset_update()
         
-    """
-    def set_origin(self,x,y):
-        #Don't use it
-        self.__origin = Vector(x,y)
-        self.reset_update()
-    """
     def get_position(self):
         """ Returns the position """
         return self.__position
@@ -69,11 +65,6 @@ class Transformable:
     def get_scale(self):
         """ Returns the scale """
         return self.__scale
-    """
-    def get_origin(self):
-        #Don't use it
-        return self.__origin
-    """
 
     def translate(self,v):
         """ Translates this (side effect)"""
@@ -104,15 +95,16 @@ class Transformable:
         self.set_scale(x+x2,y+y2)
         
     def get_transform(self):
+        """ Returns the Transform object that execute this object's translate, rotate and scale (very usefull to apply to polygons like hit boxes)"""
         (x,y) = self.__position.x,self.__position.y
         (sx,sy) = self.__scale.x,self.__scale.y
         (mx,my) = self.__origin.x,self.__origin.y
-        if self.__tr_need_up:
+        if self.__tr_need_up: #If it doesn't need to be updated it means it has already been computed -> if a fondamental attribute changes it needs to be recomputed
             angle = -self.__rotation
             cosine = np.cos(angle)
             sine = np.sin(angle)
             sxc = sx*cosine
-            syc = sy*cosine
+            syc = sy*cosine #Trigo formulas
             sxs = sx*sine
             sys = sy*sine
             tx = -mx*sxc - my*sys + x
@@ -125,7 +117,7 @@ class Transformable:
         return self.__transform
     
     def get_inverse_transform(self):
-        #Don't use it
+        """ Returns the inverse transform (very usefull as a transfer matrix) """
         if self.__inv_tr_need_up:
             self.__inverse_transform = self.get_transform().get_inverse()
             self.__inv_tr_need_up = False

@@ -5,6 +5,8 @@ from rect import Rect
 from player import Player
 from items import KeyItem
 
+""" Key class to show interactions between game and campaign"""
+
 class Key(ControlableNode):
     def __init__(self,hb,name='empty'):
         ControlableNode.__init__(self)

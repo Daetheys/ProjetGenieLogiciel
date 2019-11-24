@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+""" Controller class (cf Controllable Node) """
 
 class Controller:
     

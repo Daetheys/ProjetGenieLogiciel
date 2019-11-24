@@ -1,18 +1,23 @@
 from collideTransformable import CollideTransformable
 
+""" A controllable node is a node with a controller (an object that will catch events such as keyboard interuptions and that will call specific functions of the controllable node to move it (like a puppet)"""
+
+
 class ControlableNode(CollideTransformable):
-    """ Node with a controller """
+    """ CollideTransformable with a controller """
     def __init__(self):
         super().__init__()
         self.controller = None
         self.__actions = {"Nothing":do_nothing}
 
     def copy(self):
+        """ Returns a copy of itself """
         cn = ControlableNode()
         self.paste_in(cn)
         return cn
 
     def paste_in(self,cn):
+        """" Paste it in cn """
         CollideTransformable.paste_in(self,cn)
         cn.set_controller(self.get_controller())
         
@@ -26,9 +31,9 @@ class ControlableNode(CollideTransformable):
         self.__actions[action] = method
 
     def collide(self,o,side,o2_side):
-        """ This collides o. Sides hit are [side] for this and [o2_side] for o (top:0,right:1,bot:2,left:3) """
+        """ This collides o. Sides hit are [side] for this and [o2_side] for o (top:0,right:1,bot:2,left:3) -> will be defined in gameobjects"""
         pass
-        
+    
     def execute(self,action):
         return self.__actions[action]
         

@@ -11,6 +11,8 @@ from exception import WrongSizeMatrix
 
 from vector import Vector
 
+""" Transform objects represents a transformation made by a matrix on 2D objects. It needs to be able to compute translations, rotations and scalling to apply them to transformables (and hit boxes). A transform object represents a 3x3 matrix made of a 2x2 upper left part for rotation and scaling and the last column for translations. They can be combined (and that's where we'll need other coefficients) to make more complex transformations """
+
 debug = True
 
 class Transform:
@@ -18,22 +20,25 @@ class Transform:
 
     def __init__(self, matrix = None):
         """ If nothing is given, it's the identity """
-        if matrix is None:
+        if matrix is None: #It starts with identity if nothing given as parameter -> it will then be translated, rotated or scaled
             self.matrix = np.identity(3)
-        elif matrix.shape == (3,3):
+        elif matrix.shape == (3,3): #The matrix must be 3x3
             self.matrix = matrix
-        #else:
-           #raise WrongSizeMatrix(matrix)
+        else:
+           raise WrongSizeMatrix(matrix)
 
     def copy(self):
+        """ Returns a copy of this object (unlinked) """
         tr = Transform()
         tr.matrix = self.matrix.copy()
         return tr
 
     def __repr__(self):
+        """ To print it """
         return str(self.matrix)
 
     def __eq__(self,tr):
+        """ Using an approximation here """
         return np.allclose(self.matrix,tr.matrix)
 
     def cut_translate(self):
@@ -94,20 +99,7 @@ class Transform:
                 [sin, cos,0], \
                 [0,0,1]])
         return self.combine(Transform(rotation_matrix))
-    """
-    def rotate_around(self,angle,center):
-        # Don't use it
-        #I don't know what this does -> not tested
-        angle *= -1
-        x,y = center.x,center.y
-        cos = np.cos(angle)
-        sin = np.sin(angle)
-        rotation_matrix = np.array([\
-                [cos,-sin,x*(1-cos) + y*sin], \
-                [sin, cos,y*(1-cos) - x*sin], \
-                [0,0,1]])
-        return self.combine(Transform(rotation_matrix))
-    """
+
     def scale(self,v):
         """ Scales the matrix """
         sX,sY = (v,v) if isinstance(v,float) else (v.x,v.y)
@@ -116,17 +108,3 @@ class Transform:
                 [0,sY,0],\
                 [0,0,1]])
         return self.combine(Transform(scale_matrix))
-    """
-    def scale_around(self,v,center):
-        # Don't use it 
-        #I don't know what that does -> not tested
-        sX,sY = (v,v) if isinstance(v,float) else (v.x,v.y)
-        x,y = center.x,center.y
-        scale_matrix = np.array([ \
-                [sX,0,x*(1-sX)], \
-                [0,sY,y*(1-sY)],
-                [0,0,1]])
-        return self.combine(Transform(scale_matrix))
-    def __str__(self):
-        return str(self.matrix) + '\n'
-    """
