@@ -56,5 +56,5 @@
 "dial041f" : "Félicitations ! Tu as terminé la carte, tu as donc terminé le jeu pour le moment.",
 "help" : "Aide",
 "-help-" : "---Aide---",
-"help_yourmusicfolder" : "Placez vous fichiers .mp3 dans le dossier data/your music/ pour y jouer.",
+"help_yourmusicfolder" : "Placez vous fichiers .ogg dans le dossier data/your music/ pour y jouer. Les fichiers .mp3 et .wav fonctionnent, mais sont déconseillés.",
 "erase_savefile" : "Voulez vous rétablir vos options par défaut et SUPPRIMER VOTRE SAUVEGARDE ?"}
