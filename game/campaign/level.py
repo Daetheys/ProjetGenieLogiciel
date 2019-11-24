@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-'''A Level is the object that contains an instance of the canabalt game'''
+'''A Level is the object that contains an instance of the canabalt game. Is can have dialogue, rewards, different conditions for winning and different objects in the \"real\" game. It is n abstract class, each level has its own class for more freedom for level design'''
 
 class Level:    #will be an abstract class -> it is now
 
