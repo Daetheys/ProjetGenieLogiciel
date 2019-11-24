@@ -29,7 +29,7 @@ class Player(ControlableNode):
         self.controller = PlayerController(self) #Controller for the player (see below)
         self.score = 0 #Score of the player
         self.alive = True #He is alive ... for now
-        
+
         self.jump_strength = 500 #Strength of the jump
         self.can_jump = True #Can jump
         self.is_jumping = False #Is actually jumping
@@ -41,7 +41,7 @@ class Player(ControlableNode):
     def load_inventory(self,inv):
         """ Load the inventory of campaign mod """
         self.inventory = inv
-        
+
     def set_inventory(self,items):
         """ Add in inventory """
         for item in items:
@@ -81,9 +81,9 @@ class Player(ControlableNode):
                 self.allow_jump()
                 self.is_jumping = False
                 self.is_in_air = False
-                
 
-                
+
+
             else:
                 if self.is_in_air:
                     #The player dies
@@ -102,7 +102,7 @@ class Player(ControlableNode):
         #
         if self.alive:
             self.set_state("j") #For the spriteScheduler -> state jump (j)
-            
+
     def add_score(self,val):
         self.score += val
 

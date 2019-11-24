@@ -16,7 +16,7 @@
 "Disable Fullscreen": "D\u00e9sactiver plein \u00e9cran",
 "dial011": "Je suis le PNJ test et ceci est un dialogue test.\n(Appuie sur la barre d'espace pour continuer)",
 "dial012": "J'ai compris.",
-"dial013": "Attention, le niveau commence après ce message !\n(La touche \"w\" permet de sauter)",
+"dial013": "Attention, le niveau commence après ce message !\n(La touche Z permet de sauter)",
 "dial011gf": "Et bravo ! Tu as gagné, tu es maintenant dans le dialogue de fin.",
 "dial012gf" : "C'était facile...",
 "dial011bf" : "Dommage, tu n'as pas réussi le niveau...",
@@ -56,5 +56,5 @@
 "dial041f" : "Félicitations ! Tu as terminé la carte, tu as donc terminé le jeu pour le moment.",
 "help" : "Aide",
 "-help-" : "---Aide---",
-"help_yourmusicfolder" : "Placez vous fichiers .mp3 dans le dossier data/your music/ pour y jouer.",
+"help_yourmusicfolder" : "Placez vous fichiers .ogg dans le dossier data/your music/ pour y jouer. Les fichiers .mp3 et .wav fonctionnent, mais sont déconseillés.",
 "erase_savefile" : "Voulez vous rétablir vos options par défaut et SUPPRIMER VOTRE SAUVEGARDE ?"}

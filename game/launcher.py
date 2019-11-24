@@ -3,7 +3,7 @@ from game import *
 import pygame
 pygame.mixer.pre_init(44100, -16, 8, 512)
 from pygame.locals import *
-from tools import score_to_msg,insert_score
+from tools import score_to_msg,insert_score,bgg
 from dialogue import Dialogue
 from dialoguebubble import Dialogue_Bubble
 from vector import Vector
@@ -15,7 +15,12 @@ class Launcher(Game):
         all button-related activities, and launches the main loop"""
         Game.__init__(self)
         self.init_buttons()
+        self.init_background()
         self.launch_game()
+
+    def init_background(self):
+        self.bg = None#Pygame.Surface (background)
+        self.bglist = []#list of tuples (position of the platforms in the background)
 
     def init_buttons(self):
         """ creates some initially displayed buttons"""
@@ -25,17 +30,21 @@ class Launcher(Game):
 
     def menu_loop(self,cnt = True,quit_all=False,background = None,scrolling=False,scrollist=[]):
         """
-        function used for various loops. returns:
+        function used for various loops in the menu. It returns:
         continue (whether the loop nesting it stops)
-        quit_all (whether the full game stops)
+        quit_all (whether the full game stops)t
+
         """
-        if background == None:
-            background = self.dict_img["img_background"]
+        #if background == None:
+        #    self.bg,self.bglist = bgg(self.bglist)
+        #    #background = self.dict_img["img_background"] old behavior
+
+        self.bg,self.bglist = bgg(self.bglist,self.dict_img["img_background"],self.options["DISPLAYSIZE_X"]+200,self.options["DISPLAYSIZE_Y"])
         global BUTTON_LIST
         pygame.time.Clock().tick(self.options["FPS"])
 
         #BACKGROUND DISPLAY
-        self._fenetre.blit(background,(0,0))
+        self._fenetre.blit(self.bg,(0,0))
 
         #BUTTON DISPLAY
         for b in BUTTON_LIST:
@@ -192,7 +201,7 @@ class Launcher(Game):
             score //= 2
         #g.scores[gl.name]  = leaderboard of this level
         self.dict_score[gl.name] = insert_score(self.score(gl.name),score,self.player_name,self.max_number_scores)
-        
+
         msg_score = score_to_msg(self.dict_score[gl.name])
         dial_score = Dialogue([Dialogue_Bubble(msg_score,self.dict_char["narrator"],self.dict_img["img_leaderboard"],300,50,True)])
         dial_score.show(self)

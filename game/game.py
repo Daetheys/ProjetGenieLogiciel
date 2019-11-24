@@ -106,7 +106,7 @@ class Game:
         #Autres constantes
         self.max_number_scores = 10#max number of saved scores
         self.player_name = "PLAYER"#will be in options/savefile soon
-        self.menu_music = "data/musics/Soliloquy.wav"
+        self.menu_music = "data/musics/title.ogg"
 
     def load_languages(self,fst=False):
         """ this function loads all avaliable languages in self.dict_str"""
@@ -193,10 +193,11 @@ class Game:
 
 
     def update_dialogues(self):
+        """ this is now an alias for create_dialogues, as map_points have currently no dialogues """
         self.create_dialogues()
-        for map in self.world.get_maps().values():
-            for map_point in map.get_map_points():
-                self.init_dialogues(map_point)
+        #for map in self.world.get_maps().values():
+        #    for map_point in map.get_map_points():
+        #        self.init_dialogues(map_point)
 
     def dict_str_dflt(self,char):
         """ Try to find if dict_str contains a value for the key 'char'.
@@ -219,8 +220,11 @@ class Game:
 
     def load_savefile(self):
         """ loads all the saved data """
-        with open("data/json/scores.json", "r", encoding="utf-8-sig") as read_file:
-            self.dict_score = json.load(read_file)
+        try:
+            with open("data/json/scores.json", "r", encoding="utf-8-sig") as read_file:
+                self.dict_score = json.load(read_file)
+        except FileNotFoundError:
+            self.dict_score = {"level_1_kshan": [["SCHWOON", 1000000000, False], ["ALESSIO", 42000, False]]}
 
             #for sc in self.score:
             #    self.score[sc] = self.score[sc]

@@ -73,7 +73,7 @@ class Transform:
         return self.transform_vect(Vector(x,y))
 
     def transform_vect(self,v):
-        """ Transforms a vector /!\ Returns a np.array """
+        """ Transforms a vector """
         arr = np.dot(self.matrix[:2,:],v.homogeneous())
         return Vector(arr[0][0],arr[1][0])
 
