@@ -40,6 +40,14 @@ class Player(ControlableNode):
         self.jump_invincibility_max = 2
         self.jump_invincibility_countdown = 0
 
+        self.inventory = None
+
+    def set_inventory(self,inv):
+        self.inventory = inv
+
+    def get_inventory(self):
+        return self.inventory
+
     def start_jump(self):
         """ Key has just been pressed """
         speed = self.get_speed()

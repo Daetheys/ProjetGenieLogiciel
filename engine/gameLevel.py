@@ -73,6 +73,9 @@ class GameLevel:
     def get_objects(self):
         return self.objects
 
+    def load_inventory(self,inv):
+        self.player.set_inventory(inv)
+
     def compute_end_platform_location(self):
         self.end_platform_location = []
         for o in self.get_objects():
