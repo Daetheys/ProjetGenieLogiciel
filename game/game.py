@@ -179,7 +179,7 @@ class Game:
         pygame.mixer.pre_init(44100, -16, 2, 2048)
         pygame.mixer.init()
         #Music
-        pygame.mixer.music.load("data/musics/Soliloquy.mp3")
+        pygame.mixer.music.load("data/musics/Soliloquy.wav")
         #pygame.mixer.music.fadeout(500)
         pygame.mixer.music.play()
 

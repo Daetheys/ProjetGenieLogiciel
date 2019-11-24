@@ -11,7 +11,6 @@ from polygone import *
 from vector import Vector
 from transform import Transform
 from solidPlatform import SolidPlatform,Pattern
-from key import Key
 from gameLevel import GameLevel
 from hypothesis import given
 from hypothesis.strategies import integers, lists
@@ -79,9 +78,7 @@ class Level_1_kshan(Level):
         
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         
-        cle = Key(Hitbox(Rect(450,2,20,20)))
-        
-        return [plat_1,plat_2,cle]
+        return [plat_1,plat_2]
         
  
 #What is th thing below ???

@@ -7,7 +7,7 @@ from items import KeyItem
 
 """ Key class to show interactions between game and campaign"""
 
-class Key(ControlableNode):
+class Key_1(ControlableNode):
     def __init__(self,hb,name='empty'):
         ControlableNode.__init__(self)
         self.set_hit_box(hb)
@@ -17,6 +17,7 @@ class Key(ControlableNode):
         self.center_hit_box()
 
         self.taken = False
+        self.key = KeyItem("key_1")
 
     def center_hit_box(self):
         self.get_hit_box().center()
@@ -34,7 +35,7 @@ class Key(ControlableNode):
         #side : 0-> haut (aiguilles d'une montre)
         if isinstance(o2,Player):
             if not(self.taken):
-                o2.set_inventory({KeyItem("key_1"):1})
+                o2.set_inventory({self.key:1})
                 print("INV",id(o2.get_inventory()))
                 self.taken = True
                 self.create_sps('empty')

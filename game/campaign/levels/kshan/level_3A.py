@@ -11,40 +11,53 @@ from polygone import *
 from vector import Vector
 from transform import Transform
 from solidPlatform import SolidPlatform,Pattern
+from key import Key_1
 from gameLevel import GameLevel
 from hypothesis import given
 from hypothesis.strategies import integers, lists
 from hitbox import Hitbox
 from rect import Rect
 from level import Level
+from items import KeyItem
 
 class Level_3A_kshan(Level):
     
     def __init__(self):
         super().__init__()
+        self.key = None
         
     def fun_dialogue(self,g,arg):
         if arg == "start":
-            g.dict_dial["dial_kshan3A"].show(g)
+            if self.get_finished():
+                quit_all = g.dict_dial["dial_kshan3A"].show(g)
+            else:
+                quit_all = g.dict_dial["dial_kshan3A"].show(g)
         elif arg == "bad_end":
-            g.dict_dial["dial_kshan3Af"].show(g)
+            quit_all = g.dict_dial["dial_kshan3Af"].show(g)
         elif arg == "good_end":
-            g.dict_dial["dial_kshan3Af"].show(g)
+            quit_all = g.dict_dial["dial_kshan3Af"].show(g)
+        return quit_all
         
     def check_victory(self,g,arg):
-        return arg
+        if arg and g.player.is_in_inventory(self.key.key):
+            return True
+        return False
         
         
     def launch(self,g):
+        quit_all = self.fun_dialogue(g,"start")
         self.set_accessed()
-        self.fun_dialogue(g,"start")
+        
+        if quit_all:
+            return False
         
         def player_pos(t):
-            return t*2000 #*8 to be faster (but it doesn't match the music anymore !
+            return t*100 #*8 to be faster (but it doesn't match the music anymore !
             
         objects = self.init_objects(g)
 
         gl = GameLevel(objects,player_pos,name="level_3A_kshan")
+        gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text)
         
@@ -62,31 +75,20 @@ class Level_3A_kshan(Level):
         return success
     
     def init_objects(self,g):
-        plat_1 = SolidPlatform(Hitbox(Rect(-10,12,100,24)))
-        plat_1.set_sps(None)#voir une hitbox
+        plat = []
+        dist = -10
+        for i in range(10):
+            l = (i+1)*70%100 + 50
+            plat.append(SolidPlatform(Hitbox(Rect(dist,-10,l,18))))
+            dist += l + 20
+        plat.append(SolidPlatform(Hitbox(Rect(dist,-26,500,24))))
+        if self.key == None:
+            self.key = Key_1(Hitbox(Rect(dist+300,-58,4,4)))
+        plat.append(self.key)
+        dist += 520
+        for i in range(17):
+            l = (i+5)*70%100 + 50
+            plat.append(SolidPlatform(Hitbox(Rect(dist,-10,l,18))))
+            dist += l + 20
         
-        plat_2 = SolidPlatform(Hitbox(Rect(120,12,200,24)))
-        plat_2.set_sps(None)#voir une hitbox
-        
-        plat_3 = SolidPlatform(Hitbox(Rect(-10,12,10,24)))
-        plat_3.set_sps(None)#voir une hitbox
-        
-        plat_4 = SolidPlatform(Hitbox(Rect(-10,12,10,24)))
-        plat_4.set_sps(None)#voir une hitbox
-        
-        plat_5 = SolidPlatform(Hitbox(Rect(-10,12,10,24)))
-        plat_5.set_sps(None)#voir une hitbox
-        
-        plat_6 = SolidPlatform(Hitbox(Rect(-10,12,10,24)))
-        plat_6.set_sps(None)#voir une hitbox
-        
-        plat_7 = SolidPlatform(Hitbox(Rect(-10,12,10,24)))
-        plat_7.set_sps(None)#voir une hitbox
-        
-        plat_8 = SolidPlatform(Hitbox(Rect(-10,12,10,24)))
-        plat_8.set_sps(None)#voir une hitbox
-        
-        plat_9 = SolidPlatform(Hitbox(Rect(-10,12,10,24)))
-        plat_9.set_sps(None)#voir une hitbox
-        
-        return [plat_1,plat_2]
+        return plat
