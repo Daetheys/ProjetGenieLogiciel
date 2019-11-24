@@ -36,7 +36,6 @@ class Player(ControlableNode):
         self.is_jumping = False
 
         self.is_in_air = False
-        le_grand_reparage
 
         self.jump_invincibility_max = 2
         self.jump_invincibility_countdown = 0
