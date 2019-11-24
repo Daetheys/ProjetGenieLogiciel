@@ -157,7 +157,7 @@ class Launcher(Game):
                             cnt = False
         return cnt,quit_all
 
-    def launch_level(self,gl):
+    def launch_level(self,gl,music):
         """ Initializing the main loop of a level,
         where gl is a game level"""
 
@@ -173,6 +173,10 @@ class Launcher(Game):
             if not self.loop_level(gl,t):
                 return False#on a perdu
         """
+        if music is not None:
+            pygame.mixer.music.load(music)
+            #pygame.mixer.music.fadeout(500)
+            pygame.mixer.music.play(-1)
         success, score = gl.play(self.options["FPS"])
 
         if not success:#reduce score of defeats
