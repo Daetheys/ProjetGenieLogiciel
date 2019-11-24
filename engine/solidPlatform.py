@@ -14,6 +14,7 @@ class SolidPlatform(ControlableNode):
         self.get_sps().load_automaton()
         self.get_sps().load_sprites()
         self.center_hit_box()
+        self.mapping = "Repeatx"
 
     def center_hit_box(self):
         self.get_hit_box().center()
