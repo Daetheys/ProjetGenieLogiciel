@@ -11,6 +11,8 @@ class SpriteNode(Node):
         self.animation_speed = 3
         self.animation_step = 0
 
+        self.mapping = "Flat" #Flat : étiré // Repeatx : Repeted along x
+
     def copy(self):
         sn = SpriteNode()
         self.paste_in(sn)
@@ -86,13 +88,18 @@ class SpriteNode(Node):
             #print(" ",bw,bh)
             #print("xy",int(x),int(y))
             (px,py,pw,ph),a = self.get_pos_camera(distorsion,self.get_hit_box()).to_rect()
-            img = pygame.transform.smoothscale(img,(int(pw),int(ph)))
-            #pos = self.get_position()
-            #print("-------1",pos,trans)
-            #pos = pos.apply_transform(scale)
-            #pos = pos.apply_transform(trans)
-            #print("-------2",pos)
-            fen.blit(img,(int(px) ,int(py) ))
+            if self.mapping == "Flat":
+                img = pygame.transform.smoothscale(img,(int(pw),int(ph)))
+                fen.blit(img,(int(px) ,int(py) ))
+            elif self.mapping == "Repeatx":
+                dx = px
+                while dx < px+pw and ph != 0:
+                    (w,h) = img.get_width(),img.get_height()
+                    ratio = (ph/h)
+                    img2 = pygame.transform.smoothscale(img,(int(ratio*w),int(ratio*h)))
+                    fen.blit(img2,(int(dx),int(py)),(0,0,px+pw-dx,ph))
+                    dx += w*ratio
+                
         else:
             coll_box = self.get_pos_camera(distorsion,self.get_hit_box())
             rigid_box = self.get_pos_camera(distorsion,self.get_rigid_hit_box())
