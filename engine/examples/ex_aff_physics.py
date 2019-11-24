@@ -10,7 +10,7 @@ from polygone import *
 from vector import Vector
 from transform import Transform
 from solidPlatform import SolidPlatform
-from gameLevel import GameLevel
+import gameLevel
 from rect import Rect
 from force import Gravity
 from hypothesis import given
@@ -41,7 +41,7 @@ plat3 = plat.copy()
 plat4 = plat.copy()
 plat2.rot(45)
 plat.rotate(np.pi/4)
-plat2.translate(Vector(0.5,-10))
+plat2.translate(Vector(0.5,-5))
 plat3.translate(Vector(0.1,-5))
 plat4.translate(Vector(0.3,-15))
 
@@ -58,7 +58,7 @@ plat4 = SolidPlatform(hb4)
 plat4.set_sps(None)
 plat4.translate(Vector(9,10))
 """
-gravity = Gravity(1)
+gravity = Gravity(5)
 
 #plat2.rotate(np.pi/5)
 #plat2.add_force(gravity)
@@ -67,13 +67,17 @@ plat2.add_force(gravity)
 plat3.add_force(gravity)
 plat4.add_force(gravity)
 
-gl = GameLevel([plat,plat2,plat3,plat4],[])
+def pos(t):
+    return 0
+
+gl = gameLevel.GameLevel([plat,plat2],pos)
 gl.load_camera(fen) #Load the camera in the window fen
 gl.get_camera().set_dimension(Vector(20,20)) #Resize the camera
 gl.get_camera().set_position(Vector(-5,-5))
 gl.aff()
-for i in range(10000):
-    gl.refresh(0.01)
+for i in range(200):
+    gl.aff()
+    gl.physics_step(1/30)
     #pygame.time.wait(50)
 
 pygame.time.wait(500)

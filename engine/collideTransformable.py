@@ -5,8 +5,9 @@ from transformable import Transformable
 from hitbox import Hitbox
 from rect import Rect
 from polygone import *
+from movableNode import MovableNode
 
-class CollideTransformable(Transformable):
+class CollideTransformable(MovableNode):
     def __init__(self):
         super().__init__()
         #-----------------------------
@@ -16,6 +17,8 @@ class CollideTransformable(Transformable):
         self.__collide = False
         self.__collide_hit_box = Hitbox(Rect(0,0,0,0))
         self.__rigid_hit_box = Hitbox(Rect(0,0,0,0))
+        self.rigid_size_factor = 0.999
+        #self.center_hit_box()
 
     def copy(self):
         """ Returns the copy of this with right deep and shallow copies of arguments """
@@ -23,9 +26,16 @@ class CollideTransformable(Transformable):
         self.paste_in(t)
         return t
 
+    def center_hit_box(self):
+        """ Center its Hitbox """
+        tc = self.get_hit_box().center()
+        tr = self.get_rigid_hit_box().center()
+        assert tr == tc*self.rigid_size_factor
+        self.translate(-tc)
+
     def paste_in(self,t):
         """ Copies this object in t (side effect)"""
-        Transformable.paste_in(self,t)
+        MovableNode.paste_in(self,t)
         t.set_collide(self.get_collide())
         t.set_rigid_body(self.get_rigid_body())
         Hb = self.get_hit_box().copy()
@@ -51,13 +61,14 @@ class CollideTransformable(Transformable):
 
     def set_hit_box(self,val):
         """ Set the collide hit box of this """
+        tr = val.center()
         self.__collide_hit_box = val
         self.__collide_hit_box.link(self)
-        #assert self.get_hit_box().get_ctrbl() == self
         rigidhb = val.copy()
-        rigidhb.rescale(0.999)
+        rigidhb.rescale(self.rigid_size_factor)
         self.set_rigid_hit_box(rigidhb)
         #assert self.get_rigid_hit_box().get_ctrbl() == self
+        self.translate(-tr)
 
     def get_hit_box(self):
         """ Compute the hit box according to the position / rotation / scale """

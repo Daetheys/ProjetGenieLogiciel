@@ -178,7 +178,7 @@ class Game:
         """
         pygame.mixer.init()
         #Music
-        pygame.mixer.music.load("data/tests_musique/test.mp3")
+        pygame.mixer.music.load("data/musics/Soliloquy.mp3")
         pygame.mixer.music.fadeout(500)
         pygame.mixer.music.play(-1)
 

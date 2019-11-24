@@ -9,6 +9,7 @@ from polygone import *
 from vector import Vector
 from camera import Camera
 from spriteNode import SpriteNode
+from collideTransformable import CollideTransformable
 from rect import Rect
 from hitbox import Hitbox
 from hypothesis import given
@@ -68,7 +69,7 @@ def test_pos_in_camera():
     pygame.init()
     fen = pygame.display.set_mode((500, 500),0)
     
-    S = SpriteNode()
+    S = CollideTransformable()
     R = Rect(-1,-1,2,2)
     Hb = Hitbox(R)
     S.set_hit_box(Hb)
@@ -76,5 +77,5 @@ def test_pos_in_camera():
     C.set_position(Vector(-1,-1))
     C.set_dimension(Vector(4,4))
     C.set_fen(fen)
-    pos_vect = S.get_pos_camera(C.get_distorsion())
+    pos_vect = S.get_pos_camera(C.get_distorsion(),S.get_hit_box())
     assert pos_vect == Polygon([Vector(0,0),Vector(250,0),Vector(250,250),Vector(0,250)])

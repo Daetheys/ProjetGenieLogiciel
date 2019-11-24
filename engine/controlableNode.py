@@ -1,6 +1,6 @@
-from movableNode import MovableNode
+from collideTransformable import CollideTransformable
 
-class ControlableNode(MovableNode):
+class ControlableNode(CollideTransformable):
     """ Node with a controller """
     def __init__(self):
         super().__init__()
@@ -13,7 +13,7 @@ class ControlableNode(MovableNode):
         return cn
 
     def paste_in(self,cn):
-        MovableNode.paste_in(self,cn)
+        CollideTransformable.paste_in(self,cn)
         cn.set_controller(self.get_controller())
         
     def set_controller(self,controller):
@@ -24,6 +24,10 @@ class ControlableNode(MovableNode):
         
     def add_action(self,action,method):
         self.__actions[action] = method
+
+    def collide(self,o,side,o2_side):
+        """ This collides o. Sides hit are [side] for this and [o2_side] for o (top:0,right:1,bot:2,left:3) """
+        pass
         
     def execute(self,action):
         return self.__actions[action]
