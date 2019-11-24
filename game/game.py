@@ -151,12 +151,12 @@ class Game:
         mp_3B = Level_Sequence("kshan_3B",1050,500,self.dict_img["img_point"],self.dict_img["img_pointf"])
         mp_4B = Level_Sequence("kshan_4B",900,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
 
-        mp_1.set_levels([Level_1_kshan()])
-        mp_2.set_levels([Level_2_1_kshan(),Level_2_2_kshan()])
-        mp_3A.set_levels([Level_3A_kshan()])
-        mp_4A.set_levels([Level_4A_kshan()])
-        mp_3B.set_levels([Level_3B_kshan()])
-        mp_4B.set_levels([Level_4B_kshan()])
+        mp_1.set_levels([Level_1_kshan(self)])
+        mp_2.set_levels([Level_2_1_kshan(self),Level_2_2_kshan(self)])
+        mp_3A.set_levels([Level_3A_kshan(self)])
+        mp_4A.set_levels([Level_4A_kshan(self)])
+        mp_3B.set_levels([Level_3B_kshan(self)])
+        mp_4B.set_levels([Level_4B_kshan(self)])
 
         mp_1.set_childs([mp_2])
         mp_2.set_childs([mp_3A, mp_3B])

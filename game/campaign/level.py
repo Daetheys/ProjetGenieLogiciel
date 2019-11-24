@@ -2,10 +2,10 @@
 
 class Level:    #will be an abstract class -> it is now
 
-    def __init__(self):
+    def __init__(self,g):
         self._accessed = False
         self._finished = False
-        pass
+        self.objects = self.init_objects(g)
         
     def set_accessed(self):
         self._accessed = True

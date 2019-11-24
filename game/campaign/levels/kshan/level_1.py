@@ -20,8 +20,8 @@ from level import Level
 
 class Level_1_kshan(Level):
     
-    def __init__(self):
-        super().__init__()
+    def __init__(self,g):
+        super().__init__(g)
         
     def fun_dialogue(self,g,arg):
         if arg == "start":
@@ -52,9 +52,9 @@ class Level_1_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
             
-        objects = self.init_objects(g)
+        #objects = self.init_objects(g)
 
-        gl = GameLevel(objects,player_pos,name="level_1_kshan")
+        gl = GameLevel(self.objects,player_pos,name="level_1_kshan")
         gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text) #too soon, create gap between music and level
