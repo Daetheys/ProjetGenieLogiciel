@@ -13,6 +13,6 @@ script:
   - sudo apt-get install -y ffmpeg
   - sudo apt-get install pulseaudio
   - dbus-launch pulseaudio --start
-  - for file_py in */*.py; do pylint -E  --disable=E0401,E0602,E1101 $file_py; done
+  - for file_py in */*.py; do pylint -E  --disable=E0401,E0602,E1101,E1121 $file_py; done
   - xvfb-run -a --server-args="-screen 0 1600x900x24" pytest
 
