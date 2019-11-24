@@ -25,11 +25,12 @@ class Level_1_kshan(Level):
         
     def fun_dialogue(self,g,arg):
         if arg == "start":
-            g.dict_dial["dial_kshan1"].show(g)
+            quit_all = g.dict_dial["dial_kshan1"].show(g)
         elif arg == "bad_end":
-            g.dict_dial["dial_kshan1f"].show(g)
+            quit_all = g.dict_dial["dial_kshan1f"].show(g)
         elif arg == "good_end":
-            g.dict_dial["dial_kshan1f"].show(g)
+            quit_all = g.dict_dial["dial_kshan1f"].show(g)
+        return quit_all
             
     def reward(self,g):
         g.player.set_inventory({g.dict_item["key_0"]:1})
@@ -40,7 +41,10 @@ class Level_1_kshan(Level):
         
     def launch(self,g):
         self.set_accessed()
-        self.fun_dialogue(g,"start")
+        quit_all = self.fun_dialogue(g,"start")
+        
+        if quit_all:
+            return False
         
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
