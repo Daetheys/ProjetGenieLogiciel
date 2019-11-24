@@ -26,6 +26,11 @@ class Character():
 	def get_inventory(self):
 		return self.inv
 		
+	def is_in_inventory(self,item):
+		if self.inv[item] > 0:
+			return True
+		return False
+		
 class Player(Character):
 	
 	def __init__(self,name,pic,ctalk=(0,0,0),inv=None):

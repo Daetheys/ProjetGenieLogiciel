@@ -33,6 +33,7 @@ class Level_2_2_kshan(Level):
             quit_all = g.dict_dial["dial_kshan2_2bf"].show(g)
         elif arg == "good_end":
             quit_all = g.dict_dial["dial_kshan2_2gf"].show(g)
+        return quit_all
         
     def check_victory(self,g,arg):
         return arg
@@ -50,6 +51,7 @@ class Level_2_2_kshan(Level):
         objects = self.init_objects(g)
 
         gl = GameLevel(objects,player_pos,name="level_2_2_kshan")
+        gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text)
         
