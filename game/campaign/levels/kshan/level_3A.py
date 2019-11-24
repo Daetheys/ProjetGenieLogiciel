@@ -28,13 +28,15 @@ class Level_3A_kshan(Level):
     def fun_dialogue(self,g,arg):
         if arg == "start":
             if self.get_finished():
-                quit_all = g.dict_dial["dial_kshan3A"].show(g)
+                quit_all = g.dict_dial["dial_kshan3Adv"].show(g)
             else:
                 quit_all = g.dict_dial["dial_kshan3A"].show(g)
-        elif arg == "bad_end":
-            quit_all = g.dict_dial["dial_kshan3Af"].show(g)
+        elif arg == "bad_end_1":
+            quit_all = g.dict_dial["dial_kshan3Abf1"].show(g)
+        elif arg == "bad_end_2":
+            quit_all = g.dict_dial["dial_kshan3Abf2"].show(g)
         elif arg == "good_end":
-            quit_all = g.dict_dial["dial_kshan3Af"].show(g)
+            quit_all = g.dict_dial["dial_kshan3Agf"].show(g)
         return quit_all
         
     def check_victory(self,g,arg):
@@ -60,7 +62,8 @@ class Level_3A_kshan(Level):
         
         #g.launch_music(text)
         
-        success = self.check_victory(g, g.launch_level(gl,None))
+        alive = g.launch_level(gl,None)
+        success = self.check_victory(g, alive)
         pygame.event.get()#to capture inputs made during the wait
         
         
@@ -69,7 +72,10 @@ class Level_3A_kshan(Level):
             self.set_finished()
             self.reward(g)
         else:
-            self.fun_dialogue(g,"bad_end")
+            if alive:
+                self.fun_dialogue(g,"bad_end_2")
+            else:
+                self.fun_dialogue(g,"bad_end_1")
         
         return success
     

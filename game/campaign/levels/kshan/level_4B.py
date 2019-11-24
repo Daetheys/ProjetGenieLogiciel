@@ -26,13 +26,15 @@ class Level_4B_kshan(Level):
     def fun_dialogue(self,g,arg):
         if arg == "start":
             if self.get_finished():
-                quit_all = g.dict_dial["dial_kshan4B"].show(g)
+                quit_all = g.dict_dial["dial_kshan4Bdv"].show(g)
             else:
                 quit_all = g.dict_dial["dial_kshan4B"].show(g)
         elif arg == "bad_end":
-            quit_all = g.dict_dial["dial_kshan4Bf"].show(g)
+            quit_all = g.dict_dial["dial_kshan4Bbf"].show(g)
         elif arg == "good_end":
-            quit_all = g.dict_dial["dial_kshan4Bf"].show(g)
+            quit_all = g.dict_dial["dial_kshan4Bgf"].show(g)
+            if g.player.is_in_inventory(g.dict_item["key_A"]):
+                quit_all = g.dict_dial["dial_kshan4f"].show(g)
         return quit_all
             
     def reward(self,g):

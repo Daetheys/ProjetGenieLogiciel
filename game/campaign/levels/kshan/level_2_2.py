@@ -25,7 +25,7 @@ class Level_2_2_kshan(Level):
         
     def fun_dialogue(self,g,arg):
         if arg == "start":
-            if self.get_finished():
+            if self.get_accessed():
                 quit_all = g.dict_dial["dial_kshan2_2dv"].show(g)
             else:
                 quit_all = g.dict_dial["dial_kshan2_2"].show(g)
