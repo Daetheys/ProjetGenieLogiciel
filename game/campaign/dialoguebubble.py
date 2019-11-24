@@ -2,6 +2,7 @@ import buttonMenu
 import pygame
 from pygame.font import Font
 
+'''An object that can display text with a character'''
 
 class Dialogue_Bubble:
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+'''A level sequence is a set of level that you need to pass in one go'''
+
 from map_point import Map_Point
 import pygame   #for ugly code
 

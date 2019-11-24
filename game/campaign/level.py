@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+
+'''A Level is the object that contains an instance of the canabalt game'''
+
 class Level:    #will be an abstract class -> it is now
 
     def __init__(self,g):

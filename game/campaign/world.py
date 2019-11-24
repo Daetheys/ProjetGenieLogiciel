@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+'''A world is the biggest object of the campaign that contains all the map'''
+
 
 class World:
     

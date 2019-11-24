@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+'''A Map_point is an abstract class for a sequence of level'''
+
 
 class Map_Point:    #abstract class
 
