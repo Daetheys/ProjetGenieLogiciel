@@ -39,7 +39,7 @@ class Level_2_1_kshan(Level):
         self.fun_dialogue(g,"start")
         
         def player_pos(t):
-            return t*2000 #*8 to be faster (but it doesn't match the music anymore !
+            return t*100 #*8 to be faster (but it doesn't match the music anymore !
             
         print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
             
@@ -63,31 +63,8 @@ class Level_2_1_kshan(Level):
         return success
     
     def init_objects(self,g):
-        plat_1 = SolidPlatform(Hitbox(Rect(-10,12,100,24)))
-        plat_1.set_sps(None)#voir une hitbox
+        plat = []
+        for i in range(10):
+            plat.append(SolidPlatform(Hitbox(Rect(i*110-10,-10,(i+1)*100,24))))
         
-        plat_2 = SolidPlatform(Hitbox(Rect(120,16,300,28)))
-        plat_2.set_sps(None)#voir une hitbox
-        
-        plat_3 = SolidPlatform(Hitbox(Rect(310,2,450,14)))
-        plat_3.set_sps(None)#voir une hitbox
-        
-        plat_4 = SolidPlatform(Hitbox(Rect(500,4,680,16)))
-        plat_4.set_sps(None)#voir une hitbox
-        
-        plat_5 = SolidPlatform(Hitbox(Rect(700,14,780,26)))
-        plat_5.set_sps(None)#voir une hitbox
-        
-        plat_6 = SolidPlatform(Hitbox(Rect(790,14,860,26)))
-        plat_6.set_sps(None)#voir une hitbox
-        
-        plat_7 = SolidPlatform(Hitbox(Rect(890,12,980,24)))
-        plat_7.set_sps(None)#voir une hitbox
-        
-        plat_8 = SolidPlatform(Hitbox(Rect(1010,20,1120,32)))
-        plat_8.set_sps(None)#voir une hitbox
-        
-        plat_9 = SolidPlatform(Hitbox(Rect(1140,18,1400,30)))
-        plat_9.set_sps(None)#voir une hitbox
-        
-        return [plat_1,plat_2,plat_3,plat_4,plat_5,plat_6,plat_7,plat_8,plat_9]
+        return plat
