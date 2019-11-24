@@ -134,7 +134,6 @@ class GameLevel:
                 now = get_current_time()
                 #Compute dt from previous iteration
                 dt = now-tn
-                print(1/dt)
                 #Updates time from the begining
                 self.time = tn-t0
                 #print(now,dt,self.time)
