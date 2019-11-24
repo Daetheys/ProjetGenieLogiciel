@@ -35,10 +35,18 @@ class Player(ControlableNode):
         self.can_jump = True
         self.is_jumping = False
 
-        self.is_in_air = False
+        self.is_in_air = True
 
         self.jump_invincibility_max = 2
         self.jump_invincibility_countdown = 0
+
+        self.inventory = None
+
+    def set_inventory(self,inv):
+        self.inventory = inv
+
+    def get_inventory(self):
+        return self.inventory
 
     def start_jump(self):
         """ Key has just been pressed """
@@ -106,7 +114,7 @@ class PlayerController(KeyboardController):
     def execute(self,event,pressed):
         """ Execute controller code """
         jump_key = pygame.K_z
-        if pressed[jump_key]:
+        if (event is not None and event.type == pygame.KEYDOWN and event.key == jump_key) or pressed[jump_key]:
             self.target.start_jump()
         if event is not None and event.type == pygame.KEYUP:
             if event.key == jump_key:

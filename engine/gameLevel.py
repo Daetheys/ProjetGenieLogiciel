@@ -55,6 +55,7 @@ class GameLevel:
         for (name,index) in limgpar:
             p = Parallax(name,index) #Create parallax with given speed
             lpar.append(p)
+            
         self.background = Background(lpar)
 
         #Creation of the player
@@ -71,6 +72,9 @@ class GameLevel:
 
     def get_objects(self):
         return self.objects
+
+    def load_inventory(self,inv):
+        self.player.set_inventory(inv)
 
     def compute_end_platform_location(self):
         self.end_platform_location = []
@@ -217,7 +221,6 @@ class GameLevel:
 
     def physics_step(self,dt):
         """ Compute collisions """
-        
         obj_opti = self.get_objects_opti()
         if DEBUG:
             print("---")
@@ -247,7 +250,7 @@ class GameLevel:
                             print("o2",o2.get_hit_box(),o2.get_rigid_hit_box())
                         o.collide(o2,coll,coll2)
                         o2.collide(o,coll2,coll)
-                        while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
+                        while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()) and o.get_speed() != Vector(0,0):
                             if DEBUG:
                                 print("rigid")
                             o.apply_solid_reaction(o2)
