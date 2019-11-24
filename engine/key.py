@@ -1,14 +1,16 @@
 from controlableNode import ControlableNode
+from spriteScheduler import *
+from hitbox import Hitbox
+from rect import Rect
 from player import Player
+from items import KeyItem
 
 class Key(ControlableNode):
     def __init__(self,hb,name='empty'):
         ControlableNode.__init__(self)
         self.set_hit_box(hb)
         self.set_collide(True)
-        self.set_sps(SpriteScheduler("key"))
-        self.get_sps().load_automaton()
-        self.get_sps().load_sprites()
+        self.create_sps(SpriteScheduler("key"))
         self.center_hit_box()
 
         self.taken = False
@@ -31,6 +33,6 @@ class Key(ControlableNode):
             if not(self.taken):
                 o2.set_inventory({KeyItem("key_1"):1})
                 self.taken = True
-                self.set_sps(SpriteScheduler('empty'))
+                self.create_sps(SpriteScheduler('empty'))
                 
     
