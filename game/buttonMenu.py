@@ -359,7 +359,7 @@ def reaction_mp(g, mp):     #not used
     mp.launch(g)# si c'est un buttonmenu, ça doit avoir un argument
     
 def reaction_inv(g):
-    msg_inv = inv_to_msg(g.player.inv)
+    msg_inv = inv_to_msg(g.player.get_inventory())
     dial_inv = Dialogue([Dialogue_Bubble(msg_inv,g.dict_char["narrator"],g.dict_img["img_leaderboard"],300,50,True)])
     dial_inv.show(g)
     return True,False

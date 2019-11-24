@@ -32,7 +32,7 @@ class Level_1_kshan(Level):
             g.dict_dial["dial_kshan1f"].show(g)
             
     def reward(self,g):
-        g.player.add_to_inventory({g.dict_item["key_0"]:1})
+        g.player.set_inventory({g.dict_item["key_0"]:1})
         
     def check_victory(self,g,arg):
         return arg
@@ -48,6 +48,7 @@ class Level_1_kshan(Level):
         objects = self.init_objects(g)
 
         gl = GameLevel(objects,player_pos,name="level_1_kshan")
+        gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text) #too soon, create gap between music and level
         
@@ -67,8 +68,8 @@ class Level_1_kshan(Level):
     
     def init_objects(self,g):
         plat = []
-        for i in range(100):
-            plat.append(SolidPlatform(Hitbox(Rect(-10,-10,100,24))))
+        for i in range(10):
+            plat.append(SolidPlatform(Hitbox(Rect(i*110-10,-10,(i+1)*100,24))))
         
         return plat
         

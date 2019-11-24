@@ -2,6 +2,7 @@ import sys
 import os
 import numpy as np
 import pygame
+from collections import defaultdict
 
 path = os.getcwd()
 path += "/engine"
@@ -40,10 +41,14 @@ class Player(ControlableNode):
         self.jump_invincibility_max = 2
         self.jump_invincibility_countdown = 0
 
-        self.inventory = None
+        self.inventory = defaultdict(int)
 
-    def set_inventory(self,inv):
-        self.inventory = inv
+    def set_inventory(self,items):
+        for item in items:
+            if item.type == "csm":
+                self.inventory[item] += items[item]
+            else:
+                self.inventory[item] = items[item]
 
     def get_inventory(self):
         return self.inventory

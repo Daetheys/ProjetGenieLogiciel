@@ -29,7 +29,7 @@ class Key(ControlableNode):
         #side : 0-> haut (aiguilles d'une montre)
         if isinstance(o2,Player):
             if not(self.taken):
-                o2.get_inventory()["clef"] = 1
+                o2.set_inventory({KeyItem("key_1"):1})
                 self.taken = True
                 self.set_sps(SpriteScheduler('empty'))
                 
