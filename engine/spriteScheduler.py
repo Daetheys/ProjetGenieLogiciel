@@ -36,7 +36,7 @@ class SpriteScheduler:
 			if automata.name == self.name:
 				self.ata = automata.copy()
 		if self.ata is None:
-			print("Initialization Failed ! name:"+str(self.name))
+			print("Initialization Failed ! name:"+str(self.name),"\n")
 
 	def step(self,char):
 		""" does one step of execution of the automaton """
