@@ -13,7 +13,6 @@ class Key_1(ControlableNode):
         self.set_hit_box(hb)
         self.set_collide(True)
         self.create_sps("key")
-        print("--",self.get_sps().ata)
         self.center_hit_box()
 
         self.taken = False

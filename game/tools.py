@@ -33,8 +33,6 @@ def T(cw,txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
     cw.blit(text, textpos)
 
 
-import dialoguebubble
-
 def xyinbounds(mx,my,btn):
     """ tests whether (mx,my) is within the bounds of the button btn """
     b1xmin,b1xmax,b1ymin,b1ymax = btn.boundaries()
@@ -53,17 +51,6 @@ import items
 def create_char(dict,dict_img):
     for char in dict:
         dict[char] = character.Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),defaultdict(int))
-    return dict
-
-def create_bubble(list,dict_str,dict_char,dict_img):
-    list_bubble = []
-    for bubble in list:
-        list_bubble.append(dialoguebubble.Dialogue_Bubble(dict_str[bubble[0]],dict_char[bubble[1]],dict_img[bubble[2]],bubble[3],bubble[4],bubble[5]))
-    return list_bubble
-
-def create_dial(dict,dict_str,dict_char,dict_img):
-    for dial in dict:
-        dict[dial] = dialogue.Dialogue(create_bubble(dict[dial],dict_str,dict_char,dict_img))
     return dict
 
 def create_item(dict):

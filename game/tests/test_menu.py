@@ -6,7 +6,7 @@ import signal
 from hypothesis import *
 from hypothesis.strategies import *
 from time import sleep
-from init import *
+
 
 """
 All tests are now deactivated, again. xvfb still fiddles with forks and kills

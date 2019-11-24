@@ -7,6 +7,7 @@ from level_sequence import *
 from level import *
 from map import *
 import tools
+import tools2
 from shutil import copy2
 
 from level_1 import Level_1_kshan
@@ -105,6 +106,7 @@ class Game:
         #Autres constantes
         self.max_number_scores = 10#max number of saved scores
         self.player_name = "PLAYER"#will be in options/savefile soon
+        self.menu_music = "data/musics/Soliloquy.wav"
 
     def load_languages(self,fst=False):
         """ this function loads all avaliable languages in self.dict_str"""
@@ -115,7 +117,7 @@ class Game:
             with open("data/json/fr.json", "r", encoding="utf-8-sig") as read_file:
                 self.dict_str=json.load(read_file)
         if not fst: self.update_dialogues()
-        
+
     def create_items(self):
         self.dict_item = {}
         with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
@@ -132,7 +134,7 @@ class Game:
         self.dict_dial = {}
         with open("data/json/dialogue.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_dial = json.load(read_file)
-            self.dict_dial = tools.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
+            self.dict_dial = tools2.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
 
     def create_world(self):
         """
@@ -176,12 +178,12 @@ class Game:
         Music is currently disabled.
         Please add a pulseaudio sink to xvfb before activating it. (done)
         """
-        #pygame.mixer.pre_init(44100, -16, 2, 2048)
+        pygame.mixer.pre_init(44100, -16, 2, 2048)
         pygame.mixer.init()
         #Music
-        pygame.mixer.music.load("data/musics/Soliloquy.mp3")
-        pygame.mixer.music.fadeout(500)
-        pygame.mixer.music.play()
+        pygame.mixer.music.load(self.menu_music)
+        #pygame.mixer.music.fadeout(500)
+        pygame.mixer.music.play(-1)
 
     def launch_music(self,music):
         """launches the music"""

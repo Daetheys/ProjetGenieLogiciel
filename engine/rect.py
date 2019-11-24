@@ -13,6 +13,8 @@ import pygame
 import numpy as np
 import copy
 
+""" Rect class : geometry of rectangle """
+
 class Rect:
     """ The Y axis is directed to bottom """
     def __init__(self,left=0,top=0,width=0,height=0):
@@ -25,11 +27,13 @@ class Rect:
         self.dimension = Vector(width,height)
 
     def center(self):
+        """ Centers the rectangle on (0,0) """
         pos = self.get_position()
         self.set_position(-self.get_dimension()/2)
         return (self.get_position()+(-pos))
 
     def get_coord(self):
+        """ Return a 4-tuple of (posx,posy,width,height) """
         v = self.get_position()
         d = self.get_dimension()
         return (v.x,v.y,d.x,d.y)
@@ -44,6 +48,7 @@ class Rect:
         return "Rect("+str(l)+","+str(t)+","+str(l+w)+","+str(t+h)+")"
 
     def rescale(self,alpha):
+        """ Rescale """
         self.position *= alpha
         self.dimension *= alpha
 
@@ -54,9 +59,11 @@ class Rect:
         return r2
 
     def translate(self,v):
+        """ Translate with side effect """
         self.set_position(self.get_position()+v)
     
     def init_from_vectors(self,position,dimension):
+        """ Initialise from vector pos and dim """
         self.position = position
         self.dimension = dimension
 
@@ -64,6 +71,7 @@ class Rect:
         return self.get_poly().get_points()
 
     def get_poly(self):
+        """ Returns a polygon of the Rect (cf Polygon) """
         (l,t,w,h) = self.get_coord()
         v1 = Vector(l,t)
         v2 = Vector(l+w,t)
@@ -73,6 +81,7 @@ class Rect:
         return box
 
     def point_in(self,v):
+        """ Returns True if v is in this rectangle """
         (l,t,w,h) = self.get_coord()
         min_x=min(l,l+w)
         max_x=max(l,l+w)
@@ -81,10 +90,12 @@ class Rect:
         return (min_x <= v.x <= max_x) and (min_y <= v.y <= max_y)
 
     def collide_poly(self,poly):
+        """ Returns true if self, collides with poly """
         sfpoly = self.get_poly()
         return sfpoly.collide(poly)
     
     def nearest_wall(self,point):
+        """ Returns the nearest wall of point (index,distance) with index = 0 for top, 1, rigth; 2,bot; 3,left"""
         (l,t,w,h) = self.get_coord()
         dtop = abs(t - point.y)
         dbot = abs(t+h-point.y)
@@ -107,6 +118,7 @@ class Rect:
         self.dimension = dim
 
     def to_tuples(self):
+        """ Returns the rect as a list of tuples """
         li = []
         for p in self.get_points():
             li.append( (p.x,p.y) )
