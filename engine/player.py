@@ -30,7 +30,7 @@ class Player(ControlableNode):
         self.score = 0
         self.alive = True
         
-        self.jump_strength = 10
+        self.jump_strength = 500
         self.can_jump = True
         self.is_jumping = False
 
@@ -41,7 +41,6 @@ class Player(ControlableNode):
         if self.can_jump and (not self.is_jumping) and speed.y >= 0:
             self.set_speed(Vector(speed.x, -self.jump_strength))
             self.can_jump = False
-            print("SET J")
             self.set_state("j") #For the spriteScheduler -> state jump (j)
 
     def stop_jump(self):
@@ -58,11 +57,11 @@ class Player(ControlableNode):
         """ Player collides with o """
         if isinstance(o,SolidPlatform):
             if o2_sides == [0]:
+                #Top side
 
                 #if self.alive:
                 if self.can_jump:
                     self.set_state("r") #For the spriteScheduler -> state run (r)
-                #Top side
                 self.allow_jump()
                 self.is_jumping = False
 

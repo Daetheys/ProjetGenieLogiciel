@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-from collideTransformable import CollideTransformable
+from transformable import Transformable
 from vector import Vector
 
-class Node(CollideTransformable):
+class Node(Transformable):
     """ Node with children """
     def __init__(self):
         super().__init__()
@@ -21,7 +21,7 @@ class Node(CollideTransformable):
         return n
 
     def paste_in(self,n):
-        CollideTransformable.paste_in(self,n)
+        Transformable.paste_in(self,n)
 
     def get_parent(self):
         """ Returns parent of this node """

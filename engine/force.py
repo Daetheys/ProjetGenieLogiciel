@@ -36,4 +36,4 @@ class Jump(Force):
         return self.strength
 
     def get_acc(self,movablenode):
-        return (Vector(0,-self.strength),0)
+        return (Vector(0,-self.strength*movablenode.get_mass()),0)

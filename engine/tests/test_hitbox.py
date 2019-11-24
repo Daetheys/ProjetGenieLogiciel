@@ -20,7 +20,7 @@ from hypothesis import given
 from hypothesis.strategies import integers, lists
 
 def test_hitbox1():
-    T = Transformable()
+    T = CollideTransformable()
     R = Rect(-1,-1,2,2)
     Hb = Hitbox(R)
     Hb.link(T)
@@ -41,8 +41,8 @@ def test_hitbox1():
     assert Hb.get_world_poly() == Polygon([Vector(6,-3),Vector(6,3),Vector(-2,3),Vector(-2,-3)])
 
 def test_hitbox2():
-    T1 = Transformable()
-    T2 = Transformable()
+    T1 = CollideTransformable()
+    T2 = CollideTransformable()
     R1 = Rect(-1,-1,2,2)
     R2 = Rect(-1,-1,2,2)
     Hb1 = Hitbox(R1)
@@ -75,10 +75,10 @@ def test_hitbox2():
 
 def test_hitbox3():
 
-    for a in range(3,10):
+    for a in range(4,10):
         print("---a",a)
-        T1 = Transformable()
-        T2 = Transformable()
+        T1 = CollideTransformable()
+        T2 = CollideTransformable()
         R1 = Rect(-1,-1,2,2)
         R2 = Rect(-1,-1,2,2)
         Hb1 = Hitbox(R1)
@@ -88,6 +88,7 @@ def test_hitbox3():
         T2.rotate(np.pi/a)
         T1.translate(Vector(1,1))
         T2.translate(Vector(3,1))
+        T1.set_speed(Vector(1,0))
         v = Hb1.remove_collide(Hb2)
         T1.translate(v)
         assert not(Hb1.collide(Hb2))
@@ -96,8 +97,8 @@ def test_hitbox3():
 def test_hitbox4():
     for a in range(3,10):
         print("---a",a)
-        T1 = Transformable()
-        T2 = Transformable()
+        T1 = CollideTransformable()
+        T2 = CollideTransformable()
         R1 = Rect(-1,-1,2,2)
         R2 = Rect(-1,-1,2,2)
         Hb1 = Hitbox(R1)
@@ -107,14 +108,15 @@ def test_hitbox4():
         T2.rotate(np.pi/a)
         T1.translate(Vector(1,1))
         T2.translate(Vector(3,1))
+        T2.set_speed(Vector(-1,0))
         v = Hb2.remove_collide(Hb1)
         T2.translate(v)
         assert not(Hb1.collide(Hb2))
 
 def test_hitbox5():
 
-        T1 = Transformable()
-        T2 = Transformable()
+        T1 = CollideTransformable()
+        T2 = CollideTransformable()
         R1 = Rect(-1,-1,2,2)
         R2 = Rect(-1,-1,2,2)
         Hb1 = Hitbox(R1)
@@ -123,6 +125,7 @@ def test_hitbox5():
         Hb2.link(T2)
         T1.translate(Vector(1,-0.5))
         T2.translate(Vector(2.5,1))
+        T1.set_speed(Vector(1,0))
         v = Hb1.remove_collide(Hb2)
         T1.translate(v)
         assert not(Hb1.collide(Hb2))
@@ -181,3 +184,4 @@ def test_hitbox6():
     T2.set_hit_box(Hb2)
     T2.rot(45)
     assert Hb1.collide_sides(Hb2) == ([1,2],[3])
+

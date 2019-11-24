@@ -21,10 +21,11 @@ class Parallax():
         
     def show(self):
         """ Blit the parallax where it should be (handles the scrolling part"""
+        width = self.image.get_width()
         self.fen.blit(self.image,(-self.x,0))
-        self.fen.blit(self.image,(self.image.get_width()-self.x,0))
+        self.fen.blit(self.image,(width-self.x,0))
         #self.rect.move_ip(-self.speed,0)
         self.x += self.speed
         if self.x >= self.image.get_width():
             
-            self.x = -self.speed*self.image.get_width() #If they are fast they won't be aff too often
+            self.x = 0#self.image.get_width() #If they are fast they won't be aff too often

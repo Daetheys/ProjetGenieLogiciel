@@ -8,7 +8,7 @@ import pygame
 import time
 
 DEBUG = False
-MAXSPEED = 6 #Low MAXSPEED
+MAXMOVE = 12 #Max movement (pixels) per iteration
 
 class MovableNode(SpriteNode):
     """ A node that can move with more powerful functions"""
@@ -53,8 +53,6 @@ class MovableNode(SpriteNode):
     def get_ang_acc(self):
         return self.__ang_acc
     def set_speed(self,speed):
-        if speed.len() > MAXSPEED:
-            speed = speed.normalise()*MAXSPEED
         self.__speed = speed
     def get_speed(self):
         return self.__speed
@@ -82,8 +80,12 @@ class MovableNode(SpriteNode):
             pass
     def list_forces(self):
         return list(self.__force_effect.keys())
-    def move(self):
-        self.translate(self.get_speed())
+    def move(self,dt):
+        v = self.get_speed()*dt
+        if v.len() > MAXMOVE:
+            print("CUT")
+            v = self.get_speed().normalise()*MAXMOVE
+        self.translate(v)
         self.rotate(self.get_ang_speed())
     def reverse_move(self):
         self.translate(-self.get_speed())
@@ -117,7 +119,7 @@ class MovableNode(SpriteNode):
         self.set_speed(self.get_speed()+speed)
         #print("speed",speed,self.get_speed())
         
-    """
+    """ #OLD PHYSICS (1.0)
     def get_direction_rigid_collide(self,p):
         # Returns either the point or the segment that first created a collision between self (moving) and p (not moving)
         t = time.clock()

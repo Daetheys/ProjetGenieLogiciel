@@ -182,6 +182,45 @@ def test_polygon_max_min():
     assert p.get_min_x() == 0
     assert p.get_min_y() == 3
 
+def test_segment_inter_point():
+    s1 = Segment(Vector(1,1),Vector(3,1))
+    s2 = Segment(Vector(2,0),Vector(2,2))
+    assert s1.intersect_point(s2) == Vector(2,1)
+    s3 = Segment(Vector(0,1),Vector(4,1))
+    s4 = Segment(Vector(1,1),Vector(5,1))
+    assert s3.intersect_point(s4) == Segment(Vector(1,1),Vector(4,1))
+
+def test_segment_get_inter_line():
+    s1 = Segment(Vector(0,1),Vector(1,0))
+    l = Line(1,0)
+    assert s1.get_inter_line(l) == Vector(0.5,0.5)
+    s2 = Segment(Vector(0,0),Vector(2,0))
+    l = Line(0,0)
+    assert s2.get_inter_line(l) == s2
+
+def test_poly_get_intersection():
+    v1 = Vector(0,0)
+    v2 = Vector(1,0)
+    v3 = Vector(1,1)
+    v4 = Vector(0,1)
+    p = Polygon([v1,v2,v3,v4])
+    p2 = p.translate2(Vector(0.5,0.5))
+    assert p.get_intersection(p2) == Polygon([Vector(0.5,0.5),Vector(1,0.5),Vector(1,1),Vector(0.5,1)])
+
+    v1 = Vector(0,0)
+    v2 = Vector(1,0)
+    v3 = Vector(1,1)
+    v4 = Vector(0,1)
+    p = Polygon([v1,v2,v3,v4])
+    
+    v12 = Vector(0,0)
+    v22 = Vector(2,0)
+    v32 = Vector(2,2)
+    v42 = Vector(0,2)
+    p2 = Polygon([v12,v22,v32,v42])
+    assert p.get_intersection(p2) == Polygon([Vector(0,0),Vector(1,0),Vector(1,1),Vector(0,1)])
+
+
 def test_to_rect():
     v1 = Vector(-1,-1)
     v2 = Vector(1,-1)

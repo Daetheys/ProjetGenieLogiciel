@@ -1,6 +1,6 @@
-from movableNode import MovableNode
+from collideTransformable import CollideTransformable
 
-class ControlableNode(MovableNode):
+class ControlableNode(CollideTransformable):
     """ Node with a controller """
     def __init__(self):
         super().__init__()
@@ -13,7 +13,7 @@ class ControlableNode(MovableNode):
         return cn
 
     def paste_in(self,cn):
-        MovableNode.paste_in(self,cn)
+        CollideTransformable.paste_in(self,cn)
         cn.set_controller(self.get_controller())
         
     def set_controller(self,controller):

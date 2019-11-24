@@ -5,8 +5,9 @@ from transformable import Transformable
 from hitbox import Hitbox
 from rect import Rect
 from polygone import *
+from movableNode import MovableNode
 
-class CollideTransformable(Transformable):
+class CollideTransformable(MovableNode):
     def __init__(self):
         super().__init__()
         #-----------------------------
@@ -34,7 +35,7 @@ class CollideTransformable(Transformable):
 
     def paste_in(self,t):
         """ Copies this object in t (side effect)"""
-        Transformable.paste_in(self,t)
+        MovableNode.paste_in(self,t)
         t.set_collide(self.get_collide())
         t.set_rigid_body(self.get_rigid_body())
         Hb = self.get_hit_box().copy()

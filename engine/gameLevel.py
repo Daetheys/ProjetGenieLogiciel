@@ -23,6 +23,7 @@ class GameLevel:
     """ Level of the game """
     def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name=''):
         """ The player spawn in (0,0) """
+        assert objects != [] #Empty GameLevel -> Check your arguments it's not Nicolas's fault if you give an empty gameLevel
         self.camera = camera.Camera()
         self.camera.set_position(Vector(-12,-12))
         self.camera.set_dimension(Vector(25,25))
@@ -53,11 +54,11 @@ class GameLevel:
 
         #Creation of the player
         self.player = Player()
-        self.player.set_position(0,-5) #Init pos of the player
+        self.player.set_position(0,-16) #Init pos of the player
         #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
         #Creation of the gravity
-        self.gravity = Gravity(35)
+        self.gravity = Gravity(60*35)
         self.player.add_force(self.gravity)
 
     def get_camera(self):
@@ -84,12 +85,6 @@ class GameLevel:
             maxposx = o.get_hit_box().get_world_poly().get_max_x()
             minindexx = int( (minposx-minx)/step )
             maxindexx = int( (maxposx-minx)/step ) #Arrondi au sup
-            if DEBUG:
-                print("o",o)
-                print("minposx",minposx)
-                print("maxposx",maxposx)
-                print("minindexx",minindexx)
-                print("maxindexx",maxindexx)
             for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
                 sorted_objects[i].append(o)
         self.sorted_objects = sorted_objects
@@ -206,11 +201,6 @@ class GameLevel:
         index = int((x-minx)/self.opti_step)
         set_opti = set()
         nb = int(self.camera.get_dimension().x/self.opti_step+0.5)+1
-        if DEBUG:
-            print("x",x)
-            print("minx",minx)
-            print("index",index)
-            print("nb",nb)
         for i in range(nb):
             if index+i < len(self.sorted_objects):
                 set_opti |= set(self.sorted_objects[index+i])
@@ -228,7 +218,7 @@ class GameLevel:
         for o in obj_opti:
             #print(o)
             o.compute_speed(dt)
-            o.move()
+            o.move(dt)
             if o == self.player:
                 #Reposition the player
                 pos = o.get_position()
@@ -236,7 +226,7 @@ class GameLevel:
 
                 #Cut X speed (for MAXSPEED)
                 speed = self.player.get_speed()
-                self.player.set_speed(Vector(0,speed.y))
+                self.player.set_speed(Vector(1,speed.y)) #Player need to have a str pos speed
             for o2 in obj_opti:
                 #print("collide")
                 coll,coll2 = o.get_hit_box().collide_sides(o2.get_hit_box())
@@ -247,7 +237,7 @@ class GameLevel:
                         print("o2",o2.get_hit_box(),o2.get_rigid_hit_box())
                     o.collide(o2,coll,coll2)
                     o2.collide(o,coll2,coll)
-                    if o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
+                    while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()):
                         if DEBUG:
                             print("rigid")
                         o.apply_solid_reaction(o2)

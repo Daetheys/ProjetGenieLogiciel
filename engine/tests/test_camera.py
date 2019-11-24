@@ -9,6 +9,7 @@ from polygone import *
 from vector import Vector
 from camera import Camera
 from spriteNode import SpriteNode
+from collideTransformable import CollideTransformable
 from rect import Rect
 from hitbox import Hitbox
 from hypothesis import given
@@ -68,7 +69,7 @@ def test_pos_in_camera():
     pygame.init()
     fen = pygame.display.set_mode((500, 500),0)
     
-    S = SpriteNode()
+    S = CollideTransformable()
     R = Rect(-1,-1,2,2)
     Hb = Hitbox(R)
     S.set_hit_box(Hb)

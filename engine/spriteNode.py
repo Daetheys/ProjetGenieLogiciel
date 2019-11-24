@@ -69,7 +69,6 @@ class SpriteNode(Node):
         scale,trans = distorsion
         if  self.__sps is not None:
             if self.__sps.loaded:
-                print("state",self.__sps.ata.cs,self.__state)
                 if self.animation_step >= self.animation_speed:
                     self.__sps.step(self.__state)
                     self.animation_step = 0
