@@ -32,13 +32,13 @@ class Level_Sequence(Map_Point):
         self._finished = True
         for child in self.__childs:
             child.set_accessible()
-            
+
     def get_accessible(self):
         return self._accessible
-    
+
     def get_accessed(self):
         return self._accessed
-        
+
     def get_finished(self):
         return self._finished
 
@@ -49,6 +49,7 @@ class Level_Sequence(Map_Point):
             reussite = reussite and level.launch(g)
         if reussite:
             self.set_finished(g)
-        
+
+        g.launch_music(g.menu_music)#relance la musique du menu
+
         return True,False
-        

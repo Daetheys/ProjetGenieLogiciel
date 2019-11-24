@@ -64,9 +64,10 @@ def reaction_play(text,name):
     """
     def f(g):
         gl = generate_level(text,name)
-        
+
         g.launch_level(gl,text)
         """ ceci lance le level correspondant """
+        g.launch_music(g.menu_music)#relance la musique du menu!
         return True,False
     return f
 
@@ -360,7 +361,7 @@ def reaction_b33(g):
 
 def reaction_mp(g, mp):     #not used
     mp.launch(g)# si c'est un buttonmenu, ça doit avoir un argument
-    
+
 def reaction_inv(g):
     msg_inv = inv_to_msg(g.player.get_inventory())
     dial_inv = Dialogue([Dialogue_Bubble(msg_inv,g.dict_char["narrator"],g.dict_img["img_leaderboard"],300,50,True)])
