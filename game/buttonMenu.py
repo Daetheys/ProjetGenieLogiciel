@@ -14,6 +14,7 @@ sys.path.append(path)
 from level_generator import generate_level
 from tools import inv_to_msg
 from dialogue import Dialogue
+from dialoguebubble import Dialogue_Bubble
 
 #The global variable
 BUTTON_LIST = []#to keep an eye on all buttons currently displayed
