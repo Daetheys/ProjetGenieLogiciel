@@ -66,10 +66,6 @@ class MovableNode(SpriteNode):
         self.__ang_speed = speed
     def get_ang_speed(self):
         return self.__ang_speed
-    def set_ang_inertia(self,val):
-        self.__ang_inertia = val
-    def get_ang_inertia(self):
-        return self.__ang_inertia
     
     def add_force(self,force):
         """ Add a force to this node (cf force) """
