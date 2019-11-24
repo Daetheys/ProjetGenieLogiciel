@@ -68,6 +68,7 @@ def generate_level(filename,name_of_level=''):
 
 		if(i > last_beat):
 			tempo_index = tempo_index + 1
+	if(i % 2 == 1): jump_points.append(jump_points[-1]+get_speed(tempo)*60/tempo)
 
 	y = 0#initially the height is at 500 #It's at 0 now ^^
 	jump_points[0] = -1000 # Beginning platform
