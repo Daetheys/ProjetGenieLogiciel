@@ -2,7 +2,7 @@ from buttonMenu import *
 from game import *
 import pygame
 from pygame.locals import *
-from tools import score_to_msg
+from tools import score_to_msg,insert_score
 from dialogue import Dialogue
 from dialoguebubble import Dialogue_Bubble
 from vector import Vector
