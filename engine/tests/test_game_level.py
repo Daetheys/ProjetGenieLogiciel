@@ -113,3 +113,15 @@ def test_physics_high_fall():
         timeout -= 1
     assert timeout > 0
     assert gl.player.get_position().y <= 0
+
+""" OUTDATED
+def test_win_lose_box():
+    for (x,y,issue) in [(40,0,True),(2,50,False)]:
+        plat = SolidPlatform(Hitbox(Rect(0,0,2,2)))
+        plat2 = plat.translate2(Vector(3,3))
+        def pos(t):
+            return 0
+        gl = GameLevel([plat,plat2],pos)
+        gl.player.set_position(x,y)
+        assert gl.play(30)[0]== issue
+"""
