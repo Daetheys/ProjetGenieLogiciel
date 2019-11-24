@@ -29,7 +29,7 @@ class Player(ControlableNode):
         self.controller = PlayerController(self) #Controller for the player (see below)
         self.score = 0 #Score of the player
         self.alive = True #He is alive ... for now
-        
+
         self.jump_strength = 500 #Strength of the jump
         self.can_jump = True #Can jump
         self.is_jumping = False #Is actually jumping
@@ -41,7 +41,7 @@ class Player(ControlableNode):
     def load_inventory(self,inv):
         """ Load the inventory of campaign mod """
         self.inventory = inv
-        
+
     def set_inventory(self,items):
         """ Add in inventory """
         for item in items:
@@ -81,9 +81,9 @@ class Player(ControlableNode):
                 self.allow_jump()
                 self.is_jumping = False
                 self.is_in_air = False
-                
 
-                
+
+
             else:
                 if self.is_in_air:
                     #The player dies
@@ -102,7 +102,7 @@ class Player(ControlableNode):
         #
         if self.alive:
             self.set_state("j") #For the spriteScheduler -> state jump (j)
-            
+
     def add_score(self,val):
         self.score += val
 
@@ -117,7 +117,7 @@ class PlayerController(KeyboardController):
 
     def execute(self,event,pressed):
         """ Execute controller code """
-        jump_key = pygame.K_z
+        jump_key = pygame.K_SPACE
         if (event is not None and event.type == pygame.KEYDOWN and event.key == jump_key) or pressed[jump_key]:
             self.target.start_jump()
         if event is not None and event.type == pygame.KEYUP:

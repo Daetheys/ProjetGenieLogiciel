@@ -220,8 +220,11 @@ class Game:
 
     def load_savefile(self):
         """ loads all the saved data """
-        with open("data/json/scores.json", "r", encoding="utf-8-sig") as read_file:
-            self.dict_score = json.load(read_file)
+        try:
+            with open("data/json/scores.json", "r", encoding="utf-8-sig") as read_file:
+                self.dict_score = json.load(read_file)
+        except FileNotFoundError:
+            self.dict_score = {"level_1_kshan": [["SCHWOON", 1000000000, False], ["ALESSIO", 42000, False]]}
 
             #for sc in self.score:
             #    self.score[sc] = self.score[sc]
