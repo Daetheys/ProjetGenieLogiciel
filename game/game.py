@@ -7,6 +7,7 @@ from level_sequence import *
 from level import *
 from map import *
 import tools
+import tools2
 from shutil import copy2
 
 from level_1 import Level_1_kshan
@@ -132,7 +133,7 @@ class Game:
         self.dict_dial = {}
         with open("data/json/dialogue.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_dial = json.load(read_file)
-            self.dict_dial = tools.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
+            self.dict_dial = tools2.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
 
     def create_world(self):
         """
