@@ -137,8 +137,11 @@ def reaction_b2(g):
     files.sort()
     Lf = [b2help]
     for f in files:
+        if f.endswith(".wav"):#Remarque : aucune entrée de dictstr ne doit finir par .mp3 !
+            b = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*len(Lf),g.b1ymax+g.yoffset*len(Lf),g.dict_img["img_button"],"b pour "+f[:-4],g.dict_img["img_buttonH"],text=f[:-4]+" (wav)",react=reaction_play("data/your music/"+f,f[:-4]))
+            Lf.append(b)
         if f.endswith(".mp3"):#Remarque : aucune entrée de dictstr ne doit finir par .mp3 !
-            b = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*len(Lf),g.b1ymax+g.yoffset*len(Lf),g.dict_img["img_button"],"b pour "+f[:-4],g.dict_img["img_buttonH"],text=f[:-4],react=reaction_play("data/your music/"+f,f[:-4]))
+            b = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*len(Lf),g.b1ymax+g.yoffset*len(Lf),g.dict_img["img_button"],"b pour "+f[:-4],g.dict_img["img_buttonH"],text=f[:-4]+" (mp3)",react=reaction_play("data/your music/"+f,f[:-4]))
             Lf.append(b)
 
     #b21.activation(False)#désactivé par défaut -> en vrai sera activé

@@ -182,6 +182,7 @@ class Launcher(Game):
                 return False#on a perdu
         """
         if music is not None:
+            print("play",music)
             pygame.mixer.music.load(music)
             #pygame.mixer.music.fadeout(500)
             pygame.mixer.music.play()

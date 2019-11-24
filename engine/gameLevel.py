@@ -19,23 +19,24 @@ DEBUG = False
 def get_current_time():
     return datetime.timestamp(datetime.now())
 
+""" This Class represents a Level of the game : it takes a list of objects (solidPlatform usually) and a position for the player that depends on time """
+
+
 class GameLevel:
     """ Level of the game """
     def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name=''):
         """ The player spawn in (0,0) """
-        assert objects != [] #Empty GameLevel -> Check your arguments it's not Nicolas's fault if you give an empty gameLevel
-        self.camera = camera.Camera()
+        assert objects != [] #Empty GameLevel
+        self.camera = camera.Camera() #Camera
         self.camera.set_position(Vector(-12,-12))
         self.camera.set_dimension(Vector(25,25))
         self.objects = objects
         self.player_pos = player_pos
         self.compute_size_level()
         self.name = name
-
+        
         self.begin_time = 0
-        self.time = 0
-
-        self.score = 42 #To be removed after merge branch
+        self.time = 0 #Time Referential of the level
 
         #Death animation
         self.lost = False
@@ -77,6 +78,7 @@ class GameLevel:
         self.player.load_inventory(inv)
 
     def compute_end_platform_location(self):
+        """ Compute the list of platform location """
         self.end_platform_location = []
         for o in self.get_objects():
             if isinstance(o,SolidPlatform):
@@ -127,9 +129,6 @@ class GameLevel:
 
     def play(self,fps):
         """ Launches the gameLevel , returns +score if win, -score if lose """
-        #self.begin_time = get_current_time()
-        #self.time = self.begin_time
-        #r = 0 #If an iteration is too long, this time will be put here to be added to next iteration
         t0 = get_current_time()
         tn = t0
         try:
@@ -140,29 +139,16 @@ class GameLevel:
                 dt = now-tn
                 #Updates time from the begining
                 self.time = tn-t0
-                #print(now,dt,self.time)
                 #Launch the loop
                 self.main_loop(dt)
                 #Updates tn for the next iteration
                 tn = now
-                #t2 = time.clock()-t
-                #time_wait = 1/fps-t2
-                #if time_wait < 0:
-                #    r = time_wait #We are late !
-                #else:
-                #    time.sleep(time_wait) #Everything is ok
-                #    r = 0
-                #pygame.time.Clock().tick(1/fps-t2)
-                #print(1/(time.clock()-t),dt,self.time)
                 
         except EndGame as e:
             #print("--",time.clock()-t0,self.time)
             return (e.issue, e.score)
 
     def main_loop(self,dt):
-        #new_time = get_current_time()
-        #dt = new_time - self.time
-        #self.time = new_time - self.begin_time
         """ Main loop of the game (controllers, physics, ...) """
         if self.lost:
             if self.countdown > 0:
@@ -173,7 +159,7 @@ class GameLevel:
         self.physics_step(dt)
         #Camera set position (3/4)
         self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
-        #Aff
+        #Show all sprites
         self.aff()
         #Score
         self.compute_score()
@@ -181,6 +167,7 @@ class GameLevel:
         self.compute_win_lose()
 
     def compute_win_lose(self):
+        """ Compute win / lose conditions """
         (minx,maxx,miny,maxy) = self.get_size_level()
         if self.player.get_position().y > maxy or not(self.player.alive): #C'est inversé :)
             self.lose()
@@ -188,11 +175,13 @@ class GameLevel:
             self.win()
 
     def compute_score(self):
+        """ Compute score """
         while len(self.end_platform_location) > 0 and self.player.get_position().x >= self.end_platform_location[0]:
             del self.end_platform_location[0]
             self.player.add_score(1000)
 
     def compute_controller(self):
+        """ Compute controllers """
         pressed = pygame.key.get_pressed()
         #Controller loop
         for event in pygame.event.get() + [None]:
@@ -202,9 +191,11 @@ class GameLevel:
         #Physics
 
     def win(self):
+        """ Win the game """
         raise EndGame(True,self.player.score)
 
     def lose(self):
+        """ Lose the game """
         self.lost = True
 
     def get_objects_opti(self):

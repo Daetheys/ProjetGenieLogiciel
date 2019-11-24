@@ -39,11 +39,13 @@ class Player(ControlableNode):
         self.inventory = defaultdict(int) #Ref to inventory to give items to Campaign mod
 
     def load_inventory(self,inv):
+        """ Load the inventory of campaign mod """
         self.inventory = inv
         
     def set_inventory(self,items):
+        """ Add in inventory """
         for item in items:
-            if item.type == "csm":
+            if item.type == "csm": #For consommable (may have several)
                 self.inventory[item] += items[item]
             else:
                 self.inventory[item] = items[item]
