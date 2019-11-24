@@ -203,7 +203,7 @@ class GameLevel:
         #Physics
 
     def win(self):
-        raise EndGame(True,self.score)
+        raise EndGame(True,self.player.score)
 
     def lose(self):
         self.lost = True
