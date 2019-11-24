@@ -114,7 +114,7 @@ class PlayerController(KeyboardController):
     def execute(self,event,pressed):
         """ Execute controller code """
         jump_key = pygame.K_z
-        if pressed[jump_key]:
+        if (event is not None and event.type == pygame.KEYDOWN and event.key == jump_key) or pressed[jump_key]:
             self.target.start_jump()
         if event is not None and event.type == pygame.KEYUP:
             if event.key == jump_key:
