@@ -183,7 +183,7 @@ class Launcher(Game):
         if music is not None:
             pygame.mixer.music.load(music)
             #pygame.mixer.music.fadeout(500)
-            pygame.mixer.music.play(-1)
+            pygame.mixer.music.play()
         success, score = gl.play(self.options["FPS"])
 
         if not success:#reduce score of defeats
