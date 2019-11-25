@@ -101,18 +101,15 @@ from pygame import Surface
 import pygame
 from random import randint as randomrandint
 
-def bgg(l,surf,MAX_X=1800,MAX_Y = 1800,plat_img=None):
+def bgg(l,surf,MAX_X=1800,MAX_Y = 1800,plat_img=None,plat_small=None,plat_big=None):
 	""" background generator function
 	takes a surface, and blits onto a copied surface some platforms."""
 	height = 40
 	width = 200
-	gap = width + randomrandint(10,width//4)
+	gap = width + randomrandint(50,width//4)
 	if randomrandint(0,1):
 		gap += width//2
 	speed = max(10,width//20)
-	def blit_list(l,s,surf):
-		for (x,y) in l:
-			surf.blit(s, (x,y))
 
 	if plat_img is None:
 		#Compute platform image
@@ -121,24 +118,39 @@ def bgg(l,surf,MAX_X=1800,MAX_Y = 1800,plat_img=None):
 		img = load("data/img/platform3.png").convert_alpha()
 		ratio = img.get_height() / height
 		pygame.transform.smoothscale(plat_img,(int(img.get_width()*ratio),int(img.get_height()*ratio)))
-		for i in range(5):
+		for i in range(10):
 			plat_img.blit(img.convert_alpha(),(i*(img.get_width()*ratio-3),0))
 
+	if plat_big is None:
+		plat_big = plat_img
+	if plat_small is None:
+		plat_small = plat_img
+
+	def blit_list(l,surf):
+		for (x,y,z) in l:
+			if z == 0:
+				surf.blit(plat_img, (x,y))
+			elif z == -1:
+				surf.blit(plat_small, (x,y))
+			elif z == 1:
+				surf.blit(plat_big, (x,y))
 	L = []
 	for i in range(len(l)):#suppression of leftmost platforms
 		if l[i][0] > -10 - width:
-			L.append((l[i][0] - speed,l[i][1]))
+			L.append((l[i][0] - speed,l[i][1],0))
 
 	#adding platforms to the right
 	if L == []:
-		L.append((randomrandint(MAX_X-200,MAX_X-150),MAX_Y//2))
+		size = randomrandint(-1,1)
+		L.append((randomrandint(MAX_X-200,MAX_X-150),MAX_Y//2,size))
 	elif L[-1][0] < MAX_X:
-		L.append((L[-1][0] + randomrandint(gap,2*gap),L[-1][1] + randomrandint(-height,height)))
+		size = randomrandint(-1,1)
+		L.append(((L[-1][0] + gap + ((gap//2)*size)),L[-1][1] + randomrandint(-height,height),size))
 	#print(L)
 	surfa = surf.copy()#copies the surface
 
 	#blitting platforms
-	blit_list(L,plat_img,surfa)
+	blit_list(L,surfa)
 	return surfa,L
 
 

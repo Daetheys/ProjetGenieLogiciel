@@ -18,9 +18,22 @@ class Launcher(Game):
         self.init_background()
         self.launch_game()
 
+    def __create_plat(self,width,height):
+        plat_img = pygame.Surface((width,height), pygame.SRCALPHA) # per-pixel alpha
+        plat_img.fill((255,255,255,0))
+        img = load("data/img/platform3.png").convert_alpha()
+        ratio = img.get_height() / height
+        pygame.transform.smoothscale(plat_img,(int(img.get_width()*ratio),int(img.get_height()*ratio)))
+        for i in range(5):
+            plat_img.blit(img.convert_alpha(),(i*(img.get_width()*ratio-3),0))
+        return plat_img
+
     def init_background(self):
         self.bg = None#Pygame.Surface (background)
         self.bglist = []#list of tuples (position of the platforms in the background)
+        self.plat_img = self.__create_plat(200,40)
+        self.plat_small = self.__create_plat(40,40)
+        self.plat_big = self.__create_plat(250,40)
 
     def init_buttons(self):
         """ creates some initially displayed buttons"""
@@ -39,7 +52,7 @@ class Launcher(Game):
         #    self.bg,self.bglist = bgg(self.bglist)
         #    #background = self.dict_img["img_background"] old behavior
 
-        self.bg,self.bglist = bgg(self.bglist,self.dict_img["img_background"],self.options["DISPLAYSIZE_X"]+200,self.options["DISPLAYSIZE_Y"])
+        self.bg,self.bglist = bgg(self.bglist,self.dict_img["img_background"],self.options["DISPLAYSIZE_X"]+200,self.options["DISPLAYSIZE_Y"],self.plat_img,self.plat_small,self.plat_big)
         global BUTTON_LIST
         pygame.time.Clock().tick(self.options["FPS"])
 
