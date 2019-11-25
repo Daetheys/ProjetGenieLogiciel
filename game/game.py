@@ -2,7 +2,6 @@ import pygame
 import json
 from world import *
 #from map_point import *
-from mapDisplayer import *
 from level_sequence import *
 from level import *
 from map import *

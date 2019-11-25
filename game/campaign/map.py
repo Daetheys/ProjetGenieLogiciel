@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+'''A map is an object smaller than a world, it as an image and contains map_points'''
+
 
 class Map:
 

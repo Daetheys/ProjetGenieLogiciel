@@ -4,9 +4,9 @@ from items import *
 class Character():
 	"""Class representing a character : 
 	it has a name,
-	 a picture,
-	 talks with a certain color,
-	 has an inventory"""
+	a picture,
+	talks with a certain color,
+	has an inventory"""
 	def __init__(self,name,pic,ctalk=(0,0,0),inv={}):
 		self.name = name#str, name
 		self.pic = pic#pygame.Surface, picture
@@ -30,12 +30,5 @@ class Character():
 		if self.inv[item] > 0:
 			return True
 		return False
-		
-class Player(Character):
-	
-	def __init__(self,name,pic,ctalk=(0,0,0),inv=None):
-		Character.__init__(self,name,pic,ctalk,inv)
 
-	def __repr__(self):
-		return "Player :" + self.name
 

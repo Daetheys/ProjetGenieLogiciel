@@ -10,7 +10,7 @@ sys.path.append(path)
 from polygone import *
 from vector import Vector
 from transform import Transform
-from solidPlatform import SolidPlatform,Pattern
+from solidPlatform import SolidPlatform
 from key import Key_1
 from gameLevel import GameLevel
 from hypothesis import given

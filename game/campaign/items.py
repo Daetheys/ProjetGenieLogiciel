@@ -23,7 +23,6 @@ class Consommable(Item):
 class KeyItem(Item):
 	def __init__(self,name,args=None):
 		Item.__init__(self,name)
-		self.key = args#KeyItemIdentifier
 		self.type = 'key'
 
 class Passive(Item):
@@ -31,12 +30,4 @@ class Passive(Item):
 		Item.__init__(self,name)
 		self.effet = args#PassiveItem Effect
 		self.type = 'pas'
-
-class Inventory: #not used
-	""" Inventory of a character. """
-	def __init__(self,items=[]):
-		self.items = items#(Item*int) list
-
-	def __repr__(self):
-		return "Inventory :" + str(self.items)
 

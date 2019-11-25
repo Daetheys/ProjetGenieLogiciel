@@ -64,7 +64,7 @@ class Hitbox:
         return self.get_world_poly().apply_transform(hbox.get_inv_transform())
 
     def to_tuples(self):
-        return self.get_world_poly.to_tuples()
+        return self.get_world_poly().to_tuples()
 
     def points_in(self,hbox):
         """ Returns points from self that are in hbox, in the referential of hbox """

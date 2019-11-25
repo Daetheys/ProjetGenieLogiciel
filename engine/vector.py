@@ -54,7 +54,7 @@ class Vector:
         return np.array([[self.x],[self.y],[1]])
 
     def apply_transform(self,transform):
-        """ apply a transformation of this /!\ returns a np.array """
+        """ apply a transformation of this CAREFULL returns a np.array """
         return transform.transform_vect(self)
 
     def to_list(self):
