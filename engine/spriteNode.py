@@ -10,7 +10,7 @@ class SpriteNode(Node):
         Node.__init__(self)
         self.__state = 's' #Represents the actual status of the SpriteNode (it's a letter for it's SpriteScheduler (cf SpriteScheduler)
         self.__sps = None #SpriteScheduler-> if it's None hit boxes will be shown instead of the sprite
-        self.animation_speed = 3 #Speed of animation (number of frames a single frame stays)
+        self.animation_speed = 1 #Speed of animation (number of frames a single frame stays)
         self.animation_step = 0 #Count for the animation
 
         self.mapping = "Flat" #Way to show the image : Flat : extended // Repeatx : Repeted along x
