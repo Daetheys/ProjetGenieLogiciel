@@ -28,6 +28,5 @@ class Parallax():
         self.fen.blit(self.image,(width-self.x,0))
         #self.rect.move_ip(-self.speed,0)
         self.x += self.speed
-        if self.x >= self.image.get_width(): #The image is leaving the screen
-            
+        if self.x >= width: #The image is leaving the screen
             self.x = 0

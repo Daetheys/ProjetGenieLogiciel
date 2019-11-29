@@ -1,3 +1,5 @@
+import time
+
 
 """ A background is a list of parallax ordered by their layering (first in the list -> in the back) """
 
@@ -15,5 +17,7 @@ class Background():
     def show(self):
         """ Show all parallax """
         for p in self.lpar:
+            t = time.clock()
             p.show()
+            print("para show",time.clock()-t)
         
