@@ -398,11 +398,17 @@ class ButtonMenu:
         self.react = react
         self.visible = True
         self.was_active = True#manages activation ~ disappearance relations
+        self.offsetX = 0
+
     def __repr__(self):
         return self.name + '= Button(%s<x<%s, %s<y<%s)\n' % (self.xmin, self.xmax, self.ymin, self.ymax)
 
     def __displayedY(self,yy):
         return yy - self.period//2 + ((self.t//self.speed)%self.period)
+
+    def set_offset(self,offset):
+        """ sets the offset of the text """
+        self.offsetX = offset
 
     def boundaries(self):
         """ returns the visible boundaries of self"""
@@ -438,7 +444,7 @@ class ButtonMenu:
             else: self.speed = speed
             if period is None: period = self.period
             else: self.period = period
-            if period <= 1: self.g.win().blit(picture,(self.xmin,self.ymin))
+            if period <= 1: self.g.win().blit(picture,(self.xmin-self.offsetX,self.ymin))
             else:
                 if self.up:self.t += 1
                 else: self.t -= 1
@@ -446,10 +452,10 @@ class ButtonMenu:
                     self.up = False
                 elif self.t <= 0:
                     self.up = True
-                self.g.win().blit(picture,(self.xmin,self.__displayedY(self.ymin)))
+                self.g.win().blit(picture,(self.xmin-self.offsetX,self.__displayedY(self.ymin)))
             if self.activated:
                 T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,size=50)
             else:
                 T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
-                if lock: self.g.win().blit(self.g.dict_img["img_layer_lock"],(self.xmin,self.__displayedY(self.ymin)))
+                if lock: self.g.win().blit(self.g.dict_img["img_layer_lock"],(self.xmin-self.offsetX,self.__displayedY(self.ymin)))
             if refresh: g.flip()
