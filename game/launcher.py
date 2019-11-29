@@ -136,7 +136,7 @@ class Launcher(Game):
         if map is None: return cnt,quit_all
         self._fenetre.blit(bg, (0,0))
         list_button = []
-        b_inv = ButtonMenu(self,20,120,20,120,self.dict_img["img_inv"],react = reaction_inv,add_to_list=False)
+        b_inv = ButtonMenu(self,20,120,20,120,self.dict_img["img_inv"],picH=self.dict_img["img_inv_h"],react = reaction_inv,add_to_list=False)
         b_inv.display()
         list_button.append(b_inv)
         for mp in map.get_map_points():
