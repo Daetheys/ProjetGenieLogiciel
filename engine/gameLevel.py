@@ -155,29 +155,16 @@ class GameLevel:
                 self.countdown -= 1
             else:
                 raise EndGame(False,self.player.score)
-        t = time.clock()
         self.compute_controller()
-        print("controller",time.clock()-t)
-        t = time.clock()
         self.physics_step(dt)
-        print("physics",time.clock()-t)
-        t = time.clock()
         #Camera set position (3/4)
         self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
-        print("camera",time.clock()-t)
-        t = time.clock()
         #Show all sprites
         self.aff(dt)
-        print("aff",time.clock()-t)
-        t = time.clock()
         #Score
         self.compute_score()
-        print("score",time.clock()-t)
-        t = time.clock()
         #Win / Lose conditions
         self.compute_win_lose()
-        print("win lose",time.clock()-t)
-        t = time.clock()
 
     def compute_win_lose(self):
         """ Compute win / lose conditions """

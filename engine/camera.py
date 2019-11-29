@@ -100,16 +100,11 @@ class Camera:
         if not(self.get_fen() is None):
             self.flashblack()
         #Shows the Bakcground (see Background)
-        t = time.clock()
         bg.show()
-        print("bg show",time.clock()-t)
-        t = time.clock()
         #Shows all objects that are in the camera
         for o in objects:
             if self.is_in_camera(o.get_hit_box().get_world_poly()): #Checks if the hitbox is in the camera
                 o.aff(self.get_fen(),self.get_distorsion(),dt)
-        print("sprites show",time.clock()-t)
-        t = time.clock()
         #Show the score
         d = self.get_dimension()
         x = int(d.x*15/16) #Computes where to put it
@@ -117,7 +112,6 @@ class Camera:
         distorsion_scale = self.get_distorsion()[0]
         vpos = distorsion_scale.transform_point(x,y)
         tools.T(self.get_fen(),str(score),vpos.x,vpos.y,255,255,255,size=45)
-        print("score show",time.clock()-t)
 
     def __repr__(self):
         txt = "Camera("+str(self.rect)+")"
