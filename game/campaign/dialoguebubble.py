@@ -13,10 +13,12 @@ class Dialogue_Bubble:
         self.x = x
         self.y = y
         self.last = last
+        self.offsetX = 0#the pictures are set that many pixels leftwards
+        self.offsetY = 0#the pictures are set that many pixels upwards
 
     def display(self,g):
-        g.win().blit(self.background,(self.x,self.y))
-        g.win().blit(self.talker.pic,(self.x,self.y))
+        g.win().blit(self.background,(self.x - self.offsetX, self.y - self.offsetY))
+        g.win().blit(self.talker.pic,(self.x - self.offsetX, self.y - self.offsetY))
         w = self.talker.pic.get_width()
         x_text,y_text = self.x+w+10,self.y+5
         font = Font(None,40)
@@ -36,7 +38,8 @@ class Dialogue_Bubble:
 
     def show(self,g):
         w_bg, h_bg = self.background.get_size()
-        b = buttonMenu.ButtonMenu(g,self.x+w_bg-50,self.x+w_bg-10,self.y+h_bg-40,self.y+h_bg,g.dict_img["img_cont_dial"],picD=g.dict_img["img_end_dial"],add_to_list=False)
+        b = buttonMenu.ButtonMenu(g,self.x+w_bg-50-self.offsetX,self.x+w_bg-10-self.offsetX,self.y+h_bg-40-self.offsetY,self.y+h_bg-self.offsetY,g.dict_img["img_cont_dial"],picD=g.dict_img["img_end_dial"],add_to_list=False)
+
         if self.last:
             b.activation(False)
         else:
