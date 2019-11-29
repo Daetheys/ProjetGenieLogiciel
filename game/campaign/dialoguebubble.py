@@ -14,7 +14,7 @@ class Dialogue_Bubble:
         self.y = y
         self.last = last
         self.offsetX = 0#the pictures are set that many pixels leftwards
-        self.offsetY = 0#the pictures are set that many pixels upwards
+        self.offsetY = 20#the pictures are set that many pixels upwards
 
     def display(self,g):
         g.win().blit(self.background,(self.x - self.offsetX, self.y - self.offsetY))
