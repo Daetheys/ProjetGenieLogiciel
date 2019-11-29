@@ -10,8 +10,8 @@ class SpriteNode(Node):
         Node.__init__(self)
         self.__state = 's' #Represents the actual status of the SpriteNode (it's a letter for it's SpriteScheduler (cf SpriteScheduler)
         self.__sps = None #SpriteScheduler-> if it's None hit boxes will be shown instead of the sprite
-        self.animation_speed = 1 #Speed of animation (number of frames a single frame stays)
-        self.animation_step = 0 #Count for the animation
+        self.animation_speed = 0.05 #Speed of animation (number of frames a single frame stays)
+        self.animation_step = 0.0 #Count for the animation
 
         self.mapping = "Flat" #Way to show the image : Flat : extended // Repeatx : Repeted along x
 
@@ -71,15 +71,15 @@ class SpriteNode(Node):
         pos_vect = pos_vect_rot_scal.apply_transform(world_tr).apply_transform(trans).apply_transform(scale)
         return pos_vect
 
-    def aff(self,fen,distorsion):
+    def aff(self,fen,distorsion,dt):
         """ Show this node on the camera"""
         scale,trans = distorsion
         if  self.__sps is not None: #If it's None only hit boxes will be shown
             if self.__sps.loaded: #Check if it's loaded
                 if self.animation_step >= self.animation_speed: #Wait for the animation
                     self.__sps.step(self.__state) #Refresh the state/image
-                    self.animation_step = 0
-                self.animation_step += 1
+                    self.animation_step = 0.0
+                self.animation_step += dt
                 img = self.__sps.get_sprite() #Get the image associated to the state of its SpriteScheduler
             else:
                 #BAD BAD BAD -> the SpriteScheduler should be loaded before using it -> use create_sps(name) instead of set_sps(name)
