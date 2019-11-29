@@ -155,16 +155,29 @@ class GameLevel:
                 self.countdown -= 1
             else:
                 raise EndGame(False,self.player.score)
+        t = time.clock()
         self.compute_controller()
+        print("controller",time.clock()-t)
+        t = time.clock()
         self.physics_step(dt)
+        print("physics",time.clock()-t)
+        t = time.clock()
         #Camera set position (3/4)
         self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
+        print("camera",time.clock()-t)
+        t = time.clock()
         #Show all sprites
-        self.aff()
+        self.aff(dt)
+        print("aff",time.clock()-t)
+        t = time.clock()
         #Score
         self.compute_score()
+        print("score",time.clock()-t)
+        t = time.clock()
         #Win / Lose conditions
         self.compute_win_lose()
+        print("win lose",time.clock()-t)
+        t = time.clock()
 
     def compute_win_lose(self):
         """ Compute win / lose conditions """
@@ -218,7 +231,7 @@ class GameLevel:
             print("player rigid",self.player.get_rigid_hit_box())
             for plat in obj_opti:
                 print("plat",plat,plat.get_rigid_hit_box())
-        for o in obj_opti:
+        for i,o in enumerate(obj_opti):
             #print(o)
             o.compute_speed(dt)
             o.move(dt)
@@ -230,8 +243,7 @@ class GameLevel:
                 #Cut X speed (for MAXSPEED)
                 speed = self.player.get_speed()
                 self.player.set_speed(Vector(1,speed.y)) #Player need to have a str pos speed
-            for o2 in obj_opti:
-                #print("collide")
+            for j,o2 in enumerate(obj_opti):
                 if o.get_hit_box().collide(o2.get_hit_box()):
                     coll,coll2 = o.get_hit_box().collide_sides(o2.get_hit_box())
                     if o != o2 and (coll or coll2):
@@ -257,9 +269,9 @@ class GameLevel:
     def set_background(self,v):
         self.background = v
 
-    def aff(self):
+    def aff(self,dt):
         """ Aff all objects that are in the camera of this """
-        self.camera.aff(self.get_objects_opti(),self.get_background(),self.player.get_score())
+        self.camera.aff(self.get_objects_opti(),self.get_background(),self.player.get_score(),dt)
         pygame.display.flip()
 
 class EndGame(Exception):
