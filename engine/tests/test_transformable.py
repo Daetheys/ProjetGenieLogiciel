@@ -70,4 +70,4 @@ def test_move_rot_scal(mvx,mvy,rot,scalx,scaly):
     T.scale(scalx,scaly)
     assert T.get_position().to_tuple() == (0+mvx,0+mvy)
     assert T.get_rotation() == (0+rot)%(2*np.pi)
-    assert T.get_scale().to_tuple() == (1.+scalx,1.+scaly)
+    assert T.get_scale().to_tuple() == (1.*scalx,1.*scaly)

@@ -37,6 +37,19 @@ def test_rect_center():
     assert R2 == Rect(-1,-1,2,2)
     assert tr2 == Vector(1,1)
 
+def test_rect_intersect():
+    R1 = Rect(-1,-1,2,2)
+    R2 = Rect(0,0,2,2)
+    assert R1.intersect(R2) == Rect(0,0,1,1)
+
+    R1 = Rect(-1,-1,2,2)
+    R2 = Rect(0,0,1,1)
+    assert R1.intersect(R2) == Rect(0,0,1,1)
+
+    R1 = Rect(-3,-3,2,2)
+    R2 = Rect(0,0,2,2)
+    assert R1.intersect(R2) is None
+
 @given(integers(),integers(),integers(min_value=0),integers(min_value=0))
 def test_rect_center_general(x,y,w,h):
     R = Rect(x,y,w,h)

@@ -90,7 +90,7 @@ def test_opti():
         print("--",x)
         gl.get_camera().set_position(Vector(x/10,0))
         for p in plat:
-            if gl.get_camera().is_in_camera(p.get_rigid_hit_box().get_world_poly()):
+            if gl.get_camera().is_in_camera(p.get_rigid_hit_box().get_world_rect()):
                 print("p",p)
                 print("p Hb",p.get_hit_box())
                 print("cam",gl.get_camera())

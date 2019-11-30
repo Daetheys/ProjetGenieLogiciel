@@ -64,7 +64,8 @@ class Game:
         pygame.display.set_caption("CAN·A·BAELDE")
         pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
         self._fenetre = pygame.display.set_mode((self.options["DISPLAYSIZE_X"], self.options["DISPLAYSIZE_Y"]),self.options["modeECRAN"])#1920*1080
-
+        self._fenetre.set_alpha(None) #To speed things up
+        
     def init_images(self):
         """loads all images into self.dict_img, blits the first background"""
         #Images

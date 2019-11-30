@@ -31,8 +31,8 @@ class SolidPlatform(ControlableNode):
     def paste_in(self,t):
         ControlableNode.paste_in(self,t)
 
-    """def __repr__(self):
-        return "SolidPlatform("+str(self.get_position())+","+str(self.get_hit_box())+")" """
+    def __repr__(self):
+        return "SolidPlatform("+str(self.get_position())+","+str(self.get_hit_box())+")" 
 
     def collide(self,o2,side,o2_side):
         """ Function called when this collides something else -> nothing to do there"""

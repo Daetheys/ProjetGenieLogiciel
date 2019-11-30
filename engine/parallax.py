@@ -15,7 +15,8 @@ class Parallax():
     def load(self,fen):
         """ Load the pygame image and scales it according to the fen """
         self.fen = fen
-        self.image = pygame.image.load(self.name).convert_alpha()
+        self.image = pygame.image.load(self.name)
+        self.image.convert_alpha(self.image)
         self.rect = self.image.get_rect()
         fen_height = fen.get_height()
         image_width = max(self.image.get_width(),fen.get_width())

@@ -62,7 +62,8 @@ class SpriteScheduler:
 			self.loaded = True
 			for k,v in self.ata.qn.items():
 				if type(v) == type(""):
-					self.ata.qn[k] = pygame.image.load(v).convert_alpha()
+					self.ata.qn[k] = pygame.image.load(v)
+					self.ata.qn[k].convert_alpha(self.ata.qn[k])
 				#Somewhere, one loads an automaton once too much as this if is
 				#necessary. This can be stopped. We must act immediatly.
 		else:

@@ -17,7 +17,5 @@ class Background():
     def show(self):
         """ Show all parallax """
         for p in self.lpar:
-            t = time.clock()
             p.show()
-            print("para show",time.clock()-t)
         

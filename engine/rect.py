@@ -37,20 +37,85 @@ class Rect:
         v = self.get_position()
         d = self.get_dimension()
         return (v.x,v.y,d.x,d.y)
+
+    def get_tuple(self):
+        """ Return a 4-tuple of (posix,posiy,posfx,posfy) """
+        v = self.get_position()
+        d = self.get_dimension()
+        return (v.x,v.y,v.x+d.x,v.y+d.y)
+
+    """ #Too hard to test
+    def sides_intersection(self,r,preference):
+        inter_poly = self.intersect(r)
+        tf = self.get_tuple()
+        t2 = inter_poly.get_tuple()
+        sides = [False,False,False,False]
+        (w,h) = (sides[2]-sides[0],sides[3]-sides[1])
+        for i in range(4):
+            if tf[i] == t2[i]:
+                sides[i] = True
+        if not(any(sides)): # r in included in self
+            return None
+        elif sum(sides) == 1:
+            return (sides.index(True)+1)%4
+        elif sum(sides) == 2):
+            l = ([],[])
+            for i in range(4):
+                if sides[i]:
+                    l[i%2] = i
+            if len(l[0]) == 2:
+                index = 0
+            elif len(l[1]) == 2:
+                index = 1
+            else:
+                if w > h:
+                    return l[0][0]
+                else:
+                    return l[1][0]
+        elif sum(sides) == 3:
+            for i in range(1,4):
+                if sides[i] and sides[i-1]:
+                    return (i+1)%4
+        """
+        
         
     def __eq__(self,rect):
         d = self.get_dimension() == rect.get_dimension()
         p = self.get_position() == rect.get_position()
         return d and p
 
-    def __str__(self):
+    def __repr__(self):
         (l,t,w,h) = self.get_coord()
-        return "Rect("+str(l)+","+str(t)+","+str(l+w)+","+str(t+h)+")"
+        return "Rect("+str(l)+","+str(t)+","+str(w)+","+str(h)+")"
+
+    def intersect(self,r2):
+        (x1i,y1i) = self.get_position().to_tuple()
+        (x1f,y1f) = (self.get_position()+self.get_dimension()).to_tuple()
+        (x2i,y2i) = r2.get_position().to_tuple()
+        (x2f,y2f) = (r2.get_position()+r2.get_dimension()).to_tuple()
+        xi = max(x1i,x2i)
+        yi = max(y1i,y2i)
+        xf = min(x1f,x2f)
+        yf = min(y1f,y2f)
+        if xf - xi < 0 or yf-yi < 0:
+            return None
+        return Rect(xi,yi,xf-xi,yf-yi)
+        
 
     def rescale(self,alpha):
         """ Rescale """
         self.position *= alpha
         self.dimension *= alpha
+
+    def scale(self,scale):
+        self.position *= scale
+        self.dimension *= scale
+
+    def scale2(self,scale):
+        r2 = self.copy()
+        r2.position *= scale
+        r2.dimension *= scale
+        return r2
 
     def copy(self):
         """ Returns a copy of this vector """
@@ -61,6 +126,11 @@ class Rect:
     def translate(self,v):
         """ Translate with side effect """
         self.set_position(self.get_position()+v)
+
+    def translate2(self,v):
+        r2 = self.copy()
+        r2.translate(v)
+        return r2
     
     def init_from_vectors(self,position,dimension):
         """ Initialise from vector pos and dim """
@@ -104,6 +174,18 @@ class Rect:
         li = [dleft,dtop,dright,dbot]
         index = np.argmin(li)
         return index,li[index]
+
+    def get_max_x(self):
+        return self.get_position().x+self.get_dimension().x
+
+    def get_max_y(self):
+        return self.get_position().y+self.get_dimension().y
+
+    def get_min_x(self):
+        return self.get_position().x
+
+    def get_min_y(self):
+        return self.get_position().y
 
     def get_position(self):
         return self.position

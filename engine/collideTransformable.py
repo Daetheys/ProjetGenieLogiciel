@@ -89,3 +89,14 @@ class CollideTransformable(MovableNode):
     def get_rigid_hit_box(self):
         """ Returns the rigid hit box """
         return self.__rigid_hit_box
+
+    def apply_solid_reaction(self,support):
+        """ Computes physics when this specific node rigid_collides with support"""
+        assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
+        #Get how to remove the collision
+        correction = self.get_rigid_hit_box().remove_collide(support.get_rigid_hit_box())
+        #Get how to correct the speed
+        speed = correction.normalise()*self.get_speed()
+        #Correct position and speed
+        self.translate(correction)
+        self.set_speed(self.get_speed()+speed)

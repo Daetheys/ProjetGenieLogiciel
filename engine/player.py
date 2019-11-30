@@ -38,6 +38,9 @@ class Player(ControlableNode):
 
         self.inventory = defaultdict(int) #Ref to inventory to give items to Campaign mod
 
+    def __repr__(self):
+        return "Player("+str(self.get_hit_box())+")"
+
     def load_inventory(self,inv):
         """ Load the inventory of campaign mod """
         self.inventory = inv
@@ -75,8 +78,7 @@ class Player(ControlableNode):
         if isinstance(o,SolidPlatform):
             if o2_side == 0 or o2_side == 1:
                 #Top side
-
-                if self.can_jump and self.alive:
+                if self.alive:
                     self.set_state("r") #For the spriteScheduler -> state run (r)
                 self.allow_jump()
                 self.is_jumping = False

@@ -92,7 +92,7 @@ class Transformable:
         """ Scales this """
         (x,y) = self.__scale.x,self.__scale.y
         (x2,y2) = (scalex,scaley)
-        self.set_scale(x+x2,y+y2)
+        self.set_scale(x*x2,y*y2)
         
     def get_transform(self):
         """ Returns the Transform object that execute this object's translate, rotate and scale (very usefull to apply to polygons like hit boxes)"""

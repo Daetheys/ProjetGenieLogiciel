@@ -44,7 +44,7 @@ class GameLevel:
 
         #To optimise physics
         self.sorted_objects = None
-        self.opti_step = 10
+        self.opti_step = 1
         self.optimise_data()
 
         #Get end platform locations to compute score
@@ -52,6 +52,7 @@ class GameLevel:
         self.compute_end_platform_location()
 
         #Load Background
+        limgpar = []
         lpar = [] #List of Parallax
         for (name,index) in limgpar:
             p = Parallax(name,index) #Create parallax with given speed
@@ -82,7 +83,7 @@ class GameLevel:
         self.end_platform_location = []
         for o in self.get_objects():
             if isinstance(o,SolidPlatform):
-                self.end_platform_location.append(o.get_hit_box().get_world_poly().get_max_x())
+                self.end_platform_location.append(o.get_hit_box().get_world_rect().get_max_x())
         self.end_platform_location.sort()
 
     def optimise_data(self):
@@ -92,8 +93,8 @@ class GameLevel:
         (minx,maxx,miny,maxy) = self.size_level
         sorted_objects = [[] for i in range( int((maxx-minx)/step+0.5) +1)]
         for o in self.objects:
-            minposx = o.get_hit_box().get_world_poly().get_min_x()
-            maxposx = o.get_hit_box().get_world_poly().get_max_x()
+            minposx = o.get_hit_box().get_world_rect().get_min_x()
+            maxposx = o.get_hit_box().get_world_rect().get_max_x()
             minindexx = int( (minposx-minx)/step )
             maxindexx = int( (maxposx-minx)/step ) #Arrondi au sup
             for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
@@ -109,10 +110,10 @@ class GameLevel:
         #Get the rect in which the level is
         for o in self.objects:
             hit_box = o.get_hit_box()
-            val_max_x = hit_box.get_world_poly().get_max_x()
-            val_max_y = hit_box.get_world_poly().get_max_y()
-            val_min_x = hit_box.get_world_poly().get_min_x()
-            val_min_y = hit_box.get_world_poly().get_min_y()
+            val_max_x = hit_box.get_world_rect().get_max_x()
+            val_max_y = hit_box.get_world_rect().get_max_y()
+            val_min_x = hit_box.get_world_rect().get_min_x()
+            val_min_y = hit_box.get_world_rect().get_min_y()
             if maxi_x is None or val_max_x > maxi_x:
                 maxi_x = val_max_x
             if mini_x is None or val_min_x < mini_x:
@@ -149,22 +150,30 @@ class GameLevel:
             return (e.issue, e.score)
 
     def main_loop(self,dt):
+        to = time.clock()
         """ Main loop of the game (controllers, physics, ...) """
         if self.lost:
             if self.countdown > 0:
                 self.countdown -= 1
             else:
                 raise EndGame(False,self.player.score)
-        self.compute_controller()
-        self.physics_step(dt)
+        
+        obj_opti = self.get_objects_opti()
+        self.compute_controller(obj_opti)
+        t = time.clock()
+        self.physics_step(dt,obj_opti)
+        print("physics",time.clock()-t)
         #Camera set position (3/4)
         self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
         #Show all sprites
-        self.aff(dt)
+        t = time.clock()
+        self.aff(dt,obj_opti)
+        print("aff",time.clock()-t)
         #Score
         self.compute_score()
         #Win / Lose conditions
         self.compute_win_lose()
+        print("fps",1/(time.clock()-to))
 
     def compute_win_lose(self):
         """ Compute win / lose conditions """
@@ -180,12 +189,12 @@ class GameLevel:
             del self.end_platform_location[0]
             self.player.add_score(1000)
 
-    def compute_controller(self):
+    def compute_controller(self,objects):
         """ Compute controllers """
         pressed = pygame.key.get_pressed()
         #Controller loop
         for event in pygame.event.get() + [None]:
-            for o in self.get_objects_opti():
+            for o in objects:
                 if o.get_controller() is not None:
                     o.get_controller().execute(event,pressed)
         #Physics
@@ -210,39 +219,27 @@ class GameLevel:
                 set_opti |= set(self.sorted_objects[index+i])
         return set_opti | set([self.player])
 
-    def physics_step(self,dt):
+    def physics_step(self,dt,obj_opti):
         """ Compute collisions """
-        obj_opti = self.get_objects_opti()
-        if DEBUG:
-            print("---")
-            print("player rigid",self.player.get_rigid_hit_box())
-            for plat in obj_opti:
-                print("plat",plat,plat.get_rigid_hit_box())
         for i,o in enumerate(obj_opti):
-            #print(o)
-            o.compute_speed(dt)
-            o.move(dt)
-            if o == self.player and self.player.alive:
-                #Reposition the player
-                pos = o.get_position()
-                o.set_position(self.player_pos(self.time),pos.y)
+            if not(isinstance(o,SolidPlatform)):
+                o.compute_speed(dt)
+                o.move(dt)
+                if o == self.player and self.player.alive:
+                    #Reposition the player
+                    pos = o.get_position()
+                    o.set_position(self.player_pos(self.time),pos.y)
 
-                #Cut X speed (for MAXSPEED)
-                speed = self.player.get_speed()
-                self.player.set_speed(Vector(1,speed.y)) #Player need to have a str pos speed
-            for j,o2 in enumerate(obj_opti):
-                if o.get_hit_box().collide(o2.get_hit_box()):
-                    coll,coll2 = o.get_hit_box().collide_sides(o2.get_hit_box())
-                    if o != o2 and (coll or coll2):
-                        if DEBUG:
-                            print("collide",o,o2)
-                            print("o",o.get_hit_box(),o.get_rigid_hit_box())
-                            print("o2",o2.get_hit_box(),o2.get_rigid_hit_box())
-                        o.collide(o2,coll,coll2)
-                        o2.collide(o,coll2,coll)
+                    #Cut X speed (for MAXSPEED)
+                    speed = self.player.get_speed()
+                    self.player.set_speed(Vector(1,speed.y)) #Player need to have a str pos speed
+                for j,o2 in enumerate(obj_opti):
+                    coll = o.get_hit_box().collide_sides(o2.get_hit_box())
+                    if o != o2 and coll:
+                        o.collide(o2,coll,(coll+2)%4)
+                        o2.collide(o,(coll+2)%4,coll)
                         while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()) and o.get_speed() != Vector(0,0):
-                            if DEBUG:
-                                print("rigid")
+                            #print("rigid")
                             o.apply_solid_reaction(o2)
 
     def load_camera(self,fen):
@@ -256,9 +253,9 @@ class GameLevel:
     def set_background(self,v):
         self.background = v
 
-    def aff(self,dt):
+    def aff(self,dt,objects):
         """ Aff all objects that are in the camera of this """
-        self.camera.aff(self.get_objects_opti(),self.get_background(),self.player.get_score(),dt)
+        self.camera.aff(objects,self.get_background(),self.player.get_score(),dt)
         pygame.display.flip()
 
 class EndGame(Exception):

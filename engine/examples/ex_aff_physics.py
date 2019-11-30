@@ -39,8 +39,6 @@ plat.translate(Vector(x,y))
 plat2 = plat.copy()
 plat3 = plat.copy()
 plat4 = plat.copy()
-plat2.rot(45)
-plat.rotate(np.pi/4)
 plat2.translate(Vector(0.5,-5))
 plat3.translate(Vector(0.1,-5))
 plat4.translate(Vector(0.3,-15))
@@ -74,9 +72,10 @@ gl = gameLevel.GameLevel([plat,plat2],pos)
 gl.load_camera(fen) #Load the camera in the window fen
 gl.get_camera().set_dimension(Vector(20,20)) #Resize the camera
 gl.get_camera().set_position(Vector(-5,-5))
-gl.aff()
+gl.aff(1/30)
 for i in range(200):
-    gl.aff()
+    print("p2",plat2.get_position(),plat2.get_speed())
+    gl.aff(1/30)
     gl.physics_step(1/30)
     #pygame.time.wait(50)
 

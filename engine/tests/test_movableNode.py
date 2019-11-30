@@ -45,14 +45,12 @@ def test_full_1():
     mvn = CollideTransformable()
     mvn.set_hit_box(Hb)
     mvn.set_rigid_body(True)
-    print(mvn.get_hit_box().get_world_poly())
     print(mvn.get_position())
 
     Hb2 = Hitbox(Rect(0,3,2,2))
     mvn2 = CollideTransformable()
     mvn2.set_hit_box(Hb2)
     mvn2.set_rigid_body(True)
-    print(mvn2.get_hit_box().get_world_poly())
     print(mvn.get_position())
     
     mvn.set_speed(Vector(0,4))

@@ -67,13 +67,13 @@ class Camera:
         dim = self.get_dimension()
         pos = self.get_position()
 
-        distorsion_scale = Transform().scale(Vector(width/dim.x,height/dim.y))
-        distorsion_translate = Transform().translate(-pos)
+        distorsion_scale = Vector(width/dim.x,height/dim.y)
+        distorsion_translate = -pos
         self.distorsion = (distorsion_scale,distorsion_translate)
 
-    def is_in_camera(self,poly):
+    def is_in_camera(self,rect):
         """ Returns true if the polygon is completely in the camera's rect or if it intersects a side """
-        r = self.rect.collide_poly(poly)
+        r = self.rect.intersect(rect)
         return r
 
     def center_on(self,pos):
@@ -90,27 +90,27 @@ class Camera:
     
     def flashblack(self):
         """ Fill the camera with black in order to blit images right after """
-        v = self.get_dimension()
-        pr = pygame.Rect(0,0,self.get_fen().get_width(),self.get_fen().get_height())
-        pygame.draw.rect(self.get_fen(),(0,0,0),pr)
+        self.get_fen().fill((0,0,0))
 
     def aff(self,objects,bg,score,dt):
         """ Show all objects of the given argument that are in the camera as well as the background and the score """
         #Starts with a flashblack
         if not(self.get_fen() is None):
             self.flashblack()
-        #Shows the Bakcground (see Background)
+        #Shows the Background (see Background)
         bg.show()
         #Shows all objects that are in the camera
         for o in objects:
-            if self.is_in_camera(o.get_hit_box().get_world_poly()): #Checks if the hitbox is in the camera
+            if self.is_in_camera(o.get_hit_box().get_world_rect()): #Checks if the hitbox is in the camera
                 o.aff(self.get_fen(),self.get_distorsion(),dt)
+            #else:
+            #    print("------",o.get_hit_box().get_world_rect(),self.rect,o.__class__)
         #Show the score
         d = self.get_dimension()
         x = int(d.x*15/16) #Computes where to put it
         y = int(d.y*1/16)
         distorsion_scale = self.get_distorsion()[0]
-        vpos = distorsion_scale.transform_point(x,y)
+        vpos = Vector(x,y) * distorsion_scale
         tools.T(self.get_fen(),str(score),vpos.x,vpos.y,255,255,255,size=45)
 
     def __repr__(self):

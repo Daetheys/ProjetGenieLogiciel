@@ -62,14 +62,15 @@ class SpriteNode(Node):
     def get_pos_camera(self,distorsion,box):
         """ Returns the position of a given box in a camera that has a given distorsion (cf Camera) """
         scale,trans = distorsion
-        transform = box.get_transform()
-        world_pos = box.get_self_poly()
-        world_rot = transform.cut_translate()
-        world_tr = transform.get_translate()
-        pos_vect_rot = world_pos.apply_transform(world_rot)
-        pos_vect_rot_scal = pos_vect_rot
-        pos_vect = pos_vect_rot_scal.apply_transform(world_tr).apply_transform(trans).apply_transform(scale)
-        return pos_vect
+        #transform = box.get_transform()
+        world_pos = box.get_world_rect()
+        #world_rot = transform.cut_translate()
+        #world_tr = transform.get_translate()
+        #pos_vect_rot = world_pos.apply_transform(world_rot)
+        #pos_vect_rot_scal = pos_vect_rot
+        #pos_vect = pos_vect_rot_scal.apply_transform(world_tr).apply_transform(trans).apply_transform(scale)
+        pos_vect = world_pos.translate2(trans).scale2(scale)
+        return pos_vect.get_coord()
 
     def aff(self,fen,distorsion,dt):
         """ Show this node on the camera"""
@@ -91,7 +92,7 @@ class SpriteNode(Node):
             #  Computes where to blit on the camera
             #----------------------------------------
             #Get the box in which this spriteNode needs to be drawn
-            (px,py,pw,ph),a = self.get_pos_camera(distorsion,self.get_hit_box()).to_rect()
+            (px,py,pw,ph) = self.get_pos_camera(distorsion,self.get_hit_box())
             #Check different types of mapping
             if self.mapping == "Flat":
                 #Extends the image
@@ -111,5 +112,5 @@ class SpriteNode(Node):
             #Show the hit box because SpriteScheduler is None
             coll_box = self.get_pos_camera(distorsion,self.get_hit_box())
             rigid_box = self.get_pos_camera(distorsion,self.get_rigid_hit_box())
-            pygame.draw.polygon(fen,(0,255,0),coll_box.to_tuples())
-            pygame.draw.polygon(fen,(188,0,0),rigid_box.to_tuples())
+            pygame.draw.rect(fen,(0,255,0),pygame.Rect(*coll_box))
+            pygame.draw.rect(fen,(188,0,0),pygame.Rect(*rigid_box))
