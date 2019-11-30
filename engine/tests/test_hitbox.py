@@ -134,7 +134,7 @@ def test_hitbox6_sides():
     T1.set_speed(Vector(1,0))
     T1.set_hit_box(Hb1)
     T2.set_hit_box(Hb2)
-    assert Hb1.collide_sides(Hb2) == 3#([1,2],[0,3])
+    assert Hb1.collide_sides(Hb2) == 1#([1,2],[0,3])
 
     T1 = CollideTransformable()
     T2 = CollideTransformable()

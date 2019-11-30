@@ -84,6 +84,8 @@ def test_opti():
         plat.append(plat[-1].copy())
         plat[-1].translate(Vector(10,0))
     gl = GameLevel(plat,[])
+    gl.opti_step = 10
+    gl.optimise_data()
     for i in range(nb):
         assert len(gl.sorted_objects[i]) == 1
     for x in range(nb*10):
@@ -107,9 +109,11 @@ def test_physics_high_fall():
     gravity = Gravity(50)
     gl.player.add_force(gravity) #Au cas où la gravité soit nulle dans Gl
     timeout = 1000
+    gl.opti_step = 10
+    gl.optimise_data()
     while not(gl.player.get_hit_box().collide(plat.get_hit_box())) and timeout > 0:
         print(gl.player.get_hit_box())
-        gl.physics_step(0.01)
+        gl.physics_step(0.01,gl.get_objects_opti())
         timeout -= 1
     assert timeout > 0
     assert gl.player.get_position().y <= 0
