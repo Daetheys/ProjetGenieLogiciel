@@ -70,6 +70,7 @@ class Hitbox:
                     return 0 #Y axis is toward down
                 else:
                     return 2
+
             
     def remove_collide(self,hb2):
         epsilon = 10**-5
