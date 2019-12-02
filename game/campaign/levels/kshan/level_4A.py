@@ -53,7 +53,7 @@ class Level_4A_kshan(Level):
             
         #objects = self.init_objects(g)
 
-        gl = GameLevel(self.objects,player_pos,name="level_4A_kshan")
+        gl = GameLevel(self.objects,player_pos,name="level_4A_kshan",parallax=g.options["parallax"])
         
         #g.launch_music(text)
         

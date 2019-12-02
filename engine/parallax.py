@@ -1,13 +1,16 @@
 import pygame
 
-""" A Parallax is a scrolling image in the back of the screen. It has a speed so that a real background has 0 and the others must have a transparent part or it will be hard to see the real background."""
+""" A Parallax is a scrolling image in the back of the screen.
+It has a speed so that a real background has 0 and the others
+must have a transparent part or it will be hard to see the real
+background."""
 
 class Parallax():
     """ Scrolling image in the back """
     def __init__(self,name,speed):
         self.name = name
         self.image = None #pygame image
-        self.speed = speed #speed (pixels / frame)
+        self.speed = speed #speed (pixels / frame) (Now it is time based... what is it?
         self.rect = None #Size of the image
         self.x = 0 #Offset for the movement
         self.fen = None #Window associated to show it
@@ -21,7 +24,7 @@ class Parallax():
         fen_height = fen.get_height()
         image_width = max(self.image.get_width(),fen.get_width())
         self.image = pygame.transform.smoothscale(self.image,(image_width,fen_height))
-        
+
     def show(self):
         """ Blit the parallax where it should be (handles the scrolling part"""
         width = self.image.get_width()

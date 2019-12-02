@@ -24,7 +24,7 @@ def get_current_time():
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name=''):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name='',parallax=True):
         """ The player spawn in (0,0) """
         assert objects != [] #Empty GameLevel
         self.camera = camera.Camera() #Camera
@@ -34,7 +34,7 @@ class GameLevel:
         self.player_pos = player_pos
         self.compute_size_level()
         self.name = name
-        
+
         self.begin_time = 0
         self.time = 0 #Time Referential of the level
 
@@ -52,12 +52,12 @@ class GameLevel:
         self.compute_end_platform_location()
 
         #Load Background
-        limgpar = []
+        if not parallax: limgpar = [limgpar[1]] #will be improved later
         lpar = [] #List of Parallax
         for (name,index) in limgpar:
             p = Parallax(name,index) #Create parallax with given speed
             lpar.append(p)
-            
+
         self.background = Background(lpar)
 
         #Creation of the player
@@ -144,7 +144,7 @@ class GameLevel:
                 self.main_loop(dt)
                 #Updates tn for the next iteration
                 tn = now
-                
+
         except EndGame as e:
             #print("--",time.clock()-t0,self.time)
             return (e.issue, e.score)
@@ -157,7 +157,7 @@ class GameLevel:
                 self.countdown -= 1
             else:
                 raise EndGame(False,self.player.score)
-        
+
         obj_opti = self.get_objects_opti()
         self.compute_controller(obj_opti)
         t = time.clock()

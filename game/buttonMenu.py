@@ -63,7 +63,7 @@ def reaction_play(text,name):
     the level will have the name 'name'
     """
     def f(g):
-        gl = generate_level(text,name)
+        gl = generate_level(text,name,para=g.options["parallax"])
 
         g.launch_level(gl,text)
         """ ceci lance le level correspondant """
@@ -359,7 +359,7 @@ def reaction_b33(g):
             b.xmax = 5 + 25*len(g.dict_str["return"])
     return True,False
 
-def reaction_mp(g, mp):     #not used
+def reaction_mp(g, mp):     #not used  (it seems used (?))
     mp.launch(g)# si c'est un buttonmenu, ça doit avoir un argument
 
 def reaction_inv(g):

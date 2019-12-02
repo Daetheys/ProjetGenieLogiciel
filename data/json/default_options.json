@@ -2,4 +2,5 @@
 "LANGUAGE": "English",
 "FPS": 30,
 "DISPLAYSIZE_X": 1600,
-"modeECRAN": -2147483648}
+"modeECRAN": -2147483648,
+"parallax" : true}
