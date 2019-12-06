@@ -60,17 +60,26 @@ class Hitbox:
         else:
             (w,h) = inter_rect.get_dimension().to_tuple()
             speedf = self.get_ctrbl().get_speed()
+            (xi1,yi1,xf1,yf1) = inter_rect.get_tuple()
+            (xi2,yi2,xf2,yf2) = self.get_world_rect().get_tuple()
+            #print(inter_rect)
+            #print(xi1,yi1,xf1,yf1)
+            #print(xi2,yi2,xf2,yf2)
+            #print(w,h)
             if w < h: #On prend la val la + orthogonale
-                if speedf.x < 0:
+                if xi1 == xi2:
                     return 3
-                else:
+                elif xf1 == xf2:
                     return 1
-            else:
-                if speedf.y < 0:
-                    return 0 #Y axis is toward down
                 else:
+                    assert False #Unknown behaviour
+            else:
+                if yi1 == yi2:
+                    return 0 #Y axis is toward down
+                elif yf1 == yf2:
                     return 2
-
+                else:
+                    assert False #Unknown behaviour 2
             
     def remove_collide(self,hb2):
         epsilon = 10**-5

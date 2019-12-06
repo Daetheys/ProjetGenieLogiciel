@@ -75,6 +75,7 @@ class Player(ControlableNode):
 
     def collide(self,o,side,o2_side):
         """ Player collides with o """
+        #print("collide",self,o,side,o2_side)
         if isinstance(o,SolidPlatform):
             if o2_side == 0 or o2_side == 1:
                 #Top side
@@ -83,9 +84,6 @@ class Player(ControlableNode):
                 self.allow_jump()
                 self.is_jumping = False
                 self.is_in_air = False
-
-
-
             else:
                 if self.is_in_air:
                     #The player dies

@@ -162,18 +162,21 @@ class GameLevel:
         self.compute_controller(obj_opti)
         t = time.clock()
         self.physics_step(dt,obj_opti)
-        print("physics",time.clock()-t)
+        #print("physics",time.clock()-t)
         #Camera set position (3/4)
         self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
         #Show all sprites
         t = time.clock()
         self.aff(dt,obj_opti)
-        print("aff",time.clock()-t)
+        #print("aff",time.clock()-t)
         #Score
         self.compute_score()
         #Win / Lose conditions
         self.compute_win_lose()
-        print("fps",1/(time.clock()-to))
+        #print("fps",1/(time.clock()-to))
+        
+        #To slow the game
+        #time.sleep(0.05)
 
     def compute_win_lose(self):
         """ Compute win / lose conditions """
@@ -232,9 +235,10 @@ class GameLevel:
 
                     #Cut X speed (for MAXSPEED)
                     speed = self.player.get_speed()
-                    self.player.set_speed(Vector(1,speed.y)) #Player need to have a str pos speed
+                    self.player.set_speed(Vector(1,speed.y)) #Player needs to have a str pos speed
                 for j,o2 in enumerate(obj_opti):
                     coll = o.get_hit_box().collide_sides(o2.get_hit_box())
+                    #print("--",o,o2,coll)
                     if o != o2 and coll:
                         o.collide(o2,coll,(coll+2)%4)
                         o2.collide(o,(coll+2)%4,coll)
