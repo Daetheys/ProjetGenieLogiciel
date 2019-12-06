@@ -24,7 +24,8 @@ class Player(LifeableNode):
         self.set_hit_box(Hitbox(Rect(-1,-2,12,16))) #Specific Hit box
         self.set_rigid_body(True) #it's a rigid body
 
-        self.create_sps("player") #Set sprite
+        self.create_sps("skeleton") #Set sprite
+        self.animation_speed = 0.02
         self.set_state("r") #First state : runing ('r')
         self.controller = PlayerController(self) #Controller for the player (see below)
         self.score = 0 #Score of the player
