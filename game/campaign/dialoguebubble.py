@@ -28,7 +28,7 @@ class Dialogue_Bubble:
             for word in line:
                 word_surface = font.render(word, 1, (0,0,0))
                 word_width,word_height = word_surface.get_size()
-                if x_text + word_width >= self.background.get_width():
+                if x_text + word_width >= self.background.get_width() + self.x:
                     x_text = self.x+w+10  # Reset the x.
                     y_text += word_height  # Start on new row.
                 g.win().blit(word_surface, (x_text, y_text))
