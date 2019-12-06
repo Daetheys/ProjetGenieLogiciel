@@ -173,7 +173,7 @@ class GameLevel:
         self.compute_score()
         #Win / Lose conditions
         self.compute_win_lose()
-        #print("fps",1/(time.clock()-to))
+        print("fps",1/(time.clock()-to))
         
         #To slow the game
         #time.sleep(0.05)

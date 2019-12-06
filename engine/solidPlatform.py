@@ -17,6 +17,7 @@ class SolidPlatform(ControlableNode):
         self.get_sps().load_sprites()
         self.center_hit_box()
         self.mapping = "Repeatx"
+        self.y_offset -= 20
 
     def center_hit_box(self):
         """ Centers the hitbox """

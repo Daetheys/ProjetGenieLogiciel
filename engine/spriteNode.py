@@ -15,6 +15,9 @@ class SpriteNode(Node):
 
         self.mapping = "Flat" #Way to show the image : Flat : extended // Repeatx : Repeted along x
 
+        self.x_offset = 0
+        self.y_offset = 0
+
     def copy(self):
         """ Returns a copy of this object """
         sn = SpriteNode()
@@ -97,7 +100,7 @@ class SpriteNode(Node):
             if self.mapping == "Flat":
                 #Extends the image
                 img = pygame.transform.smoothscale(img,(int(pw),int(ph)))
-                fen.blit(img,(int(px) ,int(py) ))
+                fen.blit(img,(int(px)+self.x_offset ,int(py)+self.y_offset ))
             elif self.mapping == "Repeatx":
                 #Repeat the image along x axis
                 dx = px
@@ -105,7 +108,7 @@ class SpriteNode(Node):
                     (w,h) = img.get_width(),img.get_height()
                     ratio = (ph/h) #Compute the ratio to fit Y
                     img2 = pygame.transform.smoothscale(img,(int(ratio*w)+1,int(ratio*h))) #Scales the image so that Y will fit
-                    fen.blit(img2,(int(dx+0.5),int(py)),(0,0,px+pw-dx,ph))
+                    fen.blit(img2,(int(dx+0.5)+self.x_offset,int(py)+self.y_offset),(0,0,px+pw-dx,ph))
                     dx += w*ratio #Translates the focus of blit in order to blit a row of sprites (usefull for textures)
                 
         else:
