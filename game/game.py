@@ -169,38 +169,28 @@ class Game:
 
         map_point_list = [mp_1, mp_2, mp_3A, mp_3B, mp_4A, mp_4B]
 
-        """ This will be factorized in the nearest future """
-        for lvl in self.save["access"]:
-            if lvl == 'kshan_1':
-                mp_1.set_accessible()
-            if lvl == 'kshan_2':
-                mp_2.set_accessible()
-            if lvl == 'kshan_3A':
-                mp_3A.set_accessible()
-            if lvl == 'kshan_3B':
-                mp_3B.set_accessible()
-            if lvl == 'kshan_4B':
-                mp_4B.set_accessible()
-            if lvl == 'kshan_4A':
-                mp_4A.set_accessible()
-
-        for lvl in self.save["finish"]:
-            if lvl == 'kshan_1':
-                mp_1.set_finished()
-            if lvl == 'kshan_2':
-                mp_2.set_finished()
-            if lvl == 'kshan_3A':
-                mp_3A.set_finished()
-            if lvl == 'kshan_3B':
-                mp_3B.set_finished()
-            if lvl == 'kshan_4B':
-                mp_4B.set_finished()
-            if lvl == 'kshan_4A':
-                mp_4A.set_finished()
+        self.load_level_state("set_finished",map_point_list,"finished")
+        self.load_level_state("set_accessible",map_point_list,"accessible")
+        self.load_level_state("set_accessed",map_point_list,"accessed")
 
         mapkshan.set_map_points(map_point_list)
 
         self.world.set_maps([mapkshan])
+    def load_level_state(self,set_fun,L,state):
+        """ loads the state of a level in the world """
+        for lvl in self.save[state]:
+            if lvl == 'kshan_1':
+                getattr(L[0],set_fun)()
+            if lvl == 'kshan_2':
+                getattr(L[1],set_fun)()
+            if lvl == 'kshan_3A':
+                getattr(L[2],set_fun)()
+            if lvl == 'kshan_3B':
+                getattr(L[3],set_fun)()
+            if lvl == 'kshan_4B':
+                getattr(L[4],set_fun)()
+            if lvl == 'kshan_4A':
+                getattr(L[5],set_fun)()
 
     def saving(self):
         """ saves the game in the json file """

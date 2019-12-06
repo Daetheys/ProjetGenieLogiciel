@@ -27,15 +27,24 @@ class Level_Sequence(Map_Point):
     def set_accessible(self):
         self._accessible = True
 
-    def set_accessed(self): #maybe useless
+    def set_accessed(self,g=None):
+        """ this is used to change the dialogues
+         if you have already tried the level """
+        if  g is not None:
+            if self.name not in g.save["accessed"]:
+                g.save["accessed"].append(self.name)
         self._accessed = True
 
     def set_finished(self,g=None):
         self._finished = True
-        if g is not None: g.save["finish"].append(self.name)
+        if g is not None:
+            if self.name not in g.save["finished"]:
+                g.save["finished"].append(self.name)
         for child in self.__childs:
             child.set_accessible()
-            if g is not None: g.save["access"].append(child.name)
+            if g is not None:
+                if self.name not in g.save["accessible"]:
+                    g.save["accessible"].append(child.name)
 
     def get_accessible(self):
         return self._accessible
@@ -47,7 +56,7 @@ class Level_Sequence(Map_Point):
         return self._finished
 
     def launch(self,g):
-        self.set_accessed() #to change the begin dialogue
+        self.set_accessed(g) #to change the begin dialogue
         reussite = True #pour réussir, il faut gagner tous les levels du level_sequence
         for level in self.__levels:
             reussite = reussite and level.launch(g)
