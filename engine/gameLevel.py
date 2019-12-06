@@ -66,7 +66,7 @@ class GameLevel:
         #self.objects.append(self.player) #Player doesn't need to be added to game objects
 
         #Creation of the gravity
-        self.gravity = Gravity(60*35)
+        self.gravity = Gravity(2100) #NOTE POUR LES RAGEUX : On a testé et ca marche bien avec cette valeur -> ca permet d'avoir un saut élegant
         self.player.add_force(self.gravity)
 
     def get_camera(self):

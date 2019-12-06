@@ -42,42 +42,7 @@ class Rect:
         """ Return a 4-tuple of (posix,posiy,posfx,posfy) """
         v = self.get_position()
         d = self.get_dimension()
-        return (v.x,v.y,v.x+d.x,v.y+d.y)
-
-    """ #Too hard to test
-    def sides_intersection(self,r,preference):
-        inter_poly = self.intersect(r)
-        tf = self.get_tuple()
-        t2 = inter_poly.get_tuple()
-        sides = [False,False,False,False]
-        (w,h) = (sides[2]-sides[0],sides[3]-sides[1])
-        for i in range(4):
-            if tf[i] == t2[i]:
-                sides[i] = True
-        if not(any(sides)): # r in included in self
-            return None
-        elif sum(sides) == 1:
-            return (sides.index(True)+1)%4
-        elif sum(sides) == 2):
-            l = ([],[])
-            for i in range(4):
-                if sides[i]:
-                    l[i%2] = i
-            if len(l[0]) == 2:
-                index = 0
-            elif len(l[1]) == 2:
-                index = 1
-            else:
-                if w > h:
-                    return l[0][0]
-                else:
-                    return l[1][0]
-        elif sum(sides) == 3:
-            for i in range(1,4):
-                if sides[i] and sides[i-1]:
-                    return (i+1)%4
-        """
-        
+        return (v.x,v.y,v.x+d.x,v.y+d.y)       
         
     def __eq__(self,rect):
         d = self.get_dimension() == rect.get_dimension()

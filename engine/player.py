@@ -8,7 +8,7 @@ path = os.getcwd()
 path += "/engine"
 sys.path.append(path)
 
-from controlableNode import ControlableNode
+from lifeableNode import LifeableNode
 from solidPlatform import SolidPlatform
 from controller import KeyboardController
 from hitbox import Hitbox
@@ -17,10 +17,10 @@ from vector import Vector
 
 """ The player object -> represents the player controllableNode """
 
-class Player(ControlableNode):
+class Player(LifeableNode):
     """ Player Class """
     def __init__(self):
-        ControlableNode.__init__(self)
+        super().__init__()
         self.set_hit_box(Hitbox(Rect(-1,-2,12,16))) #Specific Hit box
         self.set_rigid_body(True) #it's a rigid body
 
@@ -37,6 +37,8 @@ class Player(ControlableNode):
         self.is_in_air = True #Is acutally in the air
 
         self.inventory = defaultdict(int) #Ref to inventory to give items to Campaign mod
+
+        self.score_to_add = 0 #Score to add for animations
 
     def __repr__(self):
         return "Player("+str(self.get_hit_box())+")"
@@ -103,8 +105,15 @@ class Player(ControlableNode):
         if self.alive:
             self.set_state("j") #For the spriteScheduler -> state jump (j)
 
+        if self.score_to_add > 0:
+            valadd = min(50,self.score_to_add)
+            valprod = int(self.score_to_add/10+0.5)
+            val = max(valadd,valprod)
+            self.score += val
+            self.score_to_add -= val
+
     def add_score(self,val):
-        self.score += val
+        self.score_to_add += val
 
     def get_score(self):
         return self.score
