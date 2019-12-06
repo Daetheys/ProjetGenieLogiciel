@@ -30,10 +30,12 @@ class Level_Sequence(Map_Point):
     def set_accessed(self): #maybe useless
         self._accessed = True
 
-    def set_finished(self):
+    def set_finished(self,g=None):
         self._finished = True
+        if g is not None: g.save["finish"].append(self.name)
         for child in self.__childs:
             child.set_accessible()
+            if g is not None: g.save["access"].append(child.name)
 
     def get_accessible(self):
         return self._accessible
@@ -45,13 +47,13 @@ class Level_Sequence(Map_Point):
         return self._finished
 
     def launch(self,g):
-        self.set_accessed() #is it useful ?
+        self.set_accessed() #to change the begin dialogue
         reussite = True #pour réussir, il faut gagner tous les levels du level_sequence
         for level in self.__levels:
             reussite = reussite and level.launch(g)
         if reussite:
-            self.set_finished()
+            self.set_finished(g)
 
         g.launch_music(g.menu_music)#relance la musique du menu
-
+        g.saving()
         return True,False

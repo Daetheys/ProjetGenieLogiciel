@@ -49,6 +49,7 @@ import dialogue
 import items
 
 def create_char(dict,dict_img):
+	""" creates a character from an section of the dictionnary"""
 	for char in dict:
 		dict[char] = character.Character(char,dict_img[dict[char][0]],(dict[char][1],dict[char][2],dict[char][3]),defaultdict(int))
 	return dict
@@ -153,5 +154,9 @@ def bgg(l,surf,MAX_X=1800,MAX_Y = 1800,plat_img=None,plat_small=None,plat_big=No
 	blit_list(L,surfa)
 	return surfa,L
 
-
-
+def list_to_defaultdict(li):
+	""" transforms a list of pair into a defauldict """
+	d = defaultdict(int)
+	for tup in li:
+		d[tup[0]] = tup[1]
+	return d

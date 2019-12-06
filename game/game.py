@@ -65,7 +65,7 @@ class Game:
         pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
         self._fenetre = pygame.display.set_mode((self.options["DISPLAYSIZE_X"], self.options["DISPLAYSIZE_Y"]),self.options["modeECRAN"])#1920*1080
         self._fenetre.set_alpha(None) #To speed things up
-        
+
     def init_images(self):
         """loads all images into self.dict_img, blits the first background"""
         #Images
@@ -167,12 +167,46 @@ class Game:
         mp_3A.set_childs([mp_4A])
         mp_3B.set_childs([mp_4B])
 
-        mp_1.set_accessible()
+        map_point_list = [mp_1, mp_2, mp_3A, mp_3B, mp_4A, mp_4B]
 
-        mapkshan.set_map_points([mp_1, mp_2, mp_3A, mp_3B, mp_4A, mp_4B])
+        """ This will be factorized in the nearest future """
+        for lvl in self.save["access"]:
+            if lvl == 'kshan_1':
+                mp_1.set_accessible()
+            if lvl == 'kshan_2':
+                mp_2.set_accessible()
+            if lvl == 'kshan_3A':
+                mp_3A.set_accessible()
+            if lvl == 'kshan_3B':
+                mp_3B.set_accessible()
+            if lvl == 'kshan_4B':
+                mp_4B.set_accessible()
+            if lvl == 'kshan_4A':
+                mp_4A.set_accessible()
+
+        for lvl in self.save["finish"]:
+            if lvl == 'kshan_1':
+                mp_1.set_finished()
+            if lvl == 'kshan_2':
+                mp_2.set_finished()
+            if lvl == 'kshan_3A':
+                mp_3A.set_finished()
+            if lvl == 'kshan_3B':
+                mp_3B.set_finished()
+            if lvl == 'kshan_4B':
+                mp_4B.set_finished()
+            if lvl == 'kshan_4A':
+                mp_4A.set_finished()
+
+        mapkshan.set_map_points(map_point_list)
 
         self.world.set_maps([mapkshan])
 
+    def saving(self):
+        """ saves the game in the json file """
+
+        with open("data/json/save.json","w") as f:
+            f.write(json.dumps(self.save))
 
     def init_music(self):
         """
@@ -230,6 +264,18 @@ class Game:
 
             #for sc in self.score:
             #    self.score[sc] = self.score[sc]
+
+        try:
+            with open("data/json/save.json","r") as file:
+                self.save = json.load(file)
+        except FileNotFoundError:
+            print("kjlkjlk")
+            with open("data/json/default_save.json","r") as file:
+                self.save = json.load(file)
+            copy2("data/json/default_save.json","data/json/save.json")
+        self.player.inv = tools.list_to_defaultdict(self.save["inv"])
+        print(self.save)
+
 
     def flip(self,txt=None):
         if txt is not None:#is the SCORE usually

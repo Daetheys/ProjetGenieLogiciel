@@ -68,6 +68,8 @@ def reaction_play(text,name):
         g.launch_level(gl,text)
         """ ceci lance le level correspondant """
         g.launch_music(g.menu_music)#relance la musique du menu!
+
+        g.saving()
         return True,False
     return f
 
