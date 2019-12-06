@@ -117,17 +117,6 @@ class MovableNode(SpriteNode):
             ang_acc += ang_accf
         self.set_acc(acc/self.get_mass())
         self.set_ang_acc(ang_acc/self.get_ang_inertia())
-
-    def apply_solid_reaction(self,support):
-        """ Computes physics when this specific node rigid_collides with support"""
-        assert self.get_rigid_hit_box().collide(support.get_rigid_hit_box())
-        #Get how to remove the collision
-        correction = self.get_rigid_hit_box().remove_collide(support.get_rigid_hit_box())
-        #Get how to correct the speed
-        speed = correction.normalise()*self.get_speed()
-        #Correct position and speed
-        self.translate(correction)
-        self.set_speed(self.get_speed()+speed)
         
     """ #OLD PHYSICS (1.0) -> It took me so much time to do it and to debug it I don't want to delete it -> it has been removed because it is too slow
     def get_direction_rigid_collide(self,p):
