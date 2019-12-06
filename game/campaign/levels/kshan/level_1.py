@@ -18,6 +18,7 @@ from hitbox import Hitbox
 from rect import Rect
 from level import Level
 from coin import Coin
+from pickableNode import PickableNode
 
 class Level_1_kshan(Level):
     
@@ -63,6 +64,9 @@ class Level_1_kshan(Level):
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
         
+        for i in range(2,8):
+            self.objects[i].restore()
+        
         
         if success:
             self.fun_dialogue(g,"good_end")
@@ -76,8 +80,13 @@ class Level_1_kshan(Level):
     
     def init_objects(self,g):
         plat_1 = SolidPlatform(Hitbox(Rect(-10,12,300,18)))
-        coin_1 = Coin(Hitbox(Rect(200,-4,10,10)))
+        coin_1 = Coin(Hitbox(Rect(150,-2,10,10)))
+        coin_2 = Coin(Hitbox(Rect(170,-2,10,10)))
+        coin_3 = Coin(Hitbox(Rect(190,-2,10,10)))
+        coin_4 = Coin(Hitbox(Rect(210,-2,10,10)))
+        coin_5 = Coin(Hitbox(Rect(230,-2,10,10)))
+        coin_6 = Coin(Hitbox(Rect(250,-2,10,10)))
         
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         
-        return [plat_1,plat_2,coin_1]
+        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6]
