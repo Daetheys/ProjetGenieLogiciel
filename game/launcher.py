@@ -15,10 +15,11 @@ class Launcher(Game):
         all button-related activities, and launches the main loop"""
         Game.__init__(self)
         self.init_buttons()
-        self.init_background()
+        self.__init_background()
         self.launch_game()
 
     def __create_plat(self,width,height):
+        """ creates a platform that will appear in the menu """
         plat_img = pygame.Surface((width,height), pygame.SRCALPHA) # per-pixel alpha
         plat_img.fill((255,255,255,0))
         img = load("data/img/platform3.png").convert_alpha()
@@ -28,7 +29,8 @@ class Launcher(Game):
             plat_img.blit(img.convert_alpha(),(i*(img.get_width()*ratio-3),0))
         return plat_img
 
-    def init_background(self):
+    def __init_background(self):
+        """ creates platforms that will appear in the menu """
         self.bg = None#Pygame.Surface (background)
         self.bglist = []#list of tuples (position of the platforms in the background)
         self.plat_img = self.__create_plat(200,40)
