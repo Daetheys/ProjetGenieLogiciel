@@ -38,6 +38,6 @@ class Key_1(ControlableNode):
                 print("INV",id(o2.get_inventory()))
                 self.taken = True
                 self.create_sps('empty')
-                self.set_state('a')
+                self.set_state('s')
                 
     

@@ -12,11 +12,11 @@ class Coin(ControlableNode):
         ControlableNode.__init__(self)
         self.set_hit_box(hb)
         self.set_collide(True)
-        self.create_sps("piece")
+        self.create_sps("coin")
         self.center_hit_box()
 
         self.taken = False
-        self.key = KeyItem("key_1") #A changer
+        self.key = KeyItem("no_key") #A changer
 
     def center_hit_box(self):
         self.get_hit_box().center()
@@ -34,10 +34,10 @@ class Coin(ControlableNode):
         #side : 0-> haut (aiguilles d'une montre)
         if isinstance(o2,Player):
             if not(self.taken):
-                o2.set_inventory({self.key:1}) #A changer
+                o2.add_score(100)
                 self.taken = True
                 #Remove the coin
                 self.create_sps('empty')
-                self.set_state('a')
+                self.set_state('s')
                 
     

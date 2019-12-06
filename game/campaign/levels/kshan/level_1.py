@@ -17,6 +17,7 @@ from hypothesis.strategies import integers, lists
 from hitbox import Hitbox
 from rect import Rect
 from level import Level
+from coin import Coin
 
 class Level_1_kshan(Level):
     
@@ -75,7 +76,8 @@ class Level_1_kshan(Level):
     
     def init_objects(self,g):
         plat_1 = SolidPlatform(Hitbox(Rect(-10,12,300,18)))
+        coin_1 = Coin(Hitbox(Rect(200,-4,10,10)))
         
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         
-        return [plat_1,plat_2]
+        return [plat_1,plat_2,coin_1]
