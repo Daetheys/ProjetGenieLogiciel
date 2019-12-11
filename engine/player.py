@@ -113,6 +113,10 @@ class Player(LifeableNode):
             self.score += val
             self.score_to_add -= val
 
+    def flush_score(self):
+        self.score += self.score_to_add
+        self.score_to_add = 0
+
     def add_score(self,val):
         self.score_to_add += val
 

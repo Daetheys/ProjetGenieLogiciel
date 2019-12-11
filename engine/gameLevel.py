@@ -164,7 +164,7 @@ class GameLevel:
         self.physics_step(dt,obj_opti)
         #print("physics",time.clock()-t)
         #Camera set position (3/4)
-        self.camera.threeforth_on(Vector(self.player_pos(self.time),self.player.get_position().y))
+        self.camera.threeforth_on(Vector(self.player.get_position().x,self.player.get_position().y))
         #Show all sprites
         t = time.clock()
         self.aff(dt,obj_opti)
@@ -204,10 +204,12 @@ class GameLevel:
 
     def win(self):
         """ Win the game """
+        self.player.flush_score()
         raise EndGame(True,self.player.score)
 
     def lose(self):
         """ Lose the game """
+        self.player.flush_score()
         self.lost = True
 
     def get_objects_opti(self):
