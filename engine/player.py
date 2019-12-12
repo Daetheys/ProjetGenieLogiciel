@@ -14,6 +14,7 @@ from controller import KeyboardController
 from hitbox import Hitbox
 from rect import Rect
 from vector import Vector
+import mob
 
 """ The player object -> represents the player controllableNode """
 
@@ -24,12 +25,13 @@ class Player(LifeableNode):
         self.set_hit_box(Hitbox(Rect(-1,-2,12,16))) #Specific Hit box
         self.set_rigid_body(True) #it's a rigid body
 
-        self.create_sps("skeleton") #Set sprite
+        self.create_sps("player") #Set sprite
         self.animation_speed = 0.02
         self.set_state("r") #First state : runing ('r')
         self.controller = PlayerController(self) #Controller for the player (see below)
         self.score = 0 #Score of the player
-        self.alive = True #He is alive ... for now
+
+        self.small = False #Life bar
 
         self.jump_strength = 500 #Strength of the jump
         self.can_jump = True #Can jump
@@ -43,6 +45,12 @@ class Player(LifeableNode):
 
     def __repr__(self):
         return "Player("+str(self.get_hit_box())+")"
+
+    def copy(self):
+        raise NotImplemented
+
+    def paste_in(self,p):
+        raise NotImplemented
 
     def load_inventory(self,inv):
         """ Load the inventory of campaign mod """
@@ -91,12 +99,13 @@ class Player(LifeableNode):
                 if self.is_in_air:
                     #The player dies
                     self.die()
+        if isinstance(o,mob.Mob):
+            self.take_damages(o.damages)
 
     def die(self):
         """ Kills the player """
         self.set_state("d") #For the spriteScheduler -> state die (d)
-        print("Player Dies")
-        self.alive = False
+        super().die()
 
     def update(self):
         """ Update var """
@@ -129,7 +138,7 @@ class PlayerController(KeyboardController):
         super().__init__()
         self.target = target
 
-    def execute(self,event,pressed):
+    def execute(self,event,pressed,dt):
         """ Execute controller code """
         jump_key = pygame.K_z
         if (event is not None and event.type == pygame.KEYDOWN and event.key == jump_key) or pressed[jump_key]:

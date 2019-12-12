@@ -7,6 +7,9 @@ from pygame.locals import *
 path = os.getcwd()
 path += "/engine"
 sys.path.append(path)
+path = os.getcwd()
+path += "/engine/mob"
+sys.path.append(path)
 from polygone import *
 from vector import Vector
 from transform import Transform
@@ -19,6 +22,7 @@ from rect import Rect
 from level import Level
 from coin import Coin
 from pickableNode import PickableNode
+from zombie import Zombie
 
 class Level_1_kshan(Level):
     
@@ -86,7 +90,10 @@ class Level_1_kshan(Level):
         coin_4 = Coin(Hitbox(Rect(210,-2,10,10)))
         coin_5 = Coin(Hitbox(Rect(230,-2,10,10)))
         coin_6 = Coin(Hitbox(Rect(250,-2,10,10)))
+
+        zombie = Zombie()
+        zombie.set_position(350,0)
         
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         
-        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6]
+        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie]

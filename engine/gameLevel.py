@@ -159,7 +159,7 @@ class GameLevel:
                 raise EndGame(False,self.player.score)
 
         obj_opti = self.get_objects_opti()
-        self.compute_controller(obj_opti)
+        self.compute_controller(obj_opti,dt)
         t = time.clock()
         self.physics_step(dt,obj_opti)
         #print("physics",time.clock()-t)
@@ -192,14 +192,14 @@ class GameLevel:
             del self.end_platform_location[0]
             self.player.add_score(1000)
 
-    def compute_controller(self,objects):
+    def compute_controller(self,objects,dt):
         """ Compute controllers """
         pressed = pygame.key.get_pressed()
         #Controller loop
         for event in pygame.event.get() + [None]:
             for o in objects:
                 if o.get_controller() is not None:
-                    o.get_controller().execute(event,pressed)
+                    o.get_controller().execute(event,pressed,dt)
         #Physics
 
     def win(self):
@@ -239,14 +239,15 @@ class GameLevel:
                     speed = self.player.get_speed()
                     self.player.set_speed(Vector(1,speed.y)) #Player needs to have a str pos speed
                 for j,o2 in enumerate(obj_opti):
-                    coll = o.get_hit_box().collide_sides(o2.get_hit_box())
-                    #print("--",o,o2,coll)
-                    if o != o2 and coll:
-                        o.collide(o2,coll,(coll+2)%4)
-                        o2.collide(o,(coll+2)%4,coll)
-                        while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()) and o.get_speed() != Vector(0,0):
-                            #print("rigid")
-                            o.apply_solid_reaction(o2)
+                    if o.get_collide() and o2.get_collide():
+                        coll = o.get_hit_box().collide_sides(o2.get_hit_box())
+                        #print("--",o,o2,coll)
+                        if o != o2 and coll:
+                            o.collide(o2,coll,(coll+2)%4)
+                            o2.collide(o,(coll+2)%4,coll)
+                            while o.get_rigid_body() and o2.get_rigid_body() and o.get_rigid_hit_box().collide(o2.get_rigid_hit_box()) and o.get_speed() != Vector(0,0):
+                                #print("rigid")
+                                o.apply_solid_reaction(o2)
 
     def load_camera(self,fen):
         """ Loads the actual camera of the Level """

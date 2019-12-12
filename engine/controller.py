@@ -47,7 +47,7 @@ class KeyboardController(Controller):
     def execute(self):
         self._target.execute(get_event)()
         
-class AutoPlay(Controller):
+class Autoplay(Controller):
     
     def __init__(self, target=None, actions=[]):
         super().__init__(self)
