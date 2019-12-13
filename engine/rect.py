@@ -32,6 +32,11 @@ class Rect:
         self.set_position(-self.get_dimension()/2)
         return (self.get_position()+(-pos))
 
+    def collidex(self,orect):
+        (oix,oiy,ofx,ofy) = orect.get_tuple()
+        (cix,ciy,cfx,cfy) = self.get_tuple()
+        return oix<=cix<=ofx or cix<=oix<=cfx or oix<=cfx<=ofx or cix<=ofx<=cfx
+
     def get_coord(self):
         """ Return a 4-tuple of (posx,posy,width,height) """
         v = self.get_position()

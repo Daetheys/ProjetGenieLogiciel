@@ -21,6 +21,9 @@ class Zombie(Mob):
         self.set_state("r")
         self.controller = ZombieController(self)
 
+    def end_init(self):
+        self.add_force(self.world.gravity)
+
     def copy(self):
         z = Zombie()
         self.paste_in(z)

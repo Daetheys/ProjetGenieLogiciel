@@ -19,8 +19,7 @@ class Coin(PickableNode):
                 o2.add_score(100)
                 self.taken = True
                 #Remove the coin
-                self.create_sps('empty')
-                self.set_state('s')
+                self.vanish()
     
     def restore(self):
         self.taken = False

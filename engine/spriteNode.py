@@ -33,8 +33,16 @@ class SpriteNode(Node):
         else:
             sn.set_sps(None)
 
+    def stase(self):
+        """ Will be called when the object leaves the field of view of the camera -> 0 to remove the object, 1 to keep it """
+        return 0
+
     def set_sps(self,sche):
         self.__sps = sche
+
+    def vanish(self):
+        self.create_sps("empty")
+        self.set_state("s")
 
     def create_sps(self,name):
         """

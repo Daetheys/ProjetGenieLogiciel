@@ -87,7 +87,8 @@ def test_opti():
     gl.opti_step = 10
     gl.optimise_data()
     for i in range(nb):
-        assert len(gl.sorted_objects[i]) == 1
+        assert gl.sorted_objects[0] == gl.player
+        assert gl.sorted_objects[1] == plat1
     for x in range(nb*10):
         print("--",x)
         gl.get_camera().set_position(Vector(x/10,0))

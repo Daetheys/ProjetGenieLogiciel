@@ -6,7 +6,7 @@ class Mob(LifeableNode):
         super().__init__()
         self.set_hit_box(hb)
         self.set_rigid_body(True)
-        self.damages = 1
+        self.damages = 1 #Damages by hitting the mob
 
     def copy(self):
         """ Returns the copy of this """

@@ -9,6 +9,7 @@ class ControlableNode(CollideTransformable):
         super().__init__()
         self.controller = None
         self.__actions = {"Nothing":do_nothing}
+        self.world = None #Ref to a gameLevel
 
     def copy(self):
         """ Returns a copy of itself """
@@ -20,6 +21,12 @@ class ControlableNode(CollideTransformable):
         """" Paste it in cn """
         CollideTransformable.paste_in(self,cn)
         cn.set_controller(self.get_controller())
+
+    def link_world(self,w):
+        self.world = w
+
+    def end_init(self):
+        pass
         
     def set_controller(self,controller):
         self.controller = controller

@@ -100,11 +100,16 @@ class Camera:
         #Shows the Background (see Background)
         bg.show()
         #Shows all objects that are in the camera
+        to_discard = []
         for o in objects:
             if self.is_in_camera(o.get_hit_box().get_world_rect()): #Checks if the hitbox is in the camera
+                print(o)
                 o.aff(self.get_fen(),self.get_distorsion(),dt)
-            #else:
-            #    print("------",o.get_hit_box().get_world_rect(),self.rect,o.__class__)
+            elif not(self.rect.collidex(o.get_hit_box().get_world_rect())):
+                if o.stase() == 0:
+                    to_discard.append(o)
+        for o in to_discard:
+            objects.discard(o)
         #Show the score
         d = self.get_dimension()
         x = int(d.x*15/16) #Computes where to put it

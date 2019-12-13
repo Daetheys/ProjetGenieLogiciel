@@ -35,6 +35,9 @@ class GameLevel:
         self.compute_size_level()
         self.name = name
 
+        #Creation of the gravity
+        self.gravity = Gravity(2100) #NOTE POUR LES RAGEUX : On a testé et ca marche bien avec cette valeur -> ca permet d'avoir un saut élegant
+
         self.begin_time = 0
         self.time = 0 #Time Referential of the level
 
@@ -42,10 +45,17 @@ class GameLevel:
         self.lost = False
         self.countdown = 30
 
+        #Creation of the player
+        self.player = Player()
+        self.player.set_position(0,-16) #Init pos of the player
+        self.objects.append(self.player)
+
         #To optimise physics
         self.sorted_objects = None
-        self.opti_step = 1
+        self.dynamic_objects = set([self.player])
+        self.opti_step = 10
         self.optimise_data()
+        self.progression = 0
 
         #Get end platform locations to compute score
         self.end_platform_location = None
@@ -60,14 +70,14 @@ class GameLevel:
 
         self.background = Background(lpar)
 
-        #Creation of the player
-        self.player = Player()
-        self.player.set_position(0,-16) #Init pos of the player
-        #self.objects.append(self.player) #Player doesn't need to be added to game objects
+        for o in objects:
+            o.link_world(self)
+        
+        self.end_init()
 
-        #Creation of the gravity
-        self.gravity = Gravity(2100) #NOTE POUR LES RAGEUX : On a testé et ca marche bien avec cette valeur -> ca permet d'avoir un saut élegant
-        self.player.add_force(self.gravity)
+    def end_init(self):
+        for o in self.objects:
+            o.end_init()
 
     def get_camera(self):
         return self.camera
@@ -78,6 +88,12 @@ class GameLevel:
     def load_inventory(self,inv):
         self.player.load_inventory(inv)
 
+    def add_node(self,n):
+        """ Adds a new node to the world """
+        self.objects.append(n)
+        self.dynamic_objects.add(n)
+        n.link_world(self)
+
     def compute_end_platform_location(self):
         """ Compute the list of platform location """
         self.end_platform_location = []
@@ -86,19 +102,26 @@ class GameLevel:
                 self.end_platform_location.append(o.get_hit_box().get_world_rect().get_max_x())
         self.end_platform_location.sort()
 
+    def get_objects_opti(self):
+        """ Optimise the data structure """
+        while self.progression < len(self.sorted_objects):
+            o = self.sorted_objects[self.progression]
+            orect = o.get_hit_box().get_world_rect()
+            crect = self.get_camera().rect
+            if orect.collidex(crect):
+                self.dynamic_objects.add(o)
+                self.progression += 1
+            else:
+                break
+        return self.dynamic_objects
+
     def optimise_data(self):
         """ Optimise collisions checks and aff """
         #Call it before launching the game of making modification in camera (be carefull it may take a while to execute
-        step = self.opti_step #self.get_camera().get_dimension().x
-        (minx,maxx,miny,maxy) = self.size_level
-        sorted_objects = [[] for i in range( int((maxx-minx)/step+0.5) +1)]
-        for o in self.objects:
-            minposx = o.get_hit_box().get_world_rect().get_min_x()
-            maxposx = o.get_hit_box().get_world_rect().get_max_x()
-            minindexx = int( (minposx-minx)/step )
-            maxindexx = int( (maxposx-minx)/step ) #Arrondi au sup
-            for i in range(minindexx,maxindexx+1): #On va jusqu'au max inclu
-                sorted_objects[i].append(o)
+        def order(o1):
+            return o1.get_hit_box().get_world_rect().get_min_x()
+        sorted_objects = self.objects[:]
+        sorted_objects.sort(key=order)
         self.sorted_objects = sorted_objects
 
     def compute_size_level(self):
@@ -173,7 +196,7 @@ class GameLevel:
         self.compute_score()
         #Win / Lose conditions
         self.compute_win_lose()
-        print("fps",1/(time.clock()-to))
+        #print("fps",1/(time.clock()-to))
         
         #To slow the game
         #time.sleep(0.05)
@@ -197,7 +220,7 @@ class GameLevel:
         pressed = pygame.key.get_pressed()
         #Controller loop
         for event in pygame.event.get() + [None]:
-            for o in objects:
+            for o in set(objects):
                 if o.get_controller() is not None:
                     o.get_controller().execute(event,pressed,dt)
         #Physics
@@ -211,18 +234,6 @@ class GameLevel:
         """ Lose the game """
         self.player.flush_score()
         self.lost = True
-
-    def get_objects_opti(self):
-        """ Optimise the data structure """
-        (minx,maxx,miny,maxy) = self.size_level
-        x = self.camera.get_position().x
-        index = int((x-minx)/self.opti_step)
-        set_opti = set()
-        nb = int(self.camera.get_dimension().x/self.opti_step+0.5)+1
-        for i in range(nb):
-            if index+i < len(self.sorted_objects):
-                set_opti |= set(self.sorted_objects[index+i])
-        return set_opti | set([self.player])
 
     def physics_step(self,dt,obj_opti):
         """ Compute collisions """

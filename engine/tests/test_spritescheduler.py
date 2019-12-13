@@ -42,21 +42,21 @@ def test_loaded_sps():
     assert sps.ata.states == [0,1,2]
     assert sps.ata.cs == 0
     #testing the transition table
-    assert sps.ata.tt[0,'a'] == 1
-    assert sps.ata.tt[1,'a'] == 2
-    assert sps.ata.tt[2,'a'] == 2
+    assert sps.ata.tt[0,'s'] == 1
+    assert sps.ata.tt[1,'s'] == 2
+    assert sps.ata.tt[2,'s'] == 2
     #testing a run of the sprite scheduler
-    sps.step('a')
+    sps.step('s')
     assert sps.ata.cs == 1
-    sps.step('a')
+    sps.step('s')
     assert sps.ata.cs == 2
-    sps.step('a')
+    sps.step('s')
     assert sps.ata.cs == 2
     sps.step('i')
     assert sps.ata.cs == 0
     sps.step('i')
     assert sps.ata.cs == 0
-    sps.step('a')
+    sps.step('s')
     assert sps.ata.cs == 1
     sps.step('i')
     assert sps.ata.cs == 2

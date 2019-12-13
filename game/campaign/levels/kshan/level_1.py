@@ -23,6 +23,7 @@ from level import Level
 from coin import Coin
 from pickableNode import PickableNode
 from zombie import Zombie
+from laserTurretBot import LaserTurretBot
 
 class Level_1_kshan(Level):
     
@@ -93,7 +94,10 @@ class Level_1_kshan(Level):
 
         zombie = Zombie()
         zombie.set_position(350,0)
+
+        laserbot = LaserTurretBot()
+        laserbot.set_position(450,-30)
         
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         
-        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie]
+        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot]

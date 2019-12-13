@@ -50,6 +50,17 @@ def test_rect_intersect():
     R2 = Rect(0,0,2,2)
     assert R1.intersect(R2) is None
 
+def test_collidex():
+    R1 = Rect(0,0,2,0.1)
+    R2 = Rect(1,1,1,1)
+    assert R1.collidex(R2)
+    R1 = Rect(0,0,2,1)
+    R2 = Rect(3,0,1,1)
+    assert not(R1.collidex(R2))
+    R1 = Rect(0,0,2,2)
+    R2 = Rect(2,1,3,3)
+    assert R1.collidex(R2)
+
 @given(integers(),integers(),integers(min_value=0),integers(min_value=0))
 def test_rect_center_general(x,y,w,h):
     R = Rect(x,y,w,h)

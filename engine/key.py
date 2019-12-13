@@ -22,7 +22,6 @@ class Key_1(PickableNode):
             if not(self.taken):
                 o2.set_inventory({self.key:1})
                 self.taken = True
-                self.create_sps('empty')
-                self.set_state('s')
+                self.vanish()
                 
     

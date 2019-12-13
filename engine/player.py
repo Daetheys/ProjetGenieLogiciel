@@ -26,7 +26,7 @@ class Player(LifeableNode):
         self.set_rigid_body(True) #it's a rigid body
 
         self.create_sps("player") #Set sprite
-        self.animation_speed = 0.02
+        self.animation_speed = 0.05
         self.set_state("r") #First state : runing ('r')
         self.controller = PlayerController(self) #Controller for the player (see below)
         self.score = 0 #Score of the player
@@ -51,6 +51,9 @@ class Player(LifeableNode):
 
     def paste_in(self,p):
         raise NotImplemented
+
+    def end_init(self):
+        self.add_force(self.world.gravity)
 
     def load_inventory(self,inv):
         """ Load the inventory of campaign mod """
