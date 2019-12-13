@@ -1,24 +1,4 @@
-
-import sys
-import os
-#import numpy as np
-import pygame
-from pygame.locals import *
-path = os.getcwd()
-path += "/engine"
-sys.path.append(path)
-from polygone import *
-from vector import Vector
-from transform import Transform
-from solidPlatform import SolidPlatform
-from key import Key_1
-from gameLevel import GameLevel
-from hypothesis import given
-from hypothesis.strategies import integers, lists
-from hitbox import Hitbox
-from rect import Rect
-from level import Level
-from items import KeyItem
+from imports import *
 
 class Level_3A_kshan(Level):
     
@@ -89,7 +69,7 @@ class Level_3A_kshan(Level):
             plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
             dist += l + 20
         plat.append(SolidPlatform(Hitbox(Rect(dist,-6,500,24))))
-        self.key = Key_1(Hitbox(Rect(dist+300,-38,4,4)))
+        self.key = Key(Hitbox(Rect(dist+300,-38,4,4)),"key")
         plat.append(self.key)
         dist += 520
         for i in range(17):
