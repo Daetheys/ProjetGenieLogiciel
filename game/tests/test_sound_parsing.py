@@ -10,6 +10,7 @@ sys.path.append(path + "/game/level_generation")
 
 paths = glob.glob(path + "/data/tests_musique2/*.mp3")
 paths += glob.glob(path + "/data/tests_musique/*.mp3")
+paths += glob.glob(path + "/data/musics/*.mp3")
 
 from sound_parser import bpm_info
 
