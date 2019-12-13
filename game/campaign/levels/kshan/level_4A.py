@@ -45,8 +45,11 @@ class Level_4A_kshan(Level):
         
         
     def launch(self,g):
+        quit_all = self.fun_dialogue(g,"start")
         self.set_accessed()
-        self.fun_dialogue(g,"start")
+        
+        if quit_all:
+            return False
         
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
