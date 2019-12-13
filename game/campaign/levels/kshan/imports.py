@@ -24,3 +24,4 @@ from level import Level
 from pickableNode import *
 from zombie import Zombie
 from laserTurretBot import LaserTurretBot
+from flag import Flag

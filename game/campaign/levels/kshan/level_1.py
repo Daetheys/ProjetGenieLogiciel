@@ -76,5 +76,6 @@ class Level_1_kshan(Level):
         laserbot.set_position(450,-30)
         
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
+        flag = Flag(Hitbox(Rect(495,-8,20,20)))
         
-        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot,heart]
+        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot,heart,flag]
