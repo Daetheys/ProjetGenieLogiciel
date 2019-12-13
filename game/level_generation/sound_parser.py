@@ -19,6 +19,7 @@ def bpm_info(file):
 			- le nombre de beats
 	"""
 	y, sr = librosa.core.load(file, sr=None)
+	y += np.random.rand(len(y))*0.0001 # Adds noise to the audio input in order to prevent librosa from crashing
 	onset_env = librosa.onset.onset_strength(y=y, sr=sr)
 	pulse = librosa.beat.plp(onset_envelope=onset_env, sr=sr, tempo_min=30, tempo_max=300)
 
