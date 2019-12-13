@@ -62,18 +62,18 @@ class Node(Transformable):
 
     def draw(self,transform):
         """ Computes transformations on everyone """
-        transform = transform*get_transform()
         self.draw_current(transform)
+        transform = transform.combine(self.get_transform())
         for child in self.__children:
             child.draw(transform)
 
-    def draw_current(self,fen):
+    def draw_current(self,tr):
         """ Compute things on this node (because it's not used yet this method is empty but will contain all useful stuff - depending on what we'll need later) """
-        pass
+        self.apply_transform(tr)
 
     def update(self, dt):
         """ Same concept than draw but to compute dynamic information """
-        update_current(dt)
+        self.update_current(dt)
         for child in self.__children:
             child.update(dt)
 

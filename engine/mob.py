@@ -26,3 +26,6 @@ class Mob(LifeableNode):
         if isinstance(o2,player.Player): #Mobs cannot collide more than once with player
             self.die()
             self.set_collide(False) #So that player can continue to run
+
+    def die(self):
+        super().die()

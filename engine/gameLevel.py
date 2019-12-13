@@ -10,6 +10,7 @@ from parallax import Parallax
 from player import Player
 from force import Gravity
 from solidPlatform import SolidPlatform
+from transform import Transform
 import pygame
 import time
 from datetime import datetime
@@ -182,14 +183,12 @@ class GameLevel:
                 raise EndGame(False,self.player.score)
 
         obj_opti = self.get_objects_opti()
+        self.compute_draw(obj_opti)
         self.compute_controller(obj_opti,dt)
-        t = time.clock()
         self.physics_step(dt,obj_opti)
-        #print("physics",time.clock()-t)
         #Camera set position (3/4)
         self.camera.threeforth_on(Vector(self.player.get_position().x,self.player.get_position().y))
         #Show all sprites
-        t = time.clock()
         self.aff(dt,obj_opti)
         #print("aff",time.clock()-t)
         #Score
@@ -200,6 +199,10 @@ class GameLevel:
         
         #To slow the game
         #time.sleep(0.05)
+
+    def compute_draw(self,opti_objects):
+        for o in opti_objects:
+            o.draw(Transform())
 
     def compute_win_lose(self):
         """ Compute win / lose conditions """
