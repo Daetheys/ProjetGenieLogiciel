@@ -62,7 +62,7 @@ class Player(LifeableNode):
     def set_inventory(self,items):#Should be renamed to add_inventory
         """ Add in inventory the aforementiened items"""
         for item in items:
-            if item:#item.type == "csm": #For consommable (may have several)
+            if item.type != "key":#item.type == "csm": #For consommable (may have several)
                 self.inventory[item] += items[item]
             else:
                 self.inventory[item] = items[item]

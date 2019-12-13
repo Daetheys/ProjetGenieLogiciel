@@ -19,7 +19,7 @@ class Level_1_kshan(Level):
         return quit_all
             
     def reward(self,g):
-        g.player.set_inventory({"key_0":1})
+        g.player.set_inventory({KeyItem("key_0") : 1})
         
     def check_victory(self,g,arg):
         return arg
@@ -62,6 +62,7 @@ class Level_1_kshan(Level):
         coin_4 = Coin(Hitbox(Rect(210,-2,10,10)))
         coin_5 = Coin(Hitbox(Rect(230,-2,10,10)))
         coin_6 = Coin(Hitbox(Rect(250,-2,10,10)))
+        deadly = DeadlyPotion(Hitbox(Rect(100,-2,10,10)))
         
         if not self.get_accessed():
             heart = Heart(Hitbox(Rect(280,-2,10,10)))
@@ -72,9 +73,9 @@ class Level_1_kshan(Level):
         zombie.set_position(310,0)
 
         laserbot = LaserTurretBot()
-        laserbot.set_position(450,-30)
+        laserbot.set_position(450,-50)
         
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         flag = Flag(Hitbox(Rect(500,-8,10,20)))
         
-        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot,heart,flag]
+        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot,heart,flag,deadly]

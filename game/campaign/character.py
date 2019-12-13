@@ -19,7 +19,7 @@ class Character():
 	def set_inventory(self,items):
 		""" add inventory"""
 		for item in items:
-			if item:#item.type == "csm":
+			if item.type != 'key':#item.type == "csm":
 				self.inv[item] += items[item]
 			else:
 				self.inv[item] = items[item]

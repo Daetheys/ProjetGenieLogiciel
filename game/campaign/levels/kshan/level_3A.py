@@ -20,7 +20,7 @@ class Level_3A_kshan(Level):
         return quit_all
         
     def check_victory(self,g,arg):
-        if arg and g.player.is_in_inventory(self.key.keyName):
+        if arg and g.player.is_in_inventory(KeyItem(self.key.sps_name)):
             return True
         return False
         
@@ -56,8 +56,8 @@ class Level_3A_kshan(Level):
             if alive:
                 self.fun_dialogue(g,"bad_end_2")
             else:
-                if g.player.is_in_inventory(self.key.keyName):
-                    g.player.set_inventory({self.key.keyName:0})
+                if g.player.is_in_inventory(KeyItem(self.key.sps_name)):
+                    g.player.set_inventory({KeyItem(self.key.sps_name):0})
                 self.fun_dialogue(g,"bad_end_1")
         
         return success

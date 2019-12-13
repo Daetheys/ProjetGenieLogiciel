@@ -48,7 +48,7 @@ As advised by D.Baelde, all subclasses of PickableNode are flocked in this file.
 Poison class -> you need an antidote within ##TODO## seconds"""
 
 class Poison(PickableNode):
-    def __init__(self,hb,name='empty'):
+    def __init__(self,hb,name='poison'):
         PickableNode.__init__(self,hb,"poison")
 
     def upon_colliding(self,o2):
@@ -58,18 +58,17 @@ class Poison(PickableNode):
 """ Coin class -> gives you some score"""
 
 class Coin(PickableNode):
-    def __init__(self,hb,name='empty'):
+    def __init__(self,hb,name='coin'):
         PickableNode.__init__(self,hb,"coin")
 
     def upon_colliding(self,o2):
         o2.add_score(100)
 
-""" DeathlyPotion class -> kills you instantly"""
+""" DeadlyPotion class -> kills you instantly"""
 
-class DeathlyPotion(PickableNode):
-    def __init__(self,hb,name='empty'):
-        PickableNode.__init__(self,hb,'deathlyPotion')
-        self.create_sps("deathlyPotion")
+class DeadlyPotion(PickableNode):
+    def __init__(self,hb,name='deadlyPotion'):
+        PickableNode.__init__(self,hb,name)
 
     def upon_colliding(self,o2):
         o2.add_score(-1000)
@@ -80,10 +79,10 @@ class DeathlyPotion(PickableNode):
 class Key(PickableNode):
     def __init__(self,hb,name="key"):
         PickableNode.__init__(self,hb,name)
-        self.keyName = name
+        self.key = KeyItem(name)
 
     def upon_colliding(self,o2):
-        o2.set_inventory({self.keyName:1})
+        o2.set_inventory({self.key:1})
 
 """ Heart class -> adds one life to the player"""
 

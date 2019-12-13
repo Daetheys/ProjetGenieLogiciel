@@ -15,12 +15,12 @@ class Level_4B_kshan(Level):
             quit_all = g.dict_dial["dial_kshan4Bbf"].show(g)
         elif arg == "good_end":
             quit_all = g.dict_dial["dial_kshan4Bgf"].show(g)
-            if g.player.is_in_inventory("key_A"):
+            if g.player.is_in_inventory(KetItem("key_A")):
                 quit_all = g.dict_dial["dial_kshan4f"].show(g)
         return quit_all
             
     def reward(self,g):
-        g.player.set_inventory({"key_B":1})
+        g.player.set_inventory({KeyItem("key_B"):1})
         
     def check_victory(self,g,arg):
         return arg
@@ -57,6 +57,7 @@ class Level_4B_kshan(Level):
         return success
     
     def create_objects(self,g):
+        deadly = DeadlyPotion(Hitbox(Rect(100,-2,10,10)))
         plat = []
         dist = -10
         h = 10
@@ -66,4 +67,4 @@ class Level_4B_kshan(Level):
             h += i*17%23 - 10
             dist += l+(i*9%13) +10
         
-        return plat
+        return plat + [deadly]
