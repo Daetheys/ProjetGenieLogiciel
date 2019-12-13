@@ -24,6 +24,7 @@ from coin import Coin
 from pickableNode import PickableNode
 from zombie import Zombie
 from laserTurretBot import LaserTurretBot
+from heart import Heart
 
 class Level_1_kshan(Level):
     
@@ -91,6 +92,7 @@ class Level_1_kshan(Level):
         coin_4 = Coin(Hitbox(Rect(210,-2,10,10)))
         coin_5 = Coin(Hitbox(Rect(230,-2,10,10)))
         coin_6 = Coin(Hitbox(Rect(250,-2,10,10)))
+        heart = Heart(Hitbox(Rect(280,-2,10,10)))
 
         zombie = Zombie()
         zombie.set_position(350,0)
@@ -100,4 +102,4 @@ class Level_1_kshan(Level):
         
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         
-        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot]
+        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot,heart]
