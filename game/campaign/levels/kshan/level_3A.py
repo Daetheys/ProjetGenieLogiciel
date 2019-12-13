@@ -75,6 +75,8 @@ class Level_3A_kshan(Level):
             if alive:
                 self.fun_dialogue(g,"bad_end_2")
             else:
+                if g.player.is_in_inventory(self.key.key):
+                    g.player.set_inventory({self.key.key:0})
                 self.fun_dialogue(g,"bad_end_1")
         
         return success
