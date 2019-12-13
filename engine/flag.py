@@ -1,3 +1,6 @@
+from controlableNode import ControlableNode
+from player import Player
+
 class Flag(ControlableNode):
     def __init__(self,hb):
         ControlableNode.__init__(self)

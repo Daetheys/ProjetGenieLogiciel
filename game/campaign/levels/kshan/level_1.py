@@ -27,6 +27,7 @@ class Level_1_kshan(Level):
         
     def launch(self,g):
         quit_all = self.fun_dialogue(g,"start")
+        self.objects = self.create_objects(g)
         self.set_accessed()
         
         if quit_all:
@@ -34,8 +35,6 @@ class Level_1_kshan(Level):
         
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
-            
-        #objects = self.init_objects(g)
 
         gl = GameLevel(self.objects,player_pos,name="level_1_kshan",parallax=g.options["parallax"])
         gl.load_inventory(g.player.get_inventory())
@@ -44,10 +43,6 @@ class Level_1_kshan(Level):
         
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
-        
-        for i in range(2,8):
-            self.objects[i].restore()
-        
         
         if success:
             self.fun_dialogue(g,"good_end")
@@ -59,7 +54,7 @@ class Level_1_kshan(Level):
         
         return success
     
-    def init_objects(self,g):
+    def create_objects(self,g):
         plat_1 = SolidPlatform(Hitbox(Rect(-10,12,300,18)))
         coin_1 = Coin(Hitbox(Rect(150,-2,10,10)))
         coin_2 = Coin(Hitbox(Rect(170,-2,10,10)))
@@ -67,10 +62,14 @@ class Level_1_kshan(Level):
         coin_4 = Coin(Hitbox(Rect(210,-2,10,10)))
         coin_5 = Coin(Hitbox(Rect(230,-2,10,10)))
         coin_6 = Coin(Hitbox(Rect(250,-2,10,10)))
-        heart = Heart(Hitbox(Rect(280,-2,10,10)))
+        
+        if not self.get_accessed():
+            heart = Heart(Hitbox(Rect(280,-2,10,10)))
+        else:
+            heart = self.objects[-2]
 
         zombie = Zombie()
-        zombie.set_position(350,0)
+        zombie.set_position(310,0)
 
         laserbot = LaserTurretBot()
         laserbot.set_position(450,-30)

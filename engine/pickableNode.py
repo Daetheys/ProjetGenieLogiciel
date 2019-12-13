@@ -43,10 +43,6 @@ class PickableNode(ControlableNode):
                 #Remove the Pickable
                 self.vanish()
 
-    def restore(self):
-        self.taken = False
-        self.create_sps(self.sps_name)
-
 """
 As advised by D.Baelde, all subclasses of PickableNode are flocked in this file.
 Poison class -> you need an antidote within ##TODO## seconds"""
@@ -87,7 +83,7 @@ class Key(PickableNode):
         self.keyName = name
 
     def upon_colliding(self,o2):
-        o2.add_inventory({self.keyName:1})
+        o2.set_inventory({self.keyName:1})
 
 """ Heart class -> adds one life to the player"""
 

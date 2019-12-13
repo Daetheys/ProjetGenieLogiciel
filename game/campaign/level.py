@@ -8,7 +8,6 @@ class Level:    #will be an abstract class -> it is now
     def __init__(self,g):
         self._accessed = False
         self._finished = False
-        self.objects = self.init_objects(g)
 
     def set_accessed(self):
         self._accessed = True
@@ -37,8 +36,8 @@ class Level:    #will be an abstract class -> it is now
         '''
         pass
 
-    def init_objects(self,g): #à définir dans les classes unqiues
-        '''initialize the objects used in the GameLevel
+    def create_objects(self,g): #à définir dans les classes unqiues
+        '''create the objects used in the GameLevel
         '''
         pass
 

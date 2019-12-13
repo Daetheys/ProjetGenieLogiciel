@@ -20,13 +20,14 @@ class Level_3A_kshan(Level):
         return quit_all
         
     def check_victory(self,g,arg):
-        if arg and g.player.is_in_inventory(self.key.key):
+        if arg and g.player.is_in_inventory(self.key.keyName):
             return True
         return False
         
         
     def launch(self,g):
         quit_all = self.fun_dialogue(g,"start")
+        self.objects = self.create_objects(g)
         self.set_accessed()
         
         if quit_all:
@@ -55,13 +56,13 @@ class Level_3A_kshan(Level):
             if alive:
                 self.fun_dialogue(g,"bad_end_2")
             else:
-                if g.player.is_in_inventory(self.key.key):
-                    g.player.set_inventory({self.key.key:0})
+                if g.player.is_in_inventory(self.key.keyName):
+                    g.player.set_inventory({self.key.keyName:0})
                 self.fun_dialogue(g,"bad_end_1")
         
         return success
     
-    def init_objects(self,g):
+    def create_objects(self,g):
         plat = []
         dist = -10
         for i in range(10):
@@ -69,7 +70,8 @@ class Level_3A_kshan(Level):
             plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
             dist += l + 20
         plat.append(SolidPlatform(Hitbox(Rect(dist,-6,500,24))))
-        self.key = Key(Hitbox(Rect(dist+300,-38,4,4)),"key")
+        if not self.get_accessed():
+            self.key = Key(Hitbox(Rect(dist+300,-38,4,4)),"key")
         plat.append(self.key)
         dist += 520
         for i in range(17):

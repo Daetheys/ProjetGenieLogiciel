@@ -23,6 +23,7 @@ class Level_3B_kshan(Level):
         
     def launch(self,g):
         quit_all = self.fun_dialogue(g,"start")
+        self.objects = self.create_objects(g)
         self.set_accessed()
         
         if quit_all:
@@ -50,7 +51,7 @@ class Level_3B_kshan(Level):
         
         return success
     
-    def init_objects(self,g):
+    def create_objects(self,g):
         plat = []
         dist = -10
         for i in range(10):
