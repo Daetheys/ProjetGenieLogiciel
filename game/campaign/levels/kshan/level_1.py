@@ -19,7 +19,7 @@ class Level_1_kshan(Level):
         return quit_all
             
     def reward(self,g):
-        g.player.set_inventory({g.dict_item["key_0"]:1})
+        g.player.set_inventory({"key_0":1})
         
     def check_victory(self,g,arg):
         return arg

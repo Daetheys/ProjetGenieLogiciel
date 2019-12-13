@@ -1,3 +1,9 @@
+import sys
+import os
+path = os.getcwd()
+path += "/game/campaign"
+sys.path.append(path)
+from items import KeyItem
 import pygame
 import json
 from world import *
@@ -194,7 +200,8 @@ class Game:
 
     def saving(self):
         """ saves the game in the json file """
-
+        self.save["inv"] = [[i, j] for i, j in self.player.inv.items()]
+        print(self.save["inv"])
         with open("data/json/save.json","w") as f:
             f.write(json.dumps(self.save))
 
@@ -216,7 +223,6 @@ class Game:
         pygame.mixer.music.load(music)
         #pygame.mixer.music.fadeout(500)
         pygame.mixer.music.play(-1)
-
 
     def update_dialogues(self):
         """ this is now an alias for create_dialogues, as map_points have currently no dialogues """
@@ -263,6 +269,7 @@ class Game:
             with open("data/json/default_save.json","r") as file:
                 self.save = json.load(file)
             copy2("data/json/default_save.json","data/json/save.json")
+        print(self.save["inv"])
         self.player.inv = tools.list_to_defaultdict(self.save["inv"])
         print(self.save)
 

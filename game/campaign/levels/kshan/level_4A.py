@@ -15,12 +15,12 @@ class Level_4A_kshan(Level):
             quit_all = g.dict_dial["dial_kshan4Abf"].show(g)
         elif arg == "good_end":
             quit_all = g.dict_dial["dial_kshan4Agf"].show(g)
-            if g.player.is_in_inventory(g.dict_item["key_B"]):
+            if g.player.is_in_inventory("key_B"):
                 quit_all = g.dict_dial["dial_kshan4f"].show(g)                
         return quit_all
             
     def reward(self,g):
-        g.player.set_inventory({g.dict_item["key_A"]:1})
+        g.player.set_inventory({"key_A":1})
         
     def check_victory(self,g,arg):
         return arg

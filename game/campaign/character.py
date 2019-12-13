@@ -17,8 +17,9 @@ class Character():
 		return "Character : " + self.name + "\tSurface:" + str(self.pic) +  "\tColor:" + str(self.ctalk) +  "\tInventory:" + str(self.inv)
 
 	def set_inventory(self,items):
+		""" add inventory"""
 		for item in items:
-			if item.type == "csm":
+			if item:#item.type == "csm":
 				self.inv[item] += items[item]
 			else:
 				self.inv[item] = items[item]

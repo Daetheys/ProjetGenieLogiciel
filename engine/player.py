@@ -59,10 +59,10 @@ class Player(LifeableNode):
         """ Load the inventory of campaign mod """
         self.inventory = inv
 
-    def set_inventory(self,items):
-        """ Add in inventory """
+    def set_inventory(self,items):#Should be renamed to add_inventory
+        """ Add in inventory the aforementiened items"""
         for item in items:
-            if item.type == "csm": #For consommable (may have several)
+            if item:#item.type == "csm": #For consommable (may have several)
                 self.inventory[item] += items[item]
             else:
                 self.inventory[item] = items[item]

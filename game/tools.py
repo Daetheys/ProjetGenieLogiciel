@@ -95,7 +95,7 @@ def score_to_msg(leaderboard):
 def inv_to_msg(inv):
 	msg="INVENTORY\n\n"
 	for item in inv:
-		msg += item.name + " : " + str(inv[item]) + "\n"
+		msg += item + " : " + str(inv[item]) + "\n"
 	return msg
 
 from pygame import Surface

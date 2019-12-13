@@ -30,4 +30,3 @@ class Passive(Item):
 		Item.__init__(self,name)
 		self.effet = args#PassiveItem Effect
 		self.type = 'pas'
-

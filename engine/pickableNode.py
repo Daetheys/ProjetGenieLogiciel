@@ -84,10 +84,10 @@ class DeathlyPotion(PickableNode):
 class Key(PickableNode):
     def __init__(self,hb,name="key"):
         PickableNode.__init__(self,hb,name)
-        self.key = KeyItem(name)
+        self.keyName = name
 
     def upon_colliding(self,o2):
-        o2.set_inventory({self.key:1})
+        o2.add_inventory({self.keyName:1})
 
 """ Heart class -> adds one life to the player"""
 
@@ -98,4 +98,3 @@ class Heart(PickableNode):
     def upon_colliding(self,o2):
         o2.max_pv += 1
         o2.pv += 1
-
