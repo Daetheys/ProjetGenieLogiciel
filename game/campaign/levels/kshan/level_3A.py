@@ -84,15 +84,15 @@ class Level_3A_kshan(Level):
         dist = -10
         for i in range(10):
             l = (i+1)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,-10,l,18))))
+            plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
             dist += l + 20
-        plat.append(SolidPlatform(Hitbox(Rect(dist,-26,500,24))))
-        self.key = Key_1(Hitbox(Rect(dist+300,-58,4,4)))
+        plat.append(SolidPlatform(Hitbox(Rect(dist,-6,500,24))))
+        self.key = Key_1(Hitbox(Rect(dist+300,-38,4,4)))
         plat.append(self.key)
         dist += 520
         for i in range(17):
             l = (i+5)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,-10,l,18))))
+            plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
             dist += l + 20
         
         return plat

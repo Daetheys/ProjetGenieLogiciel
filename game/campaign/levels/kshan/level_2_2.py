@@ -73,12 +73,12 @@ class Level_2_2_kshan(Level):
         dist = -10
         for i in range(10):
             l = (i+1)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,(i*-8)-10,l,16))))
+            plat.append(SolidPlatform(Hitbox(Rect(dist,(i*-8)+10,l,16))))
             dist += l+(i*9%13) +10
             
         for i in range(10,20):
             l = (i+1)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,((i-10)*12)-82,l,16))))
+            plat.append(SolidPlatform(Hitbox(Rect(dist,((i-10)*12)-62,l,16))))
             dist += l+(i*9%13) +10
         
         return plat

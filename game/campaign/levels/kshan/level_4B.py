@@ -76,7 +76,7 @@ class Level_4B_kshan(Level):
     def init_objects(self,g):
         plat = []
         dist = -10
-        h = -10
+        h = 10
         for i in range(20):
             l = (i+1)*70%100 + 50
             plat.append(SolidPlatform(Hitbox(Rect(dist,h,l,16))))
