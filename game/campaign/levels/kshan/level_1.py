@@ -1,5 +1,4 @@
 
-from heart import Heart
 from imports import *
 
 class Level_1_kshan(Level):
