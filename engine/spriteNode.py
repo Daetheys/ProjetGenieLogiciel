@@ -43,6 +43,9 @@ class SpriteNode(Node):
     def vanish(self):
         self.create_sps("empty")
         self.set_state("s")
+        
+    def unvanish(self,name):
+        self.create_sps(name)
 
     def create_sps(self,name):
         """

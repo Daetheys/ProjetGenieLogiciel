@@ -18,6 +18,9 @@ class Level_3A_kshan(Level):
         elif arg == "good_end":
             quit_all = g.dict_dial["dial_kshan3Agf"].show(g)
         return quit_all
+            
+    def reward(self,g):
+        self.key.possessed = True
         
     def check_victory(self,g,arg):
         if arg and g.player.is_in_inventory(KeyItem(self.key.sps_name)):
@@ -56,8 +59,10 @@ class Level_3A_kshan(Level):
             if alive:
                 self.fun_dialogue(g,"bad_end_2")
             else:
-                if g.player.is_in_inventory(KeyItem(self.key.sps_name)):
+                if self.key.taken and not self.key.possessed:
                     g.player.set_inventory({KeyItem(self.key.sps_name):0})
+                    self.key.taken = False
+                    self.key.unvanish(self.key.sps_name)
                 self.fun_dialogue(g,"bad_end_1")
         
         return success

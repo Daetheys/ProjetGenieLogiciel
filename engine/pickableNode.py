@@ -18,6 +18,7 @@ class PickableNode(ControlableNode):
         self.set_collide(True)
         self.center_hit_box()
         self.taken = False
+        self.possessed = False
         self.create_sps(sps_name)
         self.sps_name = sps_name
 
