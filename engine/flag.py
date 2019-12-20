@@ -25,4 +25,5 @@ class Flag(ControlableNode):
     def collide(self,o2,side,other_side):
         #side : 0-> haut (aiguilles d'une montre)
         if isinstance(o2,Player):
+            o2.add_score(o2.pv * 1000)
             o2.world.win()

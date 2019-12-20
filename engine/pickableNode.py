@@ -90,6 +90,7 @@ class Key(PickableNode):
 
     def upon_colliding(self,o2):
         o2.set_inventory({self.key:1})
+        o2.add_score(2000)
 
 """ Heart class -> adds one life to the player"""
 
@@ -100,3 +101,4 @@ class Heart(PickableNode):
     def upon_colliding(self,o2):
         o2.max_pv += 1
         o2.pv += 1
+        o2.add_score(800)
