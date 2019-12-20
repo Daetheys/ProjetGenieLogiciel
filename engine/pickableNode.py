@@ -71,6 +71,15 @@ class DeadlyPotion(PickableNode):
         o2.add_score(-1000)
         o2.die()
 
+
+    def collide(self,o2,side,other_side):
+        #side : 0-> haut (aiguilles d'une montre)
+        if isinstance(o2,Player):
+            if not(self.taken):
+                self.upon_colliding(o2)
+                #Does not Remove the Pickable
+                #self.vanish()
+
 """ Key class to show interactions between game and campaign"""
 
 class Key(PickableNode):
