@@ -1,5 +1,5 @@
 from projectile import Projectile
-
+from controller import KeyboardController
 class LaserBall(Projectile):
     def __init__(self):
         super().__init__()
@@ -9,7 +9,7 @@ class LaserBall(Projectile):
     def collide(self,o,side,oside):
         super().collide(o,side,oside)
 
-class LaserBallController:
+class LaserBallController(KeyboardController):
     def __init__(self,target=None):
         super().__init__()
         self.target = target

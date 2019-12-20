@@ -14,7 +14,7 @@ class LifeableNode(ControlableNode):
     def copy(self):
         l = LifeableNode()
         self.paste_in(l)
-        
+
     def paste_in(self,l):
         super().paste_in(l)
         l.max_pv = self.max_pv
@@ -37,7 +37,7 @@ class LifeableNode(ControlableNode):
     def take_damages(self,d):
         self.pv -= d
         self.check_alive()
-        
+
     def check_alive(self):
         if self.pv <= 0:
             self.die()

@@ -8,7 +8,7 @@ path = os.getcwd()
 path += "/engine"
 sys.path.append(path)
 
-from lifeableNode import LifeableNode
+from jumpableNode import JumpableNode
 from solidPlatform import SolidPlatform
 from controller import KeyboardController
 from hitbox import Hitbox
@@ -19,7 +19,7 @@ import mob
 
 """ The player object -> represents the player controllableNode """
 
-class Player(LifeableNode):
+class Player(JumpableNode):
     """ Player Class """
     def __init__(self):
         super().__init__()
@@ -33,10 +33,6 @@ class Player(LifeableNode):
         self.score = 0 #Score of the player
 
         self.small = False #Life bar
-
-        self.jump_strength = 500 #Strength of the jump
-        self.can_jump = True #Can jump
-        self.is_jumping = False #Is actually jumping
 
         self.is_in_air = True #Is acutally in the air
 
@@ -71,22 +67,6 @@ class Player(LifeableNode):
     def get_inventory(self):
         return self.inventory
 
-    def start_jump(self):
-        """ Key has just been pressed """
-        speed = self.get_speed()
-        if self.can_jump and (not self.is_jumping) and speed.y >= 0:
-            self.set_speed(Vector(speed.x, -self.jump_strength)) #JUMP
-            self.can_jump = False #Cannot jump anymore
-
-    def stop_jump(self):
-        """ Key has just been released """
-        speed = self.get_speed()
-        self.set_speed(Vector(speed.x,0))
-        self.is_jumping = False
-
-    def allow_jump(self):
-        """ Allow the player to jump """
-        self.can_jump = True
 
     def collide(self,o,side,o2_side):
         """ Player collides with o """
@@ -118,7 +98,7 @@ class Player(LifeableNode):
         """ Update var """
         self.can_jump = False #Pour qu'on ne puisse pas sauter dans les airs
         self.is_in_air = True #Pour la detection de la mort : le joueur doit être en l'air et entrer en collision
-        #
+
         if self.alive:
             self.set_state("j") #For the spriteScheduler -> state jump (j)
 
