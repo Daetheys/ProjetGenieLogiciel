@@ -57,7 +57,19 @@ class Level_2_1_kshan(Level):
         dist = -10
         for i in range(10):
             l = (i+1)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
+            coin = Coin(Hitbox(Rect(dist+l//2,-10,10,10)))
+            plat.append(coin)
+            if i > 5:
+                coin = Coin(Hitbox(Rect(dist,-30,10,10)))
+                plat.append(coin)
+            plat.append(SolidPlatform(Hitbox(Rect(dist,5,l,18))))
             dist += l + 20
-        
-        return plat
+
+        gravshield = LaserPickableShield()
+        gravshield.set_position(120,5)
+        laserbot = LaserTurretBot()
+        laserbot.set_position(450,-50)
+        las2 = LaserTurretBot()
+        las2.set_position(850,-50)
+
+        return plat+[gravshield,laserbot,las2]

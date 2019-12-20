@@ -58,10 +58,15 @@ class Level_2_2_kshan(Level):
             l = (i+1)*70%100 + 50
             plat.append(SolidPlatform(Hitbox(Rect(dist,(i*-8)+10,l,16))))
             dist += l+(i*9%13) +10
+            if i > 0:
+                coin = Coin(Hitbox(Rect(dist+2,(i*-8)-10,10,10)))
+                plat.append(coin)
             
         for i in range(10,20):
             l = (i+1)*70%100 + 50
             plat.append(SolidPlatform(Hitbox(Rect(dist,((i-10)*12)-62,l,16))))
             dist += l+(i*9%13) +10
+            coin = Coin(Hitbox(Rect(dist+l//2,((i-10)*12)-72,10,10)))
+            plat.append(coin)
         
         return plat
