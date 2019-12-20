@@ -24,6 +24,7 @@ class Shield(ControlableNode):
             o.set_position(x+pos.x,y+pos.y)
             self.attach_children(o)
             self.world.add_node(o)
+            o.load()
 
     def update(self):
         self.rot(self.speed)

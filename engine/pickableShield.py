@@ -16,6 +16,7 @@ class PickableShield(PickableNode):
         #side : 0-> haut (aiguilles d'une montre)
         if isinstance(o2,Player):
             if not(self.taken):
+                print("---",self.world)
                 self.shield.link_world(self.world)
                 o2.add_shield(self.shield)
                 self.taken = True
@@ -29,5 +30,5 @@ class GravitationalPickableShield(PickableShield):
 
 class LaserPickableShield(PickableShield):
     def __init__(self):
-        s = LaserBallShield()
+        s = GravitationalBallShield()
         super().__init__(s)

@@ -21,6 +21,9 @@ class Projectile(ControlableNode):
         self.paste_in(p)
         return p
 
+    def load(self):
+        pass
+
     def paste_in(self,p):
         super().paste_in(p)
         p.lifecollide = self.lifecollide

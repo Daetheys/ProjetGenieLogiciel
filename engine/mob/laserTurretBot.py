@@ -56,4 +56,5 @@ class LaserTurretBotController(Autoplay):
             h = lb.get_hit_box().get_world_rect().get_dimension().y
             lb.set_position(x,y+h+4)
             self.target.world.add_node(lb)
+            lb.load()
         

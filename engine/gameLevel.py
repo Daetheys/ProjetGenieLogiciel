@@ -282,6 +282,7 @@ class GameLevel:
         """ Loads the actual camera of the Level """
         self.background.load(fen) #Loads the background too
         self.camera.set_fen(fen)
+        self.camera.link_world(self)
 
     def get_background(self):
         return self.background

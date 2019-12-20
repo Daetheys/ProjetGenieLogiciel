@@ -24,6 +24,9 @@ class Camera:
         """ Moves the camera """
         self.rect.translate(v)
 
+    def link_world(self,w):
+        self.world = w
+
     def set_position(self,pos):
         """ Sets the position of the camera in the GameLevel"""
         self.rect.set_position(pos)
@@ -108,7 +111,8 @@ class Camera:
                 if o.stase() == 0:
                     to_discard.append(o)
         for o in to_discard:
-            objects.discard(o)
+            self.world.dynamic_objects.discard(o)
+            del o
         #Show the score
         d = self.get_dimension()
         x = int(d.x*15/16) #Computes where to put it
