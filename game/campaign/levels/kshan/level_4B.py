@@ -15,7 +15,7 @@ class Level_4B_kshan(Level):
             quit_all = g.dict_dial["dial_kshan4Bbf"].show(g)
         elif arg == "good_end":
             quit_all = g.dict_dial["dial_kshan4Bgf"].show(g)
-            if g.player.is_in_inventory(KetItem("key_A")):
+            if g.player.is_in_inventory(KeyItem("key_A")):
                 quit_all = g.dict_dial["dial_kshan4f"].show(g)
         return quit_all
             
