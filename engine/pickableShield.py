@@ -8,7 +8,7 @@ from player import Player
 class PickableShield(PickableNode):
     def __init__(self,shield,name='empty'):
         hb = Hitbox(Rect(0,0,10,10))
-        PickableNode.__init__(self,hb,name='empty')
+        PickableNode.__init__(self,hb,sps_name='empty')
         self.create_sps("spike")
         self.shield = shield
 
