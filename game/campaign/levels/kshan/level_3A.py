@@ -78,10 +78,26 @@ class Level_3A_kshan(Level):
         if not self.get_accessed():
             self.key = Key(Hitbox(Rect(dist+300,-38,4,4)),"key")
         plat.append(self.key)
-        dist += 520
+        plat.append(Coin(Hitbox(Rect(dist+100,-42,10,10))))
+        z4 = Zombie()
+        z4.set_position(dist+110,-30)
+        dist += 525
         for i in range(17):
             l = (i+5)*70%100 + 50
             plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
+            if i != 13 and i != 2:
+                plat.append(Coin(Hitbox(Rect(dist+20,-8,10,10))))
+            else:
+                dp = DeadlyPotion(Hitbox(Rect(dist+20,-4,10,10)))
+                plat.append(dp)
             dist += l + 20
+
+        zombie = Zombie()
+        zombie.set_position(132,0)
+        z2 = Zombie()
+        z2.set_position(232,-2)
+        z3 = Zombie()
+        z3.set_position(525,-2)
         
-        return plat
+        return plat + [zombie,z2,z3,z4] 
+ 
