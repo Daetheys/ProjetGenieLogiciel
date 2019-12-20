@@ -20,6 +20,9 @@ class Vector:
     def __add__(self,vect):
         return Vector(self.x+vect.x,self.y+vect.y)
 
+    def __sub__(self,vect):
+        return self + (-vect)
+        
     def __mul__(self,val):
         if isinstance(val,Vector):
             return Vector(self.x*val.x,self.y*val.y)
@@ -36,6 +39,10 @@ class Vector:
         """ Normalise the vector """
         norm = self.len()
         return Vector(self.x/norm,self.y/norm)
+
+    def rotate2(self,angle):
+        v = Vector(self.x*np.cos(angle)+self.y*np.sin(angle),-self.x*np.sin(angle)+self.y*np.cos(angle))
+        return v
 
     def cross(self,v):
         """ Cross product """

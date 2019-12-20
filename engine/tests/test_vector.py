@@ -16,3 +16,8 @@ def test_vector_base(x,y):
 def test_vector_homogeneous(x,y):
 	v = Vector(x,y)
 	assert np.array_equal(v.homogeneous(),np.array([[x],[y],[1]]))
+
+def test_rotate_around():
+        v2 = Vector(1,1)
+        assert v2.rotate2(np.pi/2) == Vector(1,-1)
+        assert v2.rotate2(np.pi) == Vector(-1,-1)

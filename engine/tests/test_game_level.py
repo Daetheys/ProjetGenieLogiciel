@@ -73,7 +73,7 @@ def test_physics_step2():
     print(v)
     assert v.y < 12
 """
-
+"""
 def test_opti():
     R = Rect(0,0,7,2)
     Hb = Hitbox(R)
@@ -98,6 +98,7 @@ def test_opti():
                 print("p Hb",p.get_hit_box())
                 print("cam",gl.get_camera())
                 assert p in gl.get_objects_opti()
+"""
 
 def test_physics_high_fall():
     R = Rect(0,0,10,16)

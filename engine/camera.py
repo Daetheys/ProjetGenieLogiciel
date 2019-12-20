@@ -103,7 +103,6 @@ class Camera:
         to_discard = []
         for o in objects:
             if self.is_in_camera(o.get_hit_box().get_world_rect()): #Checks if the hitbox is in the camera
-                print(o)
                 o.aff(self.get_fen(),self.get_distorsion(),dt)
             elif not(self.rect.collidex(o.get_hit_box().get_world_rect())):
                 if o.stase() == 0:

@@ -12,15 +12,32 @@ class Projectile(ControlableNode):
         self.set_hit_box(hb)
         self.set_collide(True)
 
+        self.lifecollide = True
+        self.projcollide = True
+        self.solidcollide = True
+
+    def copy(self):
+        p = Projectile()
+        self.paste_in(p)
+        return p
+
+    def paste_in(self,p):
+        super().paste_in(p)
+        p.lifecollide = self.lifecollide
+        p.projcollide = self.projcollide
+        p.solidcollide = self.solidcollide
+
     def shutdown(self):
+        self.set_collide(False)
         self.vanish()
 
     def collide(self,o,side,oside):
-        print(o)
-        if isinstance(o,lifeableNode.LifeableNode):
-            print("life")
+        if isinstance(o,lifeableNode.LifeableNode) and self.lifecollide:
+            print("proj life")
             self.shutdown()
-        if isinstance(o,Projectile):
+        if isinstance(o,Projectile) and self.projcollide:
+            print("proj collide")
             self.shutdown()
-        if isinstance(o,solidPlatform.SolidPlatform):
+        if isinstance(o,solidPlatform.SolidPlatform) and self.solidcollide:
+            print("proj plat")
             self.shutdown()

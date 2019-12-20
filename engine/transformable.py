@@ -75,18 +75,31 @@ class Transformable:
     def translate2(self,v):
         """ Copies this, translates it and returns the new translated Transformable """
         t2 = self.copy()
+        t2.translate(v)
+        """
         (move_x,move_y) = (v.x,v.y)
         (x,y) = self.__position.x,self.__position.y
         t2.set_position(x+move_x,y+move_y)
+        """
         return t2
 
     def rot(self,angle):
         """ Rotate this with degree """
-        self.set_rotation(self.__rotation + angle*np.pi/180)
+        self.rotate(angle*np.pi/180)
 
     def rotate(self,angle):
         """ Rotates this with radian """
         self.set_rotation(self.__rotation+angle)
+
+    def rotate_around(self,angle,t):
+        """ pos is a vector """
+        pos = t.get_position()
+        posc = pos.copy()
+        posf = self.get_position().copy()
+        posf -= pos
+        posf = posf.rotate2(angle)
+        posf += pos
+        self.set_position(posf.x,posf.y)
 
     def scale(self,scalex,scaley):
         """ Scales this """

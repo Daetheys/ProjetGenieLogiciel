@@ -21,9 +21,17 @@ class ControlableNode(CollideTransformable):
         """" Paste it in cn """
         CollideTransformable.paste_in(self,cn)
         cn.set_controller(self.get_controller())
+        cn.link_world(self.world)
 
     def link_world(self,w):
         self.world = w
+
+    def add_shield(self,s):
+        pos = self.get_position()
+        s.set_position(pos.x,pos.y)
+        self.world.add_node(s)
+        s.generate()
+        self.attach_children(s)
 
     def end_init(self):
         pass

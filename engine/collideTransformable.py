@@ -43,7 +43,9 @@ class CollideTransformable(MovableNode):
         t.set_collide(self.get_collide())
         t.set_rigid_body(self.get_rigid_body())
         Hb = self.get_hit_box().copy()
+        rHb = self.get_rigid_hit_box().copy()
         t.set_hit_box(Hb)
+        t.set_rigid_hit_box(rHb)
         
     def set_rigid_body(self,val):
         """ Sets whether it's a rigid body or not """

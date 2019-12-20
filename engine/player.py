@@ -14,6 +14,7 @@ from controller import KeyboardController
 from hitbox import Hitbox
 from rect import Rect
 from vector import Vector
+from projectile import Projectile
 import mob
 
 """ The player object -> represents the player controllableNode """
@@ -103,6 +104,9 @@ class Player(LifeableNode):
                     #The player dies
                     self.die()
         if isinstance(o,mob.Mob):
+            self.take_damages(o.damages)
+
+        if isinstance(o,Projectile) and o.lifecollide:
             self.take_damages(o.damages)
 
     def die(self):

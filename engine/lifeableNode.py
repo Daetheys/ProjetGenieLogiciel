@@ -47,6 +47,7 @@ class LifeableNode(ControlableNode):
         self.alive = False
 
     def aff(self,fen,distorsion,dt):
+        font = pygame.font.match_font("ubuntumono",bold=True)
         if self.small:
             (px,py,w,h) = self.get_pos_camera(distorsion,self.get_hit_box())
             super().aff(fen,distorsion,dt)
@@ -54,6 +55,11 @@ class LifeableNode(ControlableNode):
             length = w*self.get_percent_life()*0.8
             if length:
                 pygame.draw.rect(fen,(0,255,0),pygame.Rect(px+w/8,py-12,length,4))
+                font = pygame.font.SysFont(font,30,bold=True)
+                text = font.render(str(self.get_pv())+"/"+str(self.get_max_pv()), True, (255,255,255))
+                rect = text.get_rect()
+                rect.topleft = (px+3/4*w,py-12)
+                fen.blit(text,rect)
         else:
             super().aff(fen,distorsion,dt)
             w = fen.get_width()
@@ -66,6 +72,11 @@ class LifeableNode(ControlableNode):
             length = length*self.get_percent_life()*0.8
             if length:
                 pygame.draw.rect(fen,(0,255,0),pygame.Rect(px,py,length,height))
+                font = pygame.font.SysFont(font,30,bold=True)
+                text = font.render(str(self.get_pv())+"/"+str(self.get_max_pv()), True, (255,255,255))
+                rect = text.get_rect()
+                rect.topleft = (px+3/4*length,py)
+                fen.blit(text,rect)
 
     def collide(self,o2,side,o2_side):
         if isinstance(o2,projectile.Projectile):

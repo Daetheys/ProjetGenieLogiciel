@@ -34,8 +34,8 @@ class Node(Transformable):
 
     def attach_children(self,child):
         """ Attach a node to this """
-        if child.__parent.__children is not None:
-            child.__parent.__children.remove(child)
+        #if child.__parent.__children is not None:
+        #    child.__parent.__children.remove(child)
         child.__parent = self
         self.__children.append(child)
 
@@ -60,16 +60,55 @@ class Node(Transformable):
         """ Returns if a node is marked to be deleted """
         return self.__marked_for_removal
 
+    def translate(self,v):
+        super().translate(v)
+        for c in self.__children:
+            c.translate(v)
+
+    def rotate(self,angle):
+        super().rotate(angle)
+        for c in self.__children:
+            c.rotate_around(angle,self)
+
+    def rotate_around(self,angle,n):
+        super().rotate_around(angle,n)
+        for c in self.__children:
+            c.rotate_around(angle,n)
+
+    def scale(self,scalex,scaley):
+        super().scale(scalex,scaley)
+        for c in self.__children:
+            c.scale(scalex,scaley)
+    
+    def init_draw(self):
+        if self.__parent is None:
+            transform = (self.get_position(),self.get_rotation(),self.get_scale())
+            for child in self.__children:
+                child.draw(transform)
+
     def draw(self,transform):
         """ Computes transformations on everyone """
-        self.draw_current(transform)
-        transform = transform.combine(self.get_transform())
+        parent = self.__parent
+        stransform = (self.get_position()-parent.get_position(),self.get_rotation()-parent.get_rotation(),self.get_scale()-parent.get_scale())
+        print("st",stransform)
+        btransform = (stransform[0]+transform[0],transform[1],stransform[2]*transform[2])
+        self.draw_current(btransform)
+        newstransform = (self.get_position().copy(),self.get_rotation(),self.get_scale().copy())
+        transform = (newstransform[0],newstransform[1]+transform[1],newstransform[2])
+        print("tr",transform)
         for child in self.__children:
             child.draw(transform)
 
     def draw_current(self,tr):
         """ Compute things on this node (because it's not used yet this method is empty but will contain all useful stuff - depending on what we'll need later) """
-        self.apply_transform(tr)
+        #if not(self.__parent is None):
+        #    self.set_position(0,0)
+        #    self.set_scale(1,1)
+        print(self,tr)
+        self.set_position(tr[0].x,tr[0].y)
+        if not(self.__parent is None):
+            self.rotate_around(tr[1],self.__parent)
+        self.set_scale(tr[2].x,tr[2].y)
 
     def update(self, dt):
         """ Same concept than draw but to compute dynamic information """

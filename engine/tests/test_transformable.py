@@ -9,6 +9,7 @@ from transformable import Transformable
 from vector import Vector
 from hypothesis import given
 from hypothesis.strategies import integers, lists
+import numpy as np
 
 def test_rotten_green():
     """ this test should always pass """
@@ -31,6 +32,14 @@ def test_copy():
     T2 = T.copy()
     T.set_position(7,8)
     assert T2.get_position() == Vector(5,4)
+
+def test_rotate_around():
+    T = Transformable()
+    T.set_position(1,1)
+    T2 = Transformable()
+    T2.set_position(2,1)
+    T2.rotate_around(np.pi/2,T)
+    assert T2.get_position() == Vector(1,0)
 
 @given(integers(),integers(),integers(),integers(),integers(),integers(),integers())
 

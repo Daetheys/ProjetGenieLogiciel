@@ -1,5 +1,35 @@
 
+<<<<<<< HEAD
 from imports import *
+=======
+import sys
+import os
+#import numpy as np
+import pygame
+from pygame.locals import *
+path = os.getcwd()
+path += "/engine"
+sys.path.append(path)
+path = os.getcwd()
+path += "/engine/mob"
+sys.path.append(path)
+from polygone import *
+from vector import Vector
+from transform import Transform
+from solidPlatform import SolidPlatform
+from gameLevel import GameLevel
+from hypothesis import given
+from hypothesis.strategies import integers, lists
+from hitbox import Hitbox
+from rect import Rect
+from level import Level
+from coin import Coin
+from pickableNode import PickableNode
+from zombie import Zombie
+from laserTurretBot import LaserTurretBot
+from heart import Heart
+from pickableShield import LaserPickableShield
+>>>>>>> Improved Shields #24
 
 class Level_1_kshan(Level):
     
@@ -69,6 +99,9 @@ class Level_1_kshan(Level):
         else:
             heart = self.objects[-2]
 
+        gravshield = LaserPickableShield()
+        gravshield.set_position(100,0)
+
         zombie = Zombie()
         zombie.set_position(310,0)
 
@@ -78,4 +111,4 @@ class Level_1_kshan(Level):
         plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
         flag = Flag(Hitbox(Rect(500,-8,10,20)))
         
-        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot,heart,flag,deadly]
+        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot,heart,flag,deadly,gravshield]

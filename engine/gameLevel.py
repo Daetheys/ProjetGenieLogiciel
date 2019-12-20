@@ -50,6 +50,7 @@ class GameLevel:
         self.player = Player()
         self.player.set_position(0,-16) #Init pos of the player
         self.objects.append(self.player)
+        self.player.link_world(self)
 
         #To optimise physics
         self.sorted_objects = None
@@ -57,6 +58,20 @@ class GameLevel:
         self.opti_step = 10
         self.optimise_data()
         self.progression = 0
+
+        """
+        from gravitationalBallShield import GravitationalBallShield
+        test_shield = GravitationalBallShield()
+        test_shield.link_world(self)
+        self.player.add_shield(test_shield)
+        
+        ppos = self.player.get_position()
+        test_shield.set_position(ppos.x,ppos.y)
+        self.add_node(test_shield)
+        test_shield.generate()
+        #self.objects.append(test_shield)
+        self.player.attach_children(test_shield)
+        """
 
         #Get end platform locations to compute score
         self.end_platform_location = None
@@ -182,7 +197,7 @@ class GameLevel:
             else:
                 raise EndGame(False,self.player.score)
 
-        obj_opti = self.get_objects_opti()
+        obj_opti = set(self.get_objects_opti())
         self.compute_draw(obj_opti)
         self.compute_controller(obj_opti,dt)
         self.physics_step(dt,obj_opti)
@@ -201,8 +216,7 @@ class GameLevel:
         #time.sleep(0.05)
 
     def compute_draw(self,opti_objects):
-        for o in opti_objects:
-            o.draw(Transform())
+        pass
 
     def compute_win_lose(self):
         """ Compute win / lose conditions """
@@ -241,13 +255,14 @@ class GameLevel:
     def physics_step(self,dt,obj_opti):
         """ Compute collisions """
         for i,o in enumerate(obj_opti):
-            if not(isinstance(o,SolidPlatform)):
+            if True:#not(isinstance(o,SolidPlatform)):
                 o.compute_speed(dt)
                 o.move(dt)
                 if o == self.player and self.player.alive:
                     #Reposition the player
                     pos = o.get_position()
-                    o.set_position(self.player_pos(self.time),pos.y)
+                    new_pos = Vector(self.player_pos(self.time),pos.y)
+                    o.translate(new_pos-pos)
 
                     #Cut X speed (for MAXSPEED)
                     speed = self.player.get_speed()

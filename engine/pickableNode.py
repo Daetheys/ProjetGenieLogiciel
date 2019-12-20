@@ -21,9 +21,6 @@ class PickableNode(ControlableNode):
         self.create_sps(sps_name)
         self.sps_name = sps_name
 
-    def center_hit_box(self):
-        self.get_hit_box().center()
-
     def copy(self):
         """ Returns a copy of itself """
         pn = PickableNode()
