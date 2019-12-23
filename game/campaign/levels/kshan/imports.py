@@ -25,4 +25,4 @@ from pickableNode import *
 from zombie import Zombie
 from laserTurretBot import LaserTurretBot
 from flag import Flag
-from pickableShield import LaserPickableShield
+from pickableShield import LaserPickableShield,GravitationalPickableShield

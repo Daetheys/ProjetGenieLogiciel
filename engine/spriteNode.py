@@ -43,7 +43,7 @@ class SpriteNode(Node):
     def vanish(self):
         self.create_sps("empty")
         self.set_state("s")
-        
+
     def unvanish(self,name):
         self.create_sps(name)
 
@@ -121,7 +121,9 @@ class SpriteNode(Node):
                     img2 = pygame.transform.smoothscale(img,(int(ratio*w)+1,int(ratio*h))) #Scales the image so that Y will fit
                     fen.blit(img2,(int(dx+0.5)+self.x_offset,int(py)+self.y_offset),(0,0,px+pw-dx,ph))
                     dx += w*ratio #Translates the focus of blit in order to blit a row of sprites (usefull for textures)
-                
+            else:
+                print("Unknown mapping type. cf SpriteNode.")
+
         else:
             #Show the hit box because SpriteScheduler is None
             coll_box = self.get_pos_camera(distorsion,self.get_hit_box())

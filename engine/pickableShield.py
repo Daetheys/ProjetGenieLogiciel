@@ -30,5 +30,5 @@ class GravitationalPickableShield(PickableShield):
 
 class LaserPickableShield(PickableShield):
     def __init__(self):
-        s = GravitationalBallShield()
+        s = LaserBallShield()
         super().__init__(s)

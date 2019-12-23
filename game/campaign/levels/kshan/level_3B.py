@@ -56,6 +56,10 @@ class Level_3B_kshan(Level):
         dist = -10
         for i in range(10):
             l = (i+1)*70%100 + 50
+            if i:
+                zom = Zombie()
+                zom.set_position(dist+4,10)
+                plat.append(zom)
             plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
             dist += l + 20
         

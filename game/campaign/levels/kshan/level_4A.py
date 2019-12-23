@@ -66,4 +66,16 @@ class Level_4A_kshan(Level):
             h += i*17%23 - 10
             dist += l+(i*9%13) +10
         
-        return plat
+        gps = GravitationalPickableShield()
+        gps.set_position(70,0)        
+        ht = Heart(Hitbox(Rect(310,12,10,10)))
+        ht.set_position(700,-30)
+        laserbot = LaserTurretBot()
+        laserbot.set_position(450,-40)
+        zb = Zombie()
+        zb.set_position(650,-30)
+        z2 = Zombie()
+        z2.set_position(850,-20)
+        z3 = Zombie()
+        z3.set_position(550,-20)
+        return plat+[gps,ht,laserbot,zb,z2,z3]
