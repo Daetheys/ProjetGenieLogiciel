@@ -25,7 +25,7 @@ def get_current_time():
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name='',parallax=True):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name='',parallax=True,gravity=2100):
         """ The player spawn in (0,0) """
         assert objects != [] #Empty GameLevel
         self.camera = camera.Camera() #Camera
@@ -37,7 +37,7 @@ class GameLevel:
         self.name = name
 
         #Creation of the gravity
-        self.gravity = Gravity(2100) #NOTE POUR LES RAGEUX : On a testé et ca marche bien avec cette valeur -> ca permet d'avoir un saut élegant
+        self.gravity = Gravity(gravity) #NOTE POUR LES RAGEUX : On a testé et ca marche bien avec cette valeur -> ca permet d'avoir un saut élegant
 
         self.begin_time = 0
         self.time = 0 #Time Referential of the level
