@@ -1,4 +1,4 @@
-from mob import Mob
+from mob import Mob,MobController
 import sys
 import os
 path = os.getcwd()
@@ -36,17 +36,24 @@ class Zombie(Mob):
 
     def collide(self,o2,side,o2_side):
         super().collide(o2,side,o2_side)
+        
 
     def die(self):
         self.set_state("d")
         super().die()
 
-class ZombieController(Autoplay):
+class ZombieController(MobController):
     def __init__(self,target=None):
         super().__init__()
         self.target = target
+        self.timer = 0
 
     def execute(self,event,pressed,dt):
-        self.target.set_speed(Vector(10,0))
+        super().execute(event,pressed,dt)
+        self.target.set_speedx(10)
         if self.target.alive:
             self.target.move(dt)
+        self.timer += 1
+        if self.timer == 50:
+            self.timer = 0
+            self.jump(0.06)

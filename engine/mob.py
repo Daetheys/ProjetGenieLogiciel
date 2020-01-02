@@ -1,7 +1,7 @@
-from lifeableNode import LifeableNode
+from jumpableNode import JumpableNode,JumpableController
 import player
 
-class Mob(LifeableNode):
+class Mob(JumpableNode):
     def __init__(self,hb):
         super().__init__()
         self.set_hit_box(hb)
@@ -30,3 +30,22 @@ class Mob(LifeableNode):
 
     def die(self):
         super().die()
+
+class MobController(JumpableController):
+    """ Controller for a Mob """
+    def __init__(self,target=None):
+        super().__init__(target=target)
+        self.jump_time = 0
+        
+    def jump(self,strengh):
+        """ Strengh of 1 is a jump similar to the max jump of player """
+        self.jump_time = strengh
+
+    def execute(self,event,pressed,dt):
+        print(self.jump_time)
+        if self.jump_time > 0:
+            self.jump_time = max(0,self.jump_time-dt)
+            self.target.start_jump()
+        else:
+            self.target.stop_jump()
+        super().execute(event,pressed,dt)

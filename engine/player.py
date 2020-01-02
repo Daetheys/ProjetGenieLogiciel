@@ -8,7 +8,7 @@ path = os.getcwd()
 path += "/engine"
 sys.path.append(path)
 
-from jumpableNode import JumpableNode
+from jumpableNode import JumpableNode,JumpableController
 from solidPlatform import SolidPlatform
 from controller import KeyboardController
 from hitbox import Hitbox
@@ -33,8 +33,6 @@ class Player(JumpableNode):
         self.score = 0 #Score of the player
 
         self.small = False #Life bar
-
-        self.is_in_air = True #Is acutally in the air
 
         self.inventory = defaultdict(int) #Ref to inventory to give items to Campaign mod
 
@@ -70,19 +68,7 @@ class Player(JumpableNode):
 
     def collide(self,o,side,o2_side):
         """ Player collides with o """
-        #print("collide",self,o,side,o2_side)
-        if isinstance(o,SolidPlatform):
-            if o2_side == 0 or o2_side == 1:
-                #Top side
-                if self.alive:
-                    self.set_state("r") #For the spriteScheduler -> state run (r)
-                self.allow_jump()
-                self.is_jumping = False
-                self.is_in_air = False
-            else:
-                if self.is_in_air:
-                    #The player dies
-                    self.die()
+        super().collide(o,side,o2_side)
         if isinstance(o,mob.Mob):
             self.take_damages(o.damages)
 
@@ -96,11 +82,7 @@ class Player(JumpableNode):
 
     def update(self):
         """ Update var """
-        self.can_jump = False #Pour qu'on ne puisse pas sauter dans les airs
-        self.is_in_air = True #Pour la detection de la mort : le joueur doit être en l'air et entrer en collision
-
-        if self.alive:
-            self.set_state("j") #For the spriteScheduler -> state jump (j)
+        super().update()
 
         if self.score_to_add > 0:
             valadd = min(50,self.score_to_add)
@@ -119,7 +101,7 @@ class Player(JumpableNode):
     def get_score(self):
         return self.score
 
-class PlayerController(KeyboardController):
+class PlayerController(JumpableController):
     """ Controller for the player """
     def __init__(self,target=None):
         super().__init__()
@@ -133,4 +115,4 @@ class PlayerController(KeyboardController):
         if event is not None and event.type == pygame.KEYUP:
             if event.key == jump_key:
                 self.target.stop_jump()
-        self.target.update()
+        super().execute(event,pressed,dt)
