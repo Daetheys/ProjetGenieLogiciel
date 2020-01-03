@@ -36,7 +36,7 @@ class Zombie(Mob):
 
     def collide(self,o2,side,o2_side):
         super().collide(o2,side,o2_side)
-        
+
 
     def die(self):
         self.set_state("d")
@@ -56,4 +56,4 @@ class ZombieController(MobController):
         self.timer += 1
         if self.timer == 50:
             self.timer = 0
-            self.jump(0.06)
+            #self.jump(0.06)

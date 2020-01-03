@@ -57,7 +57,7 @@ class Level_3B_kshan(Level):
         for i in range(10):
             l = (i+1)*70%100 + 50
             if i:
-                zom = Zombie()
+                zom = JumpingSkeleton()
                 zom.set_position(dist+4,10)
                 plat.append(zom)
             plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))

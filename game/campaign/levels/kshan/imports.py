@@ -23,6 +23,7 @@ from rect import Rect
 from level import Level
 from pickableNode import *
 from zombie import Zombie
+from jumpingSkeleton import JumpingSkeleton
 from laserTurretBot import LaserTurretBot
 from flag import Flag
 from pickableShield import LaserPickableShield,GravitationalPickableShield
