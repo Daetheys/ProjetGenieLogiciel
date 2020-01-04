@@ -52,6 +52,9 @@ class GameLevel:
         self.objects.append(self.player)
         self.player.link_world(self)
 
+        #Camera Y scrolling
+        self.camera_y_pos = self.player.get_position().y
+
         #To optimise physics
         self.sorted_objects = None
         self.dynamic_objects = set([self.player])
@@ -202,7 +205,7 @@ class GameLevel:
         self.compute_controller(obj_opti,dt)
         self.physics_step(dt,obj_opti)
         #Camera set position (3/4)
-        self.camera.threeforth_on(Vector(self.player.get_position().x,self.player.get_position().y))
+        self.compute_camera_position(obj_opti)
         #Show all sprites
         self.aff(dt,obj_opti)
         #print("aff",time.clock()-t)
@@ -214,6 +217,27 @@ class GameLevel:
         
         #To slow the game
         #time.sleep(0.05)
+
+    def compute_camera_position(self,obj_opti):
+        prect = self.player.get_hit_box().get_world_rect()
+        maxi = None
+        for o in obj_opti:
+            if isinstance(o,SolidPlatform):
+                rect = o.get_hit_box().get_world_rect()
+                if rect.collidex(prect):
+                    y = rect.get_min_y()
+                    if maxi is None or maxi < y < prect.get_min_y:
+                        maxi = y
+        if maxi is None:
+            y = self.player.get_position().y
+        else:
+            y = maxi
+
+        epsilon = 0.1
+        old_percent = 95
+        self.camera_y_pos = self.camera_y_pos*old_percent/100+y*(100-old_percent)/100
+        self.camera.threeforth_on(Vector(self.player.get_position().x,self.camera_y_pos))
+        
 
     def compute_draw(self,opti_objects):
         pass
