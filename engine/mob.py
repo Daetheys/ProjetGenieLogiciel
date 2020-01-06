@@ -42,7 +42,7 @@ class MobController(JumpableController):
         self.jump_time = strengh
 
     def execute(self,event,pressed,dt):
-        print(self.jump_time)
+        #print(self.jump_time)
         if self.jump_time > 0:
             self.jump_time = max(0,self.jump_time-dt)
             self.target.start_jump()

@@ -73,7 +73,7 @@ class Level_1_kshan(Level):
         gravshield.set_position(70,0)
 
         zombie = Zombie()
-        zombie.set_position(310,0)
+        zombie.set_position(340,0)
 
         laserbot = LaserTurretBot()
         laserbot.set_position(450,-50)
