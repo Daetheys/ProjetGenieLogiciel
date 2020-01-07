@@ -25,7 +25,7 @@ def get_current_time():
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name='',parallax=True,gravity=2100):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/background/parallax-demon-woods-bg.png",0),("data/img/background/parallax-demon-woods-far-trees.png",1),("data/img/background/parallax-demon-woods-mid-trees.png",2),("data/img/background/parallax-demon-woods-close-trees.png",3)],name='',parallax=True,gravity=2100,music=None):
         """ The player spawn in (0,0) """
         assert objects != [] #Empty GameLevel
         self.camera = camera.Camera() #Camera
@@ -93,6 +93,10 @@ class GameLevel:
             o.link_world(self)
         
         self.end_init()
+
+        if music != None:
+            pygame.mixer.music.load(music)
+            pygame.mixer.music.play(-1)
 
     def end_init(self):
         for o in self.objects:
@@ -220,23 +224,22 @@ class GameLevel:
 
     def compute_camera_position(self,obj_opti):
         prect = self.player.get_hit_box().get_world_rect()
-        maxi = None
+        mini = None
         for o in obj_opti:
             if isinstance(o,SolidPlatform):
                 rect = o.get_hit_box().get_world_rect()
                 if rect.collidex(prect):
                     y = rect.get_min_y()
-                    if maxi is None or maxi < y < prect.get_min_y:
-                        maxi = y
-        if maxi is None:
+                    if (mini is None and prect.get_min_y() < y or prect.get_min_y() < y < mini) and abs(prect.get_min_y()-y)<100:
+                        mini = y
+        if mini is None:
             y = self.player.get_position().y
         else:
-            y = maxi
+            y = mini
 
-        epsilon = 0.1
-        old_percent = 95
-        self.camera_y_pos = self.camera_y_pos*old_percent/100+y*(100-old_percent)/100
-        self.camera.threeforth_on(Vector(self.player.get_position().x,self.camera_y_pos))
+        old_percent = 95 #The percentage of the old value of self.camera_y_pos that will be kept
+        self.camera_y_pos = self.camera_y_pos*old_percent/100+y*(100-old_percent)/100 #Computation of the new continous Y position of the camera
+        self.camera.threeforth_on(Vector(self.player.get_position().x,self.camera_y_pos)) #Position of the camera (pos X of the player et pos Y previously computed)
         
 
     def compute_draw(self,opti_objects):
@@ -247,8 +250,8 @@ class GameLevel:
         (minx,maxx,miny,maxy) = self.get_size_level()
         if self.player.get_position().y > maxy or not(self.player.alive): #C'est inversé :)
             self.lose()
-        if self.player.get_position().x > maxx:
-            self.win()
+        #if self.player.get_position().x > maxx:
+        #    self.win()
 
     def compute_score(self):
         """ Compute score """
