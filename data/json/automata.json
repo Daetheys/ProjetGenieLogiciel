@@ -1,7 +1,7 @@
 {"empty": "empty|1|0,s→0;|0=data/img/void.png,",
 "spike": "spike|1|0,s→0;|0=data/img/spikes.png,",
 "deadlyPotion": "deadlyPotion|1|0,s→0;|0=data/img/vial.png,",
-"Platform": "Platform|1|0,s→0;|0=data/img/platform.png,",
+"Platform": "Platform|1|0,s→0;|0=data/img/platform_cave.png,",
 "Rhombus": "Rhombus|8|0,s→1;1,s→2;2,s→3;3,s→4;4,s→5;5,s→6;6,s→7;7,s→0;|0=data/img/rhombus2.png,1=data/img/rhombus2.png,2=data/img/rhombus2.png,3=data/img/rhombus2.png,4=data/img/rhombus.png,5=data/img/rhombus.png,6=data/img/rhombus.png,7=data/img/rhombus.png,",
 "coin": "coin|6|0,s→1;1,s→2;2,s→3;3,s→4;4,s→5;5,s→0;|0=data/img/coin/6.png,1=data/img/coin/1.png,2=data/img/coin/2.png,3=data/img/coin/3.png,4=data/img/coin/4.png,5=data/img/coin/5.png,",
 "heart": "heart|5|0,s→1;1,s→2;2,s→3;3,s→4;4,s→0;|0=data/img/heart/5.png,1=data/img/heart/1.png,2=data/img/heart/2.png,3=data/img/heart/3.png,4=data/img/heart/4.png,",
@@ -16,4 +16,5 @@
  "orc": "orc|19|0,j→1;0,d→12;0,r→4;1,j→2;1,d→12;1,r→4;2,j→3;2,d→12;2,r→4;3,j→3;3,d→12;3,r→4;4,j→0;4,d→12;4,r→5;5,j→0;5,d→12;5,r→6;6,j→0;6,d→12;6,r→7;7,j→0;7,d→12;7,r→8;8,j→0;8,d→12;8,r→9;9,j→0;9,d→12;9,r→10;10,j→0;10,d→12;10,r→11;11,j→0;11,d→12;11,r→4;12,d→13;13,d→14;14,d→15;15,d→16;16,d→17;17,d→18;18,d→18;|0=data/img/orc/j1.png,1=data/img/orc/j2.png,2=data/img/orc/j3.png,3=data/img/orc/j4.png,4=data/img/orc/w1.png,5=data/img/orc/w2.png,6=data/img/orc/w3.png,7=data/img/orc/w4.png,8=data/img/orc/w5.png,9=data/img/orc/w6.png,10=data/img/orc/w7.png,11=data/img/orc/w8.png,12=data/img/orc/d1.png,13=data/img/orc/d2.png,14=data/img/orc/d3.png,15=data/img/orc/d4.png,16=data/img/orc/d5.png,17=data/img/orc/d6.png,18=data/img/orc/d7.png,",
  "orc_inverse": "orc_inverse|19|0,j→1;0,d→12;0,r→4;1,j→2;1,d→12;1,r→4;2,j→3;2,d→12;2,r→4;3,j→3;3,d→12;3,r→4;4,j→0;4,d→12;4,r→5;5,j→0;5,d→12;5,r→6;6,j→0;6,d→12;6,r→7;7,j→0;7,d→12;7,r→8;8,j→0;8,d→12;8,r→9;9,j→0;9,d→12;9,r→10;10,j→0;10,d→12;10,r→11;11,j→0;11,d→12;11,r→4;12,d→13;13,d→14;14,d→15;15,d→16;16,d→17;17,d→18;18,d→18;|0=data/img/orc_inverse/j1.png,1=data/img/orc_inverse/j2.png,2=data/img/orc_inverse/j3.png,3=data/img/orc_inverse/j4.png,4=data/img/orc_inverse/w1.png,5=data/img/orc_inverse/w2.png,6=data/img/orc_inverse/w3.png,7=data/img/orc_inverse/w4.png,8=data/img/orc_inverse/w5.png,9=data/img/orc_inverse/w6.png,10=data/img/orc_inverse/w7.png,11=data/img/orc_inverse/w8.png,12=data/img/orc_inverse/d1.png,13=data/img/orc_inverse/d2.png,14=data/img/orc_inverse/d3.png,15=data/img/orc_inverse/d4.png,16=data/img/orc_inverse/d5.png,17=data/img/orc_inverse/d6.png,18=data/img/orc_inverse/d7.png,",
  "key": "key|1|0,s→0;|0=data/img/img_key.png,",
- "platform": "platform|1|0,s→0;|0=data/img/platform2.png,"}
+ "platform": "platform|1|0,s→0;|0=data/img/platform2.png,",
+ "platform_cave": "platform_cave|1|0,s→0;|0=data/img/platform_cave.png,"}

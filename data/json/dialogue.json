@@ -30,7 +30,11 @@
 "dial_kshan4Bgf":[["dial04B1gf","pnj_test","img_dial",0,400,true]],
 "dial_kshan4Bbf":[["dial04B1bf","pnj_test","img_dial",0,400,true]],
 "dial_kshan4Bdv":[["dial04B1dv","pnj_test","img_dial",0,400,true]],
-"dial_kshan4f":[["dial041f","pnj_test","img_dial",0,400,true]],
+ "dial_kshan4f":[["dial041f","pnj_test","img_dial",0,400,true]],
+ "dial_odd1b":[["dial1A01b","Lothair Darkwalker","img_dial",0,400,true],["dial1A02b","Lothair Darkwalker","img_dial",0,400,true],["dial1A03b","void","img_dial",0,400,true],["dial1A04b","Lothair Darkwalker","img_dial",0,400,true],["dial1A05b","player","img_dial",0,400,true],["dial1A06b","skeleton","img_dial",0,400,true],["dial1A07b","Lothair Darkwalker","img_dial",0,400,true]],
+ "dial_odd1a":[["dial1A01a","Lothair Darkwalker","img_dial",0,400,true],["dial1A02a","Lothair Darkwalker","img_dial",0,400,true],["dial1A03a","player","img_dial",0,400,true],["dial1A04a","player","img_dial",0,400,true],["dial1A05a","player","img_dial",0,400,true],["dial1A06a","Lothair Darkwalker","img_dial",0,400,true],["dial1A07a","Lothair Darkwalker","img_dial",0,400,true],["dial1A08a","Lothair Darkwalker","img_dial",0,400,true],["dial1A09a","Lothair Darkwalker","img_dial",0,400,true],["dial1A10a","Lothair Darkwalker","img_dial",0,400,true],["dial1A11a","Lothair Darkwalker","img_dial",0,400,true],["dial1A12a","void","img_dial",0,400,true],["dial1A13a","void","img_dial",0,400,true],["dial1A14a","void","img_dial",0,400,true],["dial1A15a","player","img_dial",0,400,true],["dial1A16a","Lothair Darkwalker","img_dial",0,400,true],["dial1A17a","Lothair Darkwalker","img_dial",0,400,true]],
+ "dial_odd1abad":[["dial1A01abad","skeleton","img_dial",0,400,true],["dial1A02abad","player","img_dial",0,400,true]],
+ "dial_odd2b":[["dial1B01b","Lothair Darkwalker","img_dial",0,400,true],["dial1B02b","pixi","img_dial",0,400,true],["dial1B03b","Lothair Darkwalker","img_dial",0,400,true],["dial1B04b","pixi","img_dial",0,400,true],["dial1B05b","player","img_dial",0,400,true],["dial1B06b","pixi","img_dial",0,400,true],["dial1B07b","pixi","img_dial",0,400,true]],
 "dial_erase_savefile":[["erase_savefile","narrator","img_dial",0,400,true]],
 "dial_help_yourmusicfolder":[["help_yourmusicfolder","narrator","img_dial",0,400,true]]
 }
