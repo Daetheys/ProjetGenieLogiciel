@@ -8,16 +8,17 @@ import copy
 
 class SolidPlatform(ControlableNode):
     """ SolidPlatform of the game """
-    def __init__(self,hb,name='empty'):
+    def __init__(self,hb,name='empty',sps='platform'):
         ControlableNode.__init__(self)
         self.set_hit_box(hb)
         self.set_rigid_body(True)
-        self.set_sps(SpriteScheduler("platform"))
+        self.set_sps(SpriteScheduler(sps))
         self.get_sps().load_automaton()
         self.get_sps().load_sprites()
         self.center_hit_box()
         self.mapping = "Repeatx"
-        self.y_offset -= 20
+        if sps == "platform":
+            self.y_offset -= 20
 
     def center_hit_box(self):
         """ Centers the hitbox """
