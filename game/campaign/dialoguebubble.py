@@ -1,6 +1,6 @@
 import buttonMenu
 import pygame
-from pygame.font import Font
+from pygame.font import SysFont
 
 '''An object that can display text with a character'''
 
@@ -21,7 +21,7 @@ class Dialogue_Bubble:
         g.win().blit(self.talker.pic,(self.x - self.offsetX, self.y - self.offsetY))
         w = self.talker.pic.get_width()
         x_text,y_text = self.x+w+10,self.y+5
-        font = Font(None,40)
+        font = SysFont("arial_unicode_ms",40)
         words = [line.split(" ") for line in self.msg.splitlines()]
         space = font.size(' ')[0]
         for line in words:

@@ -7,10 +7,11 @@ import pygame   #for ugly code
 
 class Level_Sequence(Map_Point):
 
-    def __init__(self,name,x,y,img,imgf):
+    def __init__(self,name,x,y,img,imgf,map):
         Map_Point.__init__(self,name,x,y,img,imgf)
         self.__levels = []
         self.__childs = []
+        self.map = map
 
     def set_levels(self, levels):
         self.__levels = levels
@@ -63,6 +64,6 @@ class Level_Sequence(Map_Point):
         if reussite:
             self.set_finished(g)
 
-        g.launch_music(g.menu_music)#relance la musique du menu
+        g.launch_music(self.map.music)#relance la musique du menu
         g.saving()
         return True,False
