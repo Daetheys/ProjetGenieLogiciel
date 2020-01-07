@@ -1,7 +1,10 @@
 
 .hypothesis/*
 .pytest_cache/*
+doc/*.autosave
 *.pyc
+*.py#
+*.py~
 data/json/options.json
 data/json/save.json
 data/your*music/*.mp3
