@@ -12,12 +12,16 @@ from solidPlatform import SolidPlatform
 
 class Zombie(Mob):
     def __init__(self):
-        hb = Hitbox(Rect(0,0,12,16))
+        hb = Hitbox(Rect(0,0,9,12))
+        self.time_offset = 1.25
         super().__init__(hb)
         self.max_pv = 3
         self.pv = 3
         self.small = True
         self.create_sps("skeleton")
+        self.sps_right = self.sps
+        self.create_sps("skeleton-inverse")
+        self.sps_left = self.sps
         self.animation_speed = 0.2
         self.set_state("r")
         self.controller = ZombieController(self)
@@ -26,6 +30,13 @@ class Zombie(Mob):
 
     def end_init(self):
         self.add_force(self.world.gravity)
+
+    def move(self,dt):
+        if self.get_speed().x >= 0:
+            self.sps = self.sps_right
+        else:
+            self.sps = self.sps_left
+        super().move(dt)
 
     def copy(self):
         z = Zombie()

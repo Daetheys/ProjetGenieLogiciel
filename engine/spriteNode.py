@@ -18,6 +18,8 @@ class SpriteNode(Node):
         self.x_offset = 0
         self.y_offset = 0
 
+        self.time_offset = 1
+
     def copy(self):
         """ Returns a copy of this object """
         sn = SpriteNode()
@@ -111,7 +113,7 @@ class SpriteNode(Node):
             if self.mapping == "Flat":
                 #Extends the image
                 img = pygame.transform.smoothscale(img,(int(pw),int(ph)))
-                fen.blit(img,(int(px)+self.x_offset ,int(py)+self.y_offset ))
+                fen.blit(img,(int(px*self.time_offset)+self.x_offset ,int(py*self.time_offset)+self.y_offset ))
             elif self.mapping == "Repeatx":
                 #Repeat the image along x axis
                 dx = px
