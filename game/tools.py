@@ -16,7 +16,7 @@ path += "/game/campaign"
 sys.path.append(path)
 
 from pygame.image import load
-from pygame.font import Font
+from pygame.font import SysFont
 from collections import defaultdict
 
 
@@ -24,7 +24,7 @@ def T(cw,txt,x,y,r=0,g=0,b=0,aliasing=1,size=20,center=True):
 	"""allows the display of text on screen with or without centering
 	the text will be displayed in the window 'cw'
 	"""
-	font = Font(None, size)
+	font = SysFont(None, size)
 	text = font.render(txt, aliasing, (r, g, b))
 	if center:
 		textpos = text.get_rect(centery=y,centerx=x)
@@ -160,3 +160,17 @@ def list_to_defaultdict(li):
 	for tup in li:
 		d[tup[0]] = tup[1]
 	return d
+
+class PseudoRd:
+        def __init__(self,a,b,c,u):#Put random numbers here except for c but it's better if they are prime numbers
+                self.a = a
+                self.b = b
+                self.c = c #max (maxint-minint)
+                self.u = u
+
+        def get(self,minint,maxint):
+                self.u = (self.u*self.a+self.b)%self.c
+                return self.u%(maxint-minint)+minint
+
+        def __call__(self,*args):
+                return self.get(*args)

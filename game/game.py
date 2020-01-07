@@ -23,6 +23,9 @@ from level_4A import Level_4A_kshan
 from level_3B import Level_3B_kshan
 from level_4B import Level_4B_kshan
 
+from level_1f import Level_1_fantasy
+from level_2f import Level_2_fantasy
+
 #The Game class, very pure, no buttons needed
 class Game:
 
@@ -154,12 +157,12 @@ class Game:
         #creating the map "Kshan"
         mapkshan = Map(self.dict_img["map_kshan"],"map_kshan")
 
-        mp_1 = Level_Sequence("kshan_1",1100,200,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_2 = Level_Sequence("kshan_2",1000,300,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_3A = Level_Sequence("kshan_3A",800,400,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_4A = Level_Sequence("kshan_4A",700,330,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_3B = Level_Sequence("kshan_3B",1050,500,self.dict_img["img_point"],self.dict_img["img_pointf"])
-        mp_4B = Level_Sequence("kshan_4B",900,600,self.dict_img["img_point"],self.dict_img["img_pointf"])
+        mp_1 = Level_Sequence("kshan_1",1100,200,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_2 = Level_Sequence("kshan_2",1000,300,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_3A = Level_Sequence("kshan_3A",800,400,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_4A = Level_Sequence("kshan_4A",700,330,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_3B = Level_Sequence("kshan_3B",1050,500,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_4B = Level_Sequence("kshan_4B",900,600,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
 
         mp_1.set_levels([Level_1_kshan(self)])
         mp_2.set_levels([Level_2_1_kshan(self),Level_2_2_kshan(self)])
@@ -181,7 +184,26 @@ class Game:
 
         mapkshan.set_map_points(map_point_list)
 
-        self.world.set_maps([mapkshan])
+        #Create map fantasy
+        mapfantasy = Map(self.dict_img["map_fantasy"],"map_fantasy",music="data/musics/Epilogue.ogg")
+
+        mp_1 = Level_Sequence("Midden Pass",840,60,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
+        mp_2 = Level_Sequence("Haelgard Forest",440,250,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
+
+        mp_1.set_levels([Level_1_fantasy(self)])
+        mp_2.set_levels([Level_2_fantasy(self)])
+
+        mp_1.set_childs([mp_2])
+
+        map_point_list = [mp_1,mp_2]
+
+        self.load_level_state("set_finished",map_point_list,"finished")
+        self.load_level_state("set_accessible",map_point_list,"accessible")
+        self.load_level_state("set_accessed",map_point_list,"accessed")
+
+        mapfantasy.set_map_points(map_point_list)
+
+        self.world.set_maps([mapkshan,mapfantasy])
     def load_level_state(self,set_fun,L,state):
         """ loads the state of a level in the world """
         for lvl in self.save[state]:
