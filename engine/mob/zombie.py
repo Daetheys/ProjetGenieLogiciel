@@ -13,7 +13,7 @@ from solidPlatform import SolidPlatform
 class Zombie(Mob):
     def __init__(self):
         hb = Hitbox(Rect(0,0,9,12))
-        self.time_offset = 1.25
+        self.time_offset = 1.33
         super().__init__(hb)
         self.max_pv = 3
         self.pv = 3

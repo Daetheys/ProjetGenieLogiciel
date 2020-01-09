@@ -70,7 +70,8 @@ class Player(JumpableNode):
         """ Player collides with o """
         super().collide(o,side,o2_side)
         if isinstance(o,mob.Mob):
-            self.take_damages(o.damages)
+            if o.alive:
+                self.take_damages(o.damages)
 
         if isinstance(o,Projectile) and o.lifecollide:
             self.take_damages(o.damages)

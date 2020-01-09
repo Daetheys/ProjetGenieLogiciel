@@ -61,11 +61,14 @@ class Level_1_fantasy(Level):
         height = 18
         ln = 100
         y = -5
-        plats = [SolidPlatform(Hitbox(Rect(-10,y,100+length,height)),sps="platform_cave")]
+        x = -10
+        plats = [SolidPlatform(Hitbox(Rect(x,y,100+length,height)),sps="platform_cave")]
+        flag = Flag(Hitbox(Rect(x+length+100-10,y-20,10,20)))
+        plats.append(flag)
         nx = -10+200
         rd = PseudoRd(23,47,1024,7)
         s = 0
-        while s < 2:#117:
+        while s < 117:
             x = nx
             s = (x/100)*60/(110)
             y = rd.get(y-20,y+20)

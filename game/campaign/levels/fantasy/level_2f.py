@@ -38,7 +38,9 @@ class Level_2_fantasy(Level):
         def player_pos(t):
             return t*100*1/1*2
 
-        gl = GameLevel(self.objects,player_pos,name="level_2_fantasy",parallax=g.options["parallax"],music="data/musics/elves test.ogg")
+        limgpar = [("data/img/background_deep_forest/Layer_0010_1.png",0),("data/img/background_deep_forest/Layer_0009_2.png",1),("data/img/background_deep_forest/Layer_0008_3.png",2),("data/img/background_deep_forest/Layer_0007_Lights.png",3),("data/img/background_deep_forest/Layer_0006_4.png",4),("data/img/background_deep_forest/Layer_0005_5.png",5),("data/img/background_deep_forest/Layer_0004_Lights.png",6),("data/img/background_deep_forest/Layer_0003_6.png",7),("data/img/background_deep_forest/Layer_0002_7.png",8),("data/img/background_deep_forest/Layer_0001_8.png",9),("data/img/background_deep_forest/Layer_0000_9.png",10)]
+
+        gl = GameLevel(self.objects,player_pos,name="level_2_fantasy",parallax=g.options["parallax"],music="data/musics/elves test.ogg",limgpar=limgpar)
         gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text) #too soon, create gap between music and level
@@ -62,12 +64,15 @@ class Level_2_fantasy(Level):
         length = base*0.85
         height = 18
         ln = 100
+        x = -10
         y = -5
-        plats = [SolidPlatform(Hitbox(Rect(-10,y,base+length+10,height)),sps="platform")]
+        plats = [SolidPlatform(Hitbox(Rect(x,y,base+length+10,height)),sps="platform")]
+        flag = Flag(Hitbox(Rect(x+length+100-10,y-20,10,20)))
+        plats.append(flag)
         nx = 2*base
         rd = PseudoRd(23,47,1024,7)
         s = 0
-        while s < 42:
+        while s < 180:
             x = nx
             s = (x/base)
             y = rd.get(y-20,y+20)
@@ -83,11 +88,11 @@ class Level_2_fantasy(Level):
             else:
                 plat = SolidPlatform(Hitbox(Rect(x,y,length,height)),sps="platform")
                 plats.append(plat)
-            if rd(0,50) == 1:
+            if s > 42 and rd(0,20) == 1 or s > 90 and rd(0,10) == 1 or s > 180 and rd(0,5) or s > 240 and rd(0,2):
                 deadly = DeadlyPotion(Hitbox(Rect(x+rd.get(0,length-10),y-10,10,10)))
                 plats.append(deadly)
 
-            if rd(0,3) == 0:
+            if rd(0,3) == 0 and s < 42 or rd(0,10) and s < 90:
                 coin = Coin(Hitbox(Rect(x+rd(0,length),y-10-rd(0,50),10,10)))
                 plats.append(coin)
             nx += base

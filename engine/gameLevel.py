@@ -196,7 +196,7 @@ class GameLevel:
             return (e.issue, e.score)
 
     def main_loop(self,dt):
-        to = time.clock()
+        #to = time.clock()
         """ Main loop of the game (controllers, physics, ...) """
         if self.lost:
             if self.countdown > 0:
