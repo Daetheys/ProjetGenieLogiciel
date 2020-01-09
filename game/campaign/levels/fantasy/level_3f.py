@@ -74,17 +74,21 @@ class Level_3_fantasy(Level):
             s = (x/base)*60/50*2+0.4
             if s < 38.8:
                 y -= 20
-            else:
-                i += 1
-                y += l[i%len(l)]
-            if 38.0<s<39:
-                plat = SolidPlatform(Hitbox(Rect(x,y,length/2,height)),sps="platform_cave")
-                plats.append(plat)
-                nx += base / 2
-            else:
                 plat = SolidPlatform(Hitbox(Rect(x,y,length,height)),sps="platform_cave")
                 plats.append(plat)
                 nx += base
+            else:
+                i = (i+1)%len(l)
+                if l[i] is None:
+                    y -= 20
+                    plat = SolidPlatform(Hitbox(Rect(x,y,length/2,height)),sps="platform_cave")
+                    plats.append(plat)
+                    nx += base / 2
+                else:
+                    y += l[i]
+                    plat = SolidPlatform(Hitbox(Rect(x,y,length,height)),sps="platform_cave")
+                    plats.append(plat)
+                    nx += base
 
         return plats
 

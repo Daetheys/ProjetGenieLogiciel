@@ -44,7 +44,7 @@ class GameLevel:
 
         #Death animation
         self.lost = False
-        self.countdown = 30
+        self.countdown = 1
 
         #Creation of the player
         self.player = Player()
@@ -198,14 +198,8 @@ class GameLevel:
     def main_loop(self,dt):
         #to = time.clock()
         """ Main loop of the game (controllers, physics, ...) """
-        if self.lost:
-            if self.countdown > 0:
-                self.countdown -= 1
-            else:
-                raise EndGame(False,self.player.score)
-
+        self.animation_end_game(dt)
         obj_opti = set(self.get_objects_opti())
-        self.compute_draw(obj_opti)
         self.compute_controller(obj_opti,dt)
         self.physics_step(dt,obj_opti)
         #Camera set position (3/4)
@@ -221,6 +215,13 @@ class GameLevel:
         
         #To slow the game
         #time.sleep(0.05)
+
+    def animation_end_game(self):
+        if self.lost:
+            if self.countdown > 0:
+                self.countdown -= dt
+            else:
+                raise EndGame(False,self.player.score)
 
     def compute_camera_position(self,obj_opti):
         prect = self.player.get_hit_box().get_world_rect()
@@ -241,9 +242,6 @@ class GameLevel:
         self.camera_y_pos = self.camera_y_pos*old_percent/100+y*(100-old_percent)/100 #Computation of the new continous Y position of the camera
         self.camera.threeforth_on(Vector(self.player.get_position().x,self.camera_y_pos)) #Position of the camera (pos X of the player et pos Y previously computed)
         
-
-    def compute_draw(self,opti_objects):
-        pass
 
     def compute_win_lose(self):
         """ Compute win / lose conditions """
