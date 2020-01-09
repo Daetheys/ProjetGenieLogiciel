@@ -23,25 +23,23 @@ def error_margin(x,y):
 
 def test_tern_tempo():
 	(first_beat,tempos,nb_beats) = bpm_info(path + "/data/tests_musique2/120rythmeternaire.mp3")
-	(_,tempo) = tempos[0]
-	assert(np.round(tempo) == 240)
+	tempo = tempos[0]
+	assert(np.round(tempo) == 120)
 
 @pytest.mark.parametrize("filename",paths)
 def test_coherence_nb_beats(filename):
 	(_,tempos,nb_beats) = bpm_info(filename)
 	last_beat_nb = 0
-	for (beat_nb,_) in tempos:
-		last_beat_nb = beat_nb
+	for tempo in tempos:
+	    last_beat_nb += 1
 
-	assert last_beat_nb == beat_nb
+	assert last_beat_nb == nb_beats
 
 @pytest.mark.parametrize("filename",paths)
 def test_coherence_duration(filename):
 	(first_beat,tempos,nb_beats) = bpm_info(filename)
 	total_time = first_beat
-	last_beat_nb = 0
-	for (beat_nb,tempo) in tempos:
-		total_time += beat_nb*60/tempo
-		last_beat_nb = beat_nb
+	for tempo in tempos:
+	    total_time += 60/tempo
 
-	assert error_margin(total_time,get_sound_duration(filename)) < 0.05 #Allow a 5% margin error (last beat is not necessarily end of the song)
+	assert error_margin(total_time,get_sound_duration(filename)) < 0.000005 #Allow a 5% margin error (last beat is not necessarily end of the song)
