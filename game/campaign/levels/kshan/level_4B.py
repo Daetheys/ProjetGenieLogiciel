@@ -18,7 +18,7 @@ class Level_4B_kshan(Level):
             if g.player.is_in_inventory(KeyItem("key_A")):
                 quit_all = g.dict_dial["dial_kshan4f"].show(g)
                 if not "Midden Pass" in g.save["accessible"]:
-                    g.save["accessible"].append("Midden Pass")     
+                    g.save["accessible"].append("Midden Pass")
         return quit_all
             
     def reward(self,g):
@@ -68,6 +68,11 @@ class Level_4B_kshan(Level):
             plat.append(SolidPlatform(Hitbox(Rect(dist,h,l,16))))
             h += i*17%23 - 10
             dist += l+(i*9%13) +10
+            if i == 8:
+                plat.append(Antidote(Hitbox(Rect(dist,h-12,10,10))))
+            else: 
+                plat.append(Poison(Hitbox(Rect(dist,h-12,10,10))))
+                
         flag = Flag(Hitbox(Rect(dist-20,-8,10,20)))
         
         return plat + [deadly,flag]

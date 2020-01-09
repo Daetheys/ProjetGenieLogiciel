@@ -82,7 +82,10 @@ class Player(JumpableNode):
         super().die()
 
     def update(self,dt):
-        """ Update var """
+        """ Update var, such as score, poison timeout, score """
+        if self.poisoned_timeout == 10:
+            self.add_score(-999)
+
         super().update(dt)
 
         if self.score_to_add > 0:
@@ -92,8 +95,6 @@ class Player(JumpableNode):
             self.score += val
             self.score_to_add -= val
 
-        if self.poisoned_timeout > 0:
-            self.add_score(-10)
 
         if self.score_to_add < 0:
             valadd = max(-50,self.score_to_add)

@@ -2,6 +2,7 @@
 "spike": "spike|1|0,s→0;|0=data/img/spikes.png,",
 "deadlyPotion": "deadlyPotion|1|0,s→0;|0=data/img/vial.png,",
 "antidote": "antidote|1|0,s→0;|0=data/img/vial.png,",
+"poison": "poison|1|0,s→0;|0=data/img/poison.png,",
 "Platform": "Platform|1|0,s→0;|0=data/img/platform_cave.png,",
 "Rhombus": "Rhombus|8|0,s→1;1,s→2;2,s→3;3,s→4;4,s→5;5,s→6;6,s→7;7,s→0;|0=data/img/rhombus2.png,1=data/img/rhombus2.png,2=data/img/rhombus2.png,3=data/img/rhombus2.png,4=data/img/rhombus.png,5=data/img/rhombus.png,6=data/img/rhombus.png,7=data/img/rhombus.png,",
 "coin": "coin|6|0,s→1;1,s→2;2,s→3;3,s→4;4,s→5;5,s→0;|0=data/img/coin/6.png,1=data/img/coin/1.png,2=data/img/coin/2.png,3=data/img/coin/3.png,4=data/img/coin/4.png,5=data/img/coin/5.png,",

@@ -50,8 +50,11 @@ class Poison(PickableNode):
         PickableNode.__init__(self,hb,name)
 
     def upon_colliding(self,o2):
-        #o2.take_damages(1)
-        o2.poisoned_timeout = 10
+
+        if o2.poisoned_timeout == 0:
+            o2.poisoned_timeout = 10
+        else:
+            o2.take_damages(1)
 
 """Antidote class -> saves you from the poison and restores 1 HP"""
 
