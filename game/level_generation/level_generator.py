@@ -17,8 +17,11 @@ from gameLevel import GameLevel
 from solidPlatform import SolidPlatform
 from hitbox import Hitbox
 from rect import Rect
-from flag import Flag
 
+from flag import Flag
+from pickableNode import Coin
+
+random.seed(0)
 speed_factor = 200
 
 def get_speed(tempo):
@@ -37,6 +40,15 @@ def platform(x,y,xmax):
     plat = SolidPlatform(Hitbox(Rect(0,0,xmax-x,12)))
     plat.translate(Vector(x,y))
     return plat
+
+def add_coins(objects,x0,y0,width,height,number):
+    for i in range(number):
+        if(number > 1):
+            coeff = i/(number-1)
+        else:
+            coeff = 0.5
+        #objects.append(Coin(Hitbox(Rect(x0,y0,10,10))))
+        objects.append(Coin(Hitbox(Rect(x0+coeff*width,y0+coeff*height,10,10))))
 
 def generate_level(filename,name_of_level='',para=True):
         """
@@ -67,6 +79,34 @@ def generate_level(filename,name_of_level='',para=True):
 
         def player_pos(t):
             return t*speed
+        
+        objects = []
 
-        platforms.append(Flag(Hitbox(Rect(jump_points[-1]+24-20,y-20-dy,10,20))))
-        return GameLevel(platforms,player_pos,name=name_of_level,parallax=para)
+        objects.append(Flag(Hitbox(Rect(jump_points[-1]+24-10,y-20-dy,10,20)))) # Add flag
+        
+        for i in range(len(platforms)):
+            rd = random.random()
+            if(rd < 0.25):
+                (x,y,w,h) = platforms[i].get_hit_box().get_world_rect().get_coord()
+                w -= 10
+                nb = 3
+                if(rd < 0.10):
+                    nb = 5
+                add_coins(objects,x+w/3,y-h,w/3,0,nb)
+
+        for i in range(len(platforms)-1):
+            rd = random.random()
+            if(rd < 0.33):
+                (x1,y1,w1,h1) = platforms[i].get_hit_box().get_world_rect().get_coord()
+                (x2,y2,w2,h2) = platforms[i+1].get_hit_box().get_world_rect().get_coord()
+                w1 -= 10
+                w2 -= 10
+                start_x = x1+w1
+                end_x = x2
+                start_y = y1-45
+                end_y = y2-45
+                add_coins(objects, start_x, start_y, end_x - start_x, end_y - start_y, random.randint(2,3))
+
+        print(platforms+objects)
+                
+        return GameLevel(platforms+objects,player_pos,name=name_of_level,parallax=para)
