@@ -7,7 +7,7 @@ from rect import Rect
 from polygone import *
 from movableNode import MovableNode
 
-""" A collide Transformable is almost the last evolution of this terrifying evolution : it has two hit boxes : a collide one and a rigid one. In fact in pratice because all float computations are approximated it's necessary to have 2 hit boxes, one for collisions (only to say "I collide with you") and an other one for rigid body physics. The rigid body hit box is computed to be a bit smaller than the collide one and to be included in it """
+""" A collide Transformable is almost the last evolution of this terrifying evolution : it has two hitboxes : a collide one and a rigid one. In fact in pratice because all float computations are approximated it's necessary to have 2 hitboxes, one for collisions (only to say "I collide with you") and an other one for rigid body physics. The rigid body hitbox is computed to be a bit smaller than the collide one and to be included in it """
 
 
 class CollideTransformable(MovableNode):
@@ -46,7 +46,7 @@ class CollideTransformable(MovableNode):
         rHb = self.get_rigid_hit_box().copy()
         t.set_hit_box(Hb)
         t.set_rigid_hit_box(rHb)
-        
+
     def set_rigid_body(self,val):
         """ Sets whether it's a rigid body or not """
         self.__rigid_body = val

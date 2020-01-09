@@ -26,13 +26,13 @@ class Shield(ControlableNode):
             self.world.add_node(o)
             o.load()
 
-    def update(self):
+    def update(self,dt):
         self.rot(self.speed)
 
 class ShieldController(Controller):
     def __init__(self,target=None):
         super().__init__()
         self.target = target
-        
+
     def execute(self,event,pressed,dt):
-        self.target.update()
+        self.target.update(dt)
