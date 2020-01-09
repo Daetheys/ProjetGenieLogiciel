@@ -17,6 +17,8 @@ class Level_4B_kshan(Level):
             quit_all = g.dict_dial["dial_kshan4Bgf"].show(g)
             if g.player.is_in_inventory(KeyItem("key_A")):
                 quit_all = g.dict_dial["dial_kshan4f"].show(g)
+                if not "Midden Pass" in g.save["accessible"]:
+                    g.save["accessible"].append("Midden Pass")     
         return quit_all
             
     def reward(self,g):

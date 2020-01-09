@@ -201,9 +201,9 @@ class Launcher:
 
         map_point_list = [mp_1, mp_2, mp_3A, mp_3B, mp_4A, mp_4B]
 
-        self.load_level_state("set_finished",map_point_list,"finished")
-        self.load_level_state("set_accessible",map_point_list,"accessible")
-        self.load_level_state("set_accessed",map_point_list,"accessed")
+        self.load_level_state("set_finished",map_point_list,"finished","kshan")
+        self.load_level_state("set_accessible",map_point_list,"accessible","kshan")
+        self.load_level_state("set_accessed",map_point_list,"accessed","kshan")
 
         mapkshan.set_map_points(map_point_list)
 
@@ -223,28 +223,40 @@ class Launcher:
 
         map_point_list = [mp_1,mp_2,mp_3]
 
-        self.load_level_state("set_finished",map_point_list,"finished")
-        self.load_level_state("set_accessible",map_point_list,"accessible")
-        self.load_level_state("set_accessed",map_point_list,"accessed")
+        self.load_level_state("set_finished",map_point_list,"finished","fantasy")
+        self.load_level_state("set_accessible",map_point_list,"accessible","fantasy")
+        self.load_level_state("set_accessed",map_point_list,"accessed","fantasy")
 
         mapfantasy.set_map_points(map_point_list)
 
         self.world.set_maps([mapkshan,mapfantasy])
-    def load_level_state(self,set_fun,L,state):
+    def load_level_state(self,set_fun,L,state,campaign_name):
         """ loads the state of a level in the world """
         for lvl in self.save[state]:
-            if lvl == 'kshan_1':
-                getattr(L[0],set_fun)()
-            if lvl == 'kshan_2':
-                getattr(L[1],set_fun)()
-            if lvl == 'kshan_3A':
-                getattr(L[2],set_fun)()
-            if lvl == 'kshan_3B':
-                getattr(L[3],set_fun)()
-            if lvl == 'kshan_4B':
-                getattr(L[4],set_fun)()
-            if lvl == 'kshan_4A':
-                getattr(L[5],set_fun)()
+            if campaign_name == "kshan":
+                if lvl == 'kshan_1':
+                    getattr(L[0],set_fun)()
+                elif lvl == 'kshan_2':
+                    getattr(L[1],set_fun)()
+                elif lvl == 'kshan_3A':
+                    getattr(L[2],set_fun)()
+                elif lvl == 'kshan_3B':
+                    getattr(L[3],set_fun)()
+                elif lvl == 'kshan_4B':
+                    getattr(L[4],set_fun)()
+                elif lvl == 'kshan_4A':
+                    getattr(L[5],set_fun)()
+            elif campaign_name == "fantasy":
+                if lvl == 'Midden Pass':
+                    getattr(L[0],set_fun)()
+                elif lvl == 'Haelgard Forest':
+                    getattr(L[1],set_fun)()
+                elif lvl == 'Moon Ruins':
+                    getattr(L[2],set_fun)()
+                elif lvl == 'fantasy4':
+                    getattr(L[3],set_fun)()
+                elif lvl == 'fantasy5':
+                    getattr(L[4],set_fun)()
 
     def saving(self):
         """ saves the game in the json file """
@@ -256,8 +268,8 @@ class Launcher:
     def init_music(self):
         """
         initializes musical operations
-        Music is currently disabled.
-        Please add a pulseaudio sink to xvfb before activating it. (done)
+        Music is currently enabled.
+        A pulseaudio sink  has been added to xvfb. (done)
         """
         pygame.mixer.pre_init(44100, -16, 2, 2048)
         pygame.mixer.init()
