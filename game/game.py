@@ -27,6 +27,7 @@ from level_4B import Level_4B_kshan
 print(sys.path)
 from level_1f import Level_1_fantasy
 from level_2f import Level_2_fantasy
+from level_3f import Level_3_fantasy
 
 #The Game class, very pure, no buttons needed
 class Game:
@@ -191,13 +192,16 @@ class Game:
 
         mp_1 = Level_Sequence("Midden Pass",840,60,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
         mp_2 = Level_Sequence("Haelgard Forest",440,250,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
+        mp_3 = Level_Sequence("Moon Ruins",940,280,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
 
         mp_1.set_levels([Level_1_fantasy(self)])
         mp_2.set_levels([Level_2_fantasy(self)])
+        mp_3.set_levels([Level_3_fantasy(self)])
 
         mp_1.set_childs([mp_2])
+        mp_2.set_childs([mp_3])
 
-        map_point_list = [mp_1,mp_2]
+        map_point_list = [mp_1,mp_2,mp_3]
 
         self.load_level_state("set_finished",map_point_list,"finished")
         self.load_level_state("set_accessible",map_point_list,"accessible")
