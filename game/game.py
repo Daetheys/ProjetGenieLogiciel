@@ -258,7 +258,7 @@ class Game(Launcher):
             f.write(json.dumps(self.dict_score))
         #pour ne pas sortir du menu même si les boutons ont été trop appuyés
         #mashed buttons are handled by pygameeventget (doesn't quit the menu)
-        return success#true ssi réussite ! pour l'instant non utilisé. -> maintenant oui !
+        return success#true ssi réussite !
 
 
     def launch_game(self):
