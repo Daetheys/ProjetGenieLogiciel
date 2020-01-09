@@ -36,7 +36,7 @@ class Level_3_fantasy(Level):
             return False
         
         def player_pos(t):
-            return t*100*85/60
+            return t*100*50/60
 
         gl = GameLevel(self.objects,player_pos,name="level_2_fantasy",parallax=g.options["parallax"],music="data/musics/Moon-ruins.ogg")
         gl.load_inventory(g.player.get_inventory())
@@ -57,26 +57,34 @@ class Level_3_fantasy(Level):
         return success
 
     def create_objects(self,g):
-        base = 100
+        base = 100*2
         plats = []
-        length = base*0.85
+        length = base*0.85+20
         height = 18
         ln = 100
         y = -5
-        plats = [SolidPlatform(Hitbox(Rect(-10,y,base+length+10,height)),sps="platform")]
-        nx = 2*base
+        plats = [SolidPlatform(Hitbox(Rect(-40,y,base+length+10,height)),sps="platform_cave")]
+        nx = 2*base-40
         rd = PseudoRd(23,47,1024,7)
         s = 0
-        while s < 42:
+        i = -1
+        l = [None,20,20,None,-20,20,-20,20,-20,20]
+        while s < 100:
             x = nx
-            s = (x/base) 
-            y += 20
+            s = (x/base)*60/50*2+0.4
             if s < 38.8:
-                plat = SolidPlatform(Hitbox(Rect(x,y,length*2,height)),sps="platform")
+                y -= 20
+            else:
+                i += 1
+                y += l[i%len(l)]
+            if 38.0<s<39:
+                plat = SolidPlatform(Hitbox(Rect(x,y,length/2,height)),sps="platform_cave")
+                plats.append(plat)
+                nx += base / 2
+            else:
+                plat = SolidPlatform(Hitbox(Rect(x,y,length,height)),sps="platform_cave")
                 plats.append(plat)
                 nx += base
-
-            nx += base
 
         return plats
 
