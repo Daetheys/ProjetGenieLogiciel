@@ -11,9 +11,9 @@ path += "/campaign"#pour import map,etc..
 sys.path.append(path)
 path += "/levels/kshan"#pour import level1,etc..
 sys.path.append(path)
-print(path)
+#print(path)
 
-from launcher import Launcher
+from game import Game
 
 if __name__ == '__main__':
-    Launcher()
+    Game()

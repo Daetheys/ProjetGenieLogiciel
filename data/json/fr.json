@@ -104,7 +104,7 @@
  "dial1B13a" : "Reine Elfe : Ce que vous avez trouvé pourrait être la réponse à ces questions. Hélas, je ne comprends pas ce poème.",
  "dial1B14a" : "Reine Elfe : Cependant il y a une rumeur à propos d'une arche, perdue dans les Ruines de Lune, à l'est. Vous trouverez une entrée dans les montagnes. Attention, c'est un voyage périlleux qui vous attend, pour trouver cette arche qui pourrait être celle du poème.",
  "dial1B15a" : "Lothair Darkwalker : Merci, ô Reine. Nous trouverons l'arche perdue.",
- "dialB01abad" : "??? : Vous n'êtes pas prêts. Réessayez lorsque vous serez prêts à faire confiance à la forêt plus qu'à votre tête.",
+ "dial1B01abad" : "??? : Vous n'êtes pas prêts. Réessayez lorsque vous serez prêts à faire confiance à la forêt plus qu'à votre tête.",
 "help" : "Aide",
 "-help-" : "---Aide---",
 "help_yourmusicfolder" : "Placez vous fichiers .ogg dans le dossier data/your music/ pour y jouer. Les fichiers .mp3 et .wav fonctionnent, mais sont déconseillés.",
