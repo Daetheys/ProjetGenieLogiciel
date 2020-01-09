@@ -11,10 +11,13 @@ from vector import Vector
 import cv2
 
 class Game(Launcher):
+    """ The Game class continues initialization (that Launcher began),
+    initialises all button-related activities, and begins the main loop.
+
+    It also defines functions allowing to run three types of loops: map loop,
+    menu loop and dialogue loop."""
 
     def __init__(self):
-        """ The Game class continues initialization (that Launcher began), initialises
-        all button-related activities, and begins the main loop"""
         Launcher.__init__(self)
         self.init_buttons()
         self.__init_background()
@@ -192,6 +195,7 @@ class Game(Launcher):
         return cnt,quit_all
 
     def dial_loop(self,dial_bubble,cnt = True,quit_all=False,bg = None,map=None,blist=[]):
+        """ Loop managing events in the case of a dialogue."""
         pygame.time.Clock().tick(self.options["FPS"])
         dial_bubble.display(self)
         for b in blist:

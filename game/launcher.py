@@ -31,9 +31,19 @@ from level_3f import Level_3_fantasy
 
 #The Launcher class, very pure, no buttons needed
 class Launcher:
+    """ The Launcher class initializes as many things as possible. Notably:
+    - the window (computes the biggest possible resolution, defines flip..)
+    - the images (creating a dictionary)
+    - the constants (used to print buttons in a pretty way)
+    - the musics (initializing the pygame player, etc ..)
+    - the items (creating a dictionary)
+    - the characters (creating a dictionary)
+    - the dialogues (creating a dictionary)
+    - the strings of all languages (creating several dictionaries)
+    - the world (creating all maps, levels, etc.)"""
 
     def __init__(self):
-        self.init_game()
+        self.init_window()
         self.init_images()
         self.init_constants()
         self.init_music()
@@ -45,9 +55,9 @@ class Launcher:
         self.create_world()
         print("The game initialized properly.")
 
-    def init_game(self):
+    def init_window(self):
         """
-        initializes a game,
+        initializes a window,
         returns the display window
         """
         #Display
@@ -138,6 +148,8 @@ class Launcher:
             self.dict_item = json.load(read_file, object_hook=tools.create_item)
 
     def init_characters(self):
+        """ creates the dictionary dict_char , from characters.json,
+         and initializes self.player"""
         self.dict_char = {}
         with open("data/json/characters.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_char = json.load(read_file)
@@ -145,6 +157,7 @@ class Launcher:
         self.player = self.dict_char["player"]
 
     def create_dialogues(self):
+        """ creates the dictionary dict_dial , from dialogue.json """
         self.dict_dial = {}
         with open("data/json/dialogue.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_dial = json.load(read_file)
@@ -303,6 +316,7 @@ class Launcher:
 
 
     def flip(self,txt=None):
+        """ updates the current screen with current self.win() """
         if txt is not None:#is the SCORE usually
             tools.T(self.win(),txt, self.options["DISPLAYSIZE_X"]-5*len(txt),0,250,250,250,center=False)
         pygame.display.flip()
