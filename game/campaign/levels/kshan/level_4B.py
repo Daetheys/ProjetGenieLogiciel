@@ -70,7 +70,7 @@ class Level_4B_kshan(Level):
             dist += l+(i*9%13) +10
             if i == 8:
                 plat.append(Antidote(Hitbox(Rect(dist,h-12,10,10))))
-            else: 
+            elif i < 19: 
                 plat.append(Poison(Hitbox(Rect(dist,h-12,10,10))))
                 
         flag = Flag(Hitbox(Rect(dist-20,-8,10,20)))

@@ -63,6 +63,7 @@ class Antidote(PickableNode):
         PickableNode.__init__(self,hb,name)
 
     def upon_colliding(self,o2):
+        o2.add_score(400)
         o2.poisoned_timeout = 0
         if o2.pv < o2.max_pv:
             o2.pv += 1

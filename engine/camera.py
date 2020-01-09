@@ -122,7 +122,7 @@ class Camera:
 
         tools.T(self.get_fen(),str(score),vpos.x,vpos.y,255,255,255,size=45)
         if self.world.player.poisoned_timeout > 0:
-            tools.T(self.get_fen(),str("Poison!"),vpos.x-150,vpos.y,91+(100-self.world.player.poisoned_timeout*10),47,82,size=45)
+            tools.T(self.get_fen(),str("Poison!"),vpos.x-150,vpos.y,91+(140-self.world.player.poisoned_timeout*14),47,82,size=45)
 
         tools.T(self.get_fen(),str(self.world.name),vpos.x-400,vpos.y,255,255,255,size=45)
 
