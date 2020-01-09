@@ -34,7 +34,7 @@ class Level_3B_kshan(Level):
             
         #objects = self.init_objects(g)
 
-        gl = GameLevel(self.objects,player_pos,name="level_3B_kshan",parallax=g.options["parallax"])
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Cloudy with a chance of Skeletons"] ,parallax=g.options["parallax"])
         
         #g.launch_music(text)
         

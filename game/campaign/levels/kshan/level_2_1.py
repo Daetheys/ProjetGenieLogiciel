@@ -34,7 +34,7 @@ class Level_2_1_kshan(Level):
             
         #objects = self.init_objects(g)
 
-        gl = GameLevel(self.objects,player_pos,name="level_2_1_kshan",parallax=g.options["parallax"])
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Twin Turrets"],parallax=g.options["parallax"])
         gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text)

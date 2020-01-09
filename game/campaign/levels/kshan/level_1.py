@@ -36,7 +36,7 @@ class Level_1_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name="level_1_kshan",parallax=g.options["parallax"])
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Hyborian village"],parallax=g.options["parallax"])
         gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text) #too soon, create gap between music and level
