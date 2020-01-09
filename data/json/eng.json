@@ -107,7 +107,7 @@
  "dial1B01abad" : "??? : You are not ready. Retry when you are ready to trust the forest instead of your head",
  "dial1C01b" : "Lothair Darkwalker : Those are the moon ruins the queen was talking about. It's seems like a maze it won't be easy to find the ark.",
  "dial1C02b" : "STONE : Follow the celest way, \nLike the Ariadne thread,\nOver a sea of stars,\nThe compass to fortune",
- "dial1C03b" : "Lothair Darkwalker : I think it is the our only clue to find the ark",
+ "dial1C03b" : "Lothair Darkwalker : I think it is our only clue to find the ark",
 "help" : "Help",
 "-help-" : "---Help---",
 "help_yourmusicfolder" : "Put your .ogg files in the data/your music/ folder to generate the appropriate level. .mp3 and .wav files might also be loaded, but no warranty is given.",
