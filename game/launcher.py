@@ -57,7 +57,7 @@ class Launcher:
 
     def init_window(self):
         """
-        initializes a window,
+        initializes a window, pygame graphics, and options
         returns the display window
         """
         #Display
@@ -67,6 +67,13 @@ class Launcher:
             with open("data/json/options.json","r") as file:
                 self.options = json.load(file)
                 #self.options["modeECRAN"]  = 0 ou FULLSCREEN
+
+            #to test if new options have been added (by a push) to default_options
+            with open("data/json/default_options.json","r") as file:
+                opt = json.load(file)
+            if len(self.options) < len(opt):
+                self.options = opt
+            copy2("data/json/default_options.json","data/json/options.json")
         except FileNotFoundError:
             with open("data/json/default_options.json","r") as file:
                 self.options = json.load(file)
