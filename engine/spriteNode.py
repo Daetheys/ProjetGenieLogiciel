@@ -9,7 +9,7 @@ class SpriteNode(Node):
     def __init__(self):
         Node.__init__(self)
         self.__state = 's' #Represents the actual status of the SpriteNode (it's a letter for it's SpriteScheduler (cf SpriteScheduler)
-        self.__sps = None #SpriteScheduler-> if it's None hit boxes will be shown instead of the sprite
+        self.sps = None #SpriteScheduler-> if it's None hit boxes will be shown instead of the sprite
         self.animation_speed = 0.05 #Speed of animation (number of frames a single frame stays)
         self.animation_step = 0.0 #Count for the animation
 
@@ -40,7 +40,7 @@ class SpriteNode(Node):
         return 0
 
     def set_sps(self,sche):
-        self.__sps = sche
+        self.sps = sche
 
     def vanish(self):
         self.create_sps("empty")
@@ -62,11 +62,11 @@ class SpriteNode(Node):
 
     def get_sps(self):
         """ returns the spriteScheduler associated with the spriteNode"""
-        return self.__sps
+        return self.sps
 
     def send_char(self,char):
         """ Sends some character of information to the SpriteScheduler """
-        self.__sps.step(char)
+        self.sps.step(char)
 
 
     def set_state(self,state):
@@ -91,18 +91,18 @@ class SpriteNode(Node):
     def aff(self,fen,distorsion,dt):
         """ Show this node on the camera"""
         scale,trans = distorsion
-        if  self.__sps is not None: #If it's None only hit boxes will be shown
-            if self.__sps.loaded: #Check if it's loaded
+        if  self.sps is not None: #If it's None only hit boxes will be shown
+            if self.sps.loaded: #Check if it's loaded
                 if self.animation_step >= self.animation_speed: #Wait for the animation
-                    self.__sps.step(self.__state) #Refresh the state/image
+                    self.sps.step(self.__state) #Refresh the state/image
                     self.animation_step = 0.0
                 self.animation_step += dt
-                img = self.__sps.get_sprite() #Get the image associated to the state of its SpriteScheduler
+                img = self.sps.get_sprite() #Get the image associated to the state of its SpriteScheduler
             else:
                 #BAD BAD BAD -> the SpriteScheduler should be loaded before using it -> use create_sps(name) instead of set_sps(name)
                 print("Images should never be imported on-the-fly!")
                 exit(0)
-                s = self.__sps.get_sprite()
+                s = self.sps.get_sprite()
                 img = pygame.image.load(s).convert_alpha()
             #----------------------------------------
             #  Computes where to blit on the camera

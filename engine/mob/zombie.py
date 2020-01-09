@@ -20,7 +20,7 @@ class Zombie(Mob):
         self.small = True
         self.create_sps("skeleton")
         self.sps_right = self.sps
-        self.create_sps("skeleton-inverse")
+        self.create_sps("skeleton_inverse")
         self.sps_left = self.sps
         self.animation_speed = 0.2
         self.set_state("r")

@@ -100,7 +100,7 @@ def reaction_b1(g):
     BUTTON_LIST[1].react = reaction_return
 
     b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text="campaign_kshan",react=reaction_b11)
-    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy")
+    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy",react=reaction_b12)
     b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_future")
     b12.activation(False)#désactivé par défaut
     b13.activation(False)#désactivé par défaut
@@ -231,13 +231,47 @@ def reaction_b11(g):
     #suppress_buttons(2)#titlebanner,exit
 
     b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text="campaign_kshan",react=reaction_b11)
-    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy")
+    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy",react=reaction_12)
     b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_future")
     b12.activation(False)#désactivé par défaut
     b13.activation(False)#désactivé par défaut
 
     return cnt_underlying,quit_all
 
+def reaction_b12(g):
+    """
+    effect of the first button campaign mode menu
+    triggers the map "Kshan"
+     """
+    global BUTTON_LIST
+    cnt = True
+    cnt_underlying = True
+    quit_all = False
+    suppress_buttons(2)
+    #TODO buttons on the map
+
+    #b111 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b111",g.dict_img["img_buttonH"],text="")
+    #g.dict_img["map_kshan"]
+
+    bg =  pygame.transform.smoothscale(g.world.get_map("map_fantasy").image, (g.options["DISPLAYSIZE_X"],g.options["DISPLAYSIZE_Y"]))
+
+
+    while cnt:
+        cnt,quit_all = g.map_loop(bg=bg,map=g.world.get_map("map_fantasy"))
+        if quit_all:
+            cnt = False
+            cnt_underlying = False
+                    #pygame.display.quit()
+
+    #suppress_buttons(2)#titlebanner,exit
+
+    b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text="campaign_kshan",react=reaction_b11)
+    b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy",react=reaction12)
+    b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_future")
+    b12.activation(False)#désactivé par défaut
+    b13.activation(False)#désactivé par défaut
+
+    return cnt_underlying,quit_all
 
 def reaction_b32(g):
     """language choice menu reaction button"""

@@ -1,7 +1,9 @@
 import sys
 import os
 path = os.getcwd()
-path += "/game/campaign"
+path2 = path+ "/game/campaign"
+sys.path.append(path2)
+path += "/game/campaign/levels/fantasy"
 sys.path.append(path)
 from items import item_from_name
 import pygame
@@ -22,7 +24,7 @@ from level_3A import Level_3A_kshan
 from level_4A import Level_4A_kshan
 from level_3B import Level_3B_kshan
 from level_4B import Level_4B_kshan
-
+print(sys.path)
 from level_1f import Level_1_fantasy
 from level_2f import Level_2_fantasy
 
@@ -117,7 +119,7 @@ class Game:
         #Autres constantes
         self.max_number_scores = 10#max number of saved scores
         self.player_name = "PLAYER"#will be in options/savefile soon
-        self.menu_music = "data/musics/title.ogg"
+        self.menu_music = "data/musics/Land of fearless.ogg"
 
     def load_languages(self,fst=False):
         """ this function loads all avaliable languages in self.dict_str"""

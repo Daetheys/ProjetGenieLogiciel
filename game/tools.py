@@ -174,3 +174,14 @@ class PseudoRd:
 
         def __call__(self,*args):
                 return self.get(*args)
+
+class Cycle:
+        def __init__(self,l):
+                self.l = l
+                self.i = 0
+
+        def next(self):
+                self.i += 1
+                if self.i == len(self.l):
+                        self.i = 0
+                return self.l[self.i]

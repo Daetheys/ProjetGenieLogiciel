@@ -3,10 +3,11 @@ from game import *
 import pygame
 pygame.mixer.pre_init(44100, -16, 8, 512)
 from pygame.locals import *
-from tools import score_to_msg,insert_score,bgg
+from tools import score_to_msg,insert_score,bgg,Cycle
 from dialogue import Dialogue
 from dialoguebubble import Dialogue_Bubble
 from vector import Vector
+import cv2
 
 class Launcher(Game):
 
@@ -37,6 +38,10 @@ class Launcher(Game):
         self.plat_small = self.__create_plat(40,40)
         self.plat_big = self.__create_plat(250,40)
 
+        self.bg = Cycle([])
+        self.videoobj = cv2.VideoCapture("data/img/back.mp4")
+        self.bg.finished = False
+
     def init_buttons(self):
         """ creates some initially displayed buttons"""
         #Basic buttons
@@ -54,12 +59,29 @@ class Launcher(Game):
         #    self.bg,self.bglist = bgg(self.bglist)
         #    #background = self.dict_img["img_background"] old behavior
 
-        self.bg,self.bglist = bgg(self.bglist,self.dict_img["img_background"],self.options["DISPLAYSIZE_X"]+200,self.options["DISPLAYSIZE_Y"],self.plat_img,self.plat_small,self.plat_big)
+        #self.bg,self.bglist = bgg(self.bglist,self.dict_img["img_background"],self.options["DISPLAYSIZE_X"]+200,self.options["DISPLAYSIZE_Y"],self.plat_img,self.plat_small,self.plat_big)
         global BUTTON_LIST
         pygame.time.Clock().tick(self.options["FPS"])
 
         #BACKGROUND DISPLAY
-        self._fenetre.blit(self.bg,(0,0))
+        if not(self.bg.finished):
+            success,image = self.videoobj.read()
+            px = 542
+            py = 424
+            #print(image[px,py])
+            if success:
+                #(image[:,:,0],image[:,:,1],image[:,:,2]) = (image[:,:,2],image[:,:,1],image[:,:,0])
+                image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
+                
+                image = pygame.image.frombuffer(image.tostring(),image.shape[1::-1],"RGB")
+                #print(image.get_at([py,px]))
+                #assert False
+                image = pygame.transform.scale(image,self._fenetre.get_size())
+                self.bg.l.append(image)
+            else:
+                self.bg.finished = True
+        self._fenetre.blit(self.bg.next(),(0,0))
+            
 
         #BUTTON DISPLAY
         for b in BUTTON_LIST:
