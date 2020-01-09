@@ -1,4 +1,4 @@
-import buttonMenu
+from buttonMenu import ButtonMenu
 import pygame
 from pygame.font import SysFont
 
@@ -38,7 +38,7 @@ class Dialogue_Bubble:
 
     def show(self,g):
         w_bg, h_bg = self.background.get_size()
-        b = buttonMenu.ButtonMenu(g,self.x+w_bg-50-self.offsetX,self.x+w_bg-10-self.offsetX,self.y+h_bg-40-self.offsetY,self.y+h_bg-self.offsetY,g.dict_img["img_cont_dial"],picD=g.dict_img["img_end_dial"],add_to_list=False)
+        b = ButtonMenu(g,self.x+w_bg-50-self.offsetX,self.x+w_bg-10-self.offsetX,self.y+h_bg-40-self.offsetY,self.y+h_bg-self.offsetY,g.dict_img["img_cont_dial"],picD=g.dict_img["img_end_dial"],add_to_list=False)
 
         if self.last:
             b.activation(False)
