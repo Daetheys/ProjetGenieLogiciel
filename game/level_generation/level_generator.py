@@ -17,6 +17,7 @@ from gameLevel import GameLevel
 from solidPlatform import SolidPlatform
 from hitbox import Hitbox
 from rect import Rect
+from flag import Flag
 
 speed_factor = 200
 
@@ -33,19 +34,7 @@ def platform(x,y,xmax):
         supérieur gauche aux coordonnées x,y
         Renvoie un SolidPlatform
     """
-    """ Ancien code écrit par Elies
-        p = Polygon([
-                        Vector(0,0),
-                        Vector(xmax-x,0),
-                        Vector(xmax-x,24),
-                        Vector(0,24)
-                ])
-        plat = SolidPlatform(p)
-        """
-    #plat = SolidPlatform(Hitbox(Rect(-abs(xmax-x)//2,12,abs(xmax-x),24)))
     plat = SolidPlatform(Hitbox(Rect(0,0,xmax-x,12)))
-    #plat.create_sps("Platform")#voir un sprite
-    #plat.set_sps(None)#To see the hitbox instead of a sprite
     plat.translate(Vector(x,y))
     return plat
 
@@ -64,17 +53,7 @@ def generate_level(filename,name_of_level='',para=True):
         for tmp in tempos:
             speed = get_speed(tmp)
             jump_points.append(jump_points[-1]+speed*60/tmp)
-        print("lama = ", jump_points[-1]/speed)
-
-        """for i in range(nb_beats):
-            (last_beat, tempo) = tempos[tempo_index]
-            speed = get_speed(tempo)
-
-            jump_points.append(jump_points[i]+speed*60/tempo)
-
-            if(i > last_beat):
-                tempo_index = tempo_index + 1
-        if(i % 2 == 1): jump_points.append(jump_points[-1]+get_speed(tempo)*60/tempo)"""
+        print("generated level length = ", jump_points[-1]/speed, " seconds")
 
         y = 0#initially the height is at 500 #It's at 0 now ^^
         jump_points[0] = -1000 # Beginning platform
@@ -82,9 +61,12 @@ def generate_level(filename,name_of_level='',para=True):
         for i in range(nb_beats):
             #pourquoi +50 et +24 ? #La taille des plateformes non ?
             platforms.append(platform(jump_points[i]+50,y,jump_points[i+1]+24))
-
-            y += random.randint(-24,24)#at each point the y coordinate changes
+            
+            dy = random.randint(-24,24)
+            y += dy #at each point the y coordinate changes
 
         def player_pos(t):
             return t*speed
+
+        platforms.append(Flag(Hitbox(Rect(jump_points[-1]+24-20,y-20-dy,10,20))))
         return GameLevel(platforms,player_pos,name=name_of_level,parallax=para)
