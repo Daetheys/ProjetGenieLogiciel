@@ -68,5 +68,7 @@ class Level_2_2_kshan(Level):
             dist += l+(i*9%13) +10
             coin = Coin(Hitbox(Rect(dist+l//2,((i-10)*12)-72,10,10)))
             plat.append(coin)
+        flag = Flag(Hitbox(Rect(dist+l,43,10,20)))
+        plat.append(SolidPlatform(Hitbox(Rect(dist+l,63,16,16))))
         
-        return plat
+        return plat+[flag]

@@ -65,6 +65,7 @@ class Level_4A_kshan(Level):
             plat.append(SolidPlatform(Hitbox(Rect(dist,h,l,16))))
             h += i*17%23 - 10
             dist += l+(i*9%13) +10
+        flag = Flag(Hitbox(Rect(dist-20,-13,10,20)))
         
         gps = GravitationalPickableShield()
         gps.set_position(70,0)        
@@ -78,4 +79,4 @@ class Level_4A_kshan(Level):
         z2.set_position(850,-20)
         z3 = Zombie()
         z3.set_position(550,-20)
-        return plat+[gps,ht,laserbot,zb,z2,z3]
+        return plat+[gps,ht,laserbot,zb,z2,z3,flag]

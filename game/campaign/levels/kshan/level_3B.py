@@ -62,5 +62,6 @@ class Level_3B_kshan(Level):
                 plat.append(zom)
             plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
             dist += l + 20
+        flag = Flag(Hitbox(Rect(dist-20,-15,10,20)))
         
-        return plat
+        return plat + [flag]

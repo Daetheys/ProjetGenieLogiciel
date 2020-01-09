@@ -64,6 +64,7 @@ class Level_2_1_kshan(Level):
                 plat.append(coin)
             plat.append(SolidPlatform(Hitbox(Rect(dist,5,l,18))))
             dist += l + 20
+        flag = Flag(Hitbox(Rect(dist-10,-5,10,20)))
 
         gravshield = LaserPickableShield()
         gravshield.set_position(120,5)
@@ -72,4 +73,4 @@ class Level_2_1_kshan(Level):
         las2 = LaserTurretBot()
         las2.set_position(850,-50)
 
-        return plat+[gravshield,laserbot,las2]
+        return plat+[gravshield,laserbot,las2,flag]

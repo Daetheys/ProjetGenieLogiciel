@@ -66,5 +66,6 @@ class Level_4B_kshan(Level):
             plat.append(SolidPlatform(Hitbox(Rect(dist,h,l,16))))
             h += i*17%23 - 10
             dist += l+(i*9%13) +10
+        flag = Flag(Hitbox(Rect(dist-20,-8,10,20)))
         
-        return plat + [deadly]
+        return plat + [deadly,flag]

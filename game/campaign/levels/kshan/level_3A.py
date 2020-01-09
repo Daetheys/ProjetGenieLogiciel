@@ -91,6 +91,7 @@ class Level_3A_kshan(Level):
                 dp = DeadlyPotion(Hitbox(Rect(dist+20,-4,10,10)))
                 plat.append(dp)
             dist += l + 20
+        flag = Flag(Hitbox(Rect(dist-20,-20,10,20)))
 
         zombie = Zombie()
         zombie.set_position(132,0)
@@ -99,5 +100,5 @@ class Level_3A_kshan(Level):
         z3 = Zombie()
         z3.set_position(525,-2)
         
-        return plat + [zombie,z2,z3,z4] 
+        return plat + [zombie,z2,z3,z4,flag] 
  
