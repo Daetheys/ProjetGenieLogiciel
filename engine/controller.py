@@ -15,7 +15,7 @@ class Controller:
         self._actions = actions
         
     def execute(self,event,pressed,dt):
-        self.target.update()
+        self.target.update(dt)
         
         
 class HomingController(Controller):

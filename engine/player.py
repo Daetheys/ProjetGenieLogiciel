@@ -80,9 +80,9 @@ class Player(JumpableNode):
         self.set_state("d") #For the spriteScheduler -> state die (d)
         super().die()
 
-    def update(self):
+    def update(self,dt):
         """ Update var """
-        super().update()
+        super().update(dt)
 
         if self.score_to_add > 0:
             valadd = min(50,self.score_to_add)
@@ -90,6 +90,17 @@ class Player(JumpableNode):
             val = max(valadd,valprod)
             self.score += val
             self.score_to_add -= val
+
+        if self.poisoned_timeout > 0:
+            self.add_score(-10)
+
+        if self.score_to_add < 0:
+            valadd = max(-50,self.score_to_add)
+            valprod = int(self.score_to_add/10+0.5)
+            val = min(valadd,valprod)
+            self.score += val
+            self.score_to_add -= val
+
 
     def flush_score(self):
         self.score += self.score_to_add

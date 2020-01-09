@@ -43,21 +43,32 @@ class PickableNode(ControlableNode):
 
 """
 As advised by D.Baelde, all subclasses of PickableNode are flocked in this file.
-Poison class -> you need an antidote within ##TODO## seconds"""
+Poison class -> you need an antidote within 10 seconds"""
 
 class Poison(PickableNode):
     def __init__(self,hb,name='poison'):
-        PickableNode.__init__(self,hb,"poison")
+        PickableNode.__init__(self,hb,name)
 
     def upon_colliding(self,o2):
-        o2.add_score(-1000)
-        o2.take_damages(4)
+        #o2.take_damages(1)
+        o2.poisoned_timeout = 10
+
+"""Antidote class -> saves you from the poison and restores 1 HP"""
+
+class Antidote(PickableNode):
+    def __init__(self,hb,name='antidote'):
+        PickableNode.__init__(self,hb,name)
+
+    def upon_colliding(self,o2):
+        o2.poisoned_timeout = 0
+        if o2.pv < o2.max_pv:
+            o2.pv += 1
 
 """ Coin class -> gives you some score"""
 
 class Coin(PickableNode):
     def __init__(self,hb,name='coin'):
-        PickableNode.__init__(self,hb,"coin")
+        PickableNode.__init__(self,hb,name)
 
     def upon_colliding(self,o2):
         o2.add_score(100)
@@ -95,8 +106,8 @@ class Key(PickableNode):
 """ Heart class -> adds one life to the player"""
 
 class Heart(PickableNode):
-    def __init__(self,hb,name='empty'):
-        PickableNode.__init__(self,hb,'heart')
+    def __init__(self,hb,name='heart'):
+        PickableNode.__init__(self,hb,name)
 
     def upon_colliding(self,o2):
         o2.max_pv += 1

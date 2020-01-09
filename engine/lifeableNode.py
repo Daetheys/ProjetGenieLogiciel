@@ -10,6 +10,7 @@ class LifeableNode(ControlableNode):
         self.small = True #small == True -> little health bar over head of the lifeable node
 
         self.alive = True
+        self.poisoned_timeout = 0
 
     def copy(self):
         l = LifeableNode()
@@ -77,6 +78,17 @@ class LifeableNode(ControlableNode):
                 rect = text.get_rect()
                 rect.topleft = (px+3/4*length,py)
                 fen.blit(text,rect)
+
+    def update(self,dt):
+        """ Computes whether the poison kills you. """
+        super().update(dt)
+
+        if self.poisoned_timeout > 0:
+             self.poisoned_timeout -= dt
+             if self.poisoned_timeout <= 0:
+                 self.die()
+                 print("Poison!")
+
 
     def collide(self,o2,side,o2_side):
         if isinstance(o2,projectile.Projectile):

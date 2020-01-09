@@ -50,7 +50,8 @@ class JumpableNode(LifeableNode):
         """ Allow the player to jump """
         self.can_jump = True
 
-    def update(self):
+    def update(self,dt):
+        super().update(dt)
         self.can_jump = False #Pour qu'on ne puisse pas sauter dans les airs
         self.is_in_air = True #Pour la detection de la mort : le joueur doit être en l'air et entrer en collision
         if self.alive:
