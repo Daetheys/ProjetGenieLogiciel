@@ -90,7 +90,7 @@ class Camera:
         dim = self.get_dimension()
         pos += (-Vector(dim.x/4,dim.y/2))
         self.set_position(pos)
-    
+
     def flashblack(self):
         """ Fill the camera with black in order to blit images right after """
         self.get_fen().fill((0,0,0))
@@ -119,7 +119,13 @@ class Camera:
         y = int(d.y*1/16)
         distorsion_scale = self.get_distorsion()[0]
         vpos = Vector(x,y) * distorsion_scale
+
         tools.T(self.get_fen(),str(score),vpos.x,vpos.y,255,255,255,size=45)
+        if self.world.player.poisoned_timeout > 0:
+            tools.T(self.get_fen(),str("Poison!"),vpos.x-150,vpos.y,91+(100-self.world.player.poisoned_timeout*10),47,82,size=45)
+
+        tools.T(self.get_fen(),str(self.world.name),vpos.x-400,vpos.y,255,255,255,size=45)
+
 
     def __repr__(self):
         txt = "Camera("+str(self.rect)+")"
