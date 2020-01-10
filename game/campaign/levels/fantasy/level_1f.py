@@ -37,7 +37,7 @@ class Level_1_fantasy(Level):
         def player_pos(t):
             return t*100*110/60
 
-        gl = GameLevel(self.objects,player_pos,name="level_1_fantasy",parallax=g.options["parallax"],music="data/musics/HolFix - Good Old Times.mp3")
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Midden Pass"],parallax=g.options["parallax"],music="data/musics/HolFix - Good Old Times.mp3")
         gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text) #too soon, create gap between music and level

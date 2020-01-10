@@ -40,7 +40,7 @@ class Level_2_fantasy(Level):
 
         limgpar = [("data/img/background_deep_forest/Layer_0010_1.png",0),("data/img/background_deep_forest/Layer_0009_2.png",1),("data/img/background_deep_forest/Layer_0008_3.png",2),("data/img/background_deep_forest/Layer_0007_Lights.png",3),("data/img/background_deep_forest/Layer_0006_4.png",4),("data/img/background_deep_forest/Layer_0005_5.png",5),("data/img/background_deep_forest/Layer_0004_Lights.png",6),("data/img/background_deep_forest/Layer_0003_6.png",7),("data/img/background_deep_forest/Layer_0002_7.png",8),("data/img/background_deep_forest/Layer_0001_8.png",9),("data/img/background_deep_forest/Layer_0000_9.png",10)]
 
-        gl = GameLevel(self.objects,player_pos,name="level_2_fantasy",parallax=g.options["parallax"],music="data/musics/elves test.ogg",limgpar=limgpar)
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Haelgard Forest"],parallax=g.options["parallax"],music="data/musics/elves test.ogg",limgpar=limgpar)
         gl.load_inventory(g.player.get_inventory())
         
         #g.launch_music(text) #too soon, create gap between music and level
