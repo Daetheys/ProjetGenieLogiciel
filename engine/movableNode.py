@@ -8,7 +8,7 @@ import pygame
 import time
 
 DEBUG = False
-MAXMOVE = 11 #Max movement (pixels) per iteration
+MAXMOVE = 10 #Max movement (pixels) per iteration
 SHOWCUT = False
 
 """ A Movable Node is the evolution of a SpriteNode. It has a speed and some basic information about physics but no hitbox yet """

@@ -280,7 +280,7 @@ class GameLevel:
     def physics_step(self,dt,obj_opti):
         """ Compute collisions """
         for i,o in enumerate(obj_opti):
-            if True:#not(isinstance(o,SolidPlatform)):
+            if True:#not(isinstance(o,SolidPlatform)): #On peut se permettre d'integrer les plateformes au calcul suite a de nombreux gains de performance
                 o.compute_speed(dt)
                 o.move(dt)
                 if o == self.player and self.player.alive:
