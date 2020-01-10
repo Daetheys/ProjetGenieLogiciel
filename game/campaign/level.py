@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 
 
-'''A Level is the object that contains an instance of the canabalt game. Is can have dialogue, rewards, different conditions for winning and different objects in the \"real\" game. It is n abstract class, each level has its own class for more freedom for level design'''
-
-class Level:    #will be an abstract class -> it is now
+class Level:    #it is an abstract class
+    '''A Level is the object that contains an instance of the Canabaelde game. It can have dialogue, rewards, different conditions for winning and different objects in the "real" game. It is an abstract class, each level has its own class for more freedom for level design.'''
 
     def __init__(self,g):
         self._accessed = False

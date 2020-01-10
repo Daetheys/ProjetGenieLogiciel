@@ -1,6 +1,7 @@
 from imports import *
 
 class Level_2_2_kshan(Level):
+    """ all functions are explained in the Level abstract class """
     
     def __init__(self,g):
         super().__init__(g)
@@ -30,13 +31,9 @@ class Level_2_2_kshan(Level):
         
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
-            
-        #objects = self.init_objects(g)
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Evil Coins"],parallax=g.options["parallax"])
         gl.load_inventory(g.player.get_inventory())
-        
-        #g.launch_music(text)
         
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
@@ -52,23 +49,23 @@ class Level_2_2_kshan(Level):
         return success
     
     def create_objects(self,g):
-        plat = []
+        obj = []
         dist = -10
         for i in range(10):
             l = (i+1)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,(i*-8)+10,l,16))))
+            obj.append(SolidPlatform(Hitbox(Rect(dist,(i*-8)+10,l,16))))
             dist += l+(i*9%13) +10
             if i > 0:
                 coin = Coin(Hitbox(Rect(dist+2,(i*-8)-10,10,10)))
-                plat.append(coin)
+                obj.append(coin)
             
         for i in range(10,20):
             l = (i+1)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,((i-10)*12)-62,l,16))))
+            obj.append(SolidPlatform(Hitbox(Rect(dist,((i-10)*12)-62,l,16))))
             dist += l+(i*9%13) +10
             coin = Coin(Hitbox(Rect(dist+l//2,((i-10)*12)-72,10,10)))
-            plat.append(coin)
-        flag = Flag(Hitbox(Rect(dist+l//4,43,10,20)))
-        plat.append(SolidPlatform(Hitbox(Rect(dist+l//4,63,16,16))))
+            obj.append(coin)
+        obj.append(Flag(Hitbox(Rect(dist+l//4,43,10,20))))
+        obj.append(SolidPlatform(Hitbox(Rect(dist+l//4,63,16,16))))
         
-        return plat+[flag]
+        return obj

@@ -1,6 +1,7 @@
 from imports import *
 
 class Level_4B_kshan(Level):
+    """ all functions are explained in the Level abstract class """
     
     def __init__(self,g):
         super().__init__(g)
@@ -38,16 +39,11 @@ class Level_4B_kshan(Level):
         
         def player_pos(t):
             return t * 100 #*8 to be faster (but it doesn't match the music anymore !
-            
-        #objects = self.init_objects(g)
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Poisonous Path"],parallax=g.options["parallax"])
         
-        #g.launch_music(text)
-        
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
-        
         
         if success:
             self.fun_dialogue(g,"good_end")

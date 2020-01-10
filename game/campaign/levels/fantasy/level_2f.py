@@ -3,6 +3,7 @@ from imports import *
 from tools import PseudoRd
 
 class Level_2_fantasy(Level):
+    """ all functions are explained in the Level abstract class """
     
     def __init__(self,g):
         super().__init__(g)
@@ -98,5 +99,3 @@ class Level_2_fantasy(Level):
             nx += base
 
         return plats
-
-

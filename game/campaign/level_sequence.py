@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-'''A level sequence is a set of level that you need to pass in one go'''
-
 from map_point import Map_Point
-import pygame   #for ugly code
 
 class Level_Sequence(Map_Point):
+    '''A level sequence is a set of level that you need to pass in one go. In inherits from the abstract class Map_Point'''
 
     def __init__(self,name,x,y,img,imgf,map):
         Map_Point.__init__(self,name,x,y,img,imgf)
@@ -57,6 +55,7 @@ class Level_Sequence(Map_Point):
         return self._finished
 
     def launch(self,g):
+        """ launches all levels in succession """
         self.set_accessed(g) #to change the begin dialogue
         reussite = True #pour réussir, il faut gagner tous les levels du level_sequence
         for level in self.__levels:

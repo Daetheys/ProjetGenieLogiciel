@@ -2,9 +2,8 @@ from buttonMenu import ButtonMenu
 import pygame
 from pygame.font import SysFont
 
-'''An object that can display text with a character'''
-
 class Dialogue_Bubble:
+    '''An object that can display text with the picture of a character'''
 
     def __init__(self,msg,talker,background,x,y,last):
         self.msg = msg
@@ -51,5 +50,3 @@ class Dialogue_Bubble:
             if quit_all:
                 cnt = False
         return quit_all
-
-

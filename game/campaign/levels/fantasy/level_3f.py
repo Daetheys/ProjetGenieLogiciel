@@ -3,6 +3,7 @@ from imports import *
 from tools import PseudoRd
 
 class Level_3_fantasy(Level):
+    """ all functions are explained in the Level abstract class """
     
     def __init__(self,g):
         super().__init__(g)
@@ -40,8 +41,6 @@ class Level_3_fantasy(Level):
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Moon Ruins"],parallax=g.options["parallax"],music="data/musics/Moon-ruins.ogg")
         gl.load_inventory(g.player.get_inventory())
-        
-        #g.launch_music(text) #too soon, create gap between music and level
         
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait

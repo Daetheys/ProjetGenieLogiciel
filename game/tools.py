@@ -55,6 +55,7 @@ def create_char(dict,dict_img):
 	return dict
 
 def create_item(dict):
+	""" creates an object of a subclass of the class Item """
 	for item in dict:
 		if dict[item][0] == "key":
 			dict[item] = items.KeyItem(item)
@@ -84,6 +85,7 @@ def insert_score(L,score,name,maxn):
 	return L
 
 def score_to_msg(leaderboard):
+	""" Creates the message that will be printed in the leaderboard """
 	msg="LEADERBOARD\n\n"
 	for i,score in enumerate(leaderboard):
 		if score[2]:
@@ -93,6 +95,7 @@ def score_to_msg(leaderboard):
 	return msg
 
 def inv_to_msg(inv):
+	""" Creates the message that will be printed in the inventory """
 	msg="INVENTORY\n\n"
 	for item in inv:
 		if inv[item] > 0:
@@ -167,26 +170,26 @@ def list_to_defaultdict(li):
 	return d
 
 class PseudoRd:
-        def __init__(self,a,b,c,u):#Put random numbers here except for c but it's better if they are prime numbers
-                self.a = a
-                self.b = b
-                self.c = c #max (maxint-minint)
-                self.u = u
+	def __init__(self,a,b,c,u):#Put random numbers here except for c but it's better if they are prime numbers
+			self.a = a
+			self.b = b
+			self.c = c #max (maxint-minint)
+			self.u = u
 
-        def get(self,minint,maxint):
-                self.u = (self.u*self.a+self.b)%self.c
-                return self.u%(maxint-minint)+minint
+	def get(self,minint,maxint):
+			self.u = (self.u*self.a+self.b)%self.c
+			return self.u%(maxint-minint)+minint
 
-        def __call__(self,*args):
-                return self.get(*args)
+	def __call__(self,*args):
+			return self.get(*args)
 
 class Cycle:
-        def __init__(self,l):
-                self.l = l
-                self.i = 0
+	def __init__(self,l):
+			self.l = l
+			self.i = 0
 
-        def next(self):
-                self.i += 1
-                if self.i == len(self.l):
-                        self.i = 0
-                return self.l[self.i]
+	def next(self):
+			self.i += 1
+			if self.i == len(self.l):
+					self.i = 0
+			return self.l[self.i]

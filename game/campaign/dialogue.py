@@ -1,6 +1,7 @@
-'''An object that contains a set of Dialogue_Bubble that needs to be displayed together'''
+
 
 class Dialogue:
+    '''An object that contains a set of Dialogue_Bubble that need to be displayed together (one after the other)'''
 
     def __init__(self,talk):
         self.talk = talk

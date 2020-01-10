@@ -33,6 +33,7 @@ returns : bool x bool :  cnt,quit_all such that:
 """
 
 def no_reaction(g):
+    """ the most trivial reaction of a button. It has no effect."""
     return True, False
 
 def reaction_exit(g):#quitte le jeu
@@ -45,7 +46,7 @@ def reaction_return(g):#recule d'un rang
 
 def reaction_changeScreen(resx=1600,resy=900):
     """
-    returns a functions that changes the resolution into resx,resy
+    returns a reaction function that changes the resolution into resx,resy
     """
     def f(g):
         g.options["DISPLAYSIZE_X"] = resx
@@ -145,7 +146,7 @@ def reaction_b2(g):
             b = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*len(Lf),g.b1ymax+g.yoffset*len(Lf),g.dict_img["img_button"],"b pour "+f[:-4],g.dict_img["img_buttonH"],text=f[:-4]+" (mp3)",react=reaction_play("data/your music/"+f,f[:-4]))
             Lf.append(b)
 
-    #b21.activation(False)#désactivé par défaut -> en vrai sera activé
+    #b21 sera activé
 
 
 
@@ -211,10 +212,6 @@ def reaction_b11(g):
     cnt_underlying = True
     quit_all = False
     suppress_buttons(2)
-    #TODO buttons on the map
-
-    #b111 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b111",g.dict_img["img_buttonH"],text="")
-    #g.dict_img["map_kshan"]
 
     bg =  pygame.transform.smoothscale(g.world.get_map("map_kshan").image, (g.options["DISPLAYSIZE_X"],g.options["DISPLAYSIZE_Y"]))
 
@@ -224,9 +221,6 @@ def reaction_b11(g):
         if quit_all:
             cnt = False
             cnt_underlying = False
-                    #pygame.display.quit()
-
-    #suppress_buttons(2)#titlebanner,exit
 
     b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text="campaign_kshan",react=reaction_b11)
     b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy",react=reaction_b12)
@@ -247,10 +241,6 @@ def reaction_b12(g):
     cnt_underlying = True
     quit_all = False
     suppress_buttons(2)
-    #TODO buttons on the map
-
-    #b111 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b111",g.dict_img["img_buttonH"],text="")
-    #g.dict_img["map_kshan"]
 
     bg =  pygame.transform.smoothscale(g.world.get_map("map_fantasy").image, (g.options["DISPLAYSIZE_X"],g.options["DISPLAYSIZE_Y"]))
 
@@ -260,7 +250,6 @@ def reaction_b12(g):
         if quit_all:
             cnt = False
             cnt_underlying = False
-                    #pygame.display.quit()
 
     suppress_buttons(2)#titlebanner,exit
 
@@ -326,10 +315,7 @@ def reaction_b34(g):
     b344 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*3,g.b1ymax+g.yoffset*3,g.dict_img["img_button"],"b344",g.dict_img["img_buttonH"],text="1366x768",react=reaction_changeScreen(resx=1366,resy=768))
     b345 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*4,g.b1ymax+g.yoffset*4,g.dict_img["img_button"],"b345",g.dict_img["img_buttonH"],text="1920x1080",react=reaction_changeScreen(resx=1920,resy=1080))
     b346 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*5,g.b1ymax+g.yoffset*5,g.dict_img["img_button"],"b346",g.dict_img["img_buttonH"],text="2560x1440",react=reaction_changeScreen(resx=2560,resy=1440))
-    #b344.activation(False)
-    #b343.activation(False)
-    #b345.activation(False)
-    #b346.activation(False)
+
     if g.options["modeECRAN"]:#if is in FULLSCREEN
         b341.text = "Disable Fullscreen"
     else:
@@ -394,13 +380,6 @@ def reaction_b33(g):
             b.text = "return"
             b.xmax = 5 + 25*len(g.dict_str["return"])
     return True,False
-
-def reaction_mp(g, mp):     #not used  (it seems used (?))
-    mp.launch(g)# si c'est un buttonmenu, ça doit avoir un argument
-
-
-
-
 
 class ButtonMenu:
 

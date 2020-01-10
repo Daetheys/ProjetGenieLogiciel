@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-'''A Map_point is an abstract class for a sequence of level'''
 
 
 class Map_Point:    #abstract class
+    '''A Map_point is an abstract class for a sequence of level'''
 
     def __init__(self,name,x,y,img,imgf):
         self._accessible = False
-        self._accessed = False #maybe useless
+        self._accessed = False #used in the dialogues : there is no more surprise in the level 2 once you have already seen it.
         self._finished = False
         self.x = x
         self.y = y

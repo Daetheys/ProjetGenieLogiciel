@@ -39,8 +39,6 @@ class Level_1_kshan(Level):
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Hyborian Village"],parallax=g.options["parallax"])
         gl.load_inventory(g.player.get_inventory())
         
-        #g.launch_music(text) #too soon, create gap between music and level
-        
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
         

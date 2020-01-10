@@ -1,6 +1,7 @@
 from imports import *
 
 class Level_3A_kshan(Level):
+    """ all functions are explained in the Level abstract class """
     
     def __init__(self,g):
         super().__init__(g)
@@ -27,7 +28,6 @@ class Level_3A_kshan(Level):
             return True
         return False
         
-        
     def launch(self,g):
         quit_all = self.fun_dialogue(g,"start")
         self.objects = self.create_objects(g)
@@ -38,18 +38,13 @@ class Level_3A_kshan(Level):
         
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
-            
-        #objects = self.init_objects(g)
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Key To Success"],parallax=g.options["parallax"])
         gl.load_inventory(g.player.get_inventory())
         
-        #g.launch_music(text)
-        
         alive = g.launch_level(gl,None)
         success = self.check_victory(g, alive)
         pygame.event.get()#to capture inputs made during the wait
-        
         
         if success:
             self.fun_dialogue(g,"good_end")
@@ -68,6 +63,7 @@ class Level_3A_kshan(Level):
         return success
     
     def create_objects(self,g):
+        """ creates all objects in the level. """
         plat = []
         dist = -10
         for i in range(10):
