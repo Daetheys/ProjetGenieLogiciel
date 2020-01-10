@@ -216,7 +216,7 @@ class GameLevel:
         #To slow the game
         #time.sleep(0.05)
 
-    def animation_end_game(self):
+    def animation_end_game(self,dt):
         if self.lost:
             if self.countdown > 0:
                 self.countdown -= dt
