@@ -21,7 +21,7 @@ class JumpableNode(LifeableNode):
         """ Key has just been pressed """
         speed = self.get_speed()
         print("start jump",self.can_jump,self.is_jumping,speed.y)
-        if self.can_jump and (not self.is_jumping) and speed.y >= 0:
+        if self.alive and self.can_jump and (not self.is_jumping) and speed.y >= 0:
             self.set_speed(Vector(speed.x, -self.jump_strength)) #JUMP
             self.can_jump = False #Cannot jump anymore
 

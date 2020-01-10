@@ -11,6 +11,9 @@ import pygame
 import time
 from datetime import datetime
 
+import cProfile
+import re
+
 DEBUG = False
 
 def get_current_time():
@@ -21,7 +24,7 @@ def get_current_time():
 
 class GameLevel:
     """ Level of the game """
-    def __init__(self,objects,player_pos,limgpar=[("data/img/background_demon_forest/parallax-demon-woods-bg.png",0),("data/img/background_demon_forest/parallax-demon-woods-far-trees.png",1),("data/img/background_demon_forest/parallax-demon-woods-mid-trees.png",2),("data/img/background_demon_forest/parallax-demon-woods-close-trees.png",3)],name='',parallax=True,gravity=2100,music=None):
+    def __init__(self,objects,player_pos,limgpar=[("data/img/background_demon_forest/parallax-demon-woods-bg.png",0),("data/img/background_demon_forest/parallax-demon-woods-far-trees.png",1),("data/img/background_demon_forest/parallax-demon-woods-mid-trees.png",2),("data/img/background_demon_forest/parallax-demon-woods-close-trees.png",3)],name='',parallax=True,gravity=2100,music=None): #Gravity is set experimentally for jumps to 2100
         """ The player spawn in (0,0) """
         assert objects != [] #Empty GameLevel
         self.camera = Camera() #Camera
