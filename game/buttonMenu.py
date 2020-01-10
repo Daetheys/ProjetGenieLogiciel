@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
-from tools import *
+from tools.xyinbounds import xyinbounds
+from tools.text_display import T
 from shutil import copy2
 import json
 from os import listdir

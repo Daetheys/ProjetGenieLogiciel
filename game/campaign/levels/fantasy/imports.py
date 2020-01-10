@@ -1,15 +1,13 @@
 
 import sys
 import os
-#import numpy as np
 import pygame
 from pygame.locals import *
 path = os.getcwd()
-path += "/engine"
-sys.path.append(path)
-path = os.getcwd()
-path += "/engine/mob"
-sys.path.append(path)
+sys.path.append(path + "/engine")
+sys.path.append(path + "/engine/mob")
+sys.path.append(path + "/game/tools")
+sys.path.append(path + "/game/campaign")
 
 from polygone import *
 from vector import Vector
@@ -27,4 +25,4 @@ from jumpingSkeleton import JumpingSkeleton
 from laserTurretBot import LaserTurretBot
 from flag import Flag
 from pickableShield import LaserPickableShield,GravitationalPickableShield
-from tools import PseudoRd
+from pseudoRd import PseudoRd

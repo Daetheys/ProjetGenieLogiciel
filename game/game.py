@@ -3,8 +3,11 @@ from launcher import *
 import pygame
 pygame.mixer.pre_init(44100, -16, 8, 512)
 from pygame.locals import *
-from tools import score_to_msg,insert_score,bgg,Cycle
-from tools2 import reaction_inv
+from conversion import score_to_msg
+from insert_score import insert_score
+from backgroundGenerator import bgg,create_plat
+from cycle import Cycle
+from reaction_inv import reaction_inv
 from dialogue import Dialogue
 from dialoguebubble import Dialogue_Bubble
 from vector import Vector
@@ -23,24 +26,13 @@ class Game(Launcher):
         self.__init_background()
         self.launch_game()
 
-    def __create_plat(self,width,height):
-        """ creates a platform that will appear in the menu """
-        plat_img = pygame.Surface((width,height), pygame.SRCALPHA) # per-pixel alpha
-        plat_img.fill((255,255,255,0))
-        img = load("data/img/platform3.png").convert_alpha()
-        ratio = img.get_height() / height
-        pygame.transform.smoothscale(plat_img,(int(img.get_width()*ratio),int(img.get_height()*ratio)))
-        for i in range(5):
-            plat_img.blit(img.convert_alpha(),(i*(img.get_width()*ratio-3),0))
-        return plat_img
-
     def __init_background(self):
         """ creates platforms that will appear in the menu """
         self.bg = None#Pygame.Surface (background)
         self.bglist = []#list of tuples (position of the platforms in the background)
-        self.plat_img = self.__create_plat(200,40)
-        self.plat_small = self.__create_plat(40,40)
-        self.plat_big = self.__create_plat(250,40)
+        self.plat_img = create_plat(200,40)
+        self.plat_small = create_plat(40,40)
+        self.plat_big = create_plat(250,40)
 
         self.bg = Cycle([])
         self.videoobj = cv2.VideoCapture("data/img/back.mp4")

@@ -1,6 +1,5 @@
 
 from imports import *
-from tools import PseudoRd
 
 class Level_1_fantasy(Level):
     """ all functions are explained in the Level abstract class """

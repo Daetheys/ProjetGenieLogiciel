@@ -1,20 +1,20 @@
 import sys
 import os
 path = os.getcwd()
-path2 = path+ "/game/campaign"
-sys.path.append(path2)
-path += "/game/campaign/levels/fantasy"
-sys.path.append(path)
+print(path)
+sys.path.append(path + "/game/campaign")
+sys.path.append(path + "/game/tools")
+sys.path.append(path + "/game/campaign/levels/fantasy")
 from items import item_from_name
 import pygame
 import json
 from world import *
-#from map_point import *
 from level_sequence import *
 from level import *
 from map import *
-import tools
-import tools2
+import creation
+import conversion
+import text_display
 from shutil import copy2
 
 from level_1 import Level_1_kshan
@@ -24,7 +24,6 @@ from level_3A import Level_3A_kshan
 from level_4A import Level_4A_kshan
 from level_3B import Level_3B_kshan
 from level_4B import Level_4B_kshan
-print(sys.path)
 from level_1f import Level_1_fantasy
 from level_2f import Level_2_fantasy
 from level_3f import Level_3_fantasy
@@ -99,7 +98,7 @@ class Launcher:
         """loads all images into self.dict_img, blits the first background"""
         #Images
         with open("data/json/img.json", "r") as read_file:
-            self.dict_img = json.load(read_file,object_hook=tools.create_img)
+            self.dict_img = json.load(read_file,object_hook=creation.create_img)
         #Img_transformations
         self.dict_img["img_arrow"]  = pygame.transform.smoothscale(self.dict_img["img_arrow"],(40,40))
         self.dict_img["img_garrow"]  = pygame.transform.smoothscale(self.dict_img["img_garrow"],(40,40))
@@ -152,7 +151,7 @@ class Launcher:
     def create_items(self):
         self.dict_item = {}
         with open("data/json/items.json", "r", encoding="utf-8-sig") as read_file:
-            self.dict_item = json.load(read_file, object_hook=tools.create_item)
+            self.dict_item = json.load(read_file, object_hook=creation.create_item)
 
     def init_characters(self):
         """ creates the dictionary dict_char , from characters.json,
@@ -160,7 +159,7 @@ class Launcher:
         self.dict_char = {}
         with open("data/json/characters.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_char = json.load(read_file)
-            self.dict_char = tools.create_char(self.dict_char,self.dict_img)
+            self.dict_char = creation.create_char(self.dict_char,self.dict_img)
         self.player = self.dict_char["player"]
 
     def create_dialogues(self):
@@ -168,7 +167,7 @@ class Launcher:
         self.dict_dial = {}
         with open("data/json/dialogue.json", "r", encoding="utf-8-sig") as read_file:
             self.dict_dial = json.load(read_file)
-            self.dict_dial = tools2.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
+            self.dict_dial = creation.create_dial(self.dict_dial,self.dict_str,self.dict_char,self.dict_img)
 
     def create_world(self):
         """
@@ -275,13 +274,11 @@ class Launcher:
         pygame.mixer.init()
         #Music
         pygame.mixer.music.load(self.menu_music)
-        #pygame.mixer.music.fadeout(500)
         pygame.mixer.music.play(-1)
 
     def launch_music(self,music):
         """launches the music"""
         pygame.mixer.music.load(music)
-        #pygame.mixer.music.fadeout(500)
         pygame.mixer.music.play(-1)
 
     def update_dialogues(self):
@@ -318,25 +315,20 @@ class Launcher:
         except FileNotFoundError:
             self.dict_score = {"level_1_kshan": [["SCHWOON", 1000000000, False], ["ALESSIO", 42000, False]]}
 
-            #for sc in self.score:
-            #    self.score[sc] = self.score[sc]
-
         try:
             with open("data/json/save.json","r") as file:
                 self.save = json.load(file)
         except FileNotFoundError:
-            print("kjlkjlk")
+            print("Savefile not found. New savefile created !")
             with open("data/json/default_save.json","r") as file:
                 self.save = json.load(file)
             copy2("data/json/default_save.json","data/json/save.json")
-        print(self.save["inv"])
-        self.player.inv =  tools.list_to_defaultdict([(item_from_name(i),j) for [i,j] in self.save["inv"]])
-        print(self.save)
 
+        self.player.inv =  conversion.list_to_defaultdict([(item_from_name(i),j) for [i,j] in self.save["inv"]])
 
     def flip(self,txt=None):
         """ updates the current screen with current self.win() """
         if txt is not None:#is the SCORE usually
-            tools.T(self.win(),txt, self.options["DISPLAYSIZE_X"]-5*len(txt),0,250,250,250,center=False)
+            text_display.T(self.win(),txt, self.options["DISPLAYSIZE_X"]-5*len(txt),0,250,250,250,center=False)
         pygame.display.flip()
 
