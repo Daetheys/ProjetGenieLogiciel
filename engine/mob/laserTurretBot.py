@@ -4,12 +4,11 @@ import os
 path = os.getcwd()
 sys.path.append(path + "/engine")
 
-from controller import Autoplay
 from vector import Vector
 from hitbox import Hitbox
 from rect import Rect
 from laserBall import LaserBall
-
+from mob import MobController
 
 class LaserTurretBot(Mob):
     def __init__(self):
@@ -39,7 +38,7 @@ class LaserTurretBot(Mob):
     def die(self):
         super().die()
 
-class LaserTurretBotController(Autoplay):
+class LaserTurretBotController(MobController):
     def __init__(self,target=None):
         super().__init__()
         self.target = target
@@ -57,4 +56,4 @@ class LaserTurretBotController(Autoplay):
             lb.set_position(x,y+h+4)
             self.target.world.add_node(lb)
             lb.load()
-        
+

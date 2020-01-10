@@ -1,5 +1,6 @@
 from projectile import Projectile
 from laserBallShield import LaserBallShield
+from controller import Controller
 
 class GravitationalBall(Projectile):
     def __init__(self,world):
@@ -27,7 +28,7 @@ class GravitationalBall(Projectile):
     def collide(self,o,side,oside):
         super().collide(o,side,oside)
 
-class GravitationalBallController:
+class GravitationalBallController(Controller):
     def __init__(self,target=None):
         super().__init__()
         self.target = target

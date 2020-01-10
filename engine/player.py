@@ -10,7 +10,6 @@ sys.path.append(path)
 
 from jumpableNode import JumpableNode,JumpableController
 from solidPlatform import SolidPlatform
-from controller import KeyboardController
 from hitbox import Hitbox
 from rect import Rect
 from vector import Vector

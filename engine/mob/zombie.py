@@ -4,7 +4,6 @@ import os
 path = os.getcwd()
 sys.path.append(path + "/engine")
 
-from controller import Autoplay
 from vector import Vector
 from hitbox import Hitbox
 from rect import Rect
@@ -61,7 +60,6 @@ class ZombieController(MobController):
     def __init__(self,target=None):
         super().__init__()
         self.target = target
-        self.timer = 0
 
     def execute(self,event,pressed,dt):
         super().execute(event,pressed,dt)
@@ -84,7 +82,3 @@ class ZombieController(MobController):
                 self.target.set_speedx(0)
         if self.target.alive:
             self.target.move(dt)
-        self.timer += 1 
-        if self.timer == 50:
-            self.timer = 0
-            #self.jump(0.06)
