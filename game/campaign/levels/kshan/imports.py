@@ -10,6 +10,9 @@ sys.path.append(path)
 path = os.getcwd()
 path += "/engine/mob"
 sys.path.append(path)
+path = os.getcwd()
+path += "/game/campaign"
+sys.path.append(path)
 
 from polygone import *
 from vector import Vector
@@ -27,3 +30,4 @@ from jumpingSkeleton import JumpingSkeleton
 from laserTurretBot import LaserTurretBot
 from flag import Flag
 from pickableShield import LaserPickableShield,GravitationalPickableShield
+from items import Consommable
