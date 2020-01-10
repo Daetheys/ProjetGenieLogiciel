@@ -1,14 +1,9 @@
-from mob import Mob
-import sys
-import os
-path = os.getcwd()
-sys.path.append(path + "/engine")
-
-from vector import Vector
-from hitbox import Hitbox
-from rect import Rect
-from laserBall import LaserBall
-from mob import MobController
+from engine.mobs.mob import Mob
+from engine.vector import Vector
+from engine.hitbox import Hitbox
+from engine.rect import Rect
+from engine.laserBall import LaserBall
+from engine.mobs.mob import MobController
 
 class LaserTurretBot(Mob):
     def __init__(self):

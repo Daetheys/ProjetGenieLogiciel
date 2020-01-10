@@ -1,7 +1,7 @@
-from node import Node
+from engine.node import Node
 import pygame
-from vector import Vector
-from spriteScheduler import SpriteScheduler
+from engine.vector import Vector
+from engine.spriteScheduler import SpriteScheduler
 
 """ It's the evolution of a simple Node : it has a sprite that can be shown on screen. It will need a SpriteScheduler to handle animations (cf SpriteScheduler). """
 

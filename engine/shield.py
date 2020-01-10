@@ -1,7 +1,7 @@
-from controlableNode import ControlableNode
-from hitbox import Hitbox
-from rect import Rect
-from controller import Controller
+from engine.controlableNode import ControlableNode
+from engine.hitbox import Hitbox
+from engine.rect import Rect
+from engine.controller import Controller
 import numpy as np
 
 class Shield(ControlableNode):

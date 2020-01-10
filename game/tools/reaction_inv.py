@@ -1,7 +1,7 @@
 
-from conversion import inv_to_msg
-from dialogue import Dialogue
-from dialoguebubble import Dialogue_Bubble
+from game.tools.conversion import inv_to_msg
+from game.campaign.dialogue import Dialogue
+from game.campaign.dialoguebubble import Dialogue_Bubble
 
 def reaction_inv(g):
     """ computes the reaction of the inventory button : It is what is triggered

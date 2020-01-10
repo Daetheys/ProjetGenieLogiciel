@@ -1,15 +1,8 @@
-from rect import Rect
-from polygone import *
-
+from engine.rect import Rect
+from engine.polygone import *
 import time
 
-import sys
-import os
-path = os.getcwd()
-sys.path.append(path + "/engine")
-sys.path.append(path + "/game")
-
-import tools
+from game.tools.text_display import T
 import pygame
 
 """ A Camera object that represents what will be shown to the player. It uses a Rect (cf Rect) to define what is inside the view of the camera and then rescales and translates things so that they fit exactly in the window (it's the distorsion). This distorsion is a couple of Transform : (tr_scale,tr_translate) """
@@ -34,7 +27,8 @@ class Camera:
             self.compute_distorsion()
 
     def set_dimension(self,size):
-        """ Set the dimension of the Camera (usefull to zoom) """
+        """ Set the dimension of the Camera (useful to zoom).
+        Note that size is a Vector. """
         self.rect.set_dimension(size)
         if not(self.fen is None):
             self.compute_distorsion()
@@ -120,11 +114,11 @@ class Camera:
         distorsion_scale = self.get_distorsion()[0]
         vpos = Vector(x,y) * distorsion_scale
 
-        tools.T(self.get_fen(),str(score),vpos.x,vpos.y,255,255,255,size=45)
+        T(self.get_fen(),str(score),vpos.x,vpos.y,255,255,255,size=45)
         if self.world.player.poisoned_timeout > 0:
-            tools.T(self.get_fen(),str("Poison!"),vpos.x-150,vpos.y,91+(140-self.world.player.poisoned_timeout*14),47,82,size=45)
+            T(self.get_fen(),str("Poison!"),vpos.x-150,vpos.y,91+(140-self.world.player.poisoned_timeout*14),47,82,size=45)
 
-        tools.T(self.get_fen(),str(self.world.name),vpos.x-400,vpos.y,255,255,255,size=45)
+        T(self.get_fen(),str(self.world.name),vpos.x-400,vpos.y,255,255,255,size=45)
 
 
     def __repr__(self):

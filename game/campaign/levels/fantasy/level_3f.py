@@ -1,5 +1,5 @@
 
-from imports import *
+from game.campaign.levels.imports import *
 
 class Level_3_fantasy(Level):
     """ all functions are explained in the Level abstract class """

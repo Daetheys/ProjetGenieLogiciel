@@ -1,7 +1,7 @@
-from rect import Rect
-from transform import Transform
-from vector import Vector
-from polygone import Polygon,Line,Segment
+from engine.rect import Rect
+from engine.transform import Transform
+from engine.vector import Vector
+from engine.polygone import Polygon,Line,Segment
 
 DEBUG = False
 
@@ -12,10 +12,10 @@ class Hitbox:
     def __init__(self,rect):
         self.rect = rect #Rect
         self.ctransformable = None #CollideTransformable
-        
+
     def __repr__(self):
         return "Hitbox("+str(self.get_world_rect())+")"
-    
+
     def get_rect(self):
         return self.rect
 
@@ -30,7 +30,7 @@ class Hitbox:
     def link(self,ct):
         """ Alias for set_ctrbl -> easier to remember"""
         self.set_ctrbl(ct)
-    
+
     def center(self):
         """ Centers the rectangle on (0,0) """
         return self.rect.center()
@@ -48,7 +48,7 @@ class Hitbox:
 
     def rescale(self,alpha):
         self.rect.rescale(alpha)
-        
+
     def collide(self,hb2):
         return self.get_world_rect().intersect(hb2.get_world_rect())
 
@@ -82,7 +82,7 @@ class Hitbox:
                         return 2
                     else:
                         return 0
-            
+
     def remove_collide(self,hb2):
         epsilon = 10**-5
         inter_rect = self.collide(hb2)

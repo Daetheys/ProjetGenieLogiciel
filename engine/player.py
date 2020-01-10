@@ -1,20 +1,16 @@
-import sys
-import os
+
 import numpy as np
 import pygame
 from collections import defaultdict
 
-path = os.getcwd()
-path += "/engine"
-sys.path.append(path)
 
-from jumpableNode import JumpableNode,JumpableController
-from solidPlatform import SolidPlatform
-from hitbox import Hitbox
-from rect import Rect
-from vector import Vector
-from projectile import Projectile
-import mob
+from engine.jumpableNode import JumpableNode,JumpableController
+from engine.solidPlatform import SolidPlatform
+from engine.hitbox import Hitbox
+from engine.rect import Rect
+from engine.vector import Vector
+from engine.projectile import Projectile
+import engine.mobs.mob
 
 """ The player object -> represents the player controllableNode """
 
@@ -47,6 +43,7 @@ class Player(JumpableNode):
         raise NotImplemented
 
     def end_init(self):
+        """ Used at the end of the creation of the GameLevel """
         self.add_force(self.world.gravity)
 
     def load_inventory(self,inv):
@@ -68,7 +65,7 @@ class Player(JumpableNode):
     def collide(self,o,side,o2_side):
         """ Player collides with o """
         super().collide(o,side,o2_side)
-        if isinstance(o,mob.Mob):
+        if isinstance(o,engine.mobs.mob.Mob):
             if o.alive:
                 self.take_damages(o.damages)
 
@@ -96,7 +93,7 @@ class Player(JumpableNode):
 
 
         if self.score_to_add < 0:
-            valadd = max(-50,self.score_to_add)
+            valadd = max(-50,self.score_to_add) #this is <0
             valprod = int(self.score_to_add/10+0.5)
             val = min(valadd,valprod)
             self.score += val
@@ -104,13 +101,16 @@ class Player(JumpableNode):
 
 
     def flush_score(self):
+        """ Score is added entirely at the end of a level """
         self.score += self.score_to_add
         self.score_to_add = 0
 
     def add_score(self,val):
+        """ New score will be added in a cool way """
         self.score_to_add += val
 
     def get_score(self):
+        """ Returns the score """
         return self.score
 
 class PlayerController(JumpableController):

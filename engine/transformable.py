@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import numpy as np
-from transform import Transform
-from vector import Vector
-from polygone import *
+from engine.transform import Transform
+from engine.vector import Vector
+from engine.polygone import *
 import copy
 
 """ A transformable is a 2D Object reprensented by its coordinates X and Y (position), it rotation and it scale. Those objects will be manipulated by Transform objects (matrix) to compute game mechanics and physics"""
@@ -53,7 +53,7 @@ class Transformable:
         """ Set the scale """
         self.__scale = Vector(scale_x,scale_y)
         self.reset_update()
-        
+
     def get_position(self):
         """ Returns the position """
         return self.__position
@@ -110,7 +110,7 @@ class Transformable:
     def apply_transform(self,tr):
         v = tr.transform_vect(self.get_position())
         self.set_position(v.x,v.y)
-        
+
     def get_transform(self):
         """ Returns the Transform object that execute this object's translate, rotate and scale (very usefull to apply to polygons like hit boxes)"""
         (x,y) = self.__position.x,self.__position.y
@@ -132,7 +132,7 @@ class Transformable:
         # was None and __tr_need_up == False
         assert self.__transform is not None
         return self.__transform
-    
+
     def get_inverse_transform(self):
         """ Returns the inverse transform (very usefull as a transfer matrix) """
         if self.__inv_tr_need_up:

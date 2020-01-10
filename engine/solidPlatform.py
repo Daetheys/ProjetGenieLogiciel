@@ -1,7 +1,7 @@
-from controlableNode import ControlableNode
-from spriteScheduler import *
-from hitbox import Hitbox
-from rect import Rect
+from engine.controlableNode import ControlableNode
+from engine.spriteScheduler import *
+from engine.hitbox import Hitbox
+from engine.rect import Rect
 import copy
 
 """ A standard platform of the game """
@@ -34,7 +34,7 @@ class SolidPlatform(ControlableNode):
         ControlableNode.paste_in(self,t)
 
     def __repr__(self):
-        return "SolidPlatform("+str(self.get_position())+","+str(self.get_hit_box())+")" 
+        return "SolidPlatform("+str(self.get_position())+","+str(self.get_hit_box())+")"
 
     def collide(self,o2,side,o2_side):
         """ Function called when this collides something else -> nothing to do there"""

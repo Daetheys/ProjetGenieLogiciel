@@ -1,16 +1,12 @@
-import sys
-import os
-path = os.getcwd()
-sys.path.append(path + "/engine")
 
-import camera
-from vector import Vector
-from background import Background
-from parallax import Parallax
-from player import Player
-from force import Gravity
-from solidPlatform import SolidPlatform
-from transform import Transform
+from engine.camera import Camera
+from engine.vector import Vector
+from engine.background import Background
+from engine.parallax import Parallax
+from engine.player import Player
+from engine.force import Gravity
+from engine.solidPlatform import SolidPlatform
+from engine.transform import Transform
 import pygame
 import time
 from datetime import datetime
@@ -28,7 +24,7 @@ class GameLevel:
     def __init__(self,objects,player_pos,limgpar=[("data/img/background_demon_forest/parallax-demon-woods-bg.png",0),("data/img/background_demon_forest/parallax-demon-woods-far-trees.png",1),("data/img/background_demon_forest/parallax-demon-woods-mid-trees.png",2),("data/img/background_demon_forest/parallax-demon-woods-close-trees.png",3)],name='',parallax=True,gravity=2100,music=None):
         """ The player spawn in (0,0) """
         assert objects != [] #Empty GameLevel
-        self.camera = camera.Camera() #Camera
+        self.camera = Camera() #Camera
         self.camera.set_position(Vector(-12,-12))
         self.camera.set_dimension(Vector(25,25))
         self.objects = objects
@@ -67,7 +63,7 @@ class GameLevel:
         test_shield = GravitationalBallShield()
         test_shield.link_world(self)
         self.player.add_shield(test_shield)
-        
+
         ppos = self.player.get_position()
         test_shield.set_position(ppos.x,ppos.y)
         self.add_node(test_shield)
@@ -91,7 +87,7 @@ class GameLevel:
 
         for o in objects:
             o.link_world(self)
-        
+
         self.end_init()
 
         if music != None:
@@ -212,7 +208,7 @@ class GameLevel:
         #Win / Lose conditions
         self.compute_win_lose()
         #print("fps",1/(time.clock()-to))
-        
+
         #To slow the game
         #time.sleep(0.05)
 
@@ -241,7 +237,7 @@ class GameLevel:
         old_percent = 95 #The percentage of the old value of self.camera_y_pos that will be kept
         self.camera_y_pos = self.camera_y_pos*old_percent/100+y*(100-old_percent)/100 #Computation of the new continous Y position of the camera
         self.camera.threeforth_on(Vector(self.player.get_position().x,self.camera_y_pos)) #Position of the camera (pos X of the player et pos Y previously computed)
-        
+
 
     def compute_win_lose(self):
         """ Compute win / lose conditions """

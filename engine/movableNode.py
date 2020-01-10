@@ -1,8 +1,8 @@
-from vector import Vector
-from node import Node
-from spriteNode import SpriteNode
-from polygone import *
-from transform import Transform
+from engine.vector import Vector
+from engine.node import Node
+from engine.spriteNode import SpriteNode
+from engine.polygone import *
+from engine.transform import Transform
 
 import pygame
 import time
@@ -24,7 +24,7 @@ class MovableNode(SpriteNode):
         self.__ang_acc = 0
         self.__force_effect = {}
         self.__mass = 1 #kg
-        self.__ang_inertia = 1 #SI 
+        self.__ang_inertia = 1 #SI
 
     def copy(self):
         """ Returns a copy of itself """
@@ -73,7 +73,7 @@ class MovableNode(SpriteNode):
     def set_speedy(self,val):
         speed = self.get_speed()
         self.set_speed(Vector(speed.x,val))
-    
+
     def add_force(self,force):
         """ Add a force to this node (cf force) """
         self.__force_effect[force] = None

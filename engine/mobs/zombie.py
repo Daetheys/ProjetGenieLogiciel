@@ -1,13 +1,8 @@
-from mob import Mob,MobController
-import sys
-import os
-path = os.getcwd()
-sys.path.append(path + "/engine")
-
-from vector import Vector
-from hitbox import Hitbox
-from rect import Rect
-from solidPlatform import SolidPlatform
+from engine.mobs.mob import Mob,MobController
+from engine.vector import Vector
+from engine.hitbox import Hitbox
+from engine.rect import Rect
+from engine.solidPlatform import SolidPlatform
 
 class Zombie(Mob):
     def __init__(self):

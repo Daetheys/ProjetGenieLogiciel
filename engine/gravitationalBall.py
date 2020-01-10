@@ -1,6 +1,6 @@
-from projectile import Projectile
-from laserBallShield import LaserBallShield
-from controller import Controller
+from engine.projectile import Projectile
+from engine.laserBallShield import LaserBallShield
+from engine.controller import Controller
 
 class GravitationalBall(Projectile):
     def __init__(self,world):

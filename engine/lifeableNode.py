@@ -1,5 +1,5 @@
-from controlableNode import ControlableNode
-import projectile
+from engine.controlableNode import ControlableNode
+import engine.projectile
 import pygame
 
 class LifeableNode(ControlableNode):
@@ -87,9 +87,8 @@ class LifeableNode(ControlableNode):
              self.poisoned_timeout -= dt
              if self.poisoned_timeout <= 0:
                  self.die()
-                 print("Poison!")
 
 
     def collide(self,o2,side,o2_side):
-        if isinstance(o2,projectile.Projectile):
+        if isinstance(o2,engine.projectile.Projectile):
             self.take_damages(o2.damages)

@@ -1,9 +1,9 @@
-from vector import Vector
+from engine.vector import Vector
 
-""" A force is something that can influence a MovableNode by modifyin its acceleration """
 
 
 class Force:
+    """ A force is something that can influence a MovableNode by modifying its acceleration """
     """ Force Object : Abstract Class"""
     def __init__(self):
         pass
@@ -23,7 +23,7 @@ class Gravity(Force):
     def get_g(self):
         """ Returns g """
         return self.__g
-    
+
     def get_acc(self,movablenode):
         """ Computes the acceleration of the movableNode """
         accy = self.get_g()

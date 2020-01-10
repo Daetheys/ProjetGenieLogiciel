@@ -1,4 +1,4 @@
-from items import *
+from game.campaign.items import *
 
 
 class Character():

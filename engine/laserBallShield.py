@@ -1,5 +1,5 @@
-from shield import Shield
-from laserBall import LaserBall
+from engine.shield import Shield
+from engine.laserBall import LaserBall
 
 class LaserBallShield(Shield):
     def __init__(self):

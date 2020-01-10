@@ -1,5 +1,5 @@
-from controlableNode import ControlableNode
-from player import Player
+from engine.controlableNode import ControlableNode
+from engine.player import Player
 
 class Flag(ControlableNode):
     def __init__(self,hb):

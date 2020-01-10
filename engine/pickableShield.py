@@ -1,9 +1,9 @@
-from pickableNode import PickableNode
-from hitbox import Hitbox
-from rect import Rect
-from laserBallShield import LaserBallShield
-from gravitationalBallShield import GravitationalBallShield
-from player import Player
+from engine.pickableNode import PickableNode
+from engine.hitbox import Hitbox
+from engine.rect import Rect
+from engine.laserBallShield import LaserBallShield
+from engine.gravitationalBallShield import GravitationalBallShield
+from engine.player import Player
 
 class PickableShield(PickableNode):
     def __init__(self,shield,name='spike'):

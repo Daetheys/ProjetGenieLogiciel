@@ -2,24 +2,20 @@ DEBUG = False
 
 import random
 
-from sound_parser import bpm_info
+from game.level_generation.sound_parser import bpm_info
 
 import sys
 import os
 
-path = os.getcwd()
-sys.path.append(path + "/engine")
-sys.path.append(path + "/game")
+from engine.vector import Vector
+from engine.polygone import Polygon
+from engine.gameLevel import GameLevel
+from engine.solidPlatform import SolidPlatform
+from engine.hitbox import Hitbox
+from engine.rect import Rect
 
-from vector import Vector
-from polygone import Polygon
-from gameLevel import GameLevel
-from solidPlatform import SolidPlatform
-from hitbox import Hitbox
-from rect import Rect
-
-from flag import Flag
-from pickableNode import Coin
+from engine.flag import Flag
+from engine.pickableNode import Coin
 
 random.seed(0)
 speed_factor = 200
@@ -73,17 +69,17 @@ def generate_level(filename,name_of_level='',para=True):
         for i in range(nb_beats):
             #pourquoi +50 et +24 ? #La taille des plateformes non ?
             platforms.append(platform(jump_points[i]+50,y,jump_points[i+1]+24))
-            
+
             dy = random.randint(-24,24)
             y += dy #at each point the y coordinate changes
 
         def player_pos(t):
             return t*speed
-        
+
         objects = []
 
         objects.append(Flag(Hitbox(Rect(jump_points[-1]+24-10,y-20-dy,10,20)))) # Add flag
-        
+
         for i in range(len(platforms)):
             rd = random.random()
             if(rd < 0.25):
@@ -108,5 +104,5 @@ def generate_level(filename,name_of_level='',para=True):
                 add_coins(objects, start_x, start_y, end_x - start_x, end_y - start_y, random.randint(2,3))
 
         print(platforms+objects)
-                
+
         return GameLevel(platforms+objects,player_pos,name=name_of_level,parallax=para)

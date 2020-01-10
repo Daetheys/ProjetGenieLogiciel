@@ -1,5 +1,5 @@
-from jumpableNode import JumpableNode,JumpableController
-import player
+from engine.jumpableNode import JumpableNode,JumpableController
+import engine.player
 
 class Mob(JumpableNode):
     def __init__(self,hb):
@@ -23,7 +23,7 @@ class Mob(JumpableNode):
     def collide(self,o2,sides,o2_sides):
         """ Function called when this collides something else """
         super().collide(o2,sides,o2_sides)
-        if isinstance(o2,player.Player): #Mobs cannot collide more than once with player
+        if isinstance(o2,engine.player.Player): #Mobs cannot collide more than once with player
             self.die()
             self.set_collide(False) #So that player can continue to run
             o2.add_score(10)
@@ -36,7 +36,7 @@ class MobController(JumpableController):
     def __init__(self,target=None):
         super().__init__(target=target)
         self.jump_time = 0
-        
+
     def jump(self,strengh):
         """ Strengh of 1 is a jump similar to the max jump of player """
         self.jump_time = strengh

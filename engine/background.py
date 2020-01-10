@@ -18,4 +18,4 @@ class Background():
         """ Show all parallax """
         for p in self.lpar:
             p.show()
-        
+

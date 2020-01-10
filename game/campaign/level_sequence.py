@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from map_point import Map_Point
+from game.campaign.map_point import Map_Point
 
 class Level_Sequence(Map_Point):
     '''A level sequence is a set of level that you need to pass in one go. In inherits from the abstract class Map_Point'''

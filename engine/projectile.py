@@ -1,8 +1,8 @@
-from controlableNode import ControlableNode
-import lifeableNode
-import solidPlatform
-from hitbox import Hitbox
-from rect import Rect
+from engine.controlableNode import ControlableNode
+import engine.lifeableNode
+from engine.solidPlatform import SolidPlatform
+from engine.hitbox import Hitbox
+from engine.rect import Rect
 
 class Projectile(ControlableNode):
     def __init__(self):
@@ -35,12 +35,12 @@ class Projectile(ControlableNode):
         self.vanish()
 
     def collide(self,o,side,oside):
-        if isinstance(o,lifeableNode.LifeableNode) and self.lifecollide:
+        if isinstance(o,engine.lifeableNode.LifeableNode) and self.lifecollide:
             print("proj life")
             self.shutdown()
         if isinstance(o,Projectile) and self.projcollide:
             print("proj collide")
             self.shutdown()
-        if isinstance(o,solidPlatform.SolidPlatform) and self.solidcollide:
+        if isinstance(o,SolidPlatform) and self.solidcollide:
             print("proj plat")
             self.shutdown()

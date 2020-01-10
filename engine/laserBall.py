@@ -1,5 +1,5 @@
-from projectile import Projectile
-from controller import Controller
+from engine.projectile import Projectile
+from engine.controller import Controller
 
 class LaserBall(Projectile):
     def __init__(self):

@@ -1,11 +1,8 @@
-import os,sys
+
 import numpy as np
 
-path = os.getcwd()
-path += "/engine"
-sys.path.append(path)
-from vector import Vector
-from transform import Transform
+from engine.vector import Vector
+from engine.transform import Transform
 import random
 
 DEBUG = False
@@ -95,7 +92,7 @@ class Segment:
                 return self.copy()
             return inter_p
         else:
-            return None    
+            return None
 
     def contains(self,v):
         """ Returns True if the vector v is in the segment """
@@ -149,7 +146,7 @@ class Segment:
             print(check_side(s,self))
             print(std,rect_hull_inter,col)
         return std or col
-        
+
 
     def get_min_x(self):
         return min(self.p1.x,self.p2.x)
@@ -215,7 +212,7 @@ class Polygon:
         for o in self.get_points():
             p += o
         return p/len(self.get_points())
-    
+
     def compute_segments(self):
         """ Computes segments from points """
         self.__segments = []
@@ -436,7 +433,7 @@ class Polygon:
 
 
 
-    
+
 #--------
 #OUTDATED
 #--------

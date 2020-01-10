@@ -1,4 +1,4 @@
-from buttonMenu import ButtonMenu
+from game.buttonMenu import ButtonMenu
 import pygame
 from pygame.font import SysFont
 

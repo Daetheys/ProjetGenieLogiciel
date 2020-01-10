@@ -1,11 +1,11 @@
 import numpy as np
-from transform import Transform
-from vector import Vector
-from transformable import Transformable
-from hitbox import Hitbox
-from rect import Rect
-from polygone import *
-from movableNode import MovableNode
+from engine.transform import Transform
+from engine.vector import Vector
+from engine.transformable import Transformable
+from engine.hitbox import Hitbox
+from engine.rect import Rect
+from engine.polygone import *
+from engine.movableNode import MovableNode
 
 """ A collide Transformable is almost the last evolution of this terrifying evolution : it has two hitboxes : a collide one and a rigid one. In fact in pratice because all float computations are approximated it's necessary to have 2 hitboxes, one for collisions (only to say "I collide with you") and an other one for rigid body physics. The rigid body hitbox is computed to be a bit smaller than the collide one and to be included in it """
 

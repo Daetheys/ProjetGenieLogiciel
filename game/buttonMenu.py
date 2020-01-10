@@ -1,18 +1,13 @@
 import pygame
 from pygame.locals import *
-from tools.xyinbounds import xyinbounds
-from tools.text_display import T
+from game.tools.xyinbounds import xyinbounds
+from game.tools.text_display import T
 from shutil import copy2
 import json
 from os import listdir
 from os import getcwd
-import sys
-path = getcwd()
-path += "/game"#pour import mapDisplayer
-sys.path.append(path)
-path += "/level_generation"#pour import mapDisplayer
-sys.path.append(path)
-from level_generator import generate_level
+
+from game.level_generation.level_generator import generate_level
 
 #The global variable
 BUTTON_LIST = []#to keep an eye on all buttons currently displayed

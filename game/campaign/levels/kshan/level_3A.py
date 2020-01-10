@@ -1,4 +1,4 @@
-from imports import *
+from game.campaign.levels.imports import *
 
 class Level_3A_kshan(Level):
     """ all functions are explained in the Level abstract class """

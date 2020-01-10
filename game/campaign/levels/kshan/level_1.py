@@ -1,7 +1,8 @@
 
-from imports import *
+from game.campaign.levels.imports import *
 
 class Level_1_kshan(Level):
+    """ all functions are explained in the Level abstract class """
     
     def __init__(self,g):
         super().__init__(g)

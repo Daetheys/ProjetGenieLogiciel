@@ -1,17 +1,12 @@
 #!/usr/bin/env python3
 
-from os import getcwd
-from sys import path
-path0 = getcwd()
-path0 += "/error"#works with "/Desktop/ProjetGenieLogiciel/error" for me
-path.append(path0)
-from exception import TransitionUndefined
+from error.exception import TransitionUndefined
 from collections import defaultdict
 from json import load as jsload
 
-""" A simple automaton for the SpriteScheduler """
 
 class Automata:
+	""" A simple automaton for the SpriteScheduler """
 	def __init__(self,name,states,tt,cs,qn):
 		self.name = name
 		self.states = states
@@ -20,6 +15,7 @@ class Automata:
 		self.qn = qn#map from states to sprites
 
 	def copy(self):
+		""" returns a copy of the current automaton """
 		return Automata(self.name,self.states,self.tt,self.cs,self.qn)
 
 	def __repr__(self):
@@ -60,6 +56,7 @@ def create_automaton(data,name=None,states=None,tt=None,cs=None,qn=None,jsonpars
 		raise TransitionUndefined(arg)
 
 	def defaultpic():
+		""" used in the defaultDict qn """
 		return "data/img/default.png"
 
 	def parseint(data,i,marker='|'):
@@ -88,11 +85,11 @@ def create_automaton(data,name=None,states=None,tt=None,cs=None,qn=None,jsonpars
 		while i < len(data) and data[i] != '|':#reading the name
 			name += data[i]
 			i += 1
-		#print(name)
+
 		assert data[i] == "|"
 		i += 1
 		nstate,i = parseint(data,i)#number of states
-		#print(nstate)
+
 		assert data[i] == "|"
 		states = list(range(nstate))
 		tt = defaultdict(throwTU)
@@ -115,8 +112,6 @@ def create_automaton(data,name=None,states=None,tt=None,cs=None,qn=None,jsonpars
 			assert data[i] == '='
 			i += 1
 			qn[st],i = parsestr(data,i,',')#spritename
-			#print(data[i])
-			#print(qn[st])
 			assert i >= len(data) or data[i] == ','
 			i += 1
 		if nocomment: assert i == len(data) or data[i] == '|'

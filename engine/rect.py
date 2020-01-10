@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-import os
-import sys
-from vector import Vector
-from transform import Transform
-from polygone import Polygon
-path = os.getcwd()
-path += "/error"
-sys.path.append(path)
-from exception import WrongRectWidth,WrongRectHeight
+
+from engine.vector import Vector
+from engine.transform import Transform
+from engine.polygone import Polygon
+
+from error.exception import WrongRectWidth,WrongRectHeight
 
 import pygame
 import numpy as np
@@ -22,7 +19,7 @@ class Rect:
             raise WrongRectWidth()
         if height<0:
             raise WrongRectHeight()
-        
+
         self.position = Vector(left,top)
         self.dimension = Vector(width,height)
 
@@ -47,8 +44,8 @@ class Rect:
         """ Return a 4-tuple of (posix,posiy,posfx,posfy) """
         v = self.get_position()
         d = self.get_dimension()
-        return (v.x,v.y,v.x+d.x,v.y+d.y)       
-        
+        return (v.x,v.y,v.x+d.x,v.y+d.y)
+
     def __eq__(self,rect):
         d = self.get_dimension() == rect.get_dimension()
         p = self.get_position() == rect.get_position()
@@ -70,7 +67,7 @@ class Rect:
         if xf - xi < 0 or yf-yi < 0:
             return None
         return Rect(xi,yi,xf-xi,yf-yi)
-        
+
 
     def rescale(self,alpha):
         """ Rescale """
@@ -101,7 +98,7 @@ class Rect:
         r2 = self.copy()
         r2.translate(v)
         return r2
-    
+
     def init_from_vectors(self,position,dimension):
         """ Initialise from vector pos and dim """
         self.position = position
@@ -133,7 +130,7 @@ class Rect:
         """ Returns true if self, collides with poly """
         sfpoly = self.get_poly()
         return sfpoly.collide(poly)
-    
+
     def nearest_wall(self,point):
         """ Returns the nearest wall of point (index,distance) with index = 0 for top, 1, rigth; 2,bot; 3,left"""
         (l,t,w,h) = self.get_coord()
@@ -159,7 +156,7 @@ class Rect:
 
     def get_position(self):
         return self.position
-    
+
     def get_dimension(self):
         return self.dimension
 

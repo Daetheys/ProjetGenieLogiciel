@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from transformable import Transformable
-from vector import Vector
+from engine.transformable import Transformable
+from engine.vector import Vector
 
 """ A node is a bigger object than a Transformable. In fact it represents an architecture of transformable. When a Transform is applied to a node it is also applied to all its children like in a tree. This architecture is not used yet in our project but will be very useful later. """
 
@@ -79,7 +79,7 @@ class Node(Transformable):
         super().scale(scalex,scaley)
         for c in self.__children:
             c.scale(scalex,scaley)
-    
+
     def init_draw(self):
         if self.__parent is None:
             transform = (self.get_position(),self.get_rotation(),self.get_scale())

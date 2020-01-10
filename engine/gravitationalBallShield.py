@@ -1,5 +1,5 @@
-from shield import Shield
-from gravitationalBall import GravitationalBall
+from engine.shield import Shield
+from engine.gravitationalBall import GravitationalBall
 
 class GravitationalBallShield(Shield):
     def __init__(self):

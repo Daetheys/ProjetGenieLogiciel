@@ -1,12 +1,11 @@
-from lifeableNode import LifeableNode
-from controller import Controller
-from vector import Vector
-from projectile import Projectile
-from solidPlatform import SolidPlatform
+from engine.lifeableNode import LifeableNode
+from engine.controller import Controller
+from engine.vector import Vector
+from engine.projectile import Projectile
+from engine.solidPlatform import SolidPlatform
 
-import solidPlatform
-from hitbox import Hitbox
-from rect import Rect
+from engine.hitbox import Hitbox
+from engine.rect import Rect
 
 class JumpableNode(LifeableNode):
     """ Jumpable Class """

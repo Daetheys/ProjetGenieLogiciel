@@ -1,4 +1,4 @@
-from zombie import *
+from engine.mobs.zombie import *
 
 class JumpingSkeleton(Zombie):
 	def __init__(self):
@@ -9,7 +9,7 @@ class JumpingSkeletonController(MobController):
 	def __init__(self,target=None):
 		super().__init__()
 		self.target = target
-		self.period = 2 
+		self.period = 2
 
 	def execute(self,event,pressed,dt):
 		super().execute(event,pressed,dt)

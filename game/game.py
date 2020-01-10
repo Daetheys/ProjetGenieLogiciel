@@ -1,16 +1,16 @@
-from buttonMenu import *
-from launcher import *
+from game.buttonMenu import *
+from game.launcher import *
 import pygame
 pygame.mixer.pre_init(44100, -16, 8, 512)
 from pygame.locals import *
-from conversion import score_to_msg
-from insert_score import insert_score
-from backgroundGenerator import bgg,create_plat
-from cycle import Cycle
-from reaction_inv import reaction_inv
-from dialogue import Dialogue
-from dialoguebubble import Dialogue_Bubble
-from vector import Vector
+from game.tools.conversion import score_to_msg
+from game.tools.insert_score import insert_score
+from game.tools.backgroundGenerator import bgg,create_plat
+from game.tools.cycle import Cycle
+from game.tools.reaction_inv import reaction_inv
+from game.campaign.dialogue import Dialogue
+from game.campaign.dialoguebubble import Dialogue_Bubble
+from engine.vector import Vector
 import cv2
 
 class Game(Launcher):
