@@ -37,8 +37,7 @@ class Level_2_fantasy(Level):
         
         def player_pos(t):
             return t*100*1/1*2
-
-        limgpar = [("data/img/background_deep_forest/Layer_0010_1.png",0),("data/img/background_deep_forest/Layer_0009_2.png",1),("data/img/background_deep_forest/Layer_0008_3.png",2),("data/img/background_deep_forest/Layer_0007_Lights.png",3),("data/img/background_deep_forest/Layer_0006_4.png",4),("data/img/background_deep_forest/Layer_0005_5.png",5),("data/img/background_deep_forest/Layer_0004_Lights.png",6),("data/img/background_deep_forest/Layer_0003_6.png",7),("data/img/background_deep_forest/Layer_0002_7.png",8),("data/img/background_deep_forest/Layer_0001_8.png",9),("data/img/background_deep_forest/Layer_0000_9.png",10)]
+        limgpar = [(g.dict_img["deep_layer1"],0),(g.dict_img["deep_layer1"],1),(g.dict_img["deep_layer1"],2),(g.dict_img["deep_layer1"],3),(g.dict_img["deep_layer1"],4),(g.dict_img["deep_layer1"],5),(g.dict_img["deep_layer1"],6),(g.dict_img["deep_layer1"],7),(g.dict_img["deep_layer1"],8),(g.dict_img["deep_layer1"],9),(g.dict_img["deep_layer1"],10)]
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Haelgard Forest"],parallax=g.options["parallax"],music="data/musics/elves test.ogg",limgpar=limgpar)
         gl.load_inventory(g.player.get_inventory())
@@ -77,7 +76,7 @@ class Level_2_fantasy(Level):
             s = (x/base)
             y = rd.get(y-20,y+20)
             if 38<=s<39:
-                plat = SolidPlatform(Hitbox(Rect(x,y,length-10,height)),sps="platform")
+                plat = SolidPlatform(Hitbox(Rect(x,y,length-20,height)),sps="platform")
                 plats.append(plat)
                 offset = 200
                 plat = SolidPlatform(Hitbox(Rect(x+base,y+offset,length+2*base,height)),sps="platform")

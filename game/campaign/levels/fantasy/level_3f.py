@@ -26,7 +26,6 @@ class Level_3_fantasy(Level):
         return arg
         
     def launch(self,g):
-        print("FANTASY\n")
         quit_all = self.fun_dialogue(g,"start")
         self.objects = self.create_objects(g)
         self.set_accessed()
@@ -55,9 +54,9 @@ class Level_3_fantasy(Level):
         return success
 
     def create_objects(self,g):
-        base = 100*2
+        base = 100
         plats = []
-        length = base*0.85+20
+        length = base*0.85
         height = 18
         ln = 100
         y = -5
