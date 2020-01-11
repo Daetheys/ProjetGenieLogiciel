@@ -46,5 +46,6 @@
  "deep_layer9": "data/img/background_deep_forest/Layer_0002_7.png",
  "deep_layer10": "data/img/background_deep_forest/Layer_0001_8.png",
  "deep_layer11": "data/img/background_deep_forest/Layer_0000_9.png",
+ "cave_layer1": "data/img/background_cave/back.png",
  "img_key": "data/img/img_key.png",
  "void" : "data/img/void.png"}

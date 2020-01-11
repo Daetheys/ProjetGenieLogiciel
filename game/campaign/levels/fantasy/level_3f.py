@@ -10,13 +10,13 @@ class Level_3_fantasy(Level):
     def fun_dialogue(self,g,arg):
         if arg == "start":
             if self.get_finished():
-                quit_all = g.dict_dial["dial_odd2b"].show(g)
+                quit_all = g.dict_dial["dial_odd3b"].show(g)
             else:
-                quit_all = g.dict_dial["dial_odd2b"].show(g)
+                quit_all = g.dict_dial["dial_odd3b"].show(g)
         elif arg == "bad_end":
-            quit_all = g.dict_dial["dial_odd2abad"].show(g)
+            quit_all = g.dict_dial["dial_odd3abad"].show(g)
         elif arg == "good_end":
-            quit_all = g.dict_dial["dial_odd2a"].show(g)
+            quit_all = g.dict_dial["dial_odd3a"].show(g)
         return quit_all
             
     def reward(self,g):
@@ -29,15 +29,16 @@ class Level_3_fantasy(Level):
         quit_all = self.fun_dialogue(g,"start")
         self.objects = self.create_objects(g)
         self.set_accessed()
-        print("-",self.objects)
         
         if quit_all:
             return False
         
         def player_pos(t):
-            return t*100*50/60
+            return t*100*50/60*1.2
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Moon Ruins"],parallax=g.options["parallax"],music="data/musics/Moon-ruins.ogg")
+        limgpar = [(g.dict_img["cave_layer1"],1)]
+
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Moon Ruins"],parallax=g.options["parallax"],music="data/musics/Moon-ruins.ogg",limgpar=limgpar)
         gl.load_inventory(g.player.get_inventory())
         
         success = self.check_victory(g, g.launch_level(gl,None))
@@ -54,39 +55,70 @@ class Level_3_fantasy(Level):
         return success
 
     def create_objects(self,g):
-        base = 100
+        base = 100*1.2
         plats = []
-        length = base*0.85
-        height = 18
+        space = base*(1-0.87)
+        height = 10
         ln = 100
         y = -5
-        plats = [SolidPlatform(Hitbox(Rect(-40,y,base+length+10,height)),sps="platform_cave")]
+        y1 = y
+        plats = [SolidPlatform(Hitbox(Rect(-40,y,2*base+10,height)),sps="platform_cave")]
         nx = 2*base-40
-        rd = PseudoRd(23,47,1024,7)
-        s = 0
-        i = -1
-        l = [None,20,20,None,-20,20,-20,20,-20,20]
-        while s < 100:
+        rd = PseudoRd(23,37,1024,7)
+        step = 30
+        l = [(-step,2),(-step,2),(-step,2),(-step,3),(-step,4)]+\
+            [(-step,3),(-step,2),(-step,2),(-step,2),(-step,3),(-step,4)]+\
+            [(-step,4),(step,2),(-step,2),(-step,2),(step,2),(-step,2),(step,1),(-step,2),(step,1)]+\
+            [(-step,2),(step,2),(-step,2),(-step,2),(-step,2),(-step,2),(step,2),(step,2)]+\
+            [(0,2),(0,2),(0,2)]
+        #True platforms
+        possible = []
+        done = {}
+        x_tab = []
+        length_tab = []
+        for i,(dy,length) in enumerate(l):
             x = nx
-            s = (x/base)*60/50*2+0.4
-            if s < 38.8:
-                y -= 20
-                plat = SolidPlatform(Hitbox(Rect(x,y,length,height)),sps="platform_cave")
-                plats.append(plat)
-                nx += base
+            x_tab.append(x)
+            length_tab.append(base*length-space)
+            y1 = y1 + dy
+            plat = SolidPlatform(Hitbox(Rect(x+space/2,y1,base*length-space,height)),sps="platform_cave")
+            if dy > 0:
+                possible.append((i,y1-2*step))
             else:
-                i = (i+1)%len(l)
-                if l[i] is None:
-                    y -= 20
-                    plat = SolidPlatform(Hitbox(Rect(x,y,length/2,height)),sps="platform_cave")
-                    plats.append(plat)
-                    nx += base / 2
-                else:
-                    y += l[i]
-                    plat = SolidPlatform(Hitbox(Rect(x,y,length,height)),sps="platform_cave")
-                    plats.append(plat)
-                    nx += base
-
+                possible.append((i,y1+step))
+            done[str((i,y1))] = True
+            plats.append(plat)
+            nx += base*length
+        flag = Flag(Hitbox(Rect(x+length+100-10,y1-20,10,20)))
+        plats.append(flag)
+        #Fake platforms
+        count_i = [1]*len(l)
+        for j in range(50):
+            index = rd(0,len(possible))
+            (i,y) = possible[index]
+            if y > -step*5:
+                continue
+            x = x_tab[i]
+            length = length_tab[i]
+            try:
+                done[str((x,y,length))]
+            except KeyError:
+                count_i[i] += 1
+                if count_i[i] > 4:
+                    continue
+                plat = SolidPlatform(Hitbox(Rect(x+space/2,y,length,height)),sps="platform_cave")
+                plats.append(plat)
+                done[str((x,y,length))] = True
+                if i+1 < len(l):
+                    try:
+                        done[(i+1,y+step)]
+                    except:
+                        possible.append((i+1,y+step))
+                    try:
+                        done[(i+1,y-step)]
+                    except:
+                        possible.append((i+1,y+step))
+                                
         return plats
 
 
