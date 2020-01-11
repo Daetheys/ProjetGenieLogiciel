@@ -12,6 +12,7 @@ class Camera:
     def __init__(self):
         self.rect = Rect()
         self.fen = None #Undefined yet
+        self.angle = 0
 
     def move(self,v):
         """ Moves the camera """
@@ -89,6 +90,22 @@ class Camera:
         """ Fill the camera with black in order to blit images right after """
         self.get_fen().fill((0,0,0))
 
+    def reset_rotation(self):
+        self.angle = 0
+
+    def rotate(self, angle):
+        self.angle += angle
+
+    def rotate_view(self, angle):
+        #Rotates the current content of the window by "angle" degrees
+        center = self.get_fen().get_rect().center
+        rotated_fen = pygame.transform.rotate(self.get_fen(),angle)
+        rotated_rect = rotated_fen.get_rect()
+        rotated_rect.center = center
+
+        self.flashblack()
+        self.get_fen().blit(rotated_fen, rotated_rect.topleft)
+
     def aff(self,objects,bg,score,dt):
         """ Show all objects of the given argument that are in the camera as well as the background and the score """
         #Starts with a flashblack
@@ -120,6 +137,8 @@ class Camera:
 
         T(self.get_fen(),str(self.world.name),vpos.x-400,vpos.y,255,255,255,size=45)
 
+        # Rotation
+        self.rotate_view(self.angle)
 
     def __repr__(self):
         txt = "Camera("+str(self.rect)+")"
