@@ -7,9 +7,9 @@ background."""
 
 class Parallax():
     """ Scrolling image in the back """
-    def __init__(self,name,speed):
+    def __init__(self,image,speed,name=None):
         self.name = name
-        self.image = None #pygame image
+        self.image = image.convert_alpha() #pygame image
         self.speed = speed #speed (pixels / frame) (Now it is time based... what is it?
         self.rect = None #Size of the image
         self.x = 0 #Offset for the movement
@@ -18,8 +18,6 @@ class Parallax():
     def load(self,fen):
         """ Load the pygame image and scales it according to the fen """
         self.fen = fen
-        self.image = pygame.image.load(self.name)
-        self.image = self.image.convert_alpha(self.image)
         self.rect = self.image.get_rect()
         fen_height = fen.get_height()
         image_width = max(self.image.get_width(),fen.get_width())

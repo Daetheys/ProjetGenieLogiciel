@@ -37,7 +37,7 @@ class Level_2_fantasy(Level):
         
         def player_pos(t):
             return t*100*1/1*2
-        limgpar = [(g.dict_img["deep_layer1"],0),(g.dict_img["deep_layer1"],1),(g.dict_img["deep_layer1"],2),(g.dict_img["deep_layer1"],3),(g.dict_img["deep_layer1"],4),(g.dict_img["deep_layer1"],5),(g.dict_img["deep_layer1"],6),(g.dict_img["deep_layer1"],7),(g.dict_img["deep_layer1"],8),(g.dict_img["deep_layer1"],9),(g.dict_img["deep_layer1"],10)]
+        limgpar = [(g.dict_img["deep_layer1"],0),(g.dict_img["deep_layer2"],1),(g.dict_img["deep_layer3"],2),(g.dict_img["deep_layer4"],3),(g.dict_img["deep_layer5"],4),(g.dict_img["deep_layer6"],5),(g.dict_img["deep_layer7"],6),(g.dict_img["deep_layer8"],7),(g.dict_img["deep_layer9"],8),(g.dict_img["deep_layer10"],9),(g.dict_img["deep_layer11"],10)]
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Haelgard Forest"],parallax=g.options["parallax"],music="data/musics/elves test.ogg",limgpar=limgpar)
         gl.load_inventory(g.player.get_inventory())
@@ -74,18 +74,19 @@ class Level_2_fantasy(Level):
         while s < 180:
             x = nx
             s = (x/base)
-            y = rd.get(y-20,y+20)
+            y = rd.get(y-30,y+30)
             if 38<=s<39:
-                plat = SolidPlatform(Hitbox(Rect(x,y,length-20,height)),sps="platform")
+                plat = SolidPlatform(Hitbox(Rect(x,y,length-10,height)),sps="platform")
                 plats.append(plat)
-                offset = 200
+                offset = 400
                 plat = SolidPlatform(Hitbox(Rect(x+base,y+offset,length+2*base,height)),sps="platform")
                 plats.append(plat)
                 flag = Flag(Hitbox(Rect(x+length+3*base-10,y+offset-20,10,20)))
                 plats.append(flag)
-                y -= 60
+                y -= 30
+                nx += 10
             else:
-                plat = SolidPlatform(Hitbox(Rect(x,y,length,height)),sps="platform")
+                plat = SolidPlatform(Hitbox(Rect(x,y,length-rd(0,10),height)),sps="platform")
                 plats.append(plat)
             if s > 42 and rd(0,20) == 1 or s > 90 and rd(0,10) == 1 or s > 180 and rd(0,5) or s > 240 and rd(0,2):
                 deadly = DeadlyPotion(Hitbox(Rect(x+rd.get(0,length-10),y-10,10,10)))
