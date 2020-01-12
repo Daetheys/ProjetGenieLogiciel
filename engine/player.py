@@ -37,10 +37,10 @@ class Player(JumpableNode):
         return "Player("+str(self.get_hit_box())+")"
 
     def copy(self):
-        raise NotImplemented
+        raise NotImplementedError
 
     def paste_in(self,p):
-        raise NotImplemented
+        raise NotImplementedError
 
     def end_init(self):
         """ Used at the end of the creation of the GameLevel """

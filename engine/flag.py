@@ -15,7 +15,7 @@ class Flag(ControlableNode):
 
     def copy(self):
         """ Returns a copy of itself """
-        f = Flag()
+        f = Flag(self.get_hit_box())
         self.paste_in(f)
         return f
 

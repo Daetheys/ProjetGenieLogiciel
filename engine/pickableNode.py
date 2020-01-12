@@ -20,9 +20,9 @@ class PickableNode(ControlableNode):
 
     def copy(self):
         """ Returns a copy of itself """
-        pn = PickableNode()
+        pn = PickableNode(self.get_hit_box(),sps_name=self.sps_name)
         self.paste_in(pn)
-        return cn
+        return pn
 
     def paste_in(self,pn):
         """" Paste it in pn """
