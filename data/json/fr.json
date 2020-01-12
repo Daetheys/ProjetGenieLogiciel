@@ -159,4 +159,4 @@
 "help" : "Aide",
 "-help-" : "---Aide---",
 "help_yourmusicfolder" : "Placez vous fichiers .ogg dans le dossier data/your music/ pour y jouer. Les fichiers .mp3 et .wav fonctionnent, mais sont déconseillés.",
-"erase_savefile" : "Voulez vous rétablir vos options par défaut et SUPPRIMER VOTRE SAUVEGARDE ?"}
+"erase_savefile" : "\tVoulez vous rétablir vos options par défaut et SUPPRIMER VOTRE SAUVEGARDE ?\n\tAppuyez sur Échap pour éviter cela."}

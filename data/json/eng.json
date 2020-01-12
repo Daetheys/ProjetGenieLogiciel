@@ -160,4 +160,4 @@
 "help" : "Help",
 "-help-" : "---Help---",
 "help_yourmusicfolder" : "Put your .ogg files in the data/your music/ folder to generate the appropriate level. .mp3 and .wav files might also be loaded, but no warranty is given.",
-"erase_savefile" : "Do you want to restore default options and ERASE YOUR SAVEFILE ??"}
+"erase_savefile" : "\tDo you want to restore default options and ERASE YOUR SAVEFILE ??\n\t Press ESCAPE if you do not want this to happen."}
