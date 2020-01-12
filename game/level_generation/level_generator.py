@@ -46,13 +46,12 @@ def add_coins(objects,x0,y0,width,height,number):
         #objects.append(Coin(Hitbox(Rect(x0,y0,10,10))))
         objects.append(Coin(Hitbox(Rect(x0+coeff*width,y0+coeff*height,10,10))))
 
-def generate_level(filename,name_of_level='',para=True):
+def generate_level(filename,name_of_level='',para=True,limgpar=[]):
         """
             Génère un niveau associé à la musique du fichier filename
             Renvoie un GameLevel
         """
         (first_beat, tempos, nb_beats) = bpm_info(filename)
-        print("------",first_beat,tempos,nb_beats)
         platforms = []
 
         jump_points = [0]
@@ -103,6 +102,4 @@ def generate_level(filename,name_of_level='',para=True):
                 end_y = y2-45
                 add_coins(objects, start_x, start_y, end_x - start_x, end_y - start_y, random.randint(2,3))
 
-        print(platforms+objects)
-
-        return GameLevel(platforms+objects,player_pos,name=name_of_level,parallax=para)
+        return GameLevel(platforms+objects,player_pos,name=name_of_level,parallax=para,limgpar=limgpar,music=filename)

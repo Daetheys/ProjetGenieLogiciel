@@ -21,6 +21,7 @@ from game.campaign.levels.kshan.level_4B import Level_4B_kshan
 from game.campaign.levels.fantasy.level_1f import Level_1_fantasy
 from game.campaign.levels.fantasy.level_2f import Level_2_fantasy
 from game.campaign.levels.fantasy.level_3f import Level_3_fantasy
+from game.campaign.levels.fantasy.level_4f import Level_4_fantasy
 
 #The Launcher class, very pure, no buttons needed
 class Launcher:
@@ -209,7 +210,7 @@ class Launcher:
 
         mp_1.set_levels([Level_1_fantasy(self)])
         mp_2.set_levels([Level_2_fantasy(self)])
-        mp_3.set_levels([Level_3_fantasy(self)])
+        mp_3.set_levels([Level_3_fantasy(self),Level_4_fantasy(self)])
 
         mp_1.set_childs([mp_2])
         mp_2.set_childs([mp_3])

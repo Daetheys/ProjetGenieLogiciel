@@ -119,7 +119,10 @@ class Camera:
             if self.is_in_camera(o.get_hit_box().get_world_rect()): #Checks if the hitbox is in the camera
                 o.aff(self.get_fen(),self.get_distorsion(),dt)
             elif not(self.rect.collidex(o.get_hit_box().get_world_rect())):
-                if o.stase() == 0:
+                if o.stase(0) == 0:
+                    to_discard.append(o)
+            elif self.rect.dist(o.get_hit_box().get_world_rect())>self.rect.radius()*2:
+                if o.stase(1) == 0:
                     to_discard.append(o)
         for o in to_discard:
             self.world.dynamic_objects.discard(o)

@@ -13,12 +13,15 @@ class SpriteNode(Node):
         self.animation_speed = 0.05 #Speed of animation (number of frames a single frame stays)
         self.animation_step = 0.0 #Count for the animation
 
-        self.mapping = "Flat" #Way to show the image : Flat : extended // Repeatx : Repeted along x
+        self.set_mapping("Flat") #Way to show the image : Flat : extended // Repeatx : Repeted along x
 
         self.x_offset = 0
         self.y_offset = 0
 
         self.mult_offset = 1
+
+    def set_mapping(self,mapping):
+        self.mapping = mapping
 
     def copy(self):
         """ Returns a copy of this object """
@@ -35,8 +38,8 @@ class SpriteNode(Node):
         else:
             sn.set_sps(None)
 
-    def stase(self):
-        """ Will be called when the object leaves the field of view of the camera -> 0 to remove the object, 1 to keep it """
+    def stase(self,info):
+        """ Will be called when the object leaves the field of view of the camera -> 0 to remove the object, 1 to keep it. The argument [info] is 0 when outside of x of the camera and 1 when very far from the camera but still in x range """
         return 0
 
     def set_sps(self,sche):

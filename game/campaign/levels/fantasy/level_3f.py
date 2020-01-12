@@ -63,6 +63,7 @@ class Level_3_fantasy(Level):
         y = -5
         y1 = y
         plats = [SolidPlatform(Hitbox(Rect(-40,y,2*base+10,height)),sps="platform_cave")]
+        plats.append(Flag(Hitbox(Rect(-40+2*base-10,y1-20,10,20))))
         nx = 2*base-40
         rd = PseudoRd(23,37,1024,7)
         step = 30
@@ -70,7 +71,7 @@ class Level_3_fantasy(Level):
             [(-step,3),(-step,2),(-step,2),(-step,2),(-step,3),(-step,4)]+\
             [(-step,4),(step,2),(-step,2),(-step,2),(step,2),(-step,2),(step,1),(-step,2),(step,1)]+\
             [(-step,2),(step,2),(-step,2),(-step,2),(-step,2),(-step,2),(step,2),(step,2)]+\
-            [(0,2),(0,2),(0,2)]
+            [(0,2),(0,2),(0,2),(0,1)]
         #True platforms
         possible = []
         done = {}
@@ -93,7 +94,7 @@ class Level_3_fantasy(Level):
         plats.append(flag)
         #Fake platforms
         count_i = [1]*len(l)
-        for j in range(50):
+        for j in range(70):
             index = rd(0,len(possible))
             (i,y) = possible[index]
             if y > -step*5:

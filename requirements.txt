@@ -6,3 +6,4 @@ hypothesis==4.42.0
 pyautogui==0.9.48
 pylint==2.4.3
 opencv-python==4.1.2.30
+pickleshare==0.7.5 

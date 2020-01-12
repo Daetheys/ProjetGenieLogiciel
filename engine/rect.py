@@ -34,6 +34,18 @@ class Rect:
         (cix,ciy,cfx,cfy) = self.get_tuple()
         return oix<=cix<=ofx or cix<=oix<=cfx or oix<=cfx<=ofx or cix<=ofx<=cfx
 
+    def dist(self,orect):
+        (oix,oiy,ofx,ofy) = orect.get_tuple()
+        (cix,ciy,cfx,cfy) = self.get_tuple()
+        xc1,xc2 = (ofx-oix)/2,(cfx-cix)/2
+        yc1,yc2 = (ofy-oiy)/2,(cfy-ciy)/2
+        return ((xc1-xc2)**2+(yc1-yc2)**2)**0.5
+
+    def radius(self):
+        (cix,ciy,cfx,cfy) = self.get_tuple()
+        xc,yc = (cfx-cix)/2,(cfy-ciy)/2
+        return ((xc-cix)**2+(yc-ciy)**2)**0.5
+                
     def get_coord(self):
         """ Return a 4-tuple of (posx,posy,width,height) """
         v = self.get_position()

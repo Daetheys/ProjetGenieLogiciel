@@ -76,10 +76,16 @@ class Level_2_fantasy(Level):
             s = (x/base)
             y = rd.get(y-30,y+30)
             if 38<=s<39:
+                def stase(s,info):
+                    if info == 1:
+                        return 1
+                    else:
+                        return 0
                 plat = SolidPlatform(Hitbox(Rect(x,y,length-10,height)),sps="platform")
                 plats.append(plat)
                 offset = 400
                 plat = SolidPlatform(Hitbox(Rect(x+base,y+offset,length+2*base,height)),sps="platform")
+                plat.stase = stase
                 plats.append(plat)
                 flag = Flag(Hitbox(Rect(x+length+3*base-10,y+offset-20,10,20)))
                 plats.append(flag)

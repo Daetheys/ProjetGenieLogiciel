@@ -50,6 +50,7 @@ def create_automaton(data,name=None,states=None,tt=None,cs=None,qn=None,jsonpars
 	note : the initial state is always set to 0 in a json parser
 	note : if nocomment is disabled, str can be of the format: name|n|tt|qn|comments
 	"""
+
 	def throwTU(arg=None):
 		"""throws the exception TransitionUndefined
 		is used in the defaultdict intialization"""

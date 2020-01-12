@@ -11,8 +11,7 @@ import pygame
 import time
 from datetime import datetime
 
-import cProfile
-import re
+
 
 DEBUG = False
 
@@ -34,6 +33,7 @@ class GameLevel:
         self.player_pos = player_pos
         self.compute_size_level()
         self.name = name
+        self.music = music
 
         #Creation of the gravity
         self.gravity = Gravity(gravity) #NOTE POUR LES RAGEUX : On a testé et ca marche bien avec cette valeur -> ca permet d'avoir un saut élegant
@@ -92,10 +92,6 @@ class GameLevel:
             o.link_world(self)
 
         self.end_init()
-
-        if music != None:
-            pygame.mixer.music.load(music)
-            pygame.mixer.music.play(-1)
 
     def end_init(self):
         for o in self.objects:
@@ -175,6 +171,10 @@ class GameLevel:
 
     def play(self,fps):
         """ Launches the gameLevel , returns +score if win, -score if lose """
+        #Starts the music
+        if self.music != None:
+            pygame.mixer.music.load(self.music)
+            pygame.mixer.music.play(-1)
         t0 = get_current_time()
         tn = t0
         try:

@@ -31,6 +31,5 @@ def bpm_info(file):
         if(time <= tempo_times[i]):
             tempos.append(tempo_frames[i])
             time += 60/tempo_frames[i]
-    print(tempos,time)
 
     return (tempo_times[0], tempos, len(tempos))
