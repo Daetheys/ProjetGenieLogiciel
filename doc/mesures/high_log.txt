@@ -1,0 +1,650 @@
+         11369398 function calls (11280042 primitive calls) in 15.098 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:1009(_handle_fromlist)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:103(release)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:143(__init__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:147(__enter__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:151(__exit__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:157(_get_module_lock)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:176(cb)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:211(_call_with_frames_removed)
+        7    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:222(_verbose_message)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:307(__init__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:311(__enter__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:318(__exit__)
+        4    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:321(<genexpr>)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:35(_new_module)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:369(__init__)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:403(cached)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:416(parent)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:424(has_location)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:504(_init_module_attrs)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:576(module_from_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:58(__init__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:663(_load_unlocked)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:719(find_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:78(acquire)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:792(find_spec)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:855(__enter__)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:859(__exit__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:882(_find_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:948(_find_and_load_unlocked)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:978(_find_and_load)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1203(_path_importer_cache)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1240(_get_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1272(find_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1351(_get_spec)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:1356(find_spec)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:271(cache_from_source)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:369(_get_cached)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:40(_relax_case)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:401(_check_name_wrapper)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:438(_classify_pyc)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:471(_validate_timestamp_pyc)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:51(_r_long)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:523(_compile_bytecode)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:56(_path_join)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:574(spec_from_file_location)
+        6    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:58(<listcomp>)
+        2    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:62(_path_split)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:719(create_module)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:722(exec_module)
+        3    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:74(_path_stat)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:793(get_code)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:84(_path_is_mode_type)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:884(__init__)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:909(get_filename)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:914(get_data)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:93(_path_isfile)
+        1    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:951(path_stats)
+        1    0.000    0.000   15.098   15.098 <string>:1(<module>)
+        2    0.000    0.000    0.000    0.000 <string>:1(__new__)
+     1221    0.002    0.000    0.091    0.000 __init__.py:1132(resource_exists)
+     1221    0.002    0.000    0.076    0.000 __init__.py:1148(resource_stream)
+     2442    0.004    0.000    0.016    0.000 __init__.py:1390(__init__)
+     1221    0.001    0.000    0.032    0.000 __init__.py:1403(has_resource)
+     2442    0.005    0.000    0.033    0.000 __init__.py:1486(_fn)
+     2442    0.004    0.000    0.021    0.000 __init__.py:1492(_validate_resource_path)
+     2442    0.003    0.000    0.084    0.000 __init__.py:1581(__init__)
+     2442    0.012    0.000    0.066    0.000 __init__.py:1585(_setup_prefix)
+     1221    0.001    0.000    0.012    0.000 __init__.py:1603(_has)
+     1221    0.001    0.000    0.031    0.000 __init__.py:1612(get_resource_stream)
+        2    0.000    0.000    0.001    0.000 __init__.py:183(dumps)
+    19536    0.008    0.000    0.014    0.000 __init__.py:2353(_is_egg_path)
+        9    0.000    0.000    0.387    0.043 __init__.py:274(load)
+        9    0.000    0.000    0.387    0.043 __init__.py:299(loads)
+     2442    0.001    0.000    0.001    0.000 __init__.py:3152(_always_object)
+     2442    0.005    0.000    0.008    0.000 __init__.py:3162(_find_adapter)
+     2442    0.006    0.000    0.100    0.000 __init__.py:354(get_provider)
+        6    0.000    0.000    0.000    0.000 _bootlocale.py:33(getpreferredencoding)
+      908    0.000    0.000    0.005    0.000 _methods.py:45(_all)
+      108    0.000    0.000    0.000    0.000 automata.py:10(__init__)
+      108    0.000    0.000    0.000    0.000 automata.py:17(copy)
+        1    0.000    0.000    0.000    0.000 background.py:12(load)
+      297    0.000    0.000    0.000    0.000 background.py:17(show)
+        1    0.000    0.000    0.000    0.000 background.py:8(__init__)
+        3    0.000    0.000    0.001    0.000 backgroundGenerator.py:7(create_plat)
+        3    0.000    0.000    0.000    0.000 buttonMenu.py:17(suppress_buttons)
+        1    0.001    0.001    9.982    9.982 buttonMenu.py:201(reaction_b11)
+      197    0.001    0.000    0.001    0.000 buttonMenu.py:382(__init__)
+      882    0.001    0.000    0.001    0.000 buttonMenu.py:412(__displayedY)
+      175    0.000    0.000    0.001    0.000 buttonMenu.py:419(boundaries)
+        6    0.000    0.000    0.000    0.000 buttonMenu.py:423(activation)
+      194    0.005    0.000    0.163    0.001 buttonMenu.py:438(display)
+        1    0.000    0.000   11.227   11.227 buttonMenu.py:81(reaction_b1)
+      297    0.034    0.000    3.056    0.010 camera.py:109(aff)
+        1    0.000    0.000    0.000    0.000 camera.py:12(__init__)
+        1    0.000    0.000    0.000    0.000 camera.py:21(link_world)
+      299    0.001    0.000    0.003    0.000 camera.py:24(set_position)
+        2    0.000    0.000    0.000    0.000 camera.py:30(set_dimension)
+      300    0.000    0.000    0.000    0.000 camera.py:37(get_position)
+      894    0.000    0.000    0.001    0.000 camera.py:41(get_dimension)
+        1    0.000    0.000    0.000    0.000 camera.py:45(set_fen)
+     8731    0.001    0.000    0.001    0.000 camera.py:50(get_fen)
+     6652    0.001    0.000    0.001    0.000 camera.py:58(get_distorsion)
+      300    0.001    0.000    0.002    0.000 camera.py:62(compute_distorsion)
+     7722    0.004    0.000    0.072    0.000 camera.py:72(is_in_camera)
+      297    0.001    0.000    0.004    0.000 camera.py:83(threeforth_on)
+      594    0.002    0.000    0.561    0.001 camera.py:89(flashblack)
+      297    0.004    0.000    0.898    0.003 camera.py:99(rotate_view)
+       10    0.000    0.000    0.000    0.000 character.py:10(__init__)
+        2    0.000    0.000    0.000    0.000 codecs.py:186(__init__)
+        9    0.000    0.000    0.000    0.000 codecs.py:260(__init__)
+        9    0.000    0.000    0.000    0.000 codecs.py:309(__init__)
+        9    0.000    0.000    0.000    0.000 codecs.py:319(decode)
+       79    0.001    0.000    0.003    0.000 collideTransformable.py:14(__init__)
+        2    0.000    0.000    0.001    0.000 collideTransformable.py:31(center_hit_box)
+       30    0.000    0.000    0.003    0.000 collideTransformable.py:40(paste_in)
+       56    0.000    0.000    0.000    0.000 collideTransformable.py:50(set_rigid_body)
+     1875    0.000    0.000    0.000    0.000 collideTransformable.py:56(get_rigid_body)
+      102    0.000    0.000    0.000    0.000 collideTransformable.py:60(set_collide)
+   383171    0.036    0.000    0.036    0.000 collideTransformable.py:64(get_collide)
+      109    0.001    0.000    0.006    0.000 collideTransformable.py:68(set_hit_box)
+   229724    0.032    0.000    0.032    0.000 collideTransformable.py:82(get_hit_box)
+      139    0.000    0.000    0.000    0.000 collideTransformable.py:86(set_rigid_hit_box)
+     2564    0.000    0.000    0.000    0.000 collideTransformable.py:91(get_rigid_hit_box)
+      314    0.002    0.000    0.035    0.000 collideTransformable.py:95(apply_solid_reaction)
+        1    0.000    0.000    0.000    0.000 compat.py:74(get_BytesIO)
+       30    0.000    0.000    0.003    0.000 controlableNode.py:18(paste_in)
+      108    0.000    0.000    0.000    0.000 controlableNode.py:24(link_world)
+      7/1    0.000    0.000    0.008    0.008 controlableNode.py:27(add_shield)
+       24    0.000    0.000    0.000    0.000 controlableNode.py:34(end_init)
+       37    0.000    0.000    0.000    0.000 controlableNode.py:37(set_controller)
+     9656    0.002    0.000    0.002    0.000 controlableNode.py:40(get_controller)
+       79    0.000    0.000    0.004    0.000 controlableNode.py:5(__init__)
+      496    0.001    0.000    0.128    0.000 controller.py:17(execute)
+       12    0.000    0.000    0.000    0.000 controller.py:7(__init__)
+        1    0.000    0.000    0.000    0.000 conversion.py:2(score_to_msg)
+        1    0.000    0.000    0.000    0.000 conversion.py:26(list_to_defaultdict)
+        1    0.000    0.000    0.000    0.000 creation.py:19(create_dial)
+       44    0.000    0.000    0.000    0.000 creation.py:27(create_bubble)
+        1    0.000    0.000    0.386    0.386 creation.py:36(create_img)
+        1    0.000    0.000    0.000    0.000 creation.py:45(create_char)
+        1    0.000    0.000    0.000    0.000 creation.py:53(create_item)
+        1    0.000    0.000    0.000    0.000 cycle.py:4(__init__)
+       28    0.000    0.000    0.000    0.000 cycle.py:8(next)
+        2    0.000    0.000    0.000    0.000 decoder.py:284(__init__)
+        9    0.000    0.000    0.387    0.043 decoder.py:332(decode)
+        9    0.001    0.000    0.387    0.043 decoder.py:343(raw_decode)
+       45    0.000    0.000    0.000    0.000 dialogue.py:6(__init__)
+        3    0.000    0.000    1.173    0.391 dialogue.py:9(show)
+       28    0.003    0.000    0.167    0.006 dialoguebubble.py:18(display)
+       28    0.000    0.000    0.000    0.000 dialoguebubble.py:24(<listcomp>)
+        4    0.000    0.000    1.172    0.293 dialoguebubble.py:38(show)
+      133    0.000    0.000    0.000    0.000 dialoguebubble.py:8(__init__)
+        2    0.000    0.000    0.001    0.000 encoder.py:182(encode)
+        2    0.001    0.000    0.001    0.000 encoder.py:204(iterencode)
+        1    0.000    0.000    0.000    0.000 flag.py:12(center_hit_box)
+        1    0.000    0.000    0.030    0.030 flag.py:5(__init__)
+        1    0.000    0.000    0.000    0.000 force.py:16(__init__)
+      479    0.000    0.000    0.000    0.000 force.py:23(get_g)
+      479    0.001    0.000    0.002    0.000 force.py:27(get_acc)
+      908    0.001    0.000    0.012    0.000 fromnumeric.py:2016(all)
+      908    0.003    0.000    0.010    0.000 fromnumeric.py:64(_wrapreduction)
+       26    0.004    0.000    9.977    0.384 game.py:150(map_loop)
+       28    0.002    0.000    1.172    0.042 game.py:189(dial_loop)
+        1    0.000    0.000    7.751    7.751 game.py:214(launch_level)
+        1    0.000    0.000   15.098   15.098 game.py:23(__init__)
+        1    0.000    0.000   13.226   13.226 game.py:256(launch_game)
+        1    0.081    0.081    0.082    0.082 game.py:29(__init_background)
+        1    0.000    0.000    0.000    0.000 game.py:41(init_buttons)
+     28/9    0.008    0.000   11.880    1.320 game.py:47(menu_loop)
+      312    0.000    0.000    0.000    0.000 gameLevel.py:100(get_camera)
+        1    0.000    0.000    0.000    0.000 gameLevel.py:103(get_objects)
+       44    0.000    0.000    0.000    0.000 gameLevel.py:109(add_node)
+        1    0.000    0.000    0.000    0.000 gameLevel.py:115(compute_end_platform_location)
+      297    0.002    0.000    0.015    0.000 gameLevel.py:123(get_objects_opti)
+        2    0.000    0.000    0.001    0.000 gameLevel.py:136(optimise_data)
+       56    0.000    0.000    0.001    0.000 gameLevel.py:139(order)
+        1    0.000    0.000    0.001    0.001 gameLevel.py:145(compute_size_level)
+      297    0.000    0.000    0.000    0.000 gameLevel.py:168(get_size_level)
+        1    0.002    0.002    7.501    7.501 gameLevel.py:172(play)
+      299    0.001    0.000    0.004    0.000 gameLevel.py:18(get_current_time)
+      298    0.006    0.000    7.495    0.025 gameLevel.py:197(main_loop)
+      298    0.000    0.000    0.000    0.000 gameLevel.py:218(animation_end_game)
+      297    0.004    0.000    0.020    0.000 gameLevel.py:225(compute_camera_position)
+      297    0.001    0.000    0.002    0.000 gameLevel.py:245(compute_win_lose)
+      297    0.003    0.000    0.004    0.000 gameLevel.py:253(compute_score)
+      297    0.010    0.000    0.344    0.001 gameLevel.py:259(compute_controller)
+        1    0.000    0.000    0.003    0.003 gameLevel.py:26(__init__)
+       56    0.000    0.000    0.000    0.000 gameLevel.py:274(lose)
+      297    0.191    0.001    3.681    0.012 gameLevel.py:279(physics_step)
+        1    0.000    0.000    0.000    0.000 gameLevel.py:305(load_camera)
+      297    0.000    0.000    0.000    0.000 gameLevel.py:311(get_background)
+      297    0.003    0.000    3.424    0.012 gameLevel.py:317(aff)
+        1    0.000    0.000    0.000    0.000 gameLevel.py:323(__init__)
+        1    0.000    0.000    0.000    0.000 gameLevel.py:96(end_init)
+      714    0.001    0.000    0.001    0.000 genericpath.py:117(_splitext)
+     1221    0.001    0.000    0.011    0.000 genericpath.py:16(exists)
+        1    0.000    0.000    0.000    0.000 genericpath.py:39(isdir)
+        1    0.000    0.000    0.000    0.000 genericpath.py:87(samestat)
+        1    0.000    0.000    0.000    0.000 genericpath.py:94(samefile)
+        3    0.000    0.000    0.004    0.001 gravitationalBall.py:14(copy)
+        3    0.000    0.000    0.004    0.001 gravitationalBall.py:19(paste_in)
+        6    0.000    0.000    0.007    0.001 gravitationalBall.py:22(load)
+       83    0.000    0.000    0.000    0.000 gravitationalBall.py:28(collide)
+        4    0.000    0.000    0.001    0.000 gravitationalBall.py:6(__init__)
+        1    0.000    0.000    0.008    0.008 gravitationalBallShield.py:11(generate)
+        1    0.000    0.000    0.000    0.000 gravitationalBallShield.py:5(__init__)
+      406    0.000    0.000    0.000    0.000 hitbox.py:12(__init__)
+   487506    0.052    0.000    0.052    0.000 hitbox.py:22(get_ctrbl)
+      248    0.000    0.000    0.000    0.000 hitbox.py:26(set_ctrbl)
+      248    0.000    0.000    0.000    0.000 hitbox.py:30(link)
+      134    0.000    0.000    0.002    0.000 hitbox.py:34(center)
+      169    0.000    0.000    0.001    0.000 hitbox.py:38(copy)
+   239672    0.379    0.000    2.016    0.000 hitbox.py:43(get_world_rect)
+      109    0.000    0.000    0.001    0.000 hitbox.py:49(rescale)
+   106812    0.116    0.000    2.606    0.000 hitbox.py:52(collide)
+   105546    0.052    0.000    2.704    0.000 hitbox.py:55(collide_sides)
+      314    0.001    0.000    0.009    0.000 hitbox.py:86(remove_collide)
+        1    0.000    0.000    0.000    0.000 insert_score.py:3(insert_score)
+     2442    0.001    0.000    0.001    0.000 inspect.py:478(getmro)
+        6    0.000    0.000    0.000    0.000 items.py:15(__hash__)
+        1    0.000    0.000    0.000    0.000 items.py:32(__init__)
+        9    0.000    0.000    0.000    0.000 items.py:39(__init__)
+        6    0.000    0.000    0.000    0.000 items.py:50(item_from_name)
+       10    0.000    0.000    0.000    0.000 items.py:6(__init__)
+        5    0.000    0.000    0.000    0.000 jumpableNode.py:12(__init__)
+       48    0.000    0.000    0.000    0.000 jumpableNode.py:20(start_jump)
+      193    0.000    0.000    0.001    0.000 jumpableNode.py:27(stop_jump)
+      351    0.001    0.000    0.001    0.000 jumpableNode.py:33(collide)
+      313    0.000    0.000    0.000    0.000 jumpableNode.py:47(allow_jump)
+      496    0.002    0.000    0.125    0.000 jumpableNode.py:51(update)
+        5    0.000    0.000    0.000    0.000 jumpableNode.py:60(__init__)
+        3    0.000    0.000    0.000    0.000 laserBall.py:10(collide)
+       10    0.000    0.000    0.001    0.000 laserBall.py:5(__init__)
+        6    0.000    0.000    0.006    0.001 laserBallShield.py:11(generate)
+        6    0.000    0.000    0.001    0.000 laserBallShield.py:5(__init__)
+        2    0.000    0.000    0.000    0.000 laserTurretBot.py:30(collide)
+        1    0.000    0.000    0.000    0.000 laserTurretBot.py:33(die)
+        1    0.000    0.000    0.000    0.000 laserTurretBot.py:37(__init__)
+       67    0.000    0.000    0.000    0.000 laserTurretBot.py:43(execute)
+        1    0.000    0.000    0.008    0.008 laserTurretBot.py:9(__init__)
+      839    0.000    0.000    0.000    0.000 launcher.py:110(win)
+        1    0.000    0.000    0.000    0.000 launcher.py:114(init_constants)
+        1    0.000    0.000    0.000    0.000 launcher.py:136(load_languages)
+        1    0.000    0.000    0.000    0.000 launcher.py:146(create_items)
+        1    0.000    0.000    0.000    0.000 launcher.py:151(init_characters)
+        1    0.000    0.000    0.000    0.000 launcher.py:160(create_dialogues)
+        1    0.000    0.000    0.000    0.000 launcher.py:167(create_world)
+        6    0.000    0.000    0.000    0.000 launcher.py:227(load_level_state)
+        1    0.000    0.000    0.001    0.001 launcher.py:255(saving)
+        1    0.000    0.000    0.000    0.000 launcher.py:257(<listcomp>)
+        1    0.000    0.000    0.001    0.001 launcher.py:262(init_music)
+       27    0.001    0.000    0.088    0.003 launcher.py:274(launch_music)
+      194    0.001    0.000    0.001    0.000 launcher.py:286(dict_str_dflt)
+        1    0.000    0.000    0.000    0.000 launcher.py:296(score)
+        1    0.000    0.000    0.001    0.001 launcher.py:305(load_savefile)
+        1    0.000    0.000    0.000    0.000 launcher.py:322(<listcomp>)
+       83    0.001    0.000    0.145    0.002 launcher.py:324(flip)
+        1    0.000    0.000    1.789    1.789 launcher.py:39(__init__)
+        1    0.000    0.000    1.394    1.394 launcher.py:52(init_window)
+        1    0.000    0.000    0.392    0.392 launcher.py:92(init_images)
+        1    0.000    0.000    0.000    0.000 level.py:11(set_accessed)
+        1    0.000    0.000    0.000    0.000 level.py:20(get_finished)
+       11    0.000    0.000    0.000    0.000 level.py:7(__init__)
+        1    0.000    0.000    0.000    0.000 level_1.py:7(__init__)
+        1    0.000    0.000    0.000    0.000 level_1f.py:7(__init__)
+        1    0.000    0.000    0.000    0.000 level_2_1.py:6(__init__)
+        1    0.000    0.000    0.000    0.000 level_2_2.py:6(__init__)
+        1    0.000    0.000    0.000    0.000 level_2f.py:7(__init__)
+        1    0.000    0.000    0.000    0.000 level_3A.py:6(__init__)
+        1    0.000    0.000    0.000    0.000 level_3B.py:6(__init__)
+        1    0.000    0.000    0.000    0.000 level_3f.py:7(__init__)
+        1    0.000    0.000    0.000    0.000 level_4A.py:28(check_victory)
+        1    0.000    0.000    8.733    8.733 level_4A.py:32(launch)
+      242    0.000    0.000    0.000    0.000 level_4A.py:40(player_pos)
+        1    0.000    0.000    0.055    0.055 level_4A.py:57(create_objects)
+        1    0.000    0.000    0.000    0.000 level_4A.py:6(__init__)
+        2    0.000    0.000    0.924    0.462 level_4A.py:9(fun_dialogue)
+        1    0.000    0.000    0.000    0.000 level_4B.py:6(__init__)
+        1    0.000    0.000    0.000    0.000 level_4f.py:7(__init__)
+        9    0.000    0.000    0.000    0.000 level_sequence.py:14(set_levels)
+        6    0.000    0.000    0.000    0.000 level_sequence.py:20(set_childs)
+       22    0.000    0.000    0.000    0.000 level_sequence.py:26(set_accessible)
+       10    0.000    0.000    0.000    0.000 level_sequence.py:29(set_accessed)
+        9    0.000    0.000    0.000    0.000 level_sequence.py:37(set_finished)
+      156    0.000    0.000    0.000    0.000 level_sequence.py:48(get_accessible)
+        1    0.000    0.000    8.738    8.738 level_sequence.py:57(launch)
+        9    0.000    0.000    0.000    0.000 level_sequence.py:8(__init__)
+      898    0.000    0.000    0.000    0.000 lifeableNode.py:30(get_max_pv)
+      898    0.000    0.000    0.000    0.000 lifeableNode.py:32(get_pv)
+      465    0.001    0.000    0.001    0.000 lifeableNode.py:35(get_percent_life)
+        1    0.000    0.000    0.000    0.000 lifeableNode.py:38(take_damages)
+        1    0.000    0.000    0.000    0.000 lifeableNode.py:42(check_alive)
+       11    0.000    0.000    0.000    0.000 lifeableNode.py:46(die)
+      465    0.008    0.000    0.220    0.000 lifeableNode.py:50(aff)
+        5    0.000    0.000    0.000    0.000 lifeableNode.py:6(__init__)
+      496    0.001    0.000    0.123    0.000 lifeableNode.py:82(update)
+        2    0.000    0.000    0.000    0.000 map.py:15(set_map_points)
+       26    0.000    0.000    0.000    0.000 map.py:18(get_map_points)
+        2    0.000    0.000    0.000    0.000 map.py:6(__init__)
+      468    0.000    0.000    0.000    0.000 map_point.py:19(get_image)
+        9    0.000    0.000    0.000    0.000 map_point.py:8(__init__)
+      158    0.000    0.000    0.001    0.000 mob.py:23(collide)
+        1    0.000    0.000    0.000    0.000 mob.py:31(die)
+        4    0.000    0.000    0.000    0.000 mob.py:36(__init__)
+      188    0.001    0.000    0.003    0.000 mob.py:44(execute)
+        4    0.000    0.000    0.000    0.000 mob.py:5(__init__)
+     7722    0.024    0.000    0.102    0.000 movableNode.py:110(compute_speed)
+     7722    0.023    0.000    0.055    0.000 movableNode.py:117(compute_effect_forces)
+       79    0.001    0.000    0.002    0.000 movableNode.py:19(__init__)
+       30    0.000    0.000    0.001    0.000 movableNode.py:35(paste_in)
+       30    0.000    0.000    0.000    0.000 movableNode.py:45(set_mass)
+     8231    0.002    0.000    0.002    0.000 movableNode.py:47(get_mass)
+       30    0.000    0.000    0.000    0.000 movableNode.py:49(set_ang_inertia)
+     7752    0.001    0.000    0.001    0.000 movableNode.py:51(get_ang_inertia)
+     7752    0.004    0.000    0.004    0.000 movableNode.py:53(set_acc)
+     7752    0.001    0.000    0.001    0.000 movableNode.py:55(get_acc)
+     7752    0.002    0.000    0.002    0.000 movableNode.py:57(set_ang_acc)
+     8231    0.001    0.000    0.001    0.000 movableNode.py:59(get_ang_acc)
+     8848    0.002    0.000    0.002    0.000 movableNode.py:61(set_speed)
+    26026    0.004    0.000    0.004    0.000 movableNode.py:63(get_speed)
+     7752    0.001    0.000    0.001    0.000 movableNode.py:65(set_ang_speed)
+    15662    0.002    0.000    0.002    0.000 movableNode.py:67(get_ang_speed)
+      338    0.000    0.000    0.001    0.000 movableNode.py:70(set_speedx)
+        4    0.000    0.000    0.000    0.000 movableNode.py:77(add_force)
+     7722    0.011    0.000    0.012    0.000 movableNode.py:93(list_forces)
+     7910    0.018    0.000    0.504    0.000 movableNode.py:96(move)
+       79    0.000    0.000    0.001    0.000 node.py:10(__init__)
+      496    0.001    0.000    0.122    0.000 node.py:113(update)
+      496    0.000    0.000    0.000    0.000 node.py:119(update_current)
+        3    0.000    0.000    0.000    0.000 node.py:16(__del__)
+       30    0.000    0.000    0.000    0.000 node.py:27(paste_in)
+       40    0.000    0.000    0.000    0.000 node.py:35(attach_children)
+53462/8577    0.044    0.000    0.133    0.000 node.py:63(translate)
+     9198    0.012    0.000    0.670    0.000 node.py:68(rotate)
+56041/11602    0.058    0.000    0.643    0.000 node.py:73(rotate_around)
+     2442    0.005    0.000    0.007    0.000 ntpath.py:122(splitdrive)
+     2442    0.001    0.000    0.001    0.000 ntpath.py:34(_get_bothseps)
+     2442    0.004    0.000    0.012    0.000 ntpath.py:67(isabs)
+      454    0.005    0.000    0.037    0.000 numeric.py:2274(isclose)
+      454    0.006    0.000    0.015    0.000 numeric.py:2350(within_tol)
+      908    0.002    0.000    0.006    0.000 numeric.py:2491(seterr)
+      908    0.002    0.000    0.002    0.000 numeric.py:2592(geterr)
+      454    0.001    0.000    0.001    0.000 numeric.py:2887(__init__)
+      454    0.001    0.000    0.005    0.000 numeric.py:2891(__enter__)
+      454    0.001    0.000    0.002    0.000 numeric.py:2896(__exit__)
+      908    0.001    0.000    0.003    0.000 numeric.py:504(asanyarray)
+        1    0.000    0.000    0.000    0.000 os.py:803(fsencode)
+        1    0.000    0.000    0.001    0.001 pickableNode.py:108(__init__)
+        2    0.000    0.000    0.003    0.002 pickableNode.py:11(__init__)
+       28    0.000    0.000    0.008    0.000 pickableShield.py:15(collide)
+        1    0.000    0.000    0.002    0.002 pickableShield.py:27(__init__)
+        1    0.000    0.000    0.002    0.002 pickableShield.py:9(__init__)
+        1    0.000    0.000    0.000    0.000 pkgdata.py:18(<module>)
+     1221    0.002    0.000    0.169    0.000 pkgdata.py:34(getResource)
+       56    0.000    0.000    0.000    0.000 player.py:103(flush_score)
+        7    0.000    0.000    0.000    0.000 player.py:108(add_score)
+      297    0.000    0.000    0.000    0.000 player.py:112(get_score)
+        1    0.000    0.000    0.000    0.000 player.py:118(__init__)
+      308    0.001    0.000    0.128    0.000 player.py:122(execute)
+        1    0.000    0.000    0.002    0.002 player.py:19(__init__)
+        1    0.000    0.000    0.000    0.000 player.py:45(end_init)
+      193    0.001    0.000    0.001    0.000 player.py:65(collide)
+       10    0.000    0.000    0.000    0.000 player.py:75(die)
+      308    0.002    0.000    0.126    0.000 player.py:80(update)
+    19536    0.024    0.000    0.040    0.000 posixpath.py:104(split)
+      714    0.001    0.000    0.002    0.000 posixpath.py:121(splitext)
+     2443    0.006    0.000    0.011    0.000 posixpath.py:154(dirname)
+    26863    0.007    0.000    0.010    0.000 posixpath.py:41(_get_sep)
+     2442    0.002    0.000    0.003    0.000 posixpath.py:64(isabs)
+     2442    0.006    0.000    0.008    0.000 posixpath.py:75(join)
+       30    0.000    0.000    0.005    0.000 projectile.py:19(copy)
+       34    0.000    0.000    0.000    0.000 projectile.py:24(load)
+       30    0.000    0.000    0.003    0.000 projectile.py:27(paste_in)
+       24    0.000    0.000    0.000    0.000 projectile.py:33(shutdown)
+      380    0.001    0.000    0.001    0.000 projectile.py:37(collide)
+       44    0.000    0.000    0.004    0.000 projectile.py:8(__init__)
+        1    0.000    0.000    0.000    0.000 re.py:232(compile)
+        1    0.000    0.000    0.000    0.000 re.py:271(_compile)
+   246238    0.163    0.000    0.412    0.000 rect.py:105(translate)
+     6566    0.003    0.000    0.029    0.000 rect.py:109(translate2)
+      197    0.000    0.000    0.000    0.000 rect.py:157(get_max_x)
+       27    0.000    0.000    0.000    0.000 rect.py:160(get_max_y)
+      233    0.000    0.000    0.000    0.000 rect.py:163(get_min_x)
+      899    0.000    0.000    0.000    0.000 rect.py:166(get_min_y)
+   989427    0.087    0.000    0.087    0.000 rect.py:169(get_position)
+   267897    0.187    0.000    0.273    0.000 rect.py:17(__init__)
+   521155    0.047    0.000    0.047    0.000 rect.py:172(get_dimension)
+   246671    0.046    0.000    0.046    0.000 rect.py:175(set_position)
+        2    0.000    0.000    0.000    0.000 rect.py:178(set_dimension)
+      134    0.001    0.000    0.002    0.000 rect.py:26(center)
+     2397    0.003    0.000    0.007    0.000 rect.py:32(collidex)
+     1340    0.003    0.000    0.005    0.000 rect.py:37(dist)
+     1340    0.001    0.000    0.002    0.000 rect.py:44(radius)
+   259539    0.157    0.000    0.207    0.000 rect.py:49(get_coord)
+    23590    0.018    0.000    0.022    0.000 rect.py:55(get_tuple)
+   114534    0.387    0.000    0.781    0.000 rect.py:70(intersect)
+      109    0.000    0.000    0.001    0.000 rect.py:84(rescale)
+   239672    0.164    0.000    0.561    0.000 rect.py:89(scale)
+     6566    0.006    0.000    0.032    0.000 rect.py:93(scale2)
+   252973    0.144    0.000    0.599    0.000 rect.py:99(copy)
+        1    0.000    0.000    0.000    0.000 selectors.py:199(__enter__)
+        1    0.000    0.000    0.000    0.000 selectors.py:202(__exit__)
+        1    0.000    0.000    0.000    0.000 selectors.py:209(__init__)
+        4    0.000    0.000    0.000    0.000 selectors.py:21(_fileobj_to_fd)
+        4    0.000    0.000    0.000    0.000 selectors.py:215(_fileobj_lookup)
+        2    0.000    0.000    0.000    0.000 selectors.py:234(register)
+        2    0.000    0.000    0.000    0.000 selectors.py:247(unregister)
+        1    0.000    0.000    0.000    0.000 selectors.py:268(close)
+       20    0.000    0.000    0.000    0.000 selectors.py:272(get_map)
+       20    0.000    0.000    0.000    0.000 selectors.py:275(_key_from_fd)
+        1    0.000    0.000    0.000    0.000 selectors.py:347(__init__)
+        2    0.000    0.000    0.000    0.000 selectors.py:351(register)
+        2    0.000    0.000    0.000    0.000 selectors.py:365(unregister)
+       19    0.000    0.000    0.010    0.001 selectors.py:402(select)
+        1    0.000    0.000    0.000    0.000 selectors.py:63(__init__)
+       20    0.000    0.000    0.000    0.000 selectors.py:66(__len__)
+      7/1    0.001    0.000    0.008    0.008 shield.py:18(generate)
+     1288    0.001    0.000    0.308    0.000 shield.py:29(update)
+        7    0.000    0.000    0.000    0.000 shield.py:33(__init__)
+     1031    0.001    0.000    0.189    0.000 shield.py:37(execute)
+        7    0.000    0.000    0.001    0.000 shield.py:8(__init__)
+        1    0.000    0.000    0.000    0.000 shutil.py:147(_copyxattr)
+        1    0.000    0.000    0.000    0.000 shutil.py:173(copystat)
+        3    0.000    0.000    0.000    0.000 shutil.py:191(lookup)
+        1    0.000    0.000    0.000    0.000 shutil.py:249(copy2)
+        1    0.000    0.000    0.000    0.000 shutil.py:76(copyfileobj)
+        1    0.000    0.000    0.000    0.000 shutil.py:84(_samefile)
+        1    0.000    0.000    0.000    0.000 shutil.py:96(copyfile)
+       20    0.000    0.000    0.006    0.000 solidPlatform.py:11(__init__)
+       20    0.000    0.000    0.001    0.000 solidPlatform.py:23(center_hit_box)
+      667    0.000    0.000    0.000    0.000 solidPlatform.py:39(collide)
+       79    0.000    0.000    0.000    0.000 spriteNode.py:23(set_mapping)
+       30    0.000    0.000    0.001    0.000 spriteNode.py:32(paste_in)
+       27    0.000    0.000    0.000    0.000 spriteNode.py:41(stase)
+      108    0.000    0.000    0.000    0.000 spriteNode.py:45(set_sps)
+       32    0.000    0.000    0.001    0.000 spriteNode.py:48(vanish)
+       58    0.000    0.000    0.048    0.001 spriteNode.py:55(create_sps)
+      100    0.000    0.000    0.000    0.000 spriteNode.py:66(get_sps)
+      830    0.000    0.000    0.000    0.000 spriteNode.py:75(set_state)
+       30    0.000    0.000    0.000    0.000 spriteNode.py:78(get_state)
+     6566    0.009    0.000    0.132    0.000 spriteNode.py:81(get_pos_camera)
+       79    0.000    0.000    0.001    0.000 spriteNode.py:9(__init__)
+     6355    0.042    0.000    1.277    0.000 spriteNode.py:94(aff)
+      108    0.000    0.000    0.000    0.000 spriteScheduler.py:16(__init__)
+       78    0.001    0.000    0.001    0.000 spriteScheduler.py:24(load_automaton)
+     2927    0.003    0.000    0.003    0.000 spriteScheduler.py:34(step)
+     6355    0.003    0.000    0.003    0.000 spriteScheduler.py:43(get_sprite)
+       78    0.001    0.000    0.048    0.001 spriteScheduler.py:49(load_sprites)
+       30    0.000    0.000    0.000    0.000 spriteScheduler.py:65(copy)
+        1    0.000    0.000    0.000    0.000 sre_compile.py:595(isstring)
+        1    0.000    0.000    0.000    0.000 subprocess.py:1329(_get_handles)
+        1    0.000    0.000    0.008    0.008 subprocess.py:1383(_execute_child)
+        1    0.000    0.000    0.000    0.000 subprocess.py:1526(_handle_exitstatus)
+        1    0.000    0.000    0.000    0.000 subprocess.py:1544(_internal_poll)
+        1    0.000    0.000    0.000    0.000 subprocess.py:1579(_try_wait)
+        2    0.000    0.000    0.000    0.000 subprocess.py:1592(_wait)
+        1    0.000    0.000    0.010    0.010 subprocess.py:1633(_communicate)
+        1    0.000    0.000    0.000    0.000 subprocess.py:1730(_save_input)
+        1    0.000    0.000    0.000    0.000 subprocess.py:226(_cleanup)
+        1    0.000    0.000    0.008    0.008 subprocess.py:656(__init__)
+        1    0.000    0.000    0.000    0.000 subprocess.py:850(__del__)
+        1    0.000    0.000    0.010    0.010 subprocess.py:895(communicate)
+       21    0.000    0.000    0.000    0.000 subprocess.py:969(_remaining_time)
+       19    0.000    0.000    0.000    0.000 subprocess.py:977(_check_timeout)
+        2    0.000    0.000    0.000    0.000 subprocess.py:985(wait)
+        1    0.002    0.002    0.030    0.030 sysfont.py:200(initsysfonts_unix)
+        1    0.000    0.000    0.000    0.000 sysfont.py:242(create_aliases)
+        1    0.000    0.000    0.030    0.030 sysfont.py:268(initsysfonts)
+     1249    0.120    0.000    0.290    0.000 sysfont.py:282(font_constructor)
+     1249    0.003    0.000    0.337    0.000 sysfont.py:296(SysFont)
+        1    0.000    0.000    0.000    0.000 sysfont.py:36(toascii)
+      465    0.001    0.000    0.008    0.000 sysfont.py:379(match_font)
+     1477    0.002    0.000    0.025    0.000 sysfont.py:53(_simplename)
+    30488    0.012    0.000    0.017    0.000 sysfont.py:56(<genexpr>)
+      551    0.000    0.000    0.000    0.000 sysfont.py:59(_addfont)
+      788    0.002    0.000    0.313    0.000 text_display.py:5(T)
+       79    0.001    0.000    0.001    0.000 transformable.py:12(__init__)
+       30    0.000    0.000    0.000    0.000 transformable.py:28(paste_in)
+   118842    0.021    0.000    0.021    0.000 transformable.py:36(reset_update)
+   109584    0.070    0.000    0.106    0.000 transformable.py:42(set_position)
+     9228    0.008    0.000    0.009    0.000 transformable.py:47(set_rotation)
+       30    0.000    0.000    0.000    0.000 transformable.py:52(set_scale)
+   353328    0.039    0.000    0.039    0.000 transformable.py:57(get_position)
+       30    0.000    0.000    0.000    0.000 transformable.py:61(get_rotation)
+   239702    0.029    0.000    0.029    0.000 transformable.py:65(get_scale)
+    53462    0.038    0.000    0.089    0.000 transformable.py:69(translate)
+     1288    0.002    0.000    0.307    0.000 transformable.py:86(rot)
+     9198    0.006    0.000    0.015    0.000 transformable.py:90(rotate)
+    56041    0.115    0.000    0.585    0.000 transformable.py:94(rotate_around)
+        5    0.000    0.000    0.000    0.000 utf_8_sig.py:50(__init__)
+        5    0.000    0.000    0.000    0.000 utf_8_sig.py:54(_buffer_decode)
+    57259    0.024    0.000    0.033    0.000 vector.py:11(__neg__)
+      317    0.001    0.000    0.038    0.000 vector.py:14(__eq__)
+   596576    0.326    0.000    0.415    0.000 vector.py:20(__add__)
+    56283    0.029    0.000    0.097    0.000 vector.py:23(__sub__)
+   509486    0.297    0.000    0.428    0.000 vector.py:26(__mul__)
+     7856    0.005    0.000    0.006    0.000 vector.py:31(__truediv__)
+      382    0.000    0.000    0.001    0.000 vector.py:38(normalise)
+    56041    0.204    0.000    0.213    0.000 vector.py:43(rotate2)
+     8292    0.003    0.000    0.003    0.000 vector.py:51(dot)
+     8292    0.006    0.000    0.009    0.000 vector.py:55(len)
+  1996534    0.311    0.000    0.311    0.000 vector.py:7(__init__)
+   465842    0.061    0.000    0.061    0.000 vector.py:75(to_tuple)
+   112082    0.040    0.000    0.058    0.000 vector.py:79(copy)
+        1    0.000    0.000    0.000    0.000 world.py:11(set_maps)
+       27    0.000    0.000    0.000    0.000 world.py:16(get_map)
+        1    0.000    0.000    0.000    0.000 world.py:8(__init__)
+      175    0.000    0.000    0.001    0.000 xyinbounds.py:2(xyinbounds)
+        3    0.000    0.000    0.000    0.000 zombie.py:25(end_init)
+      370    0.001    0.000    0.005    0.000 zombie.py:28(move)
+      156    0.000    0.000    0.001    0.000 zombie.py:45(collide)
+        3    0.000    0.000    0.000    0.000 zombie.py:55(__init__)
+      188    0.002    0.000    0.012    0.000 zombie.py:59(execute)
+        3    0.000    0.000    0.006    0.002 zombie.py:8(__init__)
+        2    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x561c906773c0}
+        9    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+        1    0.000    0.000    0.000    0.000 {built-in method _imp._fix_co_filename}
+        5    0.000    0.000    0.000    0.000 {built-in method _imp.acquire_lock}
+        1    0.000    0.000    0.000    0.000 {built-in method _imp.is_frozen}
+        5    0.000    0.000    0.000    0.000 {built-in method _imp.release_lock}
+        6    0.000    0.000    0.000    0.000 {built-in method _locale.nl_langinfo}
+        1    0.003    0.003    0.003    0.003 {built-in method _posixsubprocess.fork_exec}
+        1    0.000    0.000    0.000    0.000 {built-in method _stat.S_IMODE}
+        1    0.000    0.000    0.000    0.000 {built-in method _stat.S_ISDIR}
+        2    0.000    0.000    0.000    0.000 {built-in method _stat.S_ISFIFO}
+        3    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+        2    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+     1145    0.001    0.000    0.001    0.000 {built-in method builtins.abs}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.any}
+      2/1    0.000    0.000   15.098   15.098 {built-in method builtins.exec}
+    10719    0.002    0.000    0.002    0.000 {built-in method builtins.getattr}
+       10    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+        6    0.000    0.000    0.000    0.000 {built-in method builtins.hash}
+   554385    0.058    0.000    0.058    0.000 {built-in method builtins.isinstance}
+    27551    0.003    0.000    0.003    0.000 {built-in method builtins.len}
+   229621    0.057    0.000    0.057    0.000 {built-in method builtins.max}
+   229156    0.046    0.000    0.046    0.000 {built-in method builtins.min}
+      180    0.002    0.000    0.002    0.000 {built-in method builtins.print}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.sorted}
+        3    0.000    0.000    0.000    0.000 {built-in method from_bytes}
+     1236    0.017    0.000    0.017    0.000 {built-in method io.open}
+        1    0.000    0.000    0.000    0.000 {built-in method marshal.loads}
+      299    0.002    0.000    0.002    0.000 {built-in method now}
+     1362    0.004    0.000    0.004    0.000 {built-in method numpy.core.multiarray.array}
+      454    0.001    0.000    0.001    0.000 {built-in method numpy.core.multiarray.result_type}
+     1816    0.001    0.000    0.001    0.000 {built-in method numpy.core.umath.geterrobj}
+      908    0.001    0.000    0.001    0.000 {built-in method numpy.core.umath.seterrobj}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.WEXITSTATUS}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.WIFEXITED}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.WIFSIGNALED}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.chmod}
+        4    0.000    0.000    0.000    0.000 {built-in method posix.close}
+    32465    0.003    0.000    0.003    0.000 {built-in method posix.fspath}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.listxattr}
+        3    0.000    0.000    0.000    0.000 {built-in method posix.pipe}
+       21    0.004    0.000    0.004    0.000 {built-in method posix.read}
+     1230    0.009    0.000    0.009    0.000 {built-in method posix.stat}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.utime}
+        1    0.000    0.000    0.000    0.000 {built-in method posix.waitpid}
+        1    0.025    0.025    0.025    0.025 {built-in method pygame.base.init}
+        1    0.045    0.045    0.045    0.045 {built-in method pygame.base.quit}
+        1    0.000    0.000    0.000    0.000 {built-in method pygame.display.Info}
+      380    0.509    0.001    0.509    0.001 {built-in method pygame.display.flip}
+        1    1.301    1.301    1.301    1.301 {built-in method pygame.display.quit}
+        1    0.000    0.000    0.000    0.000 {built-in method pygame.display.set_caption}
+        1    0.000    0.000    0.000    0.000 {built-in method pygame.display.set_icon}
+        1    1.369    1.369    1.369    1.369 {built-in method pygame.display.set_mode}
+      898    0.004    0.000    0.004    0.000 {built-in method pygame.draw.rect}
+      380    0.007    0.000    0.007    0.000 {built-in method pygame.event.get}
+       28    0.000    0.000    0.000    0.000 {built-in method pygame.image.frombuffer}
+      189    0.265    0.001    0.265    0.001 {built-in method pygame.imageext.load_extended}
+      297    0.001    0.000    0.001    0.000 {built-in method pygame.key.get_pressed}
+        1    0.000    0.000    0.000    0.000 {built-in method pygame.mixer.init}
+        1    0.000    0.000    0.000    0.000 {built-in method pygame.mixer.pre_init}
+       28    0.039    0.001    0.039    0.001 {built-in method pygame.mixer_music.load}
+       28    0.049    0.002    0.049    0.002 {built-in method pygame.mixer_music.play}
+      197    0.000    0.000    0.000    0.000 {built-in method pygame.mouse.get_pos}
+       82    0.000    0.000    0.000    0.000 {built-in method pygame.time.Clock}
+      297    0.367    0.001    0.367    0.001 {built-in method pygame.transform.rotate}
+       28    0.116    0.004    0.116    0.004 {built-in method pygame.transform.scale}
+     9584    0.476    0.000    0.476    0.000 {built-in method pygame.transform.smoothscale}
+        1    0.000    0.000    0.000    0.000 {built-in method select.poll}
+       28    0.046    0.002    0.046    0.002 {cvtColor}
+       58    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+      908    0.002    0.000    0.007    0.000 {method 'all' of 'numpy.generic' objects}
+      545    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+    11961    1.598    0.000    1.598    0.000 {method 'blit' of 'pygame.Surface' objects}
+        1    0.000    0.000    0.000    0.000 {method 'clear' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 {method 'close' of '_io.BufferedReader' objects}
+      203    0.168    0.001    0.168    0.001 {method 'convert_alpha' of 'pygame.Surface' objects}
+        1    0.000    0.000    0.000    0.000 {method 'count' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'decode' of 'bytes' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+       27    0.000    0.000    0.000    0.000 {method 'discard' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 {method 'encode' of 'str' objects}
+       18    0.000    0.000    0.000    0.000 {method 'end' of 're.Match' objects}
+    21979    0.003    0.000    0.003    0.000 {method 'endswith' of 'str' objects}
+        4    0.000    0.000    0.000    0.000 {method 'fileno' of '_io.BufferedReader' objects}
+      597    0.559    0.001    0.559    0.001 {method 'fill' of 'pygame.Surface' objects}
+     1882    0.001    0.000    0.001    0.000 {method 'get' of 'dict' objects}
+     4430    0.000    0.000    0.000    0.000 {method 'get_height' of 'pygame.Surface' objects}
+     1815    0.002    0.000    0.002    0.000 {method 'get_rect' of 'pygame.Surface' objects}
+      563    0.000    0.000    0.000    0.000 {method 'get_size' of 'pygame.Surface' objects}
+     4844    0.001    0.000    0.001    0.000 {method 'get_width' of 'pygame.Surface' objects}
+    33179    0.003    0.000    0.003    0.000 {method 'isalnum' of 'str' objects}
+      987    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 {method 'join' of 'bytes' objects}
+     1487    0.005    0.000    0.023    0.000 {method 'join' of 'str' objects}
+     7722    0.001    0.000    0.001    0.000 {method 'keys' of 'dict' objects}
+    49261    0.006    0.000    0.006    0.000 {method 'lower' of 'str' objects}
+       18    0.000    0.000    0.000    0.000 {method 'match' of 're.Pattern' objects}
+       19    0.010    0.001    0.010    0.001 {method 'poll' of 'select.poll' objects}
+      456    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 {method 'read' of '_io.BufferedReader' objects}
+        1    0.000    0.000    0.000    0.000 {method 'read' of '_io.FileIO' objects}
+        9    0.000    0.000    0.000    0.000 {method 'read' of '_io.TextIOWrapper' objects}
+       28    0.226    0.008    0.226    0.008 {method 'read' of 'cv2.VideoCapture' objects}
+      908    0.005    0.000    0.005    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        2    0.000    0.000    0.000    0.000 {method 'register' of 'select.poll' objects}
+     1596    0.146    0.000    0.146    0.000 {method 'render' of 'pygame.font.Font' objects}
+     2442    0.001    0.000    0.001    0.000 {method 'replace' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'rfind' of 'bytes' objects}
+    23406    0.006    0.000    0.006    0.000 {method 'rfind' of 'str' objects}
+        8    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'rstrip' of 'bytes' objects}
+    17108    0.003    0.000    0.003    0.000 {method 'rstrip' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 {method 'set_alpha' of 'pygame.Surface' objects}
+      433    0.001    0.000    0.001    0.000 {method 'set_bold' of 'pygame.font.Font' objects}
+       28    0.042    0.002    0.042    0.002 {method 'size' of 'pygame.font.Font' objects}
+        3    0.000    0.000    0.001    0.000 {method 'sort' of 'list' objects}
+     7171    0.003    0.000    0.003    0.000 {method 'split' of 'str' objects}
+       28    0.000    0.000    0.000    0.000 {method 'splitlines' of 'str' objects}
+     4893    0.001    0.000    0.001    0.000 {method 'startswith' of 'str' objects}
+      551    0.000    0.000    0.000    0.000 {method 'strip' of 'str' objects}
+       82    2.715    0.033    2.715    0.033 {method 'tick' of 'Clock' objects}
+      299    0.000    0.000    0.000    0.000 {method 'timestamp' of 'datetime.datetime' objects}
+       28    0.052    0.002    0.052    0.002 {method 'tostring' of 'numpy.ndarray' objects}
+        2    0.000    0.000    0.000    0.000 {method 'unregister' of 'select.poll' objects}
+        1    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+       78    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {method 'write' of '_io.BufferedWriter' objects}
+        2    0.000    0.000    0.000    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+
+
