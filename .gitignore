@@ -9,3 +9,5 @@ data/json/options.json
 data/json/save.json
 data/your*music/*.mp3
 data/json/scores.json
+
+doc/log.log

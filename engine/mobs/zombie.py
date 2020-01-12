@@ -68,7 +68,7 @@ class ZombieController(MobController):
             target_x = self.target.get_position().x
             move_treshold = 0.05
             block_treshold = 0.1
-            print("-",target_x,rect_mx+length*0.1,rect_mx+length*0.9,player_x)
+            
             if rect_mx+length*move_treshold < target_x < rect_mx+length*(1-block_treshold) and target_x < player_x:
                 self.target.set_speedx(speed)
             elif rect_mx + length*block_treshold < target_x < rect_mx+length*(1-move_treshold) and player_x < target_x:

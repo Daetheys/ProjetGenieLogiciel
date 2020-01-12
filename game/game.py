@@ -27,7 +27,7 @@ class Game(Launcher):
         self.launch_game()
 
     def __init_background(self):
-        """ creates platforms that will appear in the menu """
+        """ creates the video/ the platforms that will appear in the menu """
         self.bg = None#Pygame.Surface (background)
         self.bglist = []#list of tuples (position of the platforms in the background)
         self.plat_img = create_plat(200,40)
@@ -51,11 +51,6 @@ class Game(Launcher):
         quit_all (whether the full game stops)t
 
         """
-        #if background == None:
-        #    self.bg,self.bglist = bgg(self.bglist)
-        #    #background = self.dict_img["img_background"] old behavior
-
-        #self.bg,self.bglist = bgg(self.bglist,self.dict_img["img_background"],self.options["DISPLAYSIZE_X"]+200,self.options["DISPLAYSIZE_Y"],self.plat_img,self.plat_small,self.plat_big)
         global BUTTON_LIST
         pygame.time.Clock().tick(self.options["FPS"])
 
@@ -70,8 +65,6 @@ class Game(Launcher):
                 image = cv2.cvtColor(image,cv2.COLOR_BGR2RGB)
 
                 image = pygame.image.frombuffer(image.tostring(),image.shape[1::-1],"RGB")
-                #print(image.get_at([py,px]))
-                #assert False
                 image = pygame.transform.scale(image,self._fenetre.get_size())
                 self.bg.l.append(image)
             else:
@@ -217,28 +210,14 @@ class Game(Launcher):
 
         gl.load_camera(self.win())#Load the camera in the window fen
         gl.get_camera().set_dimension(Vector(200,150)) #Resize the camera
-        #2560,1440 (plus grosse résolution)
+        #2560,1440 is the biggest resolution)
         gl.get_camera().set_position(Vector(-100,-75)) #change pos of  the camera
         gl.optimise_data() #Call it before launching the game of making modification in camera (be careful it may take a while to execute)
-        """
-        t = 0#time
-        sec_wait = 3#POUR L'INSTANT, 3. SERA UN CHAMP DU GAME_LEVEL(duration) !!
-        while t < self.options["FPS"] * sec_wait:
-            if not self.loop_level(gl,t):
-                return False#on a perdu
-        """
-        """
-        if music is not None:
-            print("play",music)
-            pygame.mixer.music.load(music)
-            #pygame.mixer.music.fadeout(500)
-            pygame.mixer.music.play()
-        """
         success, score = gl.play(self.options["FPS"])
 
         if not success:#reduce score of defeats
             score //= 2
-        #g.scores[gl.name]  = leaderboard of this level
+        #leaderboard of this level
         self.dict_score[gl.name] = insert_score(self.score(gl.name),score,self.player_name,self.max_number_scores)
 
         msg_score = score_to_msg(self.dict_score[gl.name])
@@ -260,7 +239,7 @@ class Game(Launcher):
         while not self.quitter_jeu:
             b1 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin,self.b1ymax,self.dict_img["img_button"],"b1",self.dict_img["img_buttonH"],text=self.dict_str["campaign_mode"],react=reaction_b1)
             b2 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin+self.yoffset,self.b1ymax+self.yoffset,self.dict_img["img_button"],"b2",self.dict_img["img_buttonH"],self.dict_img["img_buttonD"],text=self.dict_str["free_play"],react=reaction_b2)
-            #b2.activation(False)#activé par défaut -> désactivé par défaut si on le débloque après lvl1?
+            #bouton activé par défaut -> désactivé par défaut si on le débloque après lvl1?
             b3 = ButtonMenu(self,self.b1xmin,self.b1xmax,self.b1ymin+self.yoffset*2,self.b1ymax+self.yoffset*2,self.dict_img["img_button"],"b3",self.dict_img["img_buttonH"],text=self.dict_str["options"],react=reaction_b3)
 
             while self.continuer_menu:

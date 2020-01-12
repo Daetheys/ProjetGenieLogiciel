@@ -43,7 +43,7 @@ class Level_4_fantasy(Level):
         if len(gl.objects) <= 650: #It may fail to build it the first time but rarely twice in a row
             gl = generate_level("data/musics/seal.ogg",name_of_level=g.dict_str["Demon Woods"],limgpar=limgpar)
             if len(gl.objects) <= 650:
-                print("BUG")
+                print("WARNING: len gl.object <= 650\n")
                 pass
         gl.load_inventory(g.player.get_inventory())
         gl.camera.set_rotation_effect()

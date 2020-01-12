@@ -27,11 +27,9 @@ class Level_2_fantasy(Level):
         return arg
         
     def launch(self,g):
-        print("FANTASY\n")
         quit_all = self.fun_dialogue(g,"start")
         self.objects = self.create_objects(g)
         self.set_accessed()
-        print("-",self.objects)
         
         if quit_all:
             return False

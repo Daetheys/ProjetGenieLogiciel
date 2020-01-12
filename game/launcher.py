@@ -54,9 +54,12 @@ class Launcher:
         initializes a window, pygame graphics, and options
         returns the display window
         """
+        #Redirecting stdout
+        from sys import stdout as sysout
+        sysout = open('doc/log.log', 'w')
+
         #Display
         pygame.init()
-
         try:
             with open("data/json/options.json","r") as file:
                 self.options = json.load(file)
@@ -86,8 +89,11 @@ class Launcher:
 
         pygame.display.set_caption("CAN·A·BAELDE")
         pygame.display.set_icon(pygame.image.load("data/img/icon.ico"))
-        self._fenetre = pygame.display.set_mode((self.options["DISPLAYSIZE_X"], self.options["DISPLAYSIZE_Y"]),self.options["modeECRAN"])#1920*1080
+        self._fenetre = pygame.display.set_mode((self.options["DISPLAYSIZE_X"], self.options["DISPLAYSIZE_Y"]),self.options["modeECRAN"])#1920*1080 for instance
         self._fenetre.set_alpha(None) #To speed things up
+
+
+
 
     def init_images(self):
         """loads all images into self.dict_img, blits the first background"""

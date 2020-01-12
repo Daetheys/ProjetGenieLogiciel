@@ -30,7 +30,6 @@ class Level_1_fantasy(Level):
         quit_all = self.fun_dialogue(g,"start")
         self.objects = self.create_objects(g)
         self.set_accessed()
-        print("-",self.objects)
         
         if quit_all:
             return False
