@@ -32,7 +32,7 @@ class Level_3B_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Cloudy with a chance of Skeletons"] ,parallax=g.options["parallax"])
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Cloudy with a chance of Skeletons"] ,parallax=g.options["parallax"],limgpar=get_deep_forest_bg(g),music="data/musics/Boss.mp3")
         
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait

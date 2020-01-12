@@ -227,11 +227,13 @@ class Game(Launcher):
             if not self.loop_level(gl,t):
                 return False#on a perdu
         """
+        """
         if music is not None:
             print("play",music)
             pygame.mixer.music.load(music)
             #pygame.mixer.music.fadeout(500)
             pygame.mixer.music.play()
+        """
         success, score = gl.play(self.options["FPS"])
 
         if not success:#reduce score of defeats

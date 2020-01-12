@@ -36,8 +36,9 @@ class Level_1_kshan(Level):
         
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
+        limgpar = get_demon_woods_bg(g)
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Hyborian Village"],parallax=g.options["parallax"])
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Hyborian Village"],parallax=g.options["parallax"],limgpar=get_demon_woods_bg(g),music="data/musics/xeon5.ogg")
         gl.load_inventory(g.player.get_inventory())
         
         success = self.check_victory(g, g.launch_level(gl,None))

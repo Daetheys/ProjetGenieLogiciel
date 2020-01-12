@@ -1,5 +1,6 @@
 
 from game.campaign.levels.imports import *
+from game.tools.bg_creator import get_cave_bg
 
 class Level_1_fantasy(Level):
     """ all functions are explained in the Level abstract class """
@@ -37,7 +38,9 @@ class Level_1_fantasy(Level):
         def player_pos(t):
             return t*100*110/60
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Midden Pass"],parallax=g.options["parallax"],music="data/musics/HolFix - Good Old Times.mp3")
+        limgpar = get_cave_bg(g)
+
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Midden Pass"],parallax=g.options["parallax"],music="data/musics/HolFix - Good Old Times.mp3",limgpar=limgpar)
         gl.load_inventory(g.player.get_inventory())
         
         success = self.check_victory(g, g.launch_level(gl,None))

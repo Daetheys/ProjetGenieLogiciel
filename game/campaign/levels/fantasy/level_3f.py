@@ -1,5 +1,6 @@
 
 from game.campaign.levels.imports import *
+from game.tools.bg_creator import get_cave_bg
 
 class Level_3_fantasy(Level):
     """ all functions are explained in the Level abstract class """
@@ -36,7 +37,7 @@ class Level_3_fantasy(Level):
         def player_pos(t):
             return t*100*50/60*1.2
 
-        limgpar = [(g.dict_img["cave_layer1"],1)]
+        limgpar = get_cave_bg(g)
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Moon Ruins"],parallax=g.options["parallax"],music="data/musics/Moon-ruins.ogg",limgpar=limgpar)
         gl.load_inventory(g.player.get_inventory())

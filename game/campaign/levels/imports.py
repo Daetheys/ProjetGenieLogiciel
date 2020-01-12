@@ -17,3 +17,4 @@ from engine.mobs.laserTurretBot import LaserTurretBot
 from game.campaign.level import Level
 from game.campaign.items import *
 from game.tools.pseudoRd import PseudoRd
+from game.tools.bg_creator import *

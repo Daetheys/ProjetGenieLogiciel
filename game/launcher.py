@@ -249,8 +249,6 @@ class Launcher:
                     getattr(L[2],set_fun)()
                 elif lvl == 'fantasy4':
                     getattr(L[3],set_fun)()
-                elif lvl == 'fantasy5':
-                    getattr(L[4],set_fun)()
 
     def saving(self):
         """ saves the game in the json file """

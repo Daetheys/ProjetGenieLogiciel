@@ -1,5 +1,6 @@
 from game.campaign.levels.imports import *
 from game.level_generation.level_generator import generate_level
+from game.tools.bg_creator import get_demon_woods_bg
 
 class Level_4_fantasy(Level):
     """ all functions are explained in the Level abstract class """
@@ -35,7 +36,7 @@ class Level_4_fantasy(Level):
         def player_pos(t):
             return t*100*160/60
 
-        limgpar = [(g.dict_img["red_layer1"],0),(g.dict_img["red_layer2"],1),(g.dict_img["red_layer3"],2),(g.dict_img["red_layer4"],3)]
+        limgpar = get_demon_woods_bg(g)
 
         gl = generate_level("data/musics/seal.ogg",name_of_level=g.dict_str["Demon Woods"],limgpar=limgpar)
         

@@ -1,4 +1,6 @@
 import pygame
+import random
+from game.tools.bg_creator import *
 from pygame.locals import *
 from game.tools.xyinbounds import xyinbounds
 from game.tools.text_display import T
@@ -58,7 +60,18 @@ def reaction_play(text,name):
     """
     def f(g):
         gl = generate_level(text,name,para=g.options["parallax"])
+        #Set random bg
+        rd = random.randint(0,2)
+        limgpar = []
+        if rd == 0:
+            limgpar = get_demon_woods_bg(g)
+        elif rd == 1:
+            limgpar = get_deep_forest_bg(g)
+        else:
+            limgpar = get_cave_bg(g)
+        gl.load_bg(limgpar)
 
+        
         g.launch_level(gl,text)
         """ ceci lance le level correspondant """
         g.launch_music(g.menu_music)#relance la musique du menu!

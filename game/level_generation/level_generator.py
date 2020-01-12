@@ -17,6 +17,8 @@ from engine.rect import Rect
 from engine.flag import Flag
 from engine.pickableNode import Coin
 
+from game.tools.bg_creator import *
+
 random.seed(0)
 speed_factor = 200
 

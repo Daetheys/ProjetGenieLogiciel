@@ -1,5 +1,6 @@
 
 from game.campaign.levels.imports import *
+from game.tools.bg_creator import get_deep_forest_bg
 
 class Level_2_fantasy(Level):
     """ all functions are explained in the Level abstract class """
@@ -37,7 +38,7 @@ class Level_2_fantasy(Level):
         
         def player_pos(t):
             return t*100*1/1*2
-        limgpar = [(g.dict_img["deep_layer1"],0),(g.dict_img["deep_layer2"],1),(g.dict_img["deep_layer3"],2),(g.dict_img["deep_layer4"],3),(g.dict_img["deep_layer5"],4),(g.dict_img["deep_layer6"],5),(g.dict_img["deep_layer7"],6),(g.dict_img["deep_layer8"],7),(g.dict_img["deep_layer9"],8),(g.dict_img["deep_layer10"],9),(g.dict_img["deep_layer11"],10)]
+        limgpar = get_deep_forest_bg(g)
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Haelgard Forest"],parallax=g.options["parallax"],music="data/musics/elves test.ogg",limgpar=limgpar)
         gl.load_inventory(g.player.get_inventory())

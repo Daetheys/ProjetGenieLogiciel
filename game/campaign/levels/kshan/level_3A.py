@@ -39,7 +39,7 @@ class Level_3A_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Key To Success"],parallax=g.options["parallax"])
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Key To Success"],parallax=g.options["parallax"],limgpar=get_demon_woods_bg(g),music="data/musics/Boss2.mp3")
         gl.load_inventory(g.player.get_inventory())
         
         alive = g.launch_level(gl,None)

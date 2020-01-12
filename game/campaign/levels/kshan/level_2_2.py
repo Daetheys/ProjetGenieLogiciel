@@ -32,7 +32,7 @@ class Level_2_2_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Evil Coins"],parallax=g.options["parallax"])
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Evil Coins"],parallax=g.options["parallax"],limgpar=get_cave_bg(g),music="Soliloquy.mp3")
         gl.load_inventory(g.player.get_inventory())
         
         success = self.check_victory(g, g.launch_level(gl,None))

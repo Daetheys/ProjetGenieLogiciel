@@ -67,13 +67,8 @@ class GameLevel:
         self.compute_end_platform_location()
 
         #Load Background
-        if not parallax: limgpar = [limgpar[1]] #will be improved later
-        lpar = [] #List of Parallax
-        for (name,index) in limgpar:
-            p = Parallax(name,index) #Create parallax with given speed
-            lpar.append(p)
-
-        self.background = Background(lpar)
+        self.parallax = parallax
+        self.load_bg(limgpar)
 
         #Link worlds
         for o in objects:
@@ -81,6 +76,14 @@ class GameLevel:
 
         #End the initialisatio
         self.end_init()
+
+    def load_bg(self,limgpar):
+        if not self.parallax: limgpar = [limgpar[1]] #will be improved later
+        lpar = [] #List of Parallax
+        for (name,index) in limgpar:
+            p = Parallax(name,index) #Create parallax with given speed
+            lpar.append(p)
+        self.background = Background(lpar)
 
     def end_init(self):
         """ Call all end_init of objects in the world """
