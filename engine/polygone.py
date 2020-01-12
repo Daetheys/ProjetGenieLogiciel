@@ -424,29 +424,3 @@ class Polygon:
 
     def __repr__(self):
         return "Poly("+str(self.get_points())+")"
-
-
-
-
-
-
-
-
-
-
-#--------
-#OUTDATED
-#--------
-class Rectangle(Polygon):
-
-    def __init__(self,x,y,l,h):
-        """ To create a basic rectangle, the init function is changed.
-        It takes the x,y coordinates of the top left corner,
-        the length & the height of the Rectangle. It creates then the
-        appropriate Vector objects, and initializes itself like a Polygon."""
-        a = Vector(x,y)
-        b = Vector(x+l,y)
-        c = Vector(x+l,y+h)
-        d = Vector(x,y+h)
-        points = [a,b,c,d]
-        Polygon.__init__(self,points)

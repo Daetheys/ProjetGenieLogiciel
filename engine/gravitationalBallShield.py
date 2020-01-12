@@ -9,7 +9,7 @@ class GravitationalBallShield(Shield):
         self.size = 25
 
     def generate(self):
-        print("--",self.world)
+        """ Generate the shield """
         lb = GravitationalBall(self.world)
         lb.solidcollide = False
         super().generate(lb)

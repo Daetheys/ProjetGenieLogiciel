@@ -6,6 +6,7 @@ from engine.gravitationalBallShield import GravitationalBallShield
 from engine.player import Player
 
 class PickableShield(PickableNode):
+    """ A pickable node which gives a shield """
     def __init__(self,shield,name='spike'):
         hb = Hitbox(Rect(0,0,10,10))
         PickableNode.__init__(self,hb,name)
@@ -13,6 +14,7 @@ class PickableShield(PickableNode):
         self.shield = shield
 
     def collide(self,o2,side,other_side):
+        """ When hit the player gives it a shield """
         #side : 0-> haut (aiguilles d'une montre)
         if isinstance(o2,Player):
             if not(self.taken):
@@ -20,7 +22,7 @@ class PickableShield(PickableNode):
                 self.shield.link_world(self.world)
                 o2.add_shield(self.shield)
                 self.taken = True
-                #Remove the coin
+                #Remove the node
                 self.vanish()
 
 class GravitationalPickableShield(PickableShield):

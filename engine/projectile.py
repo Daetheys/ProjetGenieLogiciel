@@ -5,6 +5,7 @@ from engine.hitbox import Hitbox
 from engine.rect import Rect
 
 class Projectile(ControlableNode):
+    """ Projectile class """
     def __init__(self):
         super().__init__()
         self.damages = 1
@@ -31,16 +32,15 @@ class Projectile(ControlableNode):
         p.solidcollide = self.solidcollide
 
     def shutdown(self):
+        """ Remove the projectile """
         self.set_collide(False)
         self.vanish()
 
     def collide(self,o,side,oside):
+        """Collisions with the projectile -> will shutdown upon almost every collision dealing damages if a Lifeable is hit. Thos collisions can be modified by booleans self.lifecollide, self.projcollide, self.solidcollide"""
         if isinstance(o,engine.lifeableNode.LifeableNode) and self.lifecollide:
-            print("proj life")
             self.shutdown()
         if isinstance(o,Projectile) and self.projcollide:
-            print("proj collide")
             self.shutdown()
         if isinstance(o,SolidPlatform) and self.solidcollide:
-            print("proj plat")
             self.shutdown()

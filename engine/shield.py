@@ -5,6 +5,7 @@ from engine.controller import Controller
 import numpy as np
 
 class Shield(ControlableNode):
+    """ Shield class """
     def __init__(self):
         super().__init__()
         self.speed = 1
@@ -16,6 +17,7 @@ class Shield(ControlableNode):
         self.vanish()
 
     def generate(self,obj):
+        """ Generates the shield around this node (creates projectiles)"""
         for i in range(self.nb):
             x = np.cos(i/self.nb*np.pi*2)*self.size
             y = np.sin(i/self.nb*np.pi*2)*self.size
@@ -27,6 +29,7 @@ class Shield(ControlableNode):
             o.load()
 
     def update(self,dt):
+        """ Rotates the shield """
         self.rot(self.speed)
 
 class ShieldController(Controller):

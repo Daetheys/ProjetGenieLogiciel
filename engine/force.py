@@ -14,7 +14,7 @@ class Force:
 class Gravity(Force):
     """ Simple gravity """
     def __init__(self,g):
-        self.__g = g #Simple Gravity
+        self.__g = g #Simple Gravity 
 
     def set_g(self,g):
         """ Sets g """

@@ -7,6 +7,8 @@ from engine.solidPlatform import SolidPlatform
 from engine.hitbox import Hitbox
 from engine.rect import Rect
 
+""" Class of nodes that can jump (mobs and player will inherit of it for example) """
+
 class JumpableNode(LifeableNode):
     """ Jumpable Class """
     def __init__(self):
@@ -18,20 +20,20 @@ class JumpableNode(LifeableNode):
         self.is_in_air = True #Is acutally in the air
 
     def start_jump(self):
-        """ Key has just been pressed """
+        """ Starts jump (can be called several time to jump higher """
         speed = self.get_speed()
-        print("start jump",self.can_jump,self.is_jumping,speed.y)
         if self.alive and self.can_jump and (not self.is_jumping) and speed.y >= 0:
             self.set_speed(Vector(speed.x, -self.jump_strength)) #JUMP
             self.can_jump = False #Cannot jump anymore
 
     def stop_jump(self):
-        """ Key has just been released """
+        """ Stop the jump """
         speed = self.get_speed()
         self.set_speed(Vector(speed.x,0))
         self.is_jumping = False
 
     def collide(self,o,side,o2_side):
+        """ Handle jumping booleans to know when it's possible to jump  and when to die when hitting a platform"""
         if isinstance(o,SolidPlatform):
             if o2_side == 0 or o2_side == 1:
                 #Top side
@@ -50,6 +52,7 @@ class JumpableNode(LifeableNode):
         self.can_jump = True
 
     def update(self,dt):
+        """ Update jumping variables """
         super().update(dt)
         self.can_jump = False #Pour qu'on ne puisse pas sauter dans les airs
         self.is_in_air = True #Pour la detection de la mort : le joueur doit être en l'air et entrer en collision

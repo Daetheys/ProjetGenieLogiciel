@@ -6,14 +6,12 @@ class Controller:
 
     def __init__(self, target=None):
         self._target = target
-        self._actions = None
 
     def get_target(self):
+        """ Returns the target of this controller """
         return self._target
 
-    def set_actions(self,actions):
-        self._actions = actions
-
     def execute(self,event,pressed,dt):
+        """ Executes the controller for inputs [event] and [pressed] keys for the delta time dt"""
         self.target.update(dt)
 

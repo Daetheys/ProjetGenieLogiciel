@@ -15,10 +15,11 @@ class Camera:
         self.angle = 0
 
     def move(self,v):
-        """ Moves the camera """
+        """ Translates the camera by vector v"""
         self.rect.translate(v)
 
     def link_world(self,w):
+        """ Set the world attribute """
         self.world = w
 
     def set_position(self,pos):
@@ -91,13 +92,15 @@ class Camera:
         self.get_fen().fill((0,0,0))
 
     def reset_rotation(self):
+        """ Reset the rotation """
         self.angle = 0
 
     def rotate(self, angle):
+        """ Add the rotation of [angle] to the camera """
         self.angle += angle
 
     def rotate_view(self, angle):
-        #Rotates the current content of the window by "angle" degrees
+        """ Rotates the current content of the window by "angle" degrees """
         center = self.get_fen().get_rect().center
         rotated_fen = pygame.transform.rotate(self.get_fen(),angle)
         rotated_rect = rotated_fen.get_rect()

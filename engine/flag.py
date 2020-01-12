@@ -10,6 +10,7 @@ class Flag(ControlableNode):
         self.create_sps("red_flag")
 
     def center_hit_box(self):
+        """ Centers the hit box (detail of physics) """
         self.get_hit_box().center()
 
     def copy(self):

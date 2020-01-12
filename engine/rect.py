@@ -30,11 +30,13 @@ class Rect:
         return (self.get_position()+(-pos))
 
     def collidex(self,orect):
+        """ Returns whether self and orect projections on X axis collide """
         (oix,oiy,ofx,ofy) = orect.get_tuple()
         (cix,ciy,cfx,cfy) = self.get_tuple()
         return oix<=cix<=ofx or cix<=oix<=cfx or oix<=cfx<=ofx or cix<=ofx<=cfx
 
     def dist(self,orect):
+        """ Returns the distance between centers of self and [orect] """
         (oix,oiy,ofx,ofy) = orect.get_tuple()
         (cix,ciy,cfx,cfy) = self.get_tuple()
         xc1,xc2 = (ofx-oix)/2,(cfx-cix)/2
@@ -42,6 +44,7 @@ class Rect:
         return ((xc1-xc2)**2+(yc1-yc2)**2)**0.5
 
     def radius(self):
+        """ Returns the distance between the center of self and a corner """
         (cix,ciy,cfx,cfy) = self.get_tuple()
         xc,yc = (cfx-cix)/2,(cfy-ciy)/2
         return ((xc-cix)**2+(yc-ciy)**2)**0.5
@@ -68,6 +71,7 @@ class Rect:
         return "Rect("+str(l)+","+str(t)+","+str(w)+","+str(h)+")"
 
     def intersect(self,r2):
+        """ Returns the intersection Rect or None f their is none"""
         (x1i,y1i) = self.get_position().to_tuple()
         (x1f,y1f) = (self.get_position()+self.get_dimension()).to_tuple()
         (x2i,y2i) = r2.get_position().to_tuple()
@@ -82,15 +86,16 @@ class Rect:
 
 
     def rescale(self,alpha):
-        """ Rescale """
-        self.position *= alpha
-        self.dimension *= alpha
+        """ Alias of scale """
+        self.scale(alpha)
 
     def scale(self,scale):
+        """ Scales self by [scale] """
         self.position *= scale
         self.dimension *= scale
 
     def scale2(self,scale):
+        """ Returns a copy scalled of self """
         r2 = self.copy()
         r2.position *= scale
         r2.dimension *= scale
@@ -117,6 +122,7 @@ class Rect:
         self.dimension = dimension
 
     def get_points(self):
+        """ Returns a list of points """
         return self.get_poly().get_points()
 
     def get_poly(self):

@@ -2,6 +2,7 @@ from engine.projectile import Projectile
 from engine.controller import Controller
 
 class LaserBall(Projectile):
+    """ Vary simple projectile """
     def __init__(self):
         super().__init__()
         self.damages = 1
@@ -16,4 +17,5 @@ class LaserBallController(Controller):
         self.target = target
 
     def execute(self,event,pressed,dt):
+        """ Moves the projectile """
         self.move(dt)

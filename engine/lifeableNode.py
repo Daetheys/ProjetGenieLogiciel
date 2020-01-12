@@ -3,6 +3,7 @@ import engine.projectile
 import pygame
 
 class LifeableNode(ControlableNode):
+    """ Class of nodes which have hp and can die"""
     def __init__(self):
         super().__init__()
         self.max_pv = 5
@@ -36,18 +37,22 @@ class LifeableNode(ControlableNode):
         return max(0,self.get_pv()/self.get_max_pv())
 
     def take_damages(self,d):
+        """ Inflict damages to this node and check wheter it's still alive"""
         self.pv -= d
         self.check_alive()
 
     def check_alive(self):
+        """ Check if still alive """
         if self.pv <= 0:
             self.die()
 
     def die(self):
+        """ Kills the node """
         self.pv = 0
         self.alive = False
 
     def aff(self,fen,distorsion,dt):
+        """ Show the life bar of this node. 2 modes : self.small -> little hp bar over the sprite. not self.small -> Big hp bar on the top left hand corner """
         font = pygame.font.match_font("ubuntumono",bold=True)
         if self.small:
             (px,py,w,h) = self.get_pos_camera(distorsion,self.get_hit_box())

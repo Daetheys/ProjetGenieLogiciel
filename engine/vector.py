@@ -41,6 +41,7 @@ class Vector:
         return Vector(self.x/norm,self.y/norm)
 
     def rotate2(self,angle):
+        """ Returns a rotated version of self """
         v = Vector(self.x*np.cos(angle)+self.y*np.sin(angle),-self.x*np.sin(angle)+self.y*np.cos(angle))
         return v
 

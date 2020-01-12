@@ -16,6 +16,7 @@ from datetime import datetime
 DEBUG = False
 
 def get_current_time():
+    """ Returns time """
     return datetime.timestamp(datetime.now())
 
 """ This Class represents a Level of the game : it takes a list of objects (solidPlatform usually) and a position for the player that depends on time """
@@ -61,20 +62,6 @@ class GameLevel:
         self.optimise_data()
         self.progression = 0
 
-        """
-        from gravitationalBallShield import GravitationalBallShield
-        test_shield = GravitationalBallShield()
-        test_shield.link_world(self)
-        self.player.add_shield(test_shield)
-
-        ppos = self.player.get_position()
-        test_shield.set_position(ppos.x,ppos.y)
-        self.add_node(test_shield)
-        test_shield.generate()
-        #self.objects.append(test_shield)
-        self.player.attach_children(test_shield)
-        """
-
         #Get end platform locations to compute score
         self.end_platform_location = None
         self.compute_end_platform_location()
@@ -88,22 +75,28 @@ class GameLevel:
 
         self.background = Background(lpar)
 
+        #Link worlds
         for o in objects:
             o.link_world(self)
 
+        #End the initialisatio
         self.end_init()
 
     def end_init(self):
+        """ Call all end_init of objects in the world """
         for o in self.objects:
             o.end_init()
 
     def get_camera(self):
+        """ Returns the camera """
         return self.camera
 
     def get_objects(self):
+        """ Returns objects of the level """
         return self.objects
 
     def load_inventory(self,inv):
+        """ Load the inventory of campaign mode in the GameLevel """
         self.player.load_inventory(inv)
 
     def add_node(self,n):
@@ -197,9 +190,13 @@ class GameLevel:
     def main_loop(self,dt):
         #to = time.clock()
         """ Main loop of the game (controllers, physics, ...) """
+        #Animation of lose
         self.animation_end_game(dt)
+        #Computes opti objects
         obj_opti = set(self.get_objects_opti())
+        #Call controllers
         self.compute_controller(obj_opti,dt)
+        #Computation of physics
         self.physics_step(dt,obj_opti)
         #Camera set position (3/4)
         self.compute_camera_position(obj_opti)
@@ -210,12 +207,9 @@ class GameLevel:
         self.compute_score()
         #Win / Lose conditions
         self.compute_win_lose()
-        #print("fps",1/(time.clock()-to))
-
-        #To slow the game
-        #time.sleep(0.05)
 
     def animation_end_game(self,dt):
+        """ Waits a bit after the player dies before ending the game """
         if self.lost:
             if self.countdown > 0:
                 self.countdown -= dt
@@ -223,32 +217,33 @@ class GameLevel:
                 raise EndGame(False,self.player.score)
 
     def compute_camera_position(self,obj_opti):
+        """ Compute the camera position by trying to fix it on the platform below the player and smooth movements """
         prect = self.player.get_hit_box().get_world_rect()
+        #Search for the platform right below the player
         mini = None
         for o in obj_opti:
             if isinstance(o,SolidPlatform):
                 rect = o.get_hit_box().get_world_rect()
                 if rect.collidex(prect):
                     y = rect.get_min_y()
-                    if (mini is None and prect.get_min_y() < y or prect.get_min_y() < y < mini) and abs(prect.get_min_y()-y)<100:
+                    if (mini is None and prect.get_min_y() < y or prect.get_min_y() < y < mini) and abs(prect.get_min_y()-y)<100: #If it's too far it will forget it and fix on the player instead
                         mini = y
-        if mini is None:
+        if mini is None: #No platform -> fix on the player
             y = self.player.get_position().y
-        else:
+        else: #Fix on a platform
             y = mini
 
+        #Smooth moving of the camera
         old_percent = 95 #The percentage of the old value of self.camera_y_pos that will be kept
         self.camera_y_pos = self.camera_y_pos*old_percent/100+y*(100-old_percent)/100 #Computation of the new continous Y position of the camera
         self.camera.threeforth_on(Vector(self.player.get_position().x,self.camera_y_pos)) #Position of the camera (pos X of the player et pos Y previously computed)
 
 
     def compute_win_lose(self):
-        """ Compute win / lose conditions """
+        """ Compute win / lose conditions (only lose since the commit adding flags)"""
         (minx,maxx,miny,maxy) = self.get_size_level()
         if self.player.get_position().y > maxy or not(self.player.alive): #C'est inversé :)
             self.lose()
-        #if self.player.get_position().x > maxx:
-        #    self.win()
 
     def compute_score(self):
         """ Compute score """
@@ -309,9 +304,11 @@ class GameLevel:
         self.camera.link_world(self)
 
     def get_background(self):
+        """ Returns the background """
         return self.background
 
     def set_background(self,v):
+        """ Set the background """
         self.background = v
 
     def aff(self,dt,objects):
@@ -320,6 +317,7 @@ class GameLevel:
         pygame.display.flip()
 
 class EndGame(Exception):
+    """ End game exception -> Ends the GameLevel and returns informations to the campaign mode about score and issue of this game (win/lose) """
     def __init__(self,issue,score):
         self.issue = issue
         self.score = score

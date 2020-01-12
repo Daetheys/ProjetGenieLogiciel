@@ -20,6 +20,7 @@ class GravitationalBall(Projectile):
         gb.load()
 
     def load(self):
+        """ Load it shield """
         s = LaserBallShield()
         s.size = 10
         s.nb = 5
@@ -34,4 +35,5 @@ class GravitationalBallController(Controller):
         self.target = target
 
     def execute(self,event,pressed,dt):
+        """ Moves the projectile """
         self.move(dt)

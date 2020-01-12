@@ -47,9 +47,11 @@ class Hitbox:
         return rect
 
     def rescale(self,alpha):
+        """ Rescale the hitbox by alpha """
         self.rect.rescale(alpha)
 
     def collide(self,hb2):
+        """ Are self and [hb2] colliding ? """
         return self.get_world_rect().intersect(hb2.get_world_rect())
 
     def collide_sides(self,hb2):
@@ -84,6 +86,7 @@ class Hitbox:
                         return 0
 
     def remove_collide(self,hb2):
+        """ Applies rigid body physics to remove the collision """
         epsilon = 10**-5
         inter_rect = self.collide(hb2)
         if inter_rect is None:
