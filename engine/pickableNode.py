@@ -78,10 +78,13 @@ class DeadlyPotion(PickableNode):
     """ DeadlyPotion class -> kills you instantly"""
     def __init__(self,hb,name='deadlyPotion'):
         PickableNode.__init__(self,hb,name)
+        self.used = False
 
     def upon_colliding(self,o2):
-        o2.add_score(-1000)
-        o2.die()
+        if not self.used:
+            o2.add_score(-1000)
+            o2.die()
+            self.used = True
 
 
     def collide(self,o2,side,other_side):
@@ -120,3 +123,4 @@ class RotationWorld(PickableNode):
 
     def upon_colliding(self,o2):
         self.world.camera.set_rotation_effect()
+        o2.add_score(20000)

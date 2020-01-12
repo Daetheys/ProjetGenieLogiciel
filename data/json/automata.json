@@ -7,7 +7,7 @@
 "Rhombus": "Rhombus|8|0,s→1;1,s→2;2,s→3;3,s→4;4,s→5;5,s→6;6,s→7;7,s→0;|0=data/img/rhombus2.png,1=data/img/rhombus2.png,2=data/img/rhombus2.png,3=data/img/rhombus2.png,4=data/img/rhombus.png,5=data/img/rhombus.png,6=data/img/rhombus.png,7=data/img/rhombus.png,",
 "coin": "coin|6|0,s→1;1,s→2;2,s→3;3,s→4;4,s→5;5,s→0;|0=data/img/coin/6.png,1=data/img/coin/1.png,2=data/img/coin/2.png,3=data/img/coin/3.png,4=data/img/coin/4.png,5=data/img/coin/5.png,",
  "heart": "heart|5|0,s→1;1,s→2;2,s→3;3,s→4;4,s→0;|0=data/img/heart/5.png,1=data/img/heart/1.png,2=data/img/heart/2.png,3=data/img/heart/3.png,4=data/img/heart/4.png,",
- "rotateworld": "rotateworld|1|0,s→0;|0=data/img/default.png,",
+ "rotateworld": "rotateworld|1|0,s→0;|0=data/img/rhombus.png,",
 "red_flag": "red_flag|8|0,s→1;1,s→2;2,s→3;3,s→4;4,s→5;5,s→6;6,s→7;7,s→0;|0=data/img/flag/r1.png,1=data/img/flag/r2.png,2=data/img/flag/r3.png,3=data/img/flag/r4.png,4=data/img/flag/r5.png,5=data/img/flag/r6.png,6=data/img/flag/r7.png,7=data/img/flag/r8.png,",
 "blue_flag": "blue_flag|8|0,s→1;1,s→2;2,s→3;3,s→4;4,s→5;5,s→6;6,s→7;7,s→0;|0=data/img/flag/b1.png,1=data/img/flag/b2.png,2=data/img/flag/b3.png,3=data/img/flag/b4.png,4=data/img/flag/b5.png,5=data/img/flag/b6.png,6=data/img/flag/b7.png,7=data/img/flag/b8.png,",
 "spritename": "name|4|0,s→0;1,s→2;2,s→2;|0=data/img/rhombus2.png,1=data/img/arrow.png,2=data/img/void.png,",

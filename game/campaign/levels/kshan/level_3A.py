@@ -77,7 +77,7 @@ class Level_3A_kshan(Level):
         plat.append(Coin(Hitbox(Rect(dist+100,-42,10,10))))
         z4 = Zombie()
         z4.set_position(dist+110,-30)
-        rw = RotationWorld(Hitbox(Rect(dist+80,-52,10,10)))
+        rw = RotationWorld(Hitbox(Rect(dist+180,-65,10,10)))
         dist += 525
         for i in range(17):
             l = (i+5)*70%100 + 50
@@ -85,7 +85,7 @@ class Level_3A_kshan(Level):
             if i != 13 and i != 2:
                 plat.append(Coin(Hitbox(Rect(dist+20,-8,10,10))))
             else:
-                dp = DeadlyPotion(Hitbox(Rect(dist+20,-4,10,10)))
+                dp = DeadlyPotion(Hitbox(Rect(dist+25,-4,10,10)))
                 plat.append(dp)
             dist += l + 20
         flag = Flag(Hitbox(Rect(dist-20,-20,10,20)))
