@@ -31,7 +31,7 @@ def test_coherence_nb_beats(filename):
 	(_,tempos,nb_beats) = bpm_info(filename)
 	last_beat_nb = 0
 	for tempo in tempos:
-	    last_beat_nb += 1
+		last_beat_nb += 1
 
 	assert last_beat_nb == nb_beats
 
@@ -40,6 +40,6 @@ def test_coherence_duration(filename):
 	(first_beat,tempos,nb_beats) = bpm_info(filename)
 	total_time = first_beat
 	for tempo in tempos:
-	    total_time += 60/tempo
+		total_time += 60/tempo
 
-	assert error_margin(total_time,get_sound_duration(filename)) < 0.000005 #Allow a 5% margin error (last beat is not necessarily end of the song)
+	assert error_margin(total_time,get_sound_duration(filename)) < 0.05 #Allow a 5% margin error (last beat is not necessarily end of the song)
