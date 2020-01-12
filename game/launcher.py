@@ -204,9 +204,9 @@ class Launcher:
         #Create map fantasy
         mapfantasy = Map(self.dict_img["map_fantasy"],"map_fantasy",music="data/musics/Epilogue.ogg")
 
-        mp_1 = Level_Sequence("Midden Pass",840,60,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
-        mp_2 = Level_Sequence("Haelgard Forest",440,250,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
-        mp_3 = Level_Sequence("Moon Ruins",940,280,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
+        mp_1 = Level_Sequence("Midden Pass",self.options["DISPLAYSIZE_X"]*(21/40),self.options["DISPLAYSIZE_Y"]/10,self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
+        mp_2 = Level_Sequence("Haelgard Forest",self.options["DISPLAYSIZE_X"]*(11/40),self.options["DISPLAYSIZE_Y"]*(5/12),self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
+        mp_3 = Level_Sequence("Moon Ruins",self.options["DISPLAYSIZE_X"]*(47/80),self.options["DISPLAYSIZE_Y"]*(7/15),self.dict_img["img_point"],self.dict_img["img_pointf"],mapfantasy)
 
         mp_1.set_levels([Level_1_fantasy(self)])
         mp_2.set_levels([Level_2_fantasy(self)])
