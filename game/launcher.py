@@ -174,12 +174,12 @@ class Launcher:
         #creating the map "Kshan"
         mapkshan = Map(self.dict_img["map_kshan"],"map_kshan")
 
-        mp_1 = Level_Sequence("kshan_1",1100,200,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
-        mp_2 = Level_Sequence("kshan_2",1000,300,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
-        mp_3A = Level_Sequence("kshan_3A",800,400,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
-        mp_4A = Level_Sequence("kshan_4A",700,330,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
-        mp_3B = Level_Sequence("kshan_3B",1050,500,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
-        mp_4B = Level_Sequence("kshan_4B",900,600,self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_1 = Level_Sequence("kshan_1",self.options["DISPLAYSIZE_X"]*(1100/1366),self.options["DISPLAYSIZE_Y"]*(200/768),self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_2 = Level_Sequence("kshan_2",self.options["DISPLAYSIZE_X"]*(1000/1366),self.options["DISPLAYSIZE_Y"]*(300/768),self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_3A = Level_Sequence("kshan_3A",self.options["DISPLAYSIZE_X"]*(800/1366),self.options["DISPLAYSIZE_Y"]*(400/768),self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_4A = Level_Sequence("kshan_4A",self.options["DISPLAYSIZE_X"]*(700/1366),self.options["DISPLAYSIZE_Y"]*(330/768),self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_3B = Level_Sequence("kshan_3B",self.options["DISPLAYSIZE_X"]*(1050/1366),self.options["DISPLAYSIZE_Y"]*(500/768),self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
+        mp_4B = Level_Sequence("kshan_4B",self.options["DISPLAYSIZE_X"]*(900/1366),self.options["DISPLAYSIZE_Y"]*(600/768),self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
 
         mp_1.set_levels([Level_1_kshan(self)])
         mp_2.set_levels([Level_2_1_kshan(self),Level_2_2_kshan(self)])
