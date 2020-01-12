@@ -272,7 +272,7 @@ def reaction_b12(g):
     return cnt_underlying,quit_all
 
 def reaction_b32(g):
-    """language choice menu reaction button"""
+    """language choice menu reaction button : example of scrolling"""
     global BUTTON_LIST
     cnt = True
     cnt_underlying = True
@@ -319,22 +319,31 @@ def reaction_b34(g):
 
 
     b341 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b341",g.dict_img["img_buttonH"],text="Activate Fullscreen",react=reaction_b341)
-    b342 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b342",g.dict_img["img_buttonH"],text="1600x900",react=reaction_changeScreen(resx=1600,resy=900))
-    b343 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b343",g.dict_img["img_buttonH"],text="1280x720",react=reaction_changeScreen(resx=1280,resy=720))
-    b344 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*3,g.b1ymax+g.yoffset*3,g.dict_img["img_button"],"b344",g.dict_img["img_buttonH"],text="1366x768",react=reaction_changeScreen(resx=1366,resy=768))
-    b345 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*4,g.b1ymax+g.yoffset*4,g.dict_img["img_button"],"b345",g.dict_img["img_buttonH"],text="1920x1080",react=reaction_changeScreen(resx=1920,resy=1080))
-    b346 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*5,g.b1ymax+g.yoffset*5,g.dict_img["img_button"],"b346",g.dict_img["img_buttonH"],text="2560x1440",react=reaction_changeScreen(resx=2560,resy=1440))
+    b347 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b347",g.dict_img["img_buttonH"],text="Activate Parallax",react=reaction_b347)
 
+    b342 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b342",g.dict_img["img_buttonH"],text="1600x900",react=reaction_changeScreen(resx=1600,resy=900))
+    b343 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*3,g.b1ymax+g.yoffset*3,g.dict_img["img_button"],"b343",g.dict_img["img_buttonH"],text="1280x720",react=reaction_changeScreen(resx=1280,resy=720))
+    b344 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*4,g.b1ymax+g.yoffset*4,g.dict_img["img_button"],"b344",g.dict_img["img_buttonH"],text="1366x768",react=reaction_changeScreen(resx=1366,resy=768))
+    b345 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*5,g.b1ymax+g.yoffset*5,g.dict_img["img_button"],"b345",g.dict_img["img_buttonH"],text="1920x1080",react=reaction_changeScreen(resx=1920,resy=1080))
+    b346 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*6,g.b1ymax+g.yoffset*6,g.dict_img["img_button"],"b346",g.dict_img["img_buttonH"],text="2560x1440",react=reaction_changeScreen(resx=2560,resy=1440))
     if g.options["modeECRAN"]:#if is in FULLSCREEN
         b341.text = "Disable Fullscreen"
     else:
         b341.text = "Activate Fullscreen"
+    if g.options["parallax"]:
+        b347.text = "Disable Parallax"
+    else:
+        b347.text = "Activate Parallax"
     while cnt:
-        cnt,quit_all = g.menu_loop(scrolling=True,scrollist=[b341,b342,b343,b344,b345,b346])
+        cnt,quit_all = g.menu_loop(scrolling=True,scrollist=[b341,b347,b342,b343,b344,b345,b346])
         if g.options["modeECRAN"]:#if is in FULLSCREEN
             b341.text = "Disable Fullscreen"
         else:
             b341.text = "Activate Fullscreen"
+        if g.options["parallax"]:
+            b347.text = "Disable Parallax"
+        else:
+            b347.text = "Activate Parallax"
         if quit_all:
             cnt = False
             cnt_underlying = False
@@ -352,6 +361,14 @@ def reaction_b34(g):
 def reaction_b341(g):
     """ Toggle Fullscreen"""
     g.options["modeECRAN"] = FULLSCREEN - g.options["modeECRAN"]
+    return True,False
+
+def reaction_b347(g):
+    """ Toggle Parallax"""
+    if g.options["parallax"]:
+        g.options["parallax"] = False
+    else:
+        g.options["parallax"] = True
     return True,False
 
 def reaction_b321(g):

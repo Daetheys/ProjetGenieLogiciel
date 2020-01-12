@@ -78,7 +78,12 @@ class GameLevel:
         self.end_init()
 
     def load_bg(self,limgpar):
-        if not self.parallax: limgpar = [limgpar[1]] #will be improved later
+        if not self.parallax:
+            if len(limgpar) >= 6:
+                limgpar = [limgpar[0]]
+            elif len(limgpar) >= 2:
+                limgpar = [limgpar[1]]
+
         lpar = [] #List of Parallax
         for (name,index) in limgpar:
             p = Parallax(name,index) #Create parallax with given speed
