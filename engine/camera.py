@@ -13,6 +13,8 @@ class Camera:
         self.rect = Rect()
         self.fen = None #Undefined yet
         self.angle = 0
+        self.rotation_effect = False #Timed effect of rotation
+        self.remove_rotation_effect = True #Possibility to remove it
 
     def move(self,v):
         """ Translates the camera by vector v"""
@@ -99,8 +101,16 @@ class Camera:
         """ Add the rotation of [angle] to the camera """
         self.angle += angle
 
+    def set_rotation_effect(self):
+        self.rotation_effect = True
+        self.rotate(0.5)
+
     def rotate_view(self, angle):
         """ Rotates the current content of the window by "angle" degrees """
+        if self.rotation_effect:
+            self.rotate(0.5)
+            if self.angle%360 == 0 and self.remove_rotation_effect:
+                self.rotation_effect = False
         center = self.get_fen().get_rect().center
         rotated_fen = pygame.transform.rotate(self.get_fen(),angle)
         rotated_rect = rotated_fen.get_rect()

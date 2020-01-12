@@ -112,3 +112,11 @@ class Heart(PickableNode):
         o2.max_pv += 1
         o2.pv += 1
         o2.add_score(800)
+
+class RotationWorld(PickableNode):
+    """ Rotates the camera """
+    def __init__(self,hb,name='rotateworld'):
+        super().__init__(hb,name)
+
+    def upon_colliding(self,o2):
+        self.world.camera.set_rotation_effect()

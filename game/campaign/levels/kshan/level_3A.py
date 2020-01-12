@@ -77,6 +77,7 @@ class Level_3A_kshan(Level):
         plat.append(Coin(Hitbox(Rect(dist+100,-42,10,10))))
         z4 = Zombie()
         z4.set_position(dist+110,-30)
+        rw = RotationWorld(Hitbox(Rect(dist+80,-52,10,10)))
         dist += 525
         for i in range(17):
             l = (i+5)*70%100 + 50
@@ -96,5 +97,5 @@ class Level_3A_kshan(Level):
         z3 = Zombie()
         z3.set_position(525,-2)
         
-        return plat + [zombie,z2,z3,z4,flag] 
+        return plat + [zombie,z2,z3,z4,flag,rw] 
  
