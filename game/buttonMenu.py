@@ -71,7 +71,7 @@ def reaction_play(text,name):
             limgpar = get_cave_bg(g)
         gl.load_bg(limgpar)
 
-        
+
         g.launch_level(gl,text)
         """ ceci lance le level correspondant """
         g.launch_music(g.menu_music)#relance la musique du menu!
@@ -392,7 +392,7 @@ def reaction_b33(g):
 
 class ButtonMenu:
 
-    def __init__(self,g,xm,xM,ym,yM,img,name="Unnamed",picH=None,picD=None,text=None,react=no_reaction,add_to_list=True):
+    def __init__(self,g,xm,xM,ym,yM,img,name="Unnamed",picH=None,picD=None,text=None,react=no_reaction,add_to_list=True,colour=None):
         self.g = g#the game where the buttons will be displayed
         assert g.yoffset is not None
         self.xmin = xm
@@ -418,6 +418,7 @@ class ButtonMenu:
         self.visible = True
         self.was_active = True#manages activation ~ disappearance relations
         self.offsetX = 0
+        self.colour = colour
 
     def __repr__(self):
         return self.name + '= Button(%s<x<%s, %s<y<%s)\n' % (self.xmin, self.xmax, self.ymin, self.ymax)
@@ -472,9 +473,13 @@ class ButtonMenu:
                 elif self.t <= 0:
                     self.up = True
                 self.g.win().blit(picture,(self.xmin-self.offsetX,self.__displayedY(self.ymin)))
-            if self.activated:
-                T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,size=50)
+            if self.colour is None:
+                if self.activated:
+                    T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,size=50)
+                else:
+                    T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
+                    if lock: self.g.win().blit(self.g.dict_img["img_layer_lock"],(self.xmin-self.offsetX,self.__displayedY(self.ymin)))
             else:
-                T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,50,50,50,size=50)
-                if lock: self.g.win().blit(self.g.dict_img["img_layer_lock"],(self.xmin-self.offsetX,self.__displayedY(self.ymin)))
+                T(self.g.win(),self.g.dict_str_dflt(self.text),(self.xmin+self.xmax)/2,(self.__displayedY(self.ymin)+self.__displayedY(self.ymax))/2,self.colour[0],self.colour[1],self.colour[2],size=50)
+
             if refresh: g.flip()

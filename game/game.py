@@ -42,7 +42,7 @@ class Game(Launcher):
         """ creates some initially displayed buttons"""
         #Basic buttons
         self.titlebanner = ButtonMenu(self,self.options["DISPLAYSIZE_X"]//2-695,self.options["DISPLAYSIZE_X"]//2+656,25,173,self.dict_img["img_titlebanner"],"banner")
-        self.exit = ButtonMenu(self,10,5+25*len(self.dict_str["exit"]),self.options["DISPLAYSIZE_Y"]-50,self.options["DISPLAYSIZE_Y"],self.dict_img["img_void"],"exit",text=self.dict_str["exit"],react=reaction_exit)
+        self.exit = ButtonMenu(self,10,5+25*len(self.dict_str["exit"]),self.options["DISPLAYSIZE_Y"]-50,self.options["DISPLAYSIZE_Y"],self.dict_img["img_void"],"exit",text=self.dict_str["exit"],react=reaction_exit,colour=(250,250,250))
 
     def menu_loop(self,cnt = True,quit_all=False,background = None,scrolling=False,scrollist=[]):
         """
