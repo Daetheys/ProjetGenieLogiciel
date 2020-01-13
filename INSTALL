@@ -1,0 +1,2 @@
+pip3.7 install -r requirements.txt --user
+echo "Installation complete. Please type \"python3.7 init.py\" to start the game."

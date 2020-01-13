@@ -4,18 +4,18 @@
 ### Introduction
 
 This is a rythmic auto-scrolling game, where you can either play set levels (Campaign mode) or create your own levels out of the music of your choice (Free Play mode).
-
+Be sure to read the documenation in the ./doc folder. UML files give you an overview of the global stucture, whereas you can learn about performance in the eponymous pdf, and see detailed information about all modules, files, classes and functions in the ./doc/wiki folder
 
 ## Running the tests
 To run the game: ```python init.py``` or ```python3 init.py```
 To run the auto tests : ```xvfb-run -a --server-args="-screen 0 1600x900x24" pytest```
 
-Some libraries still have some problems :
+Some libraries have some problems :
 - Pygame cannot read some musical files on some computers
 - Librosa also crashes sometimes.
 
 ## Running the tests (In French)
-Pour lancer le jeu : ```python init.py``` ou ```python3 init.py```
+Pour lancer le jeu : ```python init.py``` ou ```python3 init.py``` ou ```python3.7 init.py``` 
 Pour lancer les tests : ```xvfb-run -a --server-args="-screen 0 1600x900x24" pytest```
 
 Il reste certains problèmes à régler avec les bibliothèques :
