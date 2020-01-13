@@ -4,7 +4,9 @@
 ### Introduction
 
 This is a rythmic auto-scrolling game, where you can either play set levels (Campaign mode) or create your own levels out of the music of your choice (Free Play mode).
-Be sure to read the documenation in the ./doc folder. UML files give you an overview of the global stucture, whereas you can learn about performance in the eponymous pdf, and see detailed information about all modules, files, classes and functions in the ./doc/wiki folder
+
+
+Be sure to read the documentation in the [./doc](./doc) folder. UML files give you an overview of the global stucture, whereas you can learn about performance in the [eponymous pdf](./doc/performances.pdf) (in French), and see detailed information about all modules, files, classes and functions in the [./doc/wiki](./doc/wiki) folder
 
 ## Running the tests
 To run the game: ```python init.py``` or ```python3 init.py```
