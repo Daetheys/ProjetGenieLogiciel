@@ -34,6 +34,7 @@ class Level_3B_kshan(Level):
             return t * 100 #*8 to be faster (but it doesn't match the music anymore !
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Poisonous Path"],parallax=g.options["parallax"],limgpar=get_cave_bg(g),music="data/musics/balade.mp3")
+        gl.load_inventory(g.player.get_inventory())
         
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait

@@ -63,9 +63,6 @@ class Level_4B_2_kshan(Level):
             plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
             dist += l + 20
         plat.append(SolidPlatform(Hitbox(Rect(dist,-6,500,24))))
-        if not self.get_accessed():
-            self.key = Key(Hitbox(Rect(dist+300,-38,4,4)),"key")
-        plat.append(self.key)
         plat.append(Coin(Hitbox(Rect(dist+100,-42,10,10))))
         z4 = Zombie()
         z4.set_position(dist+110,-30)

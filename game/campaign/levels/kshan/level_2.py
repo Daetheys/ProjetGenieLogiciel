@@ -39,6 +39,7 @@ class Level_2_kshan(Level):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
         gl = GameLevel(self.objects,player_pos,name=g.dict_str["Grave Forest"],parallax=g.options["parallax"],limgpar=get_demon_woods_bg(g),music="data/musics/cool.mp3")
+        gl.load_inventory(g.player.get_inventory())
         
         
         alive = g.launch_level(gl,None)
