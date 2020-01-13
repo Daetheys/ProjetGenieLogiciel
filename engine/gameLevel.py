@@ -25,7 +25,7 @@ def get_current_time():
 class GameLevel:
     """ Level of the game """
     def __init__(self,objects,player_pos,limgpar=[],name='',parallax=True,gravity=2100,music=None): #Gravity is set experimentally for jumps to 2100
-        """ The player spawn in (0,0) """
+        """ The player spawn in (0,0)  """
         assert objects != [] #Empty GameLevel
         self.camera = Camera() #Camera
         self.camera.set_position(Vector(-12,-12))
