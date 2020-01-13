@@ -20,6 +20,7 @@ class Level_4B_2_kshan(Level):
                 quit_all = g.dict_dial["dial_kshan4gf"].show(g)
                 if not "Midden Pass" in g.save["accessible"]:
                     g.save["accessible"].append("Midden Pass")
+                    g.world.get_map("map_fantasy").get_map_point("Midden Pass").set_accessible()
             else:
                 quit_all = g.dict_dial["dial_kshan4bf"].show(g)
         return quit_all

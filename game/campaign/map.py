@@ -17,6 +17,12 @@ class Map:
 
     def get_map_points(self):
         return self.__map_points
+        
+    def get_map_point(self,name):
+        """return the map_point with the name"""
+        for mp in self.__map_points:
+            if mp.name == name:
+                return mp
 
     def activation(self):
         self.__accessible = True
