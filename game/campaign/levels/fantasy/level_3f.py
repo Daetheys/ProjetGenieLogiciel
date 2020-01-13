@@ -58,7 +58,7 @@ class Level_3_fantasy(Level):
     def create_objects(self,g):
         base = 100*1.2
         plats = []
-        space = base*(1-0.83)
+        space = base*(1-0.85)
         height = 10
         ln = 100
         y = -5
@@ -94,18 +94,24 @@ class Level_3_fantasy(Level):
         plats.append(flag)
         #Fake platforms
         count_i = [1]*len(l)
-        for j in range(70):
+        for j in range(1200):
             index = rd(0,len(possible))
             (i,y) = possible[index]
-            if y > -step*5:
+            if y > -step*7:
                 continue
+            if y > -step*12 and rd(0,3)==1:
+                (i,y) = possible[-rd(1,15)]
+            elif i > len(l)-5 and y > -step*12:
+                for (i,y) in possible:
+                    if i > len(l)-5 and y < -step*12:
+                        break
             x = x_tab[i]
             length = length_tab[i]
             try:
                 done[str((x,y,length))]
             except KeyError:
                 count_i[i] += 1
-                if count_i[i] > 4:
+                if count_i[i] > 5:
                     continue
                 plat = SolidPlatform(Hitbox(Rect(x+space/2,y,length,height)),sps="platform_cave")
                 plats.append(plat)
@@ -118,7 +124,7 @@ class Level_3_fantasy(Level):
                     try:
                         done[(i+1,y-step)]
                     except:
-                        possible.append((i+1,y+step))
+                        possible.append((i+1,y-step))
                                 
         return plats
 
