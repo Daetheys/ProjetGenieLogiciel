@@ -9,17 +9,19 @@ class Level_4B_2_kshan(Level):
     def fun_dialogue(self,g,arg):
         if arg == "start":
             if self.get_finished():
-                quit_all = g.dict_dial["dial_kshan4Bdv"].show(g)
+                quit_all = g.dict_dial["dial_kshan4B_2dv"].show(g)
             else:
-                quit_all = g.dict_dial["dial_kshan4B"].show(g)
+                quit_all = g.dict_dial["dial_kshan4B_2"].show(g)
         elif arg == "bad_end":
-            quit_all = g.dict_dial["dial_kshan4Bbf"].show(g)
+            quit_all = g.dict_dial["dial_kshan4B_2bf"].show(g)
         elif arg == "good_end":
-            quit_all = g.dict_dial["dial_kshan4Bgf"].show(g)
+            quit_all = g.dict_dial["dial_kshan4B_2gf"].show(g)
             if g.player.is_in_inventory(KeyItem("key_A")):
-                quit_all = g.dict_dial["dial_kshan4f"].show(g)
+                quit_all = g.dict_dial["dial_kshan4gf"].show(g)
                 if not "Midden Pass" in g.save["accessible"]:
                     g.save["accessible"].append("Midden Pass")
+            else:
+                quit_all = g.dict_dial["dial_kshan4bf"].show(g)
         return quit_all
         
     def reward(self,g):
@@ -39,7 +41,7 @@ class Level_4B_2_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Key To Success"],parallax=g.options["parallax"],limgpar=get_demon_woods_bg(g),music="data/musics/Boss2.mp3")
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Grave Forest"],parallax=g.options["parallax"],limgpar=get_demon_woods_bg(g),music="data/musics/Boss2.mp3")
         gl.load_inventory(g.player.get_inventory())
         
         success = self.check_victory(g, g.launch_level(gl,None))

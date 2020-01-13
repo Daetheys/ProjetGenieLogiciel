@@ -29,9 +29,9 @@
 "dial011": "Je suis le PNJ test et ceci est un dialogue test.\n(Appuie sur la barre d'espace pour continuer)",
 "dial012": "J'ai compris.",
 "dial013": "L'objectif de ce jeu est d'atteindre le drapeau d'arrivé sans mourir.",
-"dial014": "La touche Z permet de sauter."
-"dial015": "Saute pour éviter les trous qui te tuent, attraper les pièces qui te permettre d'amasser plus de points et atteindre l'arrivée."
-"dial016": "Je pense que j'ai compris."
+"dial014": "La touche Z permet de sauter.",
+"dial015": "Saute pour éviter les trous qui te tuent, attraper les pièces qui te permettre d'amasser plus de points et atteindre l'arrivée.",
+"dial016": "Je pense que j'ai compris.",
 "dial017": "Attention, le niveau commence après ce message !",
 "dial011gf": "Et bravo ! Tu as gagné, tu es maintenant dans le dialogue de fin.",
 "dial012gf" : "C'était facile...",
@@ -57,14 +57,14 @@
 "dial04A1dv" : "Ta prochaine réplique sera : \"Des ennemis encore plus puissants t'attendent dans ce niveau.\" !",
 "dial04A2dv" : "Des ennemis encore plus puissants t'attendent dans c... QUOI ? Mais, mais... Comment ?",
 "dial03B1" : "Prends garde aventurier !\nSi par malheur tu venais à boire une des potions vertes de ce niveau, il ne te resterait plus que 10 secondes à vivre !",
-"dial03B2" : "À moins, bien sûr, que pendant ce laps de temps tu n'arrives à mettre la main sur un antidote..."
+"dial03B2" : "À moins, bien sûr, que pendant ce laps de temps tu n'arrives à mettre la main sur un antidote...",
 "dial03B1gf" : "Content de voir que tu t'en es sorti vivant.",
 "dial03B1bf" : "Un indice : ce fameux antidote est une potion bleue.",
 "dial03B1dv" : "J'espère que tu as bien retenu la couleur des potions...",
 "dial03B2dv" : "C'est facile, il suffit de les esquiver !",
 "dial03B3dv" : "Et sinon, je me souviens que vert = poison, bleu = antidote et rouge...",
-"dial03B4dv" : "LA MORT !"
-"dial03B5dv" : "Ah oui, je ferais mieux de le retenir."
+"dial03B4dv" : "LA MORT !",
+"dial03B5dv" : "Ah oui, je ferais mieux de le retenir.",
 "dial04B_11" : "Ceci est le dernier niveau de ce chemin. Un artefact magique y est gardé par des squelettes un peu particuliers.",
 "dial04B_11dv" : "Alors, as-tu trouvé cet artefact magique ?",
 "dial04B_11gf" : "Félicitations ! Tu as terminé tous les niveaux de ce chemin !",

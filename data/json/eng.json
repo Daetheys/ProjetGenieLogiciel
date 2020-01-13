@@ -30,9 +30,9 @@
 "dial011": "I'm a test NPC and this is a test dialogue.\n(Press \"space bar\" to proceed)",
 "dial012": "All right, buddy.",
 "dial013": "The objective of this game is to reach the arrival flag without dying.",
-"dial014": "Press the key \"Z\" to jump."
-"dial015": "Jump to avoid the holes that kill you, catch the coins that allow you to collect more points and reach the end of the level."
-"dial016": "I think I get it."
+"dial014": "Press the key \"Z\" to jump.",
+"dial015": "Jump to avoid the holes that kill you, catch the coins that allow you to collect more points and reach the end of the level.",
+"dial016": "I think I get it.",
 "dial017": "Watch out! The level is about to begin!",
 "dial011gf": "Hurray! You won, and you are now reading the end dialogue.",
 "dial012gf" : "So easy...",
@@ -58,14 +58,14 @@
 "dial04A1dv" : "Your next line is : \"Greater enemies await you on this level.\" !",
 "dial04A2dv" : "Greater enemies await you on th... What? But, but... How?",
 "dial03B1" : "Beware, adventurer!\nIf by misfortune you were to drink one of the green potions of this level, you would only have 10 seconds left to live!",
-"dial03B2" : "Unless, of course, in the meantime you can't get your hands on an antidote..."
+"dial03B2" : "Unless, of course, in the meantime you can't get your hands on an antidote...",
 "dial03B1gf" : "Glad to see you made it out alive.",
 "dial03B1bf" : "A clue: this famous antidote is a blue potion.",
 "dial03B1dv" : "I hope you remembered the color of the potions...",
 "dial03B2dv" : "It's easy, just dodge them!",
 "dial03B3dv" : "And if not, I remember that green = poison, blue = antidote and red =...",
-"dial03B4dv" : "DEATH!"
-"dial03B5dv" : "Oh, yeah, I'd better keep that in mind."
+"dial03B4dv" : "DEATH!",
+"dial03B5dv" : "Oh, yeah, I'd better keep that in mind.",
 "dial04B_11" : "This is the last level of this path. A magical artifact is kept there by some rather peculiar skeletons.",
 "dial04B_11dv" : "So, did you find that magical artifact?",
 "dial04B_11gf" : "Congratulations! You've completed all the levels on this path!",
@@ -75,7 +75,7 @@
 "dial04B_21bf" : "What a shame, you lost...\nAnd what's worst is that you also have to repeat the first part!",
 "dial04B_22bf" : "The creators of this game are really sadistic...",
 "dial04B_21dv" : "And without any surprise, the second part...",
-"dial041gf" : "Félicitations ! You finished the map kshan, so you can move on to the next map.",
+"dial041gf" : "Congratulations! You finished the map kshan, so you can move on to the next map.",
 "dial042gf" : "But beware, the fantasy world is much harder...\nGood luck adventurer!",
 "dial041bf" : "Congratulations! Completes the other path too to complete this map.",
  "dial1A01b" : "??? : Hey ! What are you doing here ?",

@@ -17,9 +17,11 @@ class Level_4A_kshan(Level):
         elif arg == "good_end":
             quit_all = g.dict_dial["dial_kshan4Agf"].show(g)
             if g.player.is_in_inventory(KeyItem("key_B")):
-                quit_all = g.dict_dial["dial_kshan4f"].show(g)   
+                quit_all = g.dict_dial["dial_kshan4gf"].show(g)   
                 if not "Midden Pass" in g.save["accessible"]:
-                    g.save["accessible"].append("Midden Pass")             
+                    g.save["accessible"].append("Midden Pass") 
+            else:
+                quit_all = g.dict_dial["dial_kshan4bf"].show(g)
         return quit_all
         
         
@@ -40,7 +42,7 @@ class Level_4A_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Evil Coins"],parallax=g.options["parallax"],limgpar=get_cave_bg(g),music="data/musics/Soliloquy.mp3")
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Twin Turrets"],parallax=g.options["parallax"],limgpar=get_cave_bg(g),music="data/musics/Soliloquy.mp3")
         gl.load_inventory(g.player.get_inventory())
         
         success = self.check_victory(g, g.launch_level(gl,None))

@@ -9,13 +9,13 @@ class Level_4B_1_kshan(Level):
     def fun_dialogue(self,g,arg):
         if arg == "start":
             if self.get_finished():
-                quit_all = g.dict_dial["dial_kshan3Bdv"].show(g)
+                quit_all = g.dict_dial["dial_kshan4B_1dv"].show(g)
             else:
-                quit_all = g.dict_dial["dial_kshan3B"].show(g)
+                quit_all = g.dict_dial["dial_kshan4B_1"].show(g)
         elif arg == "bad_end":
-            quit_all = g.dict_dial["dial_kshan3Bbf"].show(g)
+            quit_all = g.dict_dial["dial_kshan4B_1bf"].show(g)
         elif arg == "good_end":
-            quit_all = g.dict_dial["dial_kshan3Bgf"].show(g)
+            quit_all = g.dict_dial["dial_kshan4B_1gf"].show(g)
         return quit_all
         
     def check_victory(self,g,arg):

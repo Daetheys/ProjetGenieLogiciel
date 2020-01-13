@@ -9,13 +9,15 @@ class Level_2_kshan(Level):
     def fun_dialogue(self,g,arg):
         if arg == "start":
             if self.get_accessed():
-                quit_all = g.dict_dial["dial_kshan2_2dv"].show(g)
+                quit_all = g.dict_dial["dial_kshan2dv"].show(g)
             else:
-                quit_all = g.dict_dial["dial_kshan2_2"].show(g)
-        elif arg == "bad_end":
-            quit_all = g.dict_dial["dial_kshan2_2bf"].show(g)
+                quit_all = g.dict_dial["dial_kshan2"].show(g)
+        elif arg == "bad_end1":
+            quit_all = g.dict_dial["dial_kshan2bf1"].show(g)
+        elif arg == "bad_end2":
+            quit_all = g.dict_dial["dial_kshan2bf2"].show(g)
         elif arg == "good_end":
-            quit_all = g.dict_dial["dial_kshan2_2gf"].show(g)
+            quit_all = g.dict_dial["dial_kshan2gf"].show(g)
         return quit_all
         
     def reward(self,g):
@@ -38,7 +40,7 @@ class Level_2_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Grave Forest"],parallax=g.options["parallax"],limgpar=get_demon_woods_bg(g),music="data/musics/cool.mp3")
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Key To Success"],parallax=g.options["parallax"],limgpar=get_demon_woods_bg(g),music="data/musics/cool.mp3")
         gl.load_inventory(g.player.get_inventory())
         
         
@@ -52,13 +54,13 @@ class Level_2_kshan(Level):
             self.reward(g)
         else:
             if alive:
-                self.fun_dialogue(g,"bad_end")
+                self.fun_dialogue(g,"bad_end2")
             else:
                 if self.key.taken and not self.key.possessed:
                     g.player.set_inventory({KeyItem(self.key.sps_name):0})
                     self.key.taken = False
                     self.key.unvanish(self.key.sps_name)
-                self.fun_dialogue(g,"bad_end")
+                self.fun_dialogue(g,"bad_end1")
         
         return success
     
