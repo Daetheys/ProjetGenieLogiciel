@@ -65,8 +65,6 @@ class Level_2_fantasy(Level):
         x = -10
         y = -5
         plats = [SolidPlatform(Hitbox(Rect(x,y,base+length+10,height)),sps="platform")]
-        flag = Flag(Hitbox(Rect(x+length+100-10,y-20,10,20)))
-        plats.append(flag)
         nx = 2*base
         rd = PseudoRd(23,47,1024,7)
         s = 0

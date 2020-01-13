@@ -58,16 +58,15 @@ class Level_3_fantasy(Level):
     def create_objects(self,g):
         base = 100*1.2
         plats = []
-        space = base*(1-0.87)
+        space = base*(1-0.83)
         height = 10
         ln = 100
         y = -5
         y1 = y
         plats = [SolidPlatform(Hitbox(Rect(-40,y,2*base+10,height)),sps="platform_cave")]
-        plats.append(Flag(Hitbox(Rect(-40+2*base-10,y1-20,10,20))))
         nx = 2*base-40
         rd = PseudoRd(23,37,1024,7)
-        step = 30
+        step = 32
         l = [(-step,2),(-step,2),(-step,2),(-step,3),(-step,4)]+\
             [(-step,3),(-step,2),(-step,2),(-step,2),(-step,3),(-step,4)]+\
             [(-step,4),(step,2),(-step,2),(-step,2),(step,2),(-step,2),(step,1),(-step,2),(step,1)]+\
@@ -87,7 +86,7 @@ class Level_3_fantasy(Level):
             if dy > 0:
                 possible.append((i,y1-2*step))
             else:
-                possible.append((i,y1+step))
+                possible.append((i,y1+2*step))
             done[str((i,y1))] = True
             plats.append(plat)
             nx += base*length
