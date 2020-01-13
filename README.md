@@ -9,6 +9,7 @@ This is a rythmic auto-scrolling game, where you can either play set levels (Cam
 Be sure to read the documentation in the [./doc](./doc) folder. UML files give you an overview of the global stucture, whereas you can learn about performance in the [eponymous pdf](./doc/performances.pdf) (in French), and see detailed information about all modules, files, classes and functions in the [./doc/wiki](./doc/wiki) folder
 
 ## Running the tests
+NOTE : We've changed our import way just before the second released to make it simpler and more efficient. However it was obvious it would break all tests because of the old import structure! That's why we've pushed every changed in the engine BEFORE that to be sure everything will work perfectly even without tests until the release.
 To run the game: ```python init.py``` or ```python3 init.py```
 To run the auto tests : ```xvfb-run -a --server-args="-screen 0 1600x900x24" pytest```
 
@@ -17,6 +18,7 @@ Some libraries have some problems :
 - Librosa also crashes sometimes.
 
 ## Running the tests (In French)
+NOTE : Nous avons changé notre façon d'importer les fichiers internes au projet juste avant la deuxieme release pour que cette façon d'importer soit plus propre et plus simple. Cependant il était prévu que cette manipulation allait casser tous les tests ! C'est pourquoi nous avons push toutes les modifications de l'engine AVANT cette manipulation pour être certain que tout fonctionnerait parfaitement jusqu'à la release.
 Pour lancer le jeu : ```python init.py``` ou ```python3 init.py``` ou ```python3.7 init.py``` 
 Pour lancer les tests : ```xvfb-run -a --server-args="-screen 0 1600x900x24" pytest```
 
