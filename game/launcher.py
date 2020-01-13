@@ -70,7 +70,7 @@ class Launcher:
                 opt = json.load(file)
             if len(self.options) < len(opt):
                 self.options = opt
-            copy2("data/json/default_options.json","data/json/options.json")
+            #copy2("data/json/default_options.json","data/json/options.json")
         except FileNotFoundError:
             with open("data/json/default_options.json","r") as file:
                 self.options = json.load(file)
