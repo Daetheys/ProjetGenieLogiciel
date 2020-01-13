@@ -160,9 +160,6 @@ class Game(Launcher):
 
         self.flip()
 
-        #Launch the music of the map
-        self.launch_music(map.music)
-
         """ event catching zone """
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:

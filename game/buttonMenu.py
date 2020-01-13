@@ -227,13 +227,14 @@ def reaction_b11(g):
 
     bg =  pygame.transform.smoothscale(g.world.get_map("map_kshan").image, (g.options["DISPLAYSIZE_X"],g.options["DISPLAYSIZE_Y"]))
 
-
+    g.launch_music(g.world.get_map("map_kshan").music)
     while cnt:
         cnt,quit_all = g.map_loop(bg=bg,map=g.world.get_map("map_kshan"))
         if quit_all:
             cnt = False
             cnt_underlying = False
 
+    g.launch_music(g.menu_music)
     b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text="campaign_kshan",react=reaction_b11)
     b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy",react=reaction_b12)
     b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_future")
@@ -256,6 +257,7 @@ def reaction_b12(g):
 
     bg =  pygame.transform.smoothscale(g.world.get_map("map_fantasy").image, (g.options["DISPLAYSIZE_X"],g.options["DISPLAYSIZE_Y"]))
 
+    g.launch_music(g.world.get_map("map_fantasy").music)
 
     while cnt:
         cnt,quit_all = g.map_loop(bg=bg,map=g.world.get_map("map_fantasy"))
@@ -264,7 +266,7 @@ def reaction_b12(g):
             cnt_underlying = False
 
     suppress_buttons(2)#titlebanner,exit
-
+    g.launch_music(g.menu_music)
     b11 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin,g.b1ymax,g.dict_img["img_button"],"b11",g.dict_img["img_buttonH"],text="campaign_kshan",react=reaction_b11)
     b12 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset,g.b1ymax+g.yoffset,g.dict_img["img_button"],"b12",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_fantasy",react=reaction_b12)
     b13 = ButtonMenu(g,g.b1xmin,g.b1xmax,g.b1ymin+g.yoffset*2,g.b1ymax+g.yoffset*2,g.dict_img["img_button"],"b13",g.dict_img["img_buttonH"],g.dict_img["img_buttonD"],text="campaign_future")
