@@ -18,7 +18,6 @@ class PickableShield(PickableNode):
         #side : 0-> haut (aiguilles d'une montre)
         if isinstance(o2,Player):
             if not(self.taken):
-                print("---",self.world)
                 self.shield.link_world(self.world)
                 o2.add_shield(self.shield)
                 self.taken = True

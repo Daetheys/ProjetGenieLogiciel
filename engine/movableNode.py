@@ -97,8 +97,8 @@ class MovableNode(SpriteNode):
         """ Moves according to it speed and to the small given time dt. It movement may be cut so that the physics works well """
         v = self.get_speed()*dt
         if v.len() > MAXMOVE:
-            if SHOWCUT:
-                print("CUT")
+            #if SHOWCUT:
+            #print("CUT")
             v = self.get_speed().normalise()*MAXMOVE
         #print("translate",self,v)
         self.translate(v)
