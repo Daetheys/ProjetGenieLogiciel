@@ -50,7 +50,7 @@ class Level_4B_2_kshan(Level):
             self.set_finished()
             self.reward(g)
         else:
-            self.fun_dialogue(g,"bad_end_1")
+            self.fun_dialogue(g,"bad_end")
         
         return success
     
