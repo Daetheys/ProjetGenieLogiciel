@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module engine.rect</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="engine.html"><font color="#ffffff">engine</font></a>.rect</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/urem/project/ProjetGenieLogiciel/engine/rect.py">/home/urem/project/ProjetGenieLogiciel/engine/rect.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="copy.html">copy</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="pygame.html">pygame</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="engine.rect.html#Rect">Rect</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Rect">class <strong>Rect</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Rect">Rect</a>(left=0,&nbsp;top=0,&nbsp;width=0,&nbsp;height=0)<br>
+&nbsp;<br>
+The&nbsp;Y&nbsp;axis&nbsp;is&nbsp;directed&nbsp;to&nbsp;bottom<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Rect-__eq__"><strong>__eq__</strong></a>(self, rect)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Rect-__init__"><strong>__init__</strong></a>(self, left=0, top=0, width=0, height=0)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Rect-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Rect-center"><strong>center</strong></a>(self)</dt><dd><tt>Centers&nbsp;the&nbsp;rectangle&nbsp;on&nbsp;(0,0)</tt></dd></dl>
+
+<dl><dt><a name="Rect-collide_poly"><strong>collide_poly</strong></a>(self, poly)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;self,&nbsp;collides&nbsp;with&nbsp;poly</tt></dd></dl>
+
+<dl><dt><a name="Rect-collidex"><strong>collidex</strong></a>(self, orect)</dt><dd><tt>Returns&nbsp;whether&nbsp;self&nbsp;and&nbsp;orect&nbsp;projections&nbsp;on&nbsp;X&nbsp;axis&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="Rect-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;this&nbsp;vector</tt></dd></dl>
+
+<dl><dt><a name="Rect-dist"><strong>dist</strong></a>(self, orect)</dt><dd><tt>Returns&nbsp;the&nbsp;distance&nbsp;between&nbsp;centers&nbsp;of&nbsp;self&nbsp;and&nbsp;[orect]</tt></dd></dl>
+
+<dl><dt><a name="Rect-get_coord"><strong>get_coord</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;4-tuple&nbsp;of&nbsp;(posx,posy,width,height)</tt></dd></dl>
+
+<dl><dt><a name="Rect-get_dimension"><strong>get_dimension</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Rect-get_max_x"><strong>get_max_x</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Rect-get_max_y"><strong>get_max_y</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Rect-get_min_x"><strong>get_min_x</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Rect-get_min_y"><strong>get_min_y</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Rect-get_points"><strong>get_points</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;points</tt></dd></dl>
+
+<dl><dt><a name="Rect-get_poly"><strong>get_poly</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;polygon&nbsp;of&nbsp;the&nbsp;<a href="#Rect">Rect</a>&nbsp;(cf&nbsp;Polygon)</tt></dd></dl>
+
+<dl><dt><a name="Rect-get_position"><strong>get_position</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Rect-get_tuple"><strong>get_tuple</strong></a>(self)</dt><dd><tt>Return&nbsp;a&nbsp;4-tuple&nbsp;of&nbsp;(posix,posiy,posfx,posfy)</tt></dd></dl>
+
+<dl><dt><a name="Rect-init_from_vectors"><strong>init_from_vectors</strong></a>(self, position, dimension)</dt><dd><tt>Initialise&nbsp;from&nbsp;vector&nbsp;pos&nbsp;and&nbsp;dim</tt></dd></dl>
+
+<dl><dt><a name="Rect-intersect"><strong>intersect</strong></a>(self, r2)</dt><dd><tt>Returns&nbsp;the&nbsp;intersection&nbsp;<a href="#Rect">Rect</a>&nbsp;or&nbsp;None&nbsp;f&nbsp;their&nbsp;is&nbsp;none</tt></dd></dl>
+
+<dl><dt><a name="Rect-nearest_wall"><strong>nearest_wall</strong></a>(self, point)</dt><dd><tt>Returns&nbsp;the&nbsp;nearest&nbsp;wall&nbsp;of&nbsp;point&nbsp;(index,distance)&nbsp;with&nbsp;index&nbsp;=&nbsp;0&nbsp;for&nbsp;top,&nbsp;1,&nbsp;rigth;&nbsp;2,bot;&nbsp;3,left</tt></dd></dl>
+
+<dl><dt><a name="Rect-point_in"><strong>point_in</strong></a>(self, v)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;v&nbsp;is&nbsp;in&nbsp;this&nbsp;rectangle</tt></dd></dl>
+
+<dl><dt><a name="Rect-radius"><strong>radius</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;distance&nbsp;between&nbsp;the&nbsp;center&nbsp;of&nbsp;self&nbsp;and&nbsp;a&nbsp;corner</tt></dd></dl>
+
+<dl><dt><a name="Rect-rescale"><strong>rescale</strong></a>(self, alpha)</dt><dd><tt>Alias&nbsp;of&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Rect-scale"><strong>scale</strong></a>(self, scale)</dt><dd><tt>Scales&nbsp;self&nbsp;by&nbsp;[scale]</tt></dd></dl>
+
+<dl><dt><a name="Rect-scale2"><strong>scale2</strong></a>(self, scale)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;scalled&nbsp;of&nbsp;self</tt></dd></dl>
+
+<dl><dt><a name="Rect-set_dimension"><strong>set_dimension</strong></a>(self, dim)</dt></dl>
+
+<dl><dt><a name="Rect-set_position"><strong>set_position</strong></a>(self, pos)</dt></dl>
+
+<dl><dt><a name="Rect-to_pygame"><strong>to_pygame</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Rect-to_tuples"><strong>to_tuples</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rect&nbsp;as&nbsp;a&nbsp;list&nbsp;of&nbsp;tuples</tt></dd></dl>
+
+<dl><dt><a name="Rect-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Translate&nbsp;with&nbsp;side&nbsp;effect</tt></dd></dl>
+
+<dl><dt><a name="Rect-translate2"><strong>translate2</strong></a>(self, v)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

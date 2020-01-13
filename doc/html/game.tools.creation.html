@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module game.tools.creation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="game.html"><font color="#ffffff">game</font></a>.<a href="game.tools.html"><font color="#ffffff">tools</font></a>.creation</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/urem/project/ProjetGenieLogiciel/game/tools/creation.py">/home/urem/project/ProjetGenieLogiciel/game/tools/creation.py</a></font></td></tr></table>
+    <p><tt>This&nbsp;file&nbsp;is&nbsp;mostly&nbsp;used&nbsp;to&nbsp;create&nbsp;the&nbsp;appropriate&nbsp;dictionaries.<br>
+&nbsp;<br>
+&nbsp;<br>
+Here&nbsp;is&nbsp;the&nbsp;format&nbsp;of&nbsp;the&nbsp;json&nbsp;files&nbsp;:<br>
+&nbsp;<br>
+img&nbsp;:&nbsp;{name(str):&nbsp;path(str)}<br>
+characters&nbsp;:&nbsp;{name(str):&nbsp;[image(str),&nbsp;color_talk_r(int),&nbsp;color_talk_g(int),&nbsp;color_talk_b(int),&nbsp;inventory]}<br>
+dialogue&nbsp;:&nbsp;{name(str):&nbsp;[[name_bubble(str),&nbsp;character(str),&nbsp;image(str),&nbsp;x(int),&nbsp;y(int),&nbsp;is_last(bool)]]}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;{name(str):&nbsp;[Dialogue_Bubble(list)]}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;{name(str):&nbsp;talk(list)}<br>
+items&nbsp;:&nbsp;{name(str):&nbsp;[type(str),&nbsp;args*]}</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="game.html">game</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-create_bubble"><strong>create_bubble</strong></a>(list, dict_str, dict_char, dict_img)</dt><dd><tt>creates&nbsp;a&nbsp;list&nbsp;of&nbsp;bubble,&nbsp;usable&nbsp;by&nbsp;a&nbsp;DialogueBubble</tt></dd></dl>
+ <dl><dt><a name="-create_char"><strong>create_char</strong></a>(dict, dict_img)</dt><dd><tt>creates&nbsp;a&nbsp;character&nbsp;from&nbsp;an&nbsp;section&nbsp;of&nbsp;the&nbsp;dictionnary</tt></dd></dl>
+ <dl><dt><a name="-create_dial"><strong>create_dial</strong></a>(dict, dict_str, dict_char, dict_img)</dt><dd><tt>function&nbsp;used&nbsp;to&nbsp;create&nbsp;the&nbsp;dict&nbsp;of&nbsp;dialogues</tt></dd></dl>
+ <dl><dt><a name="-create_img"><strong>create_img</strong></a>(dct)</dt><dd><tt>creates&nbsp;the&nbsp;full&nbsp;dictionnary&nbsp;of&nbsp;pictures&nbsp;in&nbsp;dct.&nbsp;Used&nbsp;with&nbsp;dct_img.</tt></dd></dl>
+ <dl><dt><a name="-create_item"><strong>create_item</strong></a>(dict)</dt><dd><tt>creates&nbsp;an&nbsp;object&nbsp;of&nbsp;a&nbsp;subclass&nbsp;of&nbsp;the&nbsp;class&nbsp;Item</tt></dd></dl>
+ <dl><dt><a name="-load"><strong>load</strong></a> = load_extended(...)</dt><dd><tt>pygame&nbsp;module&nbsp;for&nbsp;image&nbsp;transfer</tt></dd></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module game.launcher</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="game.html"><font color="#ffffff">game</font></a>.launcher</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/urem/project/ProjetGenieLogiciel/game/launcher.py">/home/urem/project/ProjetGenieLogiciel/game/launcher.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="game.html">game</a><br>
+</td><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="pygame.html">pygame</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="game.launcher.html#Launcher">Launcher</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Launcher">class <strong>Launcher</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>The&nbsp;<a href="#Launcher">Launcher</a>&nbsp;class&nbsp;initializes&nbsp;as&nbsp;many&nbsp;things&nbsp;as&nbsp;possible.&nbsp;Notably:<br>
+-&nbsp;the&nbsp;window&nbsp;(computes&nbsp;the&nbsp;biggest&nbsp;possible&nbsp;resolution,&nbsp;defines&nbsp;flip..)<br>
+-&nbsp;the&nbsp;images&nbsp;(creating&nbsp;a&nbsp;dictionary)<br>
+-&nbsp;the&nbsp;constants&nbsp;(used&nbsp;to&nbsp;print&nbsp;buttons&nbsp;in&nbsp;a&nbsp;pretty&nbsp;way)<br>
+-&nbsp;the&nbsp;musics&nbsp;(initializing&nbsp;the&nbsp;pygame&nbsp;player,&nbsp;etc&nbsp;..)<br>
+-&nbsp;the&nbsp;items&nbsp;(creating&nbsp;a&nbsp;dictionary)<br>
+-&nbsp;the&nbsp;characters&nbsp;(creating&nbsp;a&nbsp;dictionary)<br>
+-&nbsp;the&nbsp;dialogues&nbsp;(creating&nbsp;a&nbsp;dictionary)<br>
+-&nbsp;the&nbsp;strings&nbsp;of&nbsp;all&nbsp;languages&nbsp;(creating&nbsp;several&nbsp;dictionaries)<br>
+-&nbsp;the&nbsp;world&nbsp;(creating&nbsp;all&nbsp;maps,&nbsp;levels,&nbsp;etc.)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Launcher-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Launcher-create_dialogues"><strong>create_dialogues</strong></a>(self)</dt><dd><tt>creates&nbsp;the&nbsp;dictionary&nbsp;dict_dial&nbsp;,&nbsp;from&nbsp;dialogue.json</tt></dd></dl>
+
+<dl><dt><a name="Launcher-create_items"><strong>create_items</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Launcher-create_world"><strong>create_world</strong></a>(self)</dt><dd><tt>creates&nbsp;the&nbsp;World&nbsp;<a href="builtins.html#object">object</a>,&nbsp;encapsulating&nbsp;all&nbsp;maps.<br>
+Can&nbsp;be&nbsp;used&nbsp;on&nbsp;the&nbsp;Campaign&nbsp;menu</tt></dd></dl>
+
+<dl><dt><a name="Launcher-dict_str_dflt"><strong>dict_str_dflt</strong></a>(self, char)</dt><dd><tt>Try&nbsp;to&nbsp;find&nbsp;if&nbsp;dict_str&nbsp;contains&nbsp;a&nbsp;value&nbsp;for&nbsp;the&nbsp;key&nbsp;'char'.<br>
+If&nbsp;not,&nbsp;it&nbsp;&nbsp;returns&nbsp;the&nbsp;char&nbsp;value&nbsp;itself.<br>
+This&nbsp;function&nbsp;is&nbsp;to&nbsp;be&nbsp;used&nbsp;with&nbsp;numbers,&nbsp;and&nbsp;strings&nbsp;when&nbsp;we&nbsp;do&nbsp;not<br>
+know&nbsp;at&nbsp;compile&nbsp;time&nbsp;whether&nbsp;they&nbsp;will&nbsp;be&nbsp;in&nbsp;dict_str&nbsp;or&nbsp;not.</tt></dd></dl>
+
+<dl><dt><a name="Launcher-flip"><strong>flip</strong></a>(self, txt=None)</dt><dd><tt>updates&nbsp;the&nbsp;current&nbsp;screen&nbsp;with&nbsp;current&nbsp;self.<a href="#Launcher-win">win</a>()</tt></dd></dl>
+
+<dl><dt><a name="Launcher-init_characters"><strong>init_characters</strong></a>(self)</dt><dd><tt>creates&nbsp;the&nbsp;dictionary&nbsp;dict_char&nbsp;,&nbsp;from&nbsp;characters.json,<br>
+and&nbsp;initializes&nbsp;self.<strong>player</strong></tt></dd></dl>
+
+<dl><dt><a name="Launcher-init_constants"><strong>init_constants</strong></a>(self)</dt><dd><tt>this&nbsp;function&nbsp;initializes&nbsp;some&nbsp;constants</tt></dd></dl>
+
+<dl><dt><a name="Launcher-init_images"><strong>init_images</strong></a>(self)</dt><dd><tt>loads&nbsp;all&nbsp;images&nbsp;into&nbsp;self.<strong>dict_img</strong>,&nbsp;blits&nbsp;the&nbsp;first&nbsp;background</tt></dd></dl>
+
+<dl><dt><a name="Launcher-init_music"><strong>init_music</strong></a>(self)</dt><dd><tt>initializes&nbsp;musical&nbsp;operations<br>
+Music&nbsp;is&nbsp;currently&nbsp;enabled.<br>
+A&nbsp;pulseaudio&nbsp;sink&nbsp;&nbsp;has&nbsp;been&nbsp;added&nbsp;to&nbsp;xvfb.&nbsp;(done)</tt></dd></dl>
+
+<dl><dt><a name="Launcher-init_window"><strong>init_window</strong></a>(self)</dt><dd><tt>initializes&nbsp;a&nbsp;window,&nbsp;pygame&nbsp;graphics,&nbsp;and&nbsp;options<br>
+returns&nbsp;the&nbsp;display&nbsp;window</tt></dd></dl>
+
+<dl><dt><a name="Launcher-launch_music"><strong>launch_music</strong></a>(self, music)</dt><dd><tt>launches&nbsp;the&nbsp;music</tt></dd></dl>
+
+<dl><dt><a name="Launcher-load_languages"><strong>load_languages</strong></a>(self, fst=False)</dt><dd><tt>this&nbsp;function&nbsp;loads&nbsp;all&nbsp;avaliable&nbsp;languages&nbsp;in&nbsp;self.<strong>dict_str</strong></tt></dd></dl>
+
+<dl><dt><a name="Launcher-load_level_state"><strong>load_level_state</strong></a>(self, set_fun, L, state, campaign_name)</dt><dd><tt>loads&nbsp;the&nbsp;state&nbsp;of&nbsp;a&nbsp;level&nbsp;in&nbsp;the&nbsp;world</tt></dd></dl>
+
+<dl><dt><a name="Launcher-load_savefile"><strong>load_savefile</strong></a>(self)</dt><dd><tt>loads&nbsp;all&nbsp;the&nbsp;saved&nbsp;data</tt></dd></dl>
+
+<dl><dt><a name="Launcher-saving"><strong>saving</strong></a>(self)</dt><dd><tt>saves&nbsp;the&nbsp;game&nbsp;in&nbsp;the&nbsp;json&nbsp;file</tt></dd></dl>
+
+<dl><dt><a name="Launcher-score"><strong>score</strong></a>(self, name)</dt><dd><tt>Try&nbsp;to&nbsp;find&nbsp;if&nbsp;dict_score&nbsp;contains&nbsp;a&nbsp;value&nbsp;for&nbsp;the&nbsp;key&nbsp;'name'.<br>
+If&nbsp;not,&nbsp;it&nbsp;&nbsp;returns&nbsp;[].<br>
+This&nbsp;function&nbsp;is&nbsp;to&nbsp;be&nbsp;used&nbsp;with&nbsp;name&nbsp;of&nbsp;levels</tt></dd></dl>
+
+<dl><dt><a name="Launcher-update_dialogues"><strong>update_dialogues</strong></a>(self)</dt><dd><tt>this&nbsp;is&nbsp;now&nbsp;an&nbsp;alias&nbsp;for&nbsp;create_dialogues,&nbsp;as&nbsp;map_points&nbsp;have&nbsp;currently&nbsp;no&nbsp;dialogues</tt></dd></dl>
+
+<dl><dt><a name="Launcher-win"><strong>win</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;window&nbsp;where&nbsp;the&nbsp;game&nbsp;is&nbsp;displayed</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

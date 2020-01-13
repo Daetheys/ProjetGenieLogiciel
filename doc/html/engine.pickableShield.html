@@ -1,0 +1,643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module engine.pickableShield</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="engine.html"><font color="#ffffff">engine</font></a>.pickableShield</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/urem/project/ProjetGenieLogiciel/engine/pickableShield.py">/home/urem/project/ProjetGenieLogiciel/engine/pickableShield.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="engine.pickableNode.html#PickableNode">engine.pickableNode.PickableNode</a>(<a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="engine.pickableShield.html#PickableShield">PickableShield</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="engine.pickableShield.html#GravitationalPickableShield">GravitationalPickableShield</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.pickableShield.html#LaserPickableShield">LaserPickableShield</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="GravitationalPickableShield">class <strong>GravitationalPickableShield</strong></a>(<a href="engine.pickableShield.html#PickableShield">PickableShield</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;pickable&nbsp;node&nbsp;which&nbsp;gives&nbsp;a&nbsp;shield<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableShield.html#GravitationalPickableShield">GravitationalPickableShield</a></dd>
+<dd><a href="engine.pickableShield.html#PickableShield">PickableShield</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">engine.pickableNode.PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="GravitationalPickableShield-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableShield.html#PickableShield">PickableShield</a>:<br>
+<dl><dt><a name="GravitationalPickableShield-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>When&nbsp;hit&nbsp;the&nbsp;player&nbsp;gives&nbsp;it&nbsp;a&nbsp;shield</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">engine.pickableNode.PickableNode</a>:<br>
+<dl><dt><a name="GravitationalPickableShield-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="GravitationalPickableShield-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="GravitationalPickableShield-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="GravitationalPickableShield-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="GravitationalPickableShield-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="GravitationalPickableShield-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="GravitationalPickableShield-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="GravitationalPickableShield-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="LaserPickableShield">class <strong>LaserPickableShield</strong></a>(<a href="engine.pickableShield.html#PickableShield">PickableShield</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;pickable&nbsp;node&nbsp;which&nbsp;gives&nbsp;a&nbsp;shield<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableShield.html#LaserPickableShield">LaserPickableShield</a></dd>
+<dd><a href="engine.pickableShield.html#PickableShield">PickableShield</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">engine.pickableNode.PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="LaserPickableShield-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableShield.html#PickableShield">PickableShield</a>:<br>
+<dl><dt><a name="LaserPickableShield-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>When&nbsp;hit&nbsp;the&nbsp;player&nbsp;gives&nbsp;it&nbsp;a&nbsp;shield</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">engine.pickableNode.PickableNode</a>:<br>
+<dl><dt><a name="LaserPickableShield-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="LaserPickableShield-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="LaserPickableShield-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="LaserPickableShield-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="LaserPickableShield-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="LaserPickableShield-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="LaserPickableShield-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="LaserPickableShield-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="LaserPickableShield-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PickableShield">class <strong>PickableShield</strong></a>(<a href="engine.pickableNode.html#PickableNode">engine.pickableNode.PickableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#PickableShield">PickableShield</a>(shield,&nbsp;name='spike')<br>
+&nbsp;<br>
+A&nbsp;pickable&nbsp;node&nbsp;which&nbsp;gives&nbsp;a&nbsp;shield<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableShield.html#PickableShield">PickableShield</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">engine.pickableNode.PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PickableShield-__init__"><strong>__init__</strong></a>(self, shield, name='spike')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>When&nbsp;hit&nbsp;the&nbsp;player&nbsp;gives&nbsp;it&nbsp;a&nbsp;shield</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">engine.pickableNode.PickableNode</a>:<br>
+<dl><dt><a name="PickableShield-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="PickableShield-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="PickableShield-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="PickableShield-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableShield-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableShield-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableShield-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableShield-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableShield-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableShield-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="PickableShield-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableShield-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="PickableShield-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="PickableShield-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="PickableShield-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="PickableShield-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="PickableShield-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="PickableShield-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="PickableShield-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

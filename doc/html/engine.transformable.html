@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module engine.transformable</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="engine.html"><font color="#ffffff">engine</font></a>.transformable</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/urem/project/ProjetGenieLogiciel/engine/transformable.py">/home/urem/project/ProjetGenieLogiciel/engine/transformable.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="copy.html">copy</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="engine.transformable.html#Transformable">Transformable</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Transformable">class <strong>Transformable</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Represents&nbsp;a&nbsp;vector<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Transformable-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Transformable-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="Transformable-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;this&nbsp;vector</tt></dd></dl>
+
+<dl><dt><a name="Transformable-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="Transformable-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="Transformable-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="Transformable-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Transformable-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;<a href="builtins.html#object">object</a>&nbsp;that&nbsp;execute&nbsp;this&nbsp;<a href="builtins.html#object">object</a>'s&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="Transformable-paste_in"><strong>paste_in</strong></a>(self, t)</dt><dd><tt>Paste&nbsp;all&nbsp;attributes&nbsp;of&nbsp;this&nbsp;<a href="builtins.html#object">object</a>&nbsp;in&nbsp;t</tt></dd></dl>
+
+<dl><dt><a name="Transformable-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;<a href="#Transformable">Transformable</a></tt></dd></dl>
+
+<dl><dt><a name="Transformable-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="Transformable-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Rotates&nbsp;this&nbsp;with&nbsp;radian</tt></dd></dl>
+
+<dl><dt><a name="Transformable-rotate_around"><strong>rotate_around</strong></a>(self, angle, t)</dt><dd><tt>pos&nbsp;is&nbsp;a&nbsp;vector</tt></dd></dl>
+
+<dl><dt><a name="Transformable-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Scales&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Transformable-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Transformable-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Transformable-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Transformable-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Translates&nbsp;this&nbsp;(side&nbsp;effect)</tt></dd></dl>
+
+<dl><dt><a name="Transformable-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;<a href="#Transformable">Transformable</a></tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>DEBUG</strong> = False</td></tr></table>
+</body></html>

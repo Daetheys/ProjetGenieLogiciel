@@ -1,0 +1,1668 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module engine.pickableNode</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="engine.html"><font color="#ffffff">engine</font></a>.pickableNode</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/urem/project/ProjetGenieLogiciel/engine/pickableNode.py">/home/urem/project/ProjetGenieLogiciel/engine/pickableNode.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>(<a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="engine.pickableNode.html#PickableNode">PickableNode</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="engine.pickableNode.html#Antidote">Antidote</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.pickableNode.html#Coin">Coin</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.pickableNode.html#DeadlyPotion">DeadlyPotion</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.pickableNode.html#Heart">Heart</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.pickableNode.html#Key">Key</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.pickableNode.html#Poison">Poison</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.pickableNode.html#RotationWorld">RotationWorld</a>
+</font></dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Antidote">class <strong>Antidote</strong></a>(<a href="engine.pickableNode.html#PickableNode">PickableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Antidote">Antidote</a>(hb,&nbsp;name='antidote')<br>
+&nbsp;<br>
+<a href="#Antidote">Antidote</a>&nbsp;class&nbsp;-&gt;&nbsp;saves&nbsp;you&nbsp;from&nbsp;the&nbsp;poison&nbsp;and&nbsp;restores&nbsp;1&nbsp;HP<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableNode.html#Antidote">Antidote</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Antidote-__init__"><strong>__init__</strong></a>(self, hb, name='antidote')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Antidote-upon_colliding"><strong>upon_colliding</strong></a>(self, o2)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">PickableNode</a>:<br>
+<dl><dt><a name="Antidote-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>This&nbsp;collides&nbsp;o.&nbsp;Sides&nbsp;hit&nbsp;are&nbsp;[side]&nbsp;for&nbsp;this&nbsp;and&nbsp;[o2_side]&nbsp;for&nbsp;o&nbsp;(top:0,right:1,bot:2,left:3)&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;defined&nbsp;in&nbsp;gameobjects</tt></dd></dl>
+
+<dl><dt><a name="Antidote-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="Antidote-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="Antidote-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="Antidote-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Antidote-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="Antidote-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="Antidote-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="Antidote-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="Antidote-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Antidote-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="Antidote-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Antidote-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Antidote-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Antidote-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Antidote-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Antidote-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Antidote-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Antidote-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="Antidote-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Antidote-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Antidote-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Antidote-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Antidote-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Antidote-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Antidote-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Antidote-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Antidote-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="Antidote-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="Antidote-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Antidote-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="Antidote-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="Antidote-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="Antidote-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="Antidote-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Antidote-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="Antidote-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Antidote-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Antidote-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Antidote-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Antidote-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="Antidote-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Antidote-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Antidote-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Antidote-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Antidote-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Antidote-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="Antidote-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="Antidote-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Antidote-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="Antidote-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="Antidote-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Antidote-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Antidote-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Coin">class <strong>Coin</strong></a>(<a href="engine.pickableNode.html#PickableNode">PickableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Coin">Coin</a>(hb,&nbsp;name='coin')<br>
+&nbsp;<br>
+<a href="#Coin">Coin</a>&nbsp;class&nbsp;-&gt;&nbsp;gives&nbsp;you&nbsp;some&nbsp;score<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableNode.html#Coin">Coin</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Coin-__init__"><strong>__init__</strong></a>(self, hb, name='coin')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Coin-upon_colliding"><strong>upon_colliding</strong></a>(self, o2)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">PickableNode</a>:<br>
+<dl><dt><a name="Coin-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>This&nbsp;collides&nbsp;o.&nbsp;Sides&nbsp;hit&nbsp;are&nbsp;[side]&nbsp;for&nbsp;this&nbsp;and&nbsp;[o2_side]&nbsp;for&nbsp;o&nbsp;(top:0,right:1,bot:2,left:3)&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;defined&nbsp;in&nbsp;gameobjects</tt></dd></dl>
+
+<dl><dt><a name="Coin-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="Coin-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="Coin-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="Coin-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Coin-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="Coin-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="Coin-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="Coin-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="Coin-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Coin-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="Coin-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Coin-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Coin-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Coin-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Coin-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Coin-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Coin-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Coin-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="Coin-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Coin-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Coin-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Coin-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Coin-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Coin-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Coin-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Coin-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Coin-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="Coin-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="Coin-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Coin-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="Coin-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="Coin-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="Coin-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="Coin-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Coin-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="Coin-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Coin-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Coin-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Coin-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Coin-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="Coin-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Coin-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Coin-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Coin-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Coin-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Coin-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="Coin-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="Coin-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Coin-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="Coin-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="Coin-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Coin-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Coin-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DeadlyPotion">class <strong>DeadlyPotion</strong></a>(<a href="engine.pickableNode.html#PickableNode">PickableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#DeadlyPotion">DeadlyPotion</a>(hb,&nbsp;name='deadlyPotion')<br>
+&nbsp;<br>
+<a href="#DeadlyPotion">DeadlyPotion</a>&nbsp;class&nbsp;-&gt;&nbsp;kills&nbsp;you&nbsp;instantly<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableNode.html#DeadlyPotion">DeadlyPotion</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DeadlyPotion-__init__"><strong>__init__</strong></a>(self, hb, name='deadlyPotion')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>This&nbsp;collides&nbsp;o.&nbsp;Sides&nbsp;hit&nbsp;are&nbsp;[side]&nbsp;for&nbsp;this&nbsp;and&nbsp;[o2_side]&nbsp;for&nbsp;o&nbsp;(top:0,right:1,bot:2,left:3)&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;defined&nbsp;in&nbsp;gameobjects</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-upon_colliding"><strong>upon_colliding</strong></a>(self, o2)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">PickableNode</a>:<br>
+<dl><dt><a name="DeadlyPotion-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="DeadlyPotion-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="DeadlyPotion-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="DeadlyPotion-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="DeadlyPotion-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="DeadlyPotion-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="DeadlyPotion-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="DeadlyPotion-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="DeadlyPotion-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Heart">class <strong>Heart</strong></a>(<a href="engine.pickableNode.html#PickableNode">PickableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Heart">Heart</a>(hb,&nbsp;name='heart')<br>
+&nbsp;<br>
+<a href="#Heart">Heart</a>&nbsp;class&nbsp;-&gt;&nbsp;adds&nbsp;one&nbsp;life&nbsp;to&nbsp;the&nbsp;player<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableNode.html#Heart">Heart</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Heart-__init__"><strong>__init__</strong></a>(self, hb, name='heart')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Heart-upon_colliding"><strong>upon_colliding</strong></a>(self, o2)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">PickableNode</a>:<br>
+<dl><dt><a name="Heart-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>This&nbsp;collides&nbsp;o.&nbsp;Sides&nbsp;hit&nbsp;are&nbsp;[side]&nbsp;for&nbsp;this&nbsp;and&nbsp;[o2_side]&nbsp;for&nbsp;o&nbsp;(top:0,right:1,bot:2,left:3)&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;defined&nbsp;in&nbsp;gameobjects</tt></dd></dl>
+
+<dl><dt><a name="Heart-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="Heart-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="Heart-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="Heart-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Heart-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="Heart-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="Heart-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="Heart-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="Heart-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Heart-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="Heart-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Heart-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Heart-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Heart-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Heart-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Heart-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Heart-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Heart-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="Heart-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Heart-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Heart-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Heart-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Heart-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Heart-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Heart-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Heart-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Heart-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="Heart-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="Heart-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Heart-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="Heart-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="Heart-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="Heart-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="Heart-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Heart-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="Heart-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Heart-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Heart-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Heart-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Heart-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="Heart-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Heart-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Heart-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Heart-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Heart-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Heart-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="Heart-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="Heart-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Heart-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="Heart-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="Heart-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Heart-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Heart-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Key">class <strong>Key</strong></a>(<a href="engine.pickableNode.html#PickableNode">PickableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Key">Key</a>(hb,&nbsp;name='key')<br>
+&nbsp;<br>
+<a href="#Key">Key</a>&nbsp;class&nbsp;to&nbsp;show&nbsp;interactions&nbsp;between&nbsp;game&nbsp;and&nbsp;campaign<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableNode.html#Key">Key</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Key-__init__"><strong>__init__</strong></a>(self, hb, name='key')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Key-upon_colliding"><strong>upon_colliding</strong></a>(self, o2)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">PickableNode</a>:<br>
+<dl><dt><a name="Key-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>This&nbsp;collides&nbsp;o.&nbsp;Sides&nbsp;hit&nbsp;are&nbsp;[side]&nbsp;for&nbsp;this&nbsp;and&nbsp;[o2_side]&nbsp;for&nbsp;o&nbsp;(top:0,right:1,bot:2,left:3)&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;defined&nbsp;in&nbsp;gameobjects</tt></dd></dl>
+
+<dl><dt><a name="Key-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="Key-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="Key-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="Key-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="Key-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Key-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="Key-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="Key-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="Key-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="Key-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="Key-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Key-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="Key-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="Key-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="Key-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Key-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="Key-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="Key-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="Key-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Key-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="Key-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="Key-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Key-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Key-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Key-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Key-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Key-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Key-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Key-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="Key-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Key-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="Key-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Key-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Key-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Key-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Key-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Key-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Key-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Key-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="Key-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="Key-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="Key-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="Key-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="Key-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Key-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="Key-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="Key-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="Key-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="Key-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="Key-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Key-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="Key-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Key-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Key-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Key-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Key-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Key-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="Key-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Key-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Key-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Key-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Key-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Key-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="Key-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="Key-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="Key-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="Key-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="Key-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Key-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="Key-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="Key-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="Key-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Key-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Key-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Key-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="PickableNode">class <strong>PickableNode</strong></a>(<a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#PickableNode">PickableNode</a>(hb,&nbsp;sps_name='empty')<br>
+&nbsp;<br>
+CollideTransformable&nbsp;with&nbsp;a&nbsp;controller<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableNode.html#PickableNode">PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="PickableNode-__init__"><strong>__init__</strong></a>(self, hb, sps_name='empty')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>This&nbsp;collides&nbsp;o.&nbsp;Sides&nbsp;hit&nbsp;are&nbsp;[side]&nbsp;for&nbsp;this&nbsp;and&nbsp;[o2_side]&nbsp;for&nbsp;o&nbsp;(top:0,right:1,bot:2,left:3)&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;defined&nbsp;in&nbsp;gameobjects</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="PickableNode-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="PickableNode-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="PickableNode-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableNode-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableNode-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableNode-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableNode-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableNode-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableNode-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="PickableNode-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="PickableNode-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="PickableNode-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="PickableNode-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="PickableNode-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="PickableNode-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="PickableNode-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="PickableNode-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="PickableNode-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Poison">class <strong>Poison</strong></a>(<a href="engine.pickableNode.html#PickableNode">PickableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Poison">Poison</a>(hb,&nbsp;name='poison')<br>
+&nbsp;<br>
+As&nbsp;advised&nbsp;by&nbsp;D.Baelde,&nbsp;all&nbsp;subclasses&nbsp;of&nbsp;<a href="#PickableNode">PickableNode</a>&nbsp;are&nbsp;flocked&nbsp;in&nbsp;this&nbsp;file.<br>
+<a href="#Poison">Poison</a>&nbsp;class&nbsp;-&gt;&nbsp;you&nbsp;need&nbsp;an&nbsp;antidote&nbsp;within&nbsp;10&nbsp;seconds<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableNode.html#Poison">Poison</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Poison-__init__"><strong>__init__</strong></a>(self, hb, name='poison')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Poison-upon_colliding"><strong>upon_colliding</strong></a>(self, o2)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">PickableNode</a>:<br>
+<dl><dt><a name="Poison-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>This&nbsp;collides&nbsp;o.&nbsp;Sides&nbsp;hit&nbsp;are&nbsp;[side]&nbsp;for&nbsp;this&nbsp;and&nbsp;[o2_side]&nbsp;for&nbsp;o&nbsp;(top:0,right:1,bot:2,left:3)&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;defined&nbsp;in&nbsp;gameobjects</tt></dd></dl>
+
+<dl><dt><a name="Poison-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="Poison-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="Poison-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="Poison-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="Poison-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="Poison-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="Poison-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="Poison-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="Poison-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Poison-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="Poison-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Poison-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Poison-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Poison-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Poison-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Poison-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Poison-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Poison-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="Poison-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="Poison-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Poison-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Poison-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Poison-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Poison-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Poison-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="Poison-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="Poison-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="Poison-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="Poison-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Poison-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="Poison-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="Poison-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="Poison-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="Poison-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="Poison-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="Poison-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Poison-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Poison-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="Poison-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Poison-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="Poison-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Poison-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Poison-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Poison-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="Poison-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="Poison-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="Poison-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="Poison-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Poison-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="Poison-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="Poison-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="Poison-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="Poison-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="RotationWorld">class <strong>RotationWorld</strong></a>(<a href="engine.pickableNode.html#PickableNode">PickableNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#RotationWorld">RotationWorld</a>(hb,&nbsp;name='rotateworld')<br>
+&nbsp;<br>
+Rotates&nbsp;the&nbsp;camera<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="engine.pickableNode.html#RotationWorld">RotationWorld</a></dd>
+<dd><a href="engine.pickableNode.html#PickableNode">PickableNode</a></dd>
+<dd><a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a></dd>
+<dd><a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a></dd>
+<dd><a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a></dd>
+<dd><a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a></dd>
+<dd><a href="engine.node.html#Node">engine.node.Node</a></dd>
+<dd><a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="RotationWorld-__init__"><strong>__init__</strong></a>(self, hb, name='rotateworld')</dt><dd><tt>CollideTransformable&nbsp;with&nbsp;a&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-upon_colliding"><strong>upon_colliding</strong></a>(self, o2)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.pickableNode.html#PickableNode">PickableNode</a>:<br>
+<dl><dt><a name="RotationWorld-collide"><strong>collide</strong></a>(self, o2, side, other_side)</dt><dd><tt>This&nbsp;collides&nbsp;o.&nbsp;Sides&nbsp;hit&nbsp;are&nbsp;[side]&nbsp;for&nbsp;this&nbsp;and&nbsp;[o2_side]&nbsp;for&nbsp;o&nbsp;(top:0,right:1,bot:2,left:3)&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;defined&nbsp;in&nbsp;gameobjects</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;itself</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-paste_in"><strong>paste_in</strong></a>(self, pn)</dt><dd><tt>"&nbsp;Paste&nbsp;it&nbsp;in&nbsp;pn</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.controlableNode.html#ControlableNode">engine.controlableNode.ControlableNode</a>:<br>
+<dl><dt><a name="RotationWorld-add_shield"><strong>add_shield</strong></a>(self, s)</dt><dd><tt>Adds&nbsp;a&nbsp;shield&nbsp;[s]&nbsp;to&nbsp;the&nbsp;controlableNode</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-end_init"><strong>end_init</strong></a>(self)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;initialisation&nbsp;of&nbsp;the&nbsp;GameLevel</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_controller"><strong>get_controller</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-link_world"><strong>link_world</strong></a>(self, w)</dt><dd><tt>Set&nbsp;the&nbsp;world&nbsp;attribute</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_controller"><strong>set_controller</strong></a>(self, controller)</dt><dd><tt>Sets&nbsp;the&nbsp;controller</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.collideTransformable.html#CollideTransformable">engine.collideTransformable.CollideTransformable</a>:<br>
+<dl><dt><a name="RotationWorld-apply_solid_reaction"><strong>apply_solid_reaction</strong></a>(self, support)</dt><dd><tt>Computes&nbsp;physics&nbsp;when&nbsp;this&nbsp;specific&nbsp;node&nbsp;rigid_collides&nbsp;with&nbsp;support</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-center_hit_box"><strong>center_hit_box</strong></a>(self)</dt><dd><tt>Center&nbsp;its&nbsp;Hitbox&nbsp;-&gt;&nbsp;it's&nbsp;very&nbsp;important&nbsp;for&nbsp;the&nbsp;physics</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_collide"><strong>get_collide</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;this&nbsp;collides</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_hit_box"><strong>get_hit_box</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;hit&nbsp;box&nbsp;according&nbsp;to&nbsp;the&nbsp;position&nbsp;/&nbsp;rotation&nbsp;/&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_rigid_body"><strong>get_rigid_body</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_rigid_hit_box"><strong>get_rigid_hit_box</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rigid&nbsp;hit&nbsp;box</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_collide"><strong>set_collide</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;this&nbsp;can&nbsp;collide</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_hit_box"><strong>set_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;collide&nbsp;hit&nbsp;box&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_rigid_body"><strong>set_rigid_body</strong></a>(self, val)</dt><dd><tt>Sets&nbsp;whether&nbsp;it's&nbsp;a&nbsp;rigid&nbsp;body&nbsp;or&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_rigid_hit_box"><strong>set_rigid_hit_box</strong></a>(self, val)</dt><dd><tt>Set&nbsp;the&nbsp;rigid&nbsp;body&nbsp;hit&nbsp;box&nbsp;--&nbsp;Don't&nbsp;use&nbsp;it&nbsp;if&nbsp;you&nbsp;don't&nbsp;know&nbsp;what&nbsp;you're&nbsp;doing</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.movableNode.html#MovableNode">engine.movableNode.MovableNode</a>:<br>
+<dl><dt><a name="RotationWorld-add_force"><strong>add_force</strong></a>(self, force)</dt><dd><tt>Add&nbsp;a&nbsp;force&nbsp;to&nbsp;this&nbsp;node&nbsp;(cf&nbsp;force)</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-affected_by_force"><strong>affected_by_force</strong></a>(self, force)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;this&nbsp;node&nbsp;is&nbsp;affected&nbsp;by&nbsp;the&nbsp;given&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-compute_effect_forces"><strong>compute_effect_forces</strong></a>(self)</dt><dd><tt>Computes&nbsp;the&nbsp;effect&nbsp;of&nbsp;forces&nbsp;on&nbsp;this&nbsp;node&nbsp;and&nbsp;modify&nbsp;acceleration</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-compute_speed"><strong>compute_speed</strong></a>(self, dt)</dt><dd><tt>Computes&nbsp;the&nbsp;actual&nbsp;speed&nbsp;according&nbsp;to&nbsp;its&nbsp;acceleration&nbsp;and&nbsp;dt</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_acc"><strong>get_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RotationWorld-get_ang_acc"><strong>get_ang_acc</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RotationWorld-get_ang_inertia"><strong>get_ang_inertia</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RotationWorld-get_ang_speed"><strong>get_ang_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RotationWorld-get_mass"><strong>get_mass</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RotationWorld-get_speed"><strong>get_speed</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RotationWorld-list_forces"><strong>list_forces</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;that&nbsp;affect&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-move"><strong>move</strong></a>(self, dt)</dt><dd><tt>Moves&nbsp;according&nbsp;to&nbsp;it&nbsp;speed&nbsp;and&nbsp;to&nbsp;the&nbsp;small&nbsp;given&nbsp;time&nbsp;dt.&nbsp;It&nbsp;movement&nbsp;may&nbsp;be&nbsp;cut&nbsp;so&nbsp;that&nbsp;the&nbsp;physics&nbsp;works&nbsp;well</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-remove_force"><strong>remove_force</strong></a>(self, force)</dt><dd><tt>Removes&nbsp;the&nbsp;effect&nbsp;of&nbsp;specific&nbsp;force</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-reverse_move"><strong>reverse_move</strong></a>(self)</dt><dd><tt>Reverse&nbsp;the&nbsp;last&nbsp;move&nbsp;(not&nbsp;used&nbsp;and&nbsp;shouldn't&nbsp;be)</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_acc"><strong>set_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_ang_acc"><strong>set_ang_acc</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_ang_inertia"><strong>set_ang_inertia</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_ang_speed"><strong>set_ang_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_mass"><strong>set_mass</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_speed"><strong>set_speed</strong></a>(self, speed)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_speedx"><strong>set_speedx</strong></a>(self, val)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_speedy"><strong>set_speedy</strong></a>(self, val)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.spriteNode.html#SpriteNode">engine.spriteNode.SpriteNode</a>:<br>
+<dl><dt><a name="RotationWorld-aff"><strong>aff</strong></a>(self, fen, distorsion, dt)</dt><dd><tt>Show&nbsp;this&nbsp;node&nbsp;on&nbsp;the&nbsp;camera</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-create_sps"><strong>create_sps</strong></a>(self, name)</dt><dd><tt>creates&nbsp;the&nbsp;SpriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;name&nbsp;"name"<br>
+to&nbsp;add/modify&nbsp;such&nbsp;a&nbsp;SpriteScheduler,<br>
+feel&nbsp;free&nbsp;to&nbsp;change&nbsp;the&nbsp;corresponding&nbsp;json.</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_pos_camera"><strong>get_pos_camera</strong></a>(self, distorsion, box)</dt><dd><tt>Returns&nbsp;the&nbsp;position&nbsp;of&nbsp;a&nbsp;given&nbsp;box&nbsp;in&nbsp;a&nbsp;camera&nbsp;that&nbsp;has&nbsp;a&nbsp;given&nbsp;distorsion&nbsp;(cf&nbsp;Camera)</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_sps"><strong>get_sps</strong></a>(self)</dt><dd><tt>returns&nbsp;the&nbsp;spriteScheduler&nbsp;associated&nbsp;with&nbsp;the&nbsp;spriteNode</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_state"><strong>get_state</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="RotationWorld-send_char"><strong>send_char</strong></a>(self, char)</dt><dd><tt>Sends&nbsp;some&nbsp;character&nbsp;of&nbsp;information&nbsp;to&nbsp;the&nbsp;SpriteScheduler</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_mapping"><strong>set_mapping</strong></a>(self, mapping)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_sps"><strong>set_sps</strong></a>(self, sche)</dt></dl>
+
+<dl><dt><a name="RotationWorld-set_state"><strong>set_state</strong></a>(self, state)</dt></dl>
+
+<dl><dt><a name="RotationWorld-stase"><strong>stase</strong></a>(self, info)</dt><dd><tt>Will&nbsp;be&nbsp;called&nbsp;when&nbsp;the&nbsp;object&nbsp;leaves&nbsp;the&nbsp;field&nbsp;of&nbsp;view&nbsp;of&nbsp;the&nbsp;camera&nbsp;-&gt;&nbsp;0&nbsp;to&nbsp;remove&nbsp;the&nbsp;object,&nbsp;1&nbsp;to&nbsp;keep&nbsp;it.&nbsp;The&nbsp;argument&nbsp;[info]&nbsp;is&nbsp;0&nbsp;when&nbsp;outside&nbsp;of&nbsp;x&nbsp;of&nbsp;the&nbsp;camera&nbsp;and&nbsp;1&nbsp;when&nbsp;very&nbsp;far&nbsp;from&nbsp;the&nbsp;camera&nbsp;but&nbsp;still&nbsp;in&nbsp;x&nbsp;range</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-unvanish"><strong>unvanish</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="RotationWorld-vanish"><strong>vanish</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="engine.node.html#Node">engine.node.Node</a>:<br>
+<dl><dt><a name="RotationWorld-__del__"><strong>__del__</strong></a>(self)</dt><dd><tt>Delete&nbsp;this&nbsp;node&nbsp;and&nbsp;its&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-attach_children"><strong>attach_children</strong></a>(self, child)</dt><dd><tt>Attach&nbsp;a&nbsp;node&nbsp;to&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-detach_children"><strong>detach_children</strong></a>(self, child)</dt><dd><tt>Detach&nbsp;a&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_parent"><strong>get_parent</strong></a>(self)</dt><dd><tt>Returns&nbsp;parent&nbsp;of&nbsp;this&nbsp;node</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-is_stage_for_removal"><strong>is_stage_for_removal</strong></a>(self)</dt><dd><tt>Returns&nbsp;if&nbsp;a&nbsp;node&nbsp;is&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-remove_wrecks"><strong>remove_wrecks</strong></a>(self)</dt><dd><tt>Remove&nbsp;marked&nbsp;to&nbsp;be&nbsp;deleted&nbsp;nodes</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate&nbsp;-&gt;&nbsp;also&nbsp;rotates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-rotate_around"><strong>rotate_around</strong></a>(self, angle, n)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.rotate_around&nbsp;-&gt;&nbsp;also&nbsp;rotates_ardound&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-scale"><strong>scale</strong></a>(self, scalex, scaley)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.scale&nbsp;-&gt;&nbsp;also&nbsp;scales&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-stage_for_removal"><strong>stage_for_removal</strong></a>(self)</dt><dd><tt>Mark&nbsp;this&nbsp;node&nbsp;to&nbsp;be&nbsp;deleted</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-translate"><strong>translate</strong></a>(self, v)</dt><dd><tt>Override&nbsp;of&nbsp;Transformable.translate&nbsp;-&gt;&nbsp;also&nbsp;translates&nbsp;children</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-update"><strong>update</strong></a>(self, dt)</dt><dd><tt>Update&nbsp;function&nbsp;-&gt;&nbsp;will&nbsp;be&nbsp;called&nbsp;every&nbsp;frame</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><a name="RotationWorld-apply_transform"><strong>apply_transform</strong></a>(self, tr)</dt></dl>
+
+<dl><dt><a name="RotationWorld-get_inverse_transform"><strong>get_inverse_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;inverse&nbsp;transform&nbsp;(very&nbsp;usefull&nbsp;as&nbsp;a&nbsp;transfer&nbsp;matrix)</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_position"><strong>get_position</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;position</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_rotation"><strong>get_rotation</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;rotation</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_scale"><strong>get_scale</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-get_transform"><strong>get_transform</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Transform&nbsp;object&nbsp;that&nbsp;execute&nbsp;this&nbsp;object's&nbsp;translate,&nbsp;rotate&nbsp;and&nbsp;scale&nbsp;(very&nbsp;usefull&nbsp;to&nbsp;apply&nbsp;to&nbsp;polygons&nbsp;like&nbsp;hit&nbsp;boxes)</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-reset_update"><strong>reset_update</strong></a>(self)</dt><dd><tt>Reset&nbsp;update&nbsp;booleans&nbsp;-&gt;&nbsp;after&nbsp;a&nbsp;change&nbsp;of&nbsp;fondamental&nbsp;attributes&nbsp;of&nbsp;a&nbsp;Transformable</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-rot"><strong>rot</strong></a>(self, angle)</dt><dd><tt>Rotate&nbsp;this&nbsp;with&nbsp;degree</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_position"><strong>set_position</strong></a>(self, x, y)</dt><dd><tt>Set&nbsp;the&nbsp;positino&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_rotation"><strong>set_rotation</strong></a>(self, ang)</dt><dd><tt>Set&nbsp;the&nbsp;rotation&nbsp;of&nbsp;this</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-set_scale"><strong>set_scale</strong></a>(self, scale_x, scale_y)</dt><dd><tt>Set&nbsp;the&nbsp;scale</tt></dd></dl>
+
+<dl><dt><a name="RotationWorld-translate2"><strong>translate2</strong></a>(self, v)</dt><dd><tt>Copies&nbsp;this,&nbsp;translates&nbsp;it&nbsp;and&nbsp;returns&nbsp;the&nbsp;new&nbsp;translated&nbsp;Transformable</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="engine.transformable.html#Transformable">engine.transformable.Transformable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

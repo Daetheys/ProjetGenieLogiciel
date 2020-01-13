@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module engine.polygone</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="engine.html"><font color="#ffffff">engine</font></a>.polygone</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/urem/project/ProjetGenieLogiciel/engine/polygone.py">/home/urem/project/ProjetGenieLogiciel/engine/polygone.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="random.html">random</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="engine.polygone.html#Line">Line</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.polygone.html#Polygon">Polygon</a>
+</font></dt><dt><font face="helvetica, arial"><a href="engine.polygone.html#Segment">Segment</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Line">class <strong>Line</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Line">Line</a>(a,&nbsp;b,&nbsp;vert=False,&nbsp;x=0)<br>
+&nbsp;<br>
+Represents&nbsp;a&nbsp;line&nbsp;:&nbsp;y&nbsp;=&nbsp;ax+b<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Line-__eq__"><strong>__eq__</strong></a>(self, l2)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Line-__init__"><strong>__init__</strong></a>(self, a, b, vert=False, x=0)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Line-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Line-contains"><strong>contains</strong></a>(self, v)</dt></dl>
+
+<dl><dt><a name="Line-intersect_point"><strong>intersect_point</strong></a>(self, l2)</dt><dd><tt>Returns&nbsp;the&nbsp;intersect&nbsp;point&nbsp;between&nbsp;two&nbsp;given&nbsp;lines</tt></dd></dl>
+
+<dl><dt><a name="Line-is_on_line"><strong>is_on_line</strong></a>(self, p)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;point&nbsp;is&nbsp;in&nbsp;the&nbsp;line</tt></dd></dl>
+
+<dl><dt><a name="Line-is_point_up"><strong>is_point_up</strong></a>(self, p)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;the&nbsp;point&nbsp;p&nbsp;is&nbsp;in&nbsp;the&nbsp;up&nbsp;side&nbsp;of&nbsp;the&nbsp;line&nbsp;or&nbsp;in&nbsp;the&nbsp;line</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Polygon">class <strong>Polygon</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Polygon">Polygon</a>(points)<br>
+&nbsp;<br>
+<a href="#Polygon">Polygon</a>&nbsp;made&nbsp;of&nbsp;a&nbsp;list&nbsp;of&nbsp;vector&nbsp;points<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Polygon-__eq__"><strong>__eq__</strong></a>(self, p)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Polygon-__init__"><strong>__init__</strong></a>(self, points)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Polygon-__mul__"><strong>__mul__</strong></a>(self, vect)</dt></dl>
+
+<dl><dt><a name="Polygon-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Polygon-__truediv__"><strong>__truediv__</strong></a>(self, v)</dt></dl>
+
+<dl><dt><a name="Polygon-apply_transform"><strong>apply_transform</strong></a>(self, transform)</dt><dd><tt>Apply&nbsp;a&nbsp;transformation&nbsp;on&nbsp;this&nbsp;polygon&nbsp;and&nbsp;returns&nbsp;it</tt></dd></dl>
+
+<dl><dt><a name="Polygon-collide"><strong>collide</strong></a>(self, poly)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;polygon&nbsp;collides&nbsp;with&nbsp;poly</tt></dd></dl>
+
+<dl><dt><a name="Polygon-compute_max_min"><strong>compute_max_min</strong></a>(self)</dt><dd><tt>Compute&nbsp;the&nbsp;rect&nbsp;hull&nbsp;of&nbsp;this&nbsp;polygon&nbsp;(store&nbsp;them&nbsp;inside&nbsp;the&nbsp;<a href="builtins.html#object">object</a>)</tt></dd></dl>
+
+<dl><dt><a name="Polygon-compute_segments"><strong>compute_segments</strong></a>(self)</dt><dd><tt>Computes&nbsp;segments&nbsp;from&nbsp;points</tt></dd></dl>
+
+<dl><dt><a name="Polygon-copy"><strong>copy</strong></a>(self)</dt><dd><tt>Copies&nbsp;this&nbsp;polygon&nbsp;and&nbsp;returns&nbsp;it</tt></dd></dl>
+
+<dl><dt><a name="Polygon-get_intersection"><strong>get_intersection</strong></a>(self, poly2)</dt><dd><tt>Returns&nbsp;the&nbsp;polygon&nbsp;intersection&nbsp;of&nbsp;self&nbsp;and&nbsp;poly2</tt></dd></dl>
+
+<dl><dt><a name="Polygon-get_mass_center"><strong>get_mass_center</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;barycentre&nbsp;of&nbsp;this&nbsp;polygon</tt></dd></dl>
+
+<dl><dt><a name="Polygon-get_max_x"><strong>get_max_x</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Polygon-get_max_y"><strong>get_max_y</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Polygon-get_min_x"><strong>get_min_x</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Polygon-get_min_y"><strong>get_min_y</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Polygon-get_points"><strong>get_points</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Polygon-get_segments"><strong>get_segments</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Polygon-intersect_segment"><strong>intersect_segment</strong></a>(self, s)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;self&nbsp;intersects&nbsp;s</tt></dd></dl>
+
+<dl><dt><a name="Polygon-point_in"><strong>point_in</strong></a>(self, point)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;point&nbsp;is&nbsp;in&nbsp;this&nbsp;polygon.&nbsp;To&nbsp;do&nbsp;that&nbsp;we'll&nbsp;compute&nbsp;the&nbsp;angle&nbsp;that&nbsp;point&nbsp;makes&nbsp;with&nbsp;each&nbsp;oriented&nbsp;segment&nbsp;from&nbsp;this&nbsp;polygon&nbsp;and&nbsp;we&nbsp;add&nbsp;them.&nbsp;If&nbsp;we&nbsp;get&nbsp;2*pi&nbsp;the&nbsp;point&nbsp;is&nbsp;inside,&nbsp;if&nbsp;it's&nbsp;0&nbsp;it's&nbsp;not</tt></dd></dl>
+
+<dl><dt><a name="Polygon-points_in"><strong>points_in</strong></a>(self, poly)</dt><dd><tt>Returns&nbsp;points&nbsp;of&nbsp;self&nbsp;that&nbsp;are&nbsp;in&nbsp;p</tt></dd></dl>
+
+<dl><dt><a name="Polygon-rotate"><strong>rotate</strong></a>(self, angle)</dt><dd><tt>Rotates&nbsp;this&nbsp;polygon&nbsp;(side&nbsp;effect)</tt></dd></dl>
+
+<dl><dt><a name="Polygon-segments_collide_with"><strong>segments_collide_with</strong></a>(self, poly)</dt><dd><tt>Returns&nbsp;segments&nbsp;of&nbsp;self&nbsp;that&nbsp;are&nbsp;in&nbsp;poly</tt></dd></dl>
+
+<dl><dt><a name="Polygon-to_rect"><strong>to_rect</strong></a>(self)</dt><dd><tt>Will&nbsp;assert&nbsp;False&nbsp;if&nbsp;the&nbsp;polygon&nbsp;is&nbsp;not&nbsp;a&nbsp;rotated&nbsp;rectangle&nbsp;(angle&nbsp;can&nbsp;be&nbsp;0).&nbsp;Else&nbsp;it&nbsp;will&nbsp;return&nbsp;the&nbsp;rectangle&nbsp;(posx,posy,width,height),angle</tt></dd></dl>
+
+<dl><dt><a name="Polygon-to_tuples"><strong>to_tuples</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;list&nbsp;of&nbsp;tuples&nbsp;corresponding&nbsp;to&nbsp;this&nbsp;polygon&nbsp;(usefull&nbsp;with&nbsp;pygame)</tt></dd></dl>
+
+<dl><dt><a name="Polygon-translate"><strong>translate</strong></a>(self, vector)</dt><dd><tt>Translates&nbsp;the&nbsp;polygon&nbsp;(side&nbsp;effect)</tt></dd></dl>
+
+<dl><dt><a name="Polygon-translate2"><strong>translate2</strong></a>(self, vector)</dt><dd><tt>Translates&nbsp;the&nbsp;polygon&nbsp;and&nbsp;returns&nbsp;a&nbsp;new&nbsp;one</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Segment">class <strong>Segment</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Segment">Segment</a>(p1,&nbsp;p2)<br>
+&nbsp;<br>
+Represents&nbsp;a&nbsp;segment&nbsp;from&nbsp;vector&nbsp;p1&nbsp;to&nbsp;vector&nbsp;p2<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Segment-__eq__"><strong>__eq__</strong></a>(self, s)</dt><dd><tt>Return&nbsp;self==value.</tt></dd></dl>
+
+<dl><dt><a name="Segment-__init__"><strong>__init__</strong></a>(self, p1, p2)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="Segment-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="Segment-collide_line"><strong>collide_line</strong></a>(self, l)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;it&nbsp;collides&nbsp;a&nbsp;specific&nbsp;line</tt></dd></dl>
+
+<dl><dt><a name="Segment-collide_segment"><strong>collide_segment</strong></a>(self, s)</dt><dd><tt>Returns&nbsp;true&nbsp;if&nbsp;both&nbsp;segment&nbsp;intersect</tt></dd></dl>
+
+<dl><dt><a name="Segment-contains"><strong>contains</strong></a>(self, v)</dt><dd><tt>Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;vector&nbsp;v&nbsp;is&nbsp;in&nbsp;the&nbsp;segment</tt></dd></dl>
+
+<dl><dt><a name="Segment-copy"><strong>copy</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Segment-get_inter_line"><strong>get_inter_line</strong></a>(self, l)</dt><dd><tt>Returns&nbsp;the&nbsp;intersection&nbsp;of&nbsp;this&nbsp;segment&nbsp;with&nbsp;the&nbsp;line&nbsp;l</tt></dd></dl>
+
+<dl><dt><a name="Segment-get_line"><strong>get_line</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;line&nbsp;corresponding&nbsp;to&nbsp;the&nbsp;orientation&nbsp;of&nbsp;this&nbsp;segment</tt></dd></dl>
+
+<dl><dt><a name="Segment-get_max_x"><strong>get_max_x</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Segment-get_max_y"><strong>get_max_y</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Segment-get_min_x"><strong>get_min_x</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Segment-get_min_y"><strong>get_min_y</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Segment-get_vector"><strong>get_vector</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Segment-intersect_point"><strong>intersect_point</strong></a>(self, s)</dt><dd><tt>Returns&nbsp;the&nbsp;intersection&nbsp;of&nbsp;this&nbsp;segment&nbsp;with&nbsp;the&nbsp;segment&nbsp;s</tt></dd></dl>
+
+<dl><dt><a name="Segment-is_in_interval_x"><strong>is_in_interval_x</strong></a>(self, x)</dt><dd><tt>Returns&nbsp;if&nbsp;x&nbsp;in&nbsp;the&nbsp;interval&nbsp;of&nbsp;this&nbsp;segment</tt></dd></dl>
+
+<dl><dt><a name="Segment-is_in_interval_y"><strong>is_in_interval_y</strong></a>(self, y)</dt><dd><tt>Returns&nbsp;if&nbsp;x&nbsp;in&nbsp;the&nbsp;interval&nbsp;of&nbsp;this&nbsp;segment</tt></dd></dl>
+
+<dl><dt><a name="Segment-length"><strong>length</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;segment</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__hash__</strong> = None</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-debug"><strong>debug</strong></a>(txt)</dt></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>DEBUG</strong> = False</td></tr></table>
+</body></html>
