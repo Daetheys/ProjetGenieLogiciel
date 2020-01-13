@@ -10,7 +10,8 @@ Be sure to read the documentation in the [./doc](./doc) folder. UML files give y
 
 ## Running the tests
 NOTE : We've changed our import way just before the second released to make it simpler and more efficient. However it was obvious it would break all tests because of the old import structure! That's why we've pushed every changed in the engine BEFORE that to be sure everything will work perfectly even without tests until the release.
-To run the game: ```python init.py``` or ```python3 init.py```
+To run the game: ```python init.py``` or ```python3 init.py``` or ```python3.7 init.py```  
+To run the game without console print : ```./canabaelde.sh```
 To run the auto tests : ```xvfb-run -a --server-args="-screen 0 1600x900x24" pytest```
 
 Some libraries have some problems :
@@ -20,6 +21,7 @@ Some libraries have some problems :
 ## Running the tests (In French)
 NOTE : Nous avons changé notre façon d'importer les fichiers internes au projet juste avant la deuxieme release pour que cette façon d'importer soit plus propre et plus simple. Cependant il était prévu que cette manipulation allait casser tous les tests ! C'est pourquoi nous avons push toutes les modifications de l'engine AVANT cette manipulation pour être certain que tout fonctionnerait parfaitement jusqu'à la release.
 Pour lancer le jeu : ```python init.py``` ou ```python3 init.py``` ou ```python3.7 init.py``` 
+Pour lancer le jeu sans affichage dans la console :```./canabaelde.sh```
 Pour lancer les tests : ```xvfb-run -a --server-args="-screen 0 1600x900x24" pytest```
 
 Il reste certains problèmes à régler avec les bibliothèques :
@@ -36,4 +38,7 @@ Nous esperons que malgré ce problème vous prendrez plaisir à jouer au jeu (no
 ## Utiliser le visualiseur de niveaux
 Pour utiliser le visualiseur de niveaux, prenez la musique sur laquelle vous voulez visualiser le niveau généré et mettez la dans data/your\ music. Puis vous pouvez lancer python visualise.py [nom de la musique] depuis la racine et le générateur va générer un niveau et l'afficher. Le rectangle blanc en bas à droite représente la hauteur maximale du saut du joueur. Il est alors facile de vérifier si le niveau est faisable. Il était demandé dans les requirement de faire un programme pour vérifier si un niveau généré est faisable. C'est inutile car notre générateur fait par construction des niveaux faisables en se mettant à la place du joueur qui le joue à chaque instant. Il arrive que le générateur de niveau plante (il ne génère qu'une plateforme). Le plus souvent le relancer suffit à résoudre le problème (cela vient de librosa).
 
+#### Why did the release 0.2 had bugs?
 
+- the files __init__.py of the test folder had been suppressed in the local branch 'docu' (for documentation), in an attempt to package the whole project. However, during the rebase of the branch with master, the wrong choice had been made (the file should not  have been deleted).
+- the level 2 of fantasy is shaped in a weird way, so that the ending is hidden somewhere in the level. The bug happened only after the ending, thus explaining why our testers missed it previously.
