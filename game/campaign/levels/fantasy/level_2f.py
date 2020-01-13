@@ -73,7 +73,7 @@ class Level_2_fantasy(Level):
             s = (x/base)
             y = rd.get(y-30,y+30)
             if 38<=s<39:
-                def stase(s,info):
+                def stase(info):
                     if info == 1:
                         return 1
                     else:
