@@ -62,6 +62,10 @@ class Level_4A_kshan(Level):
         for i in range(10):
             l = (i+1)*70%100 + 50
             obj.append(SolidPlatform(Hitbox(Rect(dist,(i*-8)+10,l,16))))
+            if i == 7:
+                laserbot = LaserTurretBot()
+                laserbot.set_position(dist+(l//2),-100)
+                obj.append(laserbot)
             dist += l+(i*9%13) +10
             if i > 0:
                 coin = Coin(Hitbox(Rect(dist+2,(i*-8)-10,10,10)))
@@ -70,17 +74,17 @@ class Level_4A_kshan(Level):
         for i in range(10,20):
             l = (i+1)*70%100 + 50
             obj.append(SolidPlatform(Hitbox(Rect(dist,((i-10)*12)-62,l,16))))
+            if i == 12:
+                las2 = LaserTurretBot()
+                las2.set_position(dist+(l//2),-100)
+                obj.append(las2)
             dist += l+(i*9%13) +10
             coin = Coin(Hitbox(Rect(dist+l//2,((i-10)*12)-72,10,10)))
             obj.append(coin)
             
         gps = GravitationalPickableShield()
-        gps.set_position(70,0)
-        
-        laserbot = LaserTurretBot()
-        laserbot.set_position(450,-50)
-        las2 = LaserTurretBot()
-        las2.set_position(850,-50)
+        gps.set_position(170,-30)
+        obj.append(gps)
         
         obj.append(Flag(Hitbox(Rect(dist+l//4,43,10,20))))
         obj.append(SolidPlatform(Hitbox(Rect(dist+l//4,63,16,16))))

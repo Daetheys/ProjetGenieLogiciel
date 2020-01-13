@@ -69,10 +69,5 @@ class Level_3A_kshan(Level):
         gravshield = LaserPickableShield()
         gravshield.set_position(240,-30)
         plat.append(gravshield)
-        '''
-        laserbot = LaserTurretBot()
-        laserbot.set_position(450,-50)
-        las2 = LaserTurretBot()
-        las2.set_position(850,-50)
-'''
+        
         return plat
