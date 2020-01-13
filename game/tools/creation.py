@@ -1,5 +1,5 @@
 '''
-This file is mostly used to create the appropriate dictionaries.
+This file is mostly used to create the appropriate dictionaries .
 
 
 Here is the format of the json files :
