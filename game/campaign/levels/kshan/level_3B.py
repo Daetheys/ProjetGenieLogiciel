@@ -21,6 +21,7 @@ class Level_3B_kshan(Level):
     def check_victory(self,g,arg):
         return arg
         
+        
     def launch(self,g):
         quit_all = self.fun_dialogue(g,"start")
         self.objects = self.create_objects(g)
@@ -30,9 +31,9 @@ class Level_3B_kshan(Level):
             return False
         
         def player_pos(t):
-            return t*100 #*8 to be faster (but it doesn't match the music anymore !
+            return t * 100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Cloudy with a chance of Skeletons"] ,parallax=g.options["parallax"],limgpar=get_deep_forest_bg(g),music="data/musics/Boss.mp3")
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Poisonous Path"],parallax=g.options["parallax"],limgpar=get_cave_bg(g),music="data/musics/balade.mp3")
         
         success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
@@ -47,16 +48,20 @@ class Level_3B_kshan(Level):
         return success
     
     def create_objects(self,g):
-        obj = []
+        deadly = DeadlyPotion(Hitbox(Rect(100,-2,10,10)))
+        plat = []
         dist = -10
-        for i in range(10):
+        h = 10
+        for i in range(20):
             l = (i+1)*70%100 + 50
-            if i:
-                zom = JumpingSkeleton()
-                zom.set_position(dist+4,10)
-                obj.append(zom)
-            obj.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
-            dist += l + 20
-        obj.append(Flag(Hitbox(Rect(dist-20,-15,10,20))))
+            plat.append(SolidPlatform(Hitbox(Rect(dist,h,l,16))))
+            h += i*17%23 - 10
+            dist += l+(i*9%13) +10
+            if i == 8:
+                plat.append(Antidote(Hitbox(Rect(dist,h-12,10,10))))
+            elif i < 19: 
+                plat.append(Poison(Hitbox(Rect(dist,h-12,10,10))))
+                
+        flag = Flag(Hitbox(Rect(dist-20,-8,10,20)))
         
-        return obj
+        return plat + [deadly,flag]

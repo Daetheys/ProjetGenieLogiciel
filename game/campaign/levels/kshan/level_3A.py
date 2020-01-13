@@ -12,21 +12,14 @@ class Level_3A_kshan(Level):
                 quit_all = g.dict_dial["dial_kshan3Adv"].show(g)
             else:
                 quit_all = g.dict_dial["dial_kshan3A"].show(g)
-        elif arg == "bad_end_1":
-            quit_all = g.dict_dial["dial_kshan3Abf1"].show(g)
-        elif arg == "bad_end_2":
-            quit_all = g.dict_dial["dial_kshan3Abf2"].show(g)
+        elif arg == "bad_end":
+            quit_all = g.dict_dial["dial_kshan3Abf"].show(g)
         elif arg == "good_end":
             quit_all = g.dict_dial["dial_kshan3Agf"].show(g)
         return quit_all
-            
-    def reward(self,g):
-        self.key.possessed = True
         
     def check_victory(self,g,arg):
-        if arg and g.player.is_in_inventory(KeyItem(self.key.sps_name)):
-            return True
-        return False
+        return arg
         
     def launch(self,g):
         quit_all = self.fun_dialogue(g,"start")
@@ -39,11 +32,10 @@ class Level_3A_kshan(Level):
         def player_pos(t):
             return t*100 #*8 to be faster (but it doesn't match the music anymore !
 
-        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Key To Success"],parallax=g.options["parallax"],limgpar=get_demon_woods_bg(g),music="data/musics/Boss2.mp3")
+        gl = GameLevel(self.objects,player_pos,name=g.dict_str["Twin Turrets"],parallax=g.options["parallax"],limgpar=get_cave_bg(g),music="data/musics/Legend.mp3")
         gl.load_inventory(g.player.get_inventory())
         
-        alive = g.launch_level(gl,None)
-        success = self.check_victory(g, alive)
+        success = self.check_victory(g, g.launch_level(gl,None))
         pygame.event.get()#to capture inputs made during the wait
         
         if success:
@@ -51,51 +43,36 @@ class Level_3A_kshan(Level):
             self.set_finished()
             self.reward(g)
         else:
-            if alive:
-                self.fun_dialogue(g,"bad_end_2")
-            else:
-                if self.key.taken and not self.key.possessed:
-                    g.player.set_inventory({KeyItem(self.key.sps_name):0})
-                    self.key.taken = False
-                    self.key.unvanish(self.key.sps_name)
-                self.fun_dialogue(g,"bad_end_1")
+            self.fun_dialogue(g,"bad_end")
         
         return success
     
     def create_objects(self,g):
-        """ creates all objects in the level. """
         plat = []
         dist = -10
         for i in range(10):
-            l = (i+1)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
+            l = (i+1)*130%200 + 50
+            coin = Coin(Hitbox(Rect(dist+l//2,-10,10,10)))
+            plat.append(coin)
+            if i > 5:
+                coin = Coin(Hitbox(Rect(dist,-30,10,10)))
+                plat.append(coin)
+            if i%2 == 0 and i>3:
+                z = Zombie()
+                z.set_position(dist+(l//2),-5)
+                plat.append(z)
+            plat.append(SolidPlatform(Hitbox(Rect(dist,5,l,18))))
             dist += l + 20
-        plat.append(SolidPlatform(Hitbox(Rect(dist,-6,500,24))))
-        if not self.get_accessed():
-            self.key = Key(Hitbox(Rect(dist+300,-38,4,4)),"key")
-        plat.append(self.key)
-        plat.append(Coin(Hitbox(Rect(dist+100,-42,10,10))))
-        z4 = Zombie()
-        z4.set_position(dist+110,-30)
-        rw = RotationWorld(Hitbox(Rect(dist+180,-65,10,10)))
-        dist += 525
-        for i in range(17):
-            l = (i+5)*70%100 + 50
-            plat.append(SolidPlatform(Hitbox(Rect(dist,10,l,18))))
-            if i != 13 and i != 2:
-                plat.append(Coin(Hitbox(Rect(dist+20,-8,10,10))))
-            else:
-                dp = DeadlyPotion(Hitbox(Rect(dist+25,-4,10,10)))
-                plat.append(dp)
-            dist += l + 20
-        flag = Flag(Hitbox(Rect(dist-20,-20,10,20)))
+        flag = Flag(Hitbox(Rect(dist-10,-5,10,20)))
+        plat.append(flag)
 
-        zombie = Zombie()
-        zombie.set_position(132,0)
-        z2 = Zombie()
-        z2.set_position(232,-2)
-        z3 = Zombie()
-        z3.set_position(525,-2)
-        
-        return plat + [zombie,z2,z3,z4,flag,rw] 
- 
+        gravshield = LaserPickableShield()
+        gravshield.set_position(240,-30)
+        plat.append(gravshield)
+        '''
+        laserbot = LaserTurretBot()
+        laserbot.set_position(450,-50)
+        las2 = LaserTurretBot()
+        las2.set_position(850,-50)
+'''
+        return plat

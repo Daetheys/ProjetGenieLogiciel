@@ -55,30 +55,25 @@ class Level_1_kshan(Level):
         return success
     
     def create_objects(self,g):
-        plat_1 = SolidPlatform(Hitbox(Rect(-10,12,300,18)))
-        coin_1 = Coin(Hitbox(Rect(150,-2,10,10)))
-        coin_2 = Coin(Hitbox(Rect(170,-2,10,10)))
-        coin_3 = Coin(Hitbox(Rect(190,-2,10,10)))
-        coin_4 = Coin(Hitbox(Rect(210,-2,10,10)))
-        coin_5 = Coin(Hitbox(Rect(230,-2,10,10)))
-        coin_6 = Coin(Hitbox(Rect(250,-2,10,10)))
-        deadly = DeadlyPotion(Hitbox(Rect(100,-2,10,10)))
         
-        if not self.get_accessed():
-            heart = Heart(Hitbox(Rect(280,-2,10,10)))
-        else:
-            heart = self.objects[-2]
-
-        gravshield = LaserPickableShield()
-        gravshield.set_position(70,0)
-
-        zombie = Zombie()
-        zombie.set_position(340,0)
-
-        laserbot = LaserTurretBot()
-        laserbot.set_position(450,-50)
+        obj = []
+        dist = -10
         
-        plat_2 = SolidPlatform(Hitbox(Rect(310,12,200,18)))
-        flag = Flag(Hitbox(Rect(500,-8,10,20)))
+        for i in range(10):
+            plat = SolidPlatform(Hitbox(Rect(dist,12,120,18)))
+            if i%2 == 0:
+                c1 = Coin(Hitbox(Rect(dist+30,-2,10,10)))
+                c2 = Coin(Hitbox(Rect(dist+50,-2,10,10)))
+                c3 = Coin(Hitbox(Rect(dist+70,-2,10,10)))
+                obj += [c1,c2,c3]
+            obj.append(plat)
+            dist += 140
+            if i<9:
+                coin = Coin(Hitbox(Rect(dist-15,-25,10,10)))
+                obj.append(coin)
+
+
+        flag = Flag(Hitbox(Rect(dist-30,-8,10,20)))
+        obj.append(flag)
         
-        return [plat_1,plat_2,coin_1,coin_2,coin_3,coin_4,coin_5,coin_6,zombie,laserbot,heart,flag,deadly,gravshield]
+        return obj

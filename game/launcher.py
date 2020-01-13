@@ -12,12 +12,12 @@ from shutil import copy2
 from game.campaign.items import item_from_name
 
 from game.campaign.levels.kshan.level_1 import Level_1_kshan
-from game.campaign.levels.kshan.level_2_1 import Level_2_1_kshan
-from game.campaign.levels.kshan.level_2_2 import Level_2_2_kshan
+from game.campaign.levels.kshan.level_2 import Level_2_kshan
 from game.campaign.levels.kshan.level_3A import Level_3A_kshan
 from game.campaign.levels.kshan.level_4A import Level_4A_kshan
 from game.campaign.levels.kshan.level_3B import Level_3B_kshan
-from game.campaign.levels.kshan.level_4B import Level_4B_kshan
+from game.campaign.levels.kshan.level_4B_1 import Level_4B_1_kshan
+from game.campaign.levels.kshan.level_4B_2 import Level_4B_2_kshan
 from game.campaign.levels.fantasy.level_1f import Level_1_fantasy
 from game.campaign.levels.fantasy.level_2f import Level_2_fantasy
 from game.campaign.levels.fantasy.level_3f import Level_3_fantasy
@@ -188,11 +188,11 @@ class Launcher:
         mp_4B = Level_Sequence("kshan_4B",self.options["DISPLAYSIZE_X"]*(900/1366),self.options["DISPLAYSIZE_Y"]*(600/768),self.dict_img["img_point"],self.dict_img["img_pointf"],mapkshan)
 
         mp_1.set_levels([Level_1_kshan(self)])
-        mp_2.set_levels([Level_2_1_kshan(self),Level_2_2_kshan(self)])
+        mp_2.set_levels([Level_2_kshan(self)])
         mp_3A.set_levels([Level_3A_kshan(self)])
         mp_4A.set_levels([Level_4A_kshan(self)])
         mp_3B.set_levels([Level_3B_kshan(self)])
-        mp_4B.set_levels([Level_4B_kshan(self)])
+        mp_4B.set_levels([Level_4B_1_kshan(self),Level_4B_2_kshan(self)])
 
         mp_1.set_childs([mp_2])
         mp_2.set_childs([mp_3A, mp_3B])
