@@ -253,9 +253,6 @@ class Launcher:
                     getattr(L[1],set_fun)()
                 elif lvl == 'Moon Ruins':
                     getattr(L[2],set_fun)()
-                elif lvl == 'fantasy4':
-                    getattr(L[3],set_fun)()
-
     def saving(self):
         """ saves the game in the json file """
         self.save["inv"] = [[i.name, j] for i, j in self.player.inv.items()]
