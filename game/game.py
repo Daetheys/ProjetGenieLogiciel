@@ -46,7 +46,7 @@ class Game(Launcher):
 
     def menu_loop(self,cnt = True,quit_all=False,background = None,scrolling=False,scrollist=[]):
         """
-        function used for various loops in the menu. It returns:
+        function used for various loops in the menu. It returns: 
         continue (whether the loop nesting it stops)
         quit_all (whether the full game stops)t
 
