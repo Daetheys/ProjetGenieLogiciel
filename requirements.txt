@@ -1,6 +1,6 @@
 librosa==0.7.0
 matplotlib==3.0.3
-numpy==1.16.0
+numpy==1.22.0
 pygame==1.9.4
 hypothesis==4.42.0
 pyautogui==0.9.48
